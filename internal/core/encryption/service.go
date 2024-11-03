@@ -4,14 +4,16 @@ import "github.com/pkg/errors"
 
 // EncryptionService is a service to encrypt and decrypt data by keys according to the keys version.
 type EncryptionService struct {
-	managers map[int64]*EncryptionManager
-	dir      string
+	masterKey *PrivateKey
+	managers  map[int64]*EncryptionManager
+	dir       string
 }
 
-func NewEncryptionService(keysDir string) *EncryptionService {
+func NewEncryptionService(keysDir string, masterKey *PrivateKey) *EncryptionService {
 	return &EncryptionService{
-		dir:      keysDir,
-		managers: make(map[int64]*EncryptionManager),
+		dir:       keysDir,
+		masterKey: masterKey,
+		managers:  make(map[int64]*EncryptionManager),
 	}
 }
 
@@ -42,7 +44,7 @@ func (s *EncryptionService) getManager(version int64) (*EncryptionManager, error
 		return manager, nil
 	}
 
-	manager, err := NewEncryptionManager(version, s.dir)
+	manager, err := NewEncryptionManager(version, s.dir, s.masterKey.Decrypt)
 	if err != nil {
 		return nil, errors.Wrap(err, "failed to create encryption manager")
 	}

@@ -41,6 +41,9 @@ func LoadPrivateKeyFromFile(file string) (*PrivateKey, error) {
 
 func LoadPrivateKey(rawKey []byte) (*PrivateKey, error) {
 	block, _ := pem.Decode(rawKey)
+	if block == nil {
+		return nil, errors.New("failed to decode private key")
+	}
 	privateKey, err := x509.ParsePKCS1PrivateKey(block.Bytes)
 	if err != nil {
 		return nil, fmt.Errorf("parsing private key error: %w", err)

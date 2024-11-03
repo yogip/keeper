@@ -5,6 +5,11 @@ mock:
 test:
 	go test ./...
 
+test-cov:
+	go test -v -coverpkg=./... -coverprofile=profile.cov.tmp ./...
+	grep -Ev "mocks|migrations" profile.cov.tmp > profile.cov
+	go tool cover -func profile.cov
+
 server:
 	go run cmd/keeper/main.go -l debug -r http://localhost:8090 -d "host=localhost port=35432 user=username password=password dbname=keeper sslmode=disable"
 
