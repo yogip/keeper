@@ -1,6 +1,10 @@
 package encryption
 
-import "github.com/pkg/errors"
+import (
+	"keeper/internal/core/model"
+
+	"github.com/pkg/errors"
+)
 
 // EncryptionService is a service to encrypt and decrypt data by keys according to the keys version.
 type EncryptionService struct {
@@ -18,7 +22,7 @@ func NewEncryptionService(keysDir string, masterKey *PrivateKey) *EncryptionServ
 }
 
 // Encrypt plaintext by encryption key version.
-func (s *EncryptionService) Encrypt(plaintext []byte, version int64) ([]byte, DataKey, error) {
+func (s *EncryptionService) Encrypt(plaintext []byte, version int64) ([]byte, []byte, error) {
 	manager, err := s.getManager(version)
 	if err != nil {
 		return nil, nil, err
@@ -28,13 +32,13 @@ func (s *EncryptionService) Encrypt(plaintext []byte, version int64) ([]byte, Da
 }
 
 // Decrypt dycrypts ciphertext using data key.
-func (s *EncryptionService) Decrypt(chipertext []byte, dataKey DataKey, version int64) ([]byte, error) {
-	manager, err := s.getManager(version)
+func (s *EncryptionService) Decrypt(chipertext []byte, dataKey *model.DataKey) ([]byte, error) {
+	manager, err := s.getManager(dataKey.Version)
 	if err != nil {
 		return nil, err
 	}
 
-	return manager.Decrypt(chipertext, dataKey)
+	return manager.Decrypt(chipertext, DataKeyRaw(dataKey.Key))
 }
 
 // getManager gets encryption manager by key version.

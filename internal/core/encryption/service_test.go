@@ -2,6 +2,7 @@ package encryption
 
 import (
 	"errors"
+	"keeper/internal/core/model"
 	"os"
 	"testing"
 
@@ -126,7 +127,7 @@ LfHpc4xLw78xk5cdTurPtU6IA4/eGoflewTxj6vl5RAAZDAspSj22nuoh1w=
 				require.NoError(t, err)
 			}
 
-			got, err := encService.Decrypt(chiphertext, dataKey, 10)
+			got, err := encService.Decrypt(chiphertext, &model.DataKey{Key: dataKey, Version: 10})
 			require.NoError(t, err)
 			assert.Equal(t, []byte("plain text"), got)
 		})

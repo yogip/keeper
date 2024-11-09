@@ -19,6 +19,7 @@ CREATE TABLE IF NOT EXISTS passwords(
     id         BIGSERIAL PRIMARY KEY,
     user_id    BIGINT REFERENCES users(id),
     folder_id  BIGINT REFERENCES folders(id) DEFAULT NULL,
+    name       VARCHAR NOT NULL,
     login      VARCHAR NOT NULL,
     password   VARCHAR NOT NULL,
     sc_version INT NOT NULL,
@@ -29,6 +30,7 @@ CREATE TABLE IF NOT EXISTS notes(
     id         BIGSERIAL PRIMARY KEY,
     user_id    BIGINT REFERENCES users(id),
     folder_id  BIGINT REFERENCES folders(id) DEFAULT NULL,
+    name       VARCHAR NOT NULL,
     note       text NOT NULL,
     sc_version INT NOT NULL,
     sc         VARCHAR NOT NULL
@@ -38,6 +40,7 @@ CREATE TABLE IF NOT EXISTS files(
     id         BIGSERIAL PRIMARY KEY,
     user_id    BIGINT REFERENCES users(id),
     folder_id  BIGINT REFERENCES folders(id) DEFAULT NULL,
+    name       VARCHAR NOT NULL,
     path       VARCHAR NOT NULL,
     sc_version INT NOT NULL,
     sc         VARCHAR NOT NULL
@@ -58,10 +61,11 @@ CREATE TABLE IF NOT EXISTS tags(
 
 -- +goose Down
 -- +goose StatementBegin
-DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS passwords;
-DROP TABLE IF EXISTS notes;
 DROP TABLE IF EXISTS files;
+DROP TABLE IF EXISTS notes;
 DROP TABLE IF EXISTS tags;
-DROP ENUM IF EXISTS TAG_RELATIONS;
+DROP TABLE IF EXISTS folders;
+DROP TYPE IF EXISTS TAG_RELATIONS;
+DROP TABLE IF EXISTS users;
 -- +goose StatementEnd

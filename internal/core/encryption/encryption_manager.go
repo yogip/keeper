@@ -6,7 +6,7 @@ import (
 )
 
 // Raw data key encrypted by EncryptionKey.
-type DataKey []byte
+type DataKeyRaw []byte
 
 // EncryptionManager is a manager for encrypting data with uniq data key.
 // Plaintext data encrypts by the data key and the data key encrypts by the encryption key.
@@ -51,7 +51,7 @@ func NewEncryptionManager(version int64, keyDir string, decoder func([]byte) ([]
 }
 
 // Encrypt creates new data key and encrypts data using it.
-func (e *EncryptionManager) Encrypt(data []byte) ([]byte, DataKey, error) {
+func (e *EncryptionManager) Encrypt(data []byte) ([]byte, DataKeyRaw, error) {
 	dataKey, err := NewPrivateKey()
 	if err != nil {
 		return nil, nil, fmt.Errorf("failed to generate data key: %w", err)
@@ -72,7 +72,7 @@ func (e *EncryptionManager) Encrypt(data []byte) ([]byte, DataKey, error) {
 }
 
 // Decrypt load given data key and decrypts data using it.
-func (e *EncryptionManager) Decrypt(chipertext []byte, encDataKey DataKey) ([]byte, error) {
+func (e *EncryptionManager) Decrypt(chipertext []byte, encDataKey DataKeyRaw) ([]byte, error) {
 	rawDK, err := e.key.Decrypt(encDataKey)
 	if err != nil {
 		return nil, fmt.Errorf("failed to Decrypt data key: %w", err)
