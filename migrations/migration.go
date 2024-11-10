@@ -6,7 +6,6 @@ import (
 	"embed"
 	"fmt"
 
-	"keeper/internal/core/config"
 	"keeper/internal/logger"
 
 	"github.com/pressly/goose/v3"
@@ -15,10 +14,10 @@ import (
 //go:embed *.sql
 var embedMigrations embed.FS
 
-func RunMigration(ctx context.Context, cfg *config.ServerConfig) error {
+func RunMigration(ctx context.Context, dbDSN string) error {
 	logger.Log.Debug("Run migrations")
 
-	db, err := sql.Open("pgx", cfg.DatabaseDSN)
+	db, err := sql.Open("pgx", dbDSN)
 	if err != nil {
 		return fmt.Errorf("failed to initialize Database: %w", err)
 	}

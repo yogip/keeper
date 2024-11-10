@@ -13,6 +13,22 @@ import (
 	"keeper/internal/retrier"
 )
 
+type EncryptedPassword struct {
+	Item    *model.Password
+	DataKey *model.DataKey
+}
+
+type EncryptedNote struct {
+	Item    *model.Note
+	DataKey *model.DataKey
+}
+
+type EncryptedCard struct {
+	Payload string
+	Meta    *model.SecretMeta
+	DataKey *model.DataKey
+}
+
 type SecretRepo struct {
 	db      *sql.DB
 	retrier *retrier.Retrier
@@ -37,31 +53,66 @@ func NewSecretRepo(db *sql.DB) *SecretRepo {
 	return repo
 }
 
-func (r *SecretRepo) ListSecrets(ctx context.Context, user *model.User) (*model.User, error) {
-	return &model.User{}, nil
+func (r *SecretRepo) ListSecrets(ctx context.Context, req *model.SecretListRequest) ([]*model.SecretMeta, error) {
+	items := make([]*model.SecretMeta, 0, 10)
+	var query string
+	switch req.Type {
+	case model.SecretTypePassword:
+		query = "SELECT id, name FROM public.passwords WHERE user_id = $1"
+	case model.SecretTypeNote:
+		query = "SELECT id, name FROM public.notes WHERE user_id = $1"
+	case model.SecretTypeCard:
+		query = "SELECT id, name FROM public.cards WHERE user_id = $1"
+	}
+
+	fun := func() error {
+		rows, err := r.db.QueryContext(ctx, query, req.UserID)
+		if err != nil {
+			return fmt.Errorf("selecting ListSecrets error: %w", err)
+		}
+
+		for rows.Next() {
+			m := model.SecretMeta{Type: req.Type}
+
+			err = rows.Scan(&m.ID, &m.Name)
+			if err != nil {
+				return fmt.Errorf("read ListSecrets error: %w", err)
+			}
+
+			items = append(items, &m)
+		}
+
+		err = rows.Err()
+		if err != nil {
+			return fmt.Errorf("ListSecrets error: %w", err)
+		}
+		return nil
+	}
+	err := r.retrier.Do(ctx, fun, recoverableErrors...)
+	if err != nil {
+		return nil, err
+	}
+	return items, nil
 }
 
 // Read Password with secret key from DB.
-func (r *SecretRepo) GetPassword(ctx context.Context, req model.SecretRequest) (*model.Password, *model.DataKey, error) {
+func (r *SecretRepo) GetPassword(ctx context.Context, req model.SecretRequest) (*EncryptedPassword, error) {
 	pwd := &model.Password{}
 	dataSecret := &model.DataKey{}
 	query := `
 		SELECT 
-			p.id, p.name, t.folder_id, f.name as folder, login, password, sc_version, sc
+			p.id, p.name, login, password, sc_version, sc
 		FROM 
-			public.passwords t
-		LEFT JOIN 
-			folders f on f.id = t.folder_id AND f.user_id = t.user_id
-		WHERE t.id = $1 AND t.user_id = $2;
+			public.passwords p
+		WHERE p.id = $1 AND p.user_id = $2;
 	`
 
 	fun := func() error {
 		row := r.db.QueryRowContext(ctx, query, req.ID, req.UserID)
+
 		err := row.Scan(
 			&pwd.ID,
 			&pwd.Name,
-			&pwd.Folder.ID,
-			&pwd.Folder.Name,
 			&pwd.Login,
 			&pwd.Password,
 			&dataSecret.Version,
@@ -74,32 +125,29 @@ func (r *SecretRepo) GetPassword(ctx context.Context, req model.SecretRequest) (
 	}
 	err := r.retrier.Do(ctx, fun, recoverableErrors...)
 	if err != nil {
-		return nil, nil, fmt.Errorf("error reading password: %w", err)
+		return nil, fmt.Errorf("error reading password: %w", err)
 	}
-	return pwd, dataSecret, nil
+	return &EncryptedPassword{Item: pwd, DataKey: dataSecret}, nil
 }
 
 // Read Note with secret key from DB.
-func (r *SecretRepo) GetNote(ctx context.Context, req model.SecretRequest) (*model.Note, *model.DataKey, error) {
+func (r *SecretRepo) GetNote(ctx context.Context, req model.SecretRequest) (*EncryptedNote, error) {
 	note := &model.Note{}
 	dataSecret := &model.DataKey{}
 	query := `
 		SELECT 
-			t.id, t.name, t.folder_id, f.name as folder, note, sc_version, sc
+			n.id, n.name, note, sc_version, sc
 		FROM 
-			public.notes t
-		LEFT JOIN 
-			folders f on f.id = p.folder_id AND f.user_id = t.user_id
-		WHERE t.id = $1 AND t.user_id = $2;
+			public.notes n
+		WHERE n.id = $1 AND n.user_id = $2;
 	`
 
 	fun := func() error {
 		row := r.db.QueryRowContext(ctx, query, req.ID, req.UserID)
+
 		err := row.Scan(
 			&note.ID,
 			&note.Name,
-			&note.Folder.ID,
-			&note.Folder.Name,
 			&note.Note,
 			&dataSecret.Version,
 			&dataSecret.Key,
@@ -111,7 +159,43 @@ func (r *SecretRepo) GetNote(ctx context.Context, req model.SecretRequest) (*mod
 	}
 	err := r.retrier.Do(ctx, fun, recoverableErrors...)
 	if err != nil {
-		return nil, nil, fmt.Errorf("error reading password: %w", err)
+		return nil, fmt.Errorf("error reading password: %w", err)
 	}
-	return note, dataSecret, nil
+	return &EncryptedNote{Item: note, DataKey: dataSecret}, nil
+}
+
+// Read Card encrypted data with secret key from DB.
+func (r *SecretRepo) GetCard(ctx context.Context, req model.SecretRequest) (*EncryptedCard, error) {
+	card := EncryptedCard{
+		Meta:    &model.SecretMeta{},
+		DataKey: &model.DataKey{},
+	}
+	query := `
+		SELECT 
+			n.id, n.name, payload, sc_version, sc
+		FROM 
+			public.cards n
+		WHERE n.id = $1 AND n.user_id = $2;
+	`
+
+	fun := func() error {
+		row := r.db.QueryRowContext(ctx, query, req.ID, req.UserID)
+
+		err := row.Scan(
+			&card.Meta.ID,
+			&card.Meta.Name,
+			&card.Payload,
+			&card.DataKey.Version,
+			&card.DataKey.Key,
+		)
+		if errors.Is(err, sql.ErrNoRows) {
+			return coreErrors.ErrNotFound404
+		}
+		return err
+	}
+	err := r.retrier.Do(ctx, fun, recoverableErrors...)
+	if err != nil {
+		return nil, fmt.Errorf("error reading password: %w", err)
+	}
+	return &card, nil
 }

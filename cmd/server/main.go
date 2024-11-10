@@ -32,7 +32,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	err = migrations.RunMigration(ctx, &cfg.Server)
+	err = migrations.RunMigration(ctx, cfg.Server.DatabaseDSN)
 	if err != nil {
 		logger.Log.Fatal("Migration error", zap.String("error", err.Error()))
 	}

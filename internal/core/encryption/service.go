@@ -1,6 +1,7 @@
 package encryption
 
 import (
+	"encoding/hex"
 	"keeper/internal/core/model"
 
 	"github.com/pkg/errors"
@@ -22,23 +23,35 @@ func NewEncryptionService(keysDir string, masterKey *PrivateKey) *EncryptionServ
 }
 
 // Encrypt plaintext by encryption key version.
-func (s *EncryptionService) Encrypt(plaintext []byte, version int64) ([]byte, []byte, error) {
+func (s *EncryptionService) Encrypt(plaintext []byte, version int64) (string, string, error) {
 	manager, err := s.getManager(version)
 	if err != nil {
-		return nil, nil, err
+		return "", "", err
 	}
 
-	return manager.Encrypt(plaintext)
+	encData, key, err := manager.Encrypt(plaintext)
+	if err != nil {
+		return "", "", err
+	}
+	return hex.EncodeToString(encData), hex.EncodeToString(key), nil
 }
 
 // Decrypt dycrypts ciphertext using data key.
-func (s *EncryptionService) Decrypt(chipertext []byte, dataKey *model.DataKey) ([]byte, error) {
+func (s *EncryptionService) Decrypt(chipertext string, dataKey *model.DataKey) ([]byte, error) {
 	manager, err := s.getManager(dataKey.Version)
 	if err != nil {
 		return nil, err
 	}
+	ch, err := hex.DecodeString(chipertext)
+	if err != nil {
+		return nil, err
+	}
+	key, err := hex.DecodeString(dataKey.Key)
+	if err != nil {
+		return nil, err
+	}
 
-	return manager.Decrypt(chipertext, DataKeyRaw(dataKey.Key))
+	return manager.Decrypt(ch, DataKeyRaw(key))
 }
 
 // getManager gets encryption manager by key version.

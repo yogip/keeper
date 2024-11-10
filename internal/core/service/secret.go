@@ -2,7 +2,9 @@ package service
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
+
 	"keeper/internal/core/encryption"
 	"keeper/internal/core/model"
 	"keeper/internal/infra/repo"
@@ -19,8 +21,12 @@ func NewSecretService(repo *repo.SecretRepo, encrypter *encryption.EncryptionSer
 	return &SecretService{secretRepo: repo, encrypter: encrypter}
 }
 
-func (s *SecretService) LisSecretsMeta(*model.SecretListRequest) (*model.SecretList, error) {
-	return &model.SecretList{}, nil
+func (s *SecretService) ListSecretsMeta(ctx context.Context, req *model.SecretListRequest) (*model.SecretList, error) {
+	secrets, err := s.secretRepo.ListSecrets(ctx, req)
+	if err != nil {
+		return nil, errors.Wrapf(err, "failed to get password")
+	}
+	return &model.SecretList{Secrets: secrets}, nil
 }
 
 func (s *SecretService) GetPassword(ctx context.Context, req model.SecretRequest) (*model.Password, error) {
@@ -28,18 +34,19 @@ func (s *SecretService) GetPassword(ctx context.Context, req model.SecretRequest
 		return nil, fmt.Errorf("type must be %s, got: %s", model.SecretTypePassword, req.Type)
 	}
 
-	pwd, key, err := s.secretRepo.GetPassword(ctx, req)
+	pwd, err := s.secretRepo.GetPassword(ctx, req)
 	if err != nil {
 		return nil, errors.Wrapf(err, "failed to get password")
 	}
 
-	p, err := s.encrypter.Decrypt([]byte(pwd.Password), key)
+	p, err := s.encrypter.Decrypt(pwd.Item.Password, pwd.DataKey)
 	if err != nil {
 		return nil, errors.Wrapf(err, "failed to decrypt password")
 	}
 
-	pwd.Password = string(p)
-	return pwd, nil
+	pwd.Item.Type = model.SecretTypePassword
+	pwd.Item.Password = string(p)
+	return pwd.Item, nil
 }
 
 func (s *SecretService) GetNote(ctx context.Context, req model.SecretRequest) (*model.Note, error) {
@@ -47,16 +54,46 @@ func (s *SecretService) GetNote(ctx context.Context, req model.SecretRequest) (*
 		return nil, fmt.Errorf("type must be %s, got: %s", model.SecretTypeNote, req.Type)
 	}
 
-	note, key, err := s.secretRepo.GetNote(ctx, req)
+	note, err := s.secretRepo.GetNote(ctx, req)
 	if err != nil {
-		return nil, errors.Wrapf(err, "failed to get password")
+		return nil, errors.Wrapf(err, "failed to get note")
 	}
 
-	n, err := s.encrypter.Decrypt([]byte(note.Note), key)
+	n, err := s.encrypter.Decrypt(note.Item.Note, note.DataKey)
 	if err != nil {
-		return nil, errors.Wrapf(err, "failed to decrypt password")
+		return nil, errors.Wrapf(err, "failed to decrypt note")
 	}
 
-	note.Note = string(n)
-	return note, nil
+	note.Item.Type = model.SecretTypeNote
+	note.Item.Note = string(n)
+	return note.Item, nil
+}
+
+func (s *SecretService) GetCard(ctx context.Context, req model.SecretRequest) (*model.Card, error) {
+	if req.Type != model.SecretTypeCard {
+		return nil, fmt.Errorf("type must be %s, got: %s", model.SecretTypeCard, req.Type)
+	}
+
+	encCard, err := s.secretRepo.GetCard(ctx, req)
+	if err != nil {
+		return nil, errors.Wrapf(err, "failed to get card")
+	}
+
+	payload, err := s.encrypter.Decrypt(encCard.Payload, encCard.DataKey)
+	if err != nil {
+		return nil, errors.Wrapf(err, "failed to decrypt card")
+	}
+
+	card := model.CardData{}
+	err = json.Unmarshal(payload, &card)
+	if err != nil {
+		return nil, errors.Wrapf(err, "failed to unmarshal card")
+	}
+
+	encCard.Meta.Type = model.SecretTypeCard
+	return &model.Card{
+		SecretMeta: *encCard.Meta,
+		CardData:   card,
+	}, nil
+
 }
