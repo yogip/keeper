@@ -123,7 +123,7 @@ LfHpc4xLw78xk5cdTurPtU6IA4/eGoflewTxj6vl5RAAZDAspSj22nuoh1w=
 	s.db = db
 	s.psqlContainer = psqlContainer
 	s.encrypter = encryption.NewEncryptionService("/tmp", masterKey)
-	s.secretSrv = NewSecretService(repoSecret, s.encrypter)
+	s.secretSrv = NewSecretService(repoSecret, s.encrypter, 1)
 }
 
 // Helper to construct fixtures secret part.

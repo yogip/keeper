@@ -12,6 +12,13 @@ type IAMConfig struct {
 	SecretKey string        `env:"SECRET_KEY,unset" envDefault:"local-default-secret"`
 }
 
+type S3Config struct {
+	BucketName      string `env:"BUCKET_NAME" envDefault:"bucket"`
+	Endpoint        string `env:"ENDPOINT" envDefault:"localhost:9000"`
+	AccessKeyID     string `env:"AK_ID" envDefault:"admin"`
+	SecretAccessKey string `env:"SECRET_AK" envDefault:"password"`
+}
+
 type ServerConfig struct {
 	Address           string `env:"RUN_ADDRESS" envDefault:"0.0.0.0:8080"`
 	DatabaseDSN       string `env:"DATABASE_URI,unset" envDefault:"host=postgres-gophermart port=25432 user=username password=password dbname=gophermart sslmode=disable"`
@@ -23,6 +30,7 @@ type ServerConfig struct {
 type Config struct {
 	Server ServerConfig
 	IAM    IAMConfig `envPrefix:"IAM_"`
+	S3     S3Config  `envPrefix:"S3_"`
 }
 
 func NewConfig() (*Config, error) {

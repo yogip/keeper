@@ -199,3 +199,190 @@ func (r *SecretRepo) GetCard(ctx context.Context, req model.SecretRequest) (*Enc
 	}
 	return &card, nil
 }
+
+func (r *SecretRepo) CreatePassword(ctx context.Context, req model.UpdatePasswordRequest) (*EncryptedPassword, error) {
+	result := req.Data
+	query := `
+	INSERT INTO 
+		passwords(user_id, name, login, password, sc_version, sc) 
+	values($1, $2, $3, $4, $5, $6)
+	RETURNING id;
+	`
+	fun := func() error {
+		row := r.db.QueryRowContext(
+			ctx, query,
+			req.UserID, req.Data.Name, req.Data.Login, req.Data.Password,
+			req.Key.Version,
+			req.Key.Key,
+		)
+		err := row.Scan(&result.ID)
+		if err != nil {
+			return err
+		}
+		return err
+
+	}
+
+	err := r.retrier.Do(ctx, fun, recoverableErrors...)
+	if err != nil {
+		return nil, fmt.Errorf("create password error: %w", err)
+	}
+	return &EncryptedPassword{Item: result, DataKey: req.Key}, nil
+}
+
+func (r *SecretRepo) UpdatePassword(ctx context.Context, req model.UpdatePasswordRequest) (*EncryptedPassword, error) {
+	result := req.Data
+	query := "UPDATE passwords SET name=$1, login=$2, password=$3, sc_version=$4, sc=$5 WHERE id=$6 AND user_id=$7;"
+
+	fun := func() error {
+		result, err := r.db.ExecContext(
+			ctx, query,
+			req.Data.Name, req.Data.Login, req.Data.Password,
+			req.Key.Version, req.Key.Key,
+			req.Data.ID, req.UserID,
+		)
+		if err != nil {
+			return err
+		}
+		affeted, err := result.RowsAffected()
+		if err != nil {
+			return err
+		}
+		if affeted == 0 {
+			return coreErrors.ErrNotFound404
+		}
+		return err
+
+	}
+
+	err := r.retrier.Do(ctx, fun, recoverableErrors...)
+	if err != nil {
+		return nil, fmt.Errorf("update password error: %w", err)
+	}
+	return &EncryptedPassword{Item: result, DataKey: req.Key}, nil
+}
+
+func (r *SecretRepo) CreateNote(ctx context.Context, req model.UpdateNoteRequest) (*EncryptedNote, error) {
+	result := req.Data
+	query := `
+	INSERT INTO 
+		notes(user_id, name, note, sc_version, sc) 
+	values($1, $2, $3, $4, $5)
+	RETURNING id;
+	`
+	fun := func() error {
+		row := r.db.QueryRowContext(
+			ctx, query,
+			req.UserID, req.Data.Name, req.Data.Note,
+			req.Key.Version,
+			req.Key.Key,
+		)
+		err := row.Scan(&result.ID)
+		if err != nil {
+			return err
+		}
+		return err
+
+	}
+
+	err := r.retrier.Do(ctx, fun, recoverableErrors...)
+	if err != nil {
+		return nil, fmt.Errorf("create password error: %w", err)
+	}
+	return &EncryptedNote{Item: result, DataKey: req.Key}, nil
+}
+
+func (r *SecretRepo) UpdateNote(ctx context.Context, req model.UpdateNoteRequest) (*EncryptedNote, error) {
+	result := req.Data
+	query := "UPDATE notes SET name=$1, note=$2, sc_version=$3, sc=$4 WHERE id=$5 AND user_id=$6;"
+
+	fun := func() error {
+		result, err := r.db.ExecContext(
+			ctx, query,
+			req.Data.Name, req.Data.Note,
+			req.Key.Version, req.Key.Key,
+			req.Data.ID, req.UserID,
+		)
+		if err != nil {
+			return err
+		}
+		affeted, err := result.RowsAffected()
+		if err != nil {
+			return err
+		}
+		if affeted == 0 {
+			return coreErrors.ErrNotFound404
+		}
+		return err
+
+	}
+
+	err := r.retrier.Do(ctx, fun, recoverableErrors...)
+	if err != nil {
+		return nil, fmt.Errorf("update password error: %w", err)
+	}
+	return &EncryptedNote{Item: result, DataKey: req.Key}, nil
+}
+
+func (r *SecretRepo) CreateCard(ctx context.Context, req model.EncryptedCard, userID int64) (*EncryptedCard, error) {
+	result := EncryptedCard{Meta: req.Meta, Payload: req.Payload, DataKey: req.DataKey}
+	query := `
+	INSERT INTO 
+		cards(user_id, name, payload, sc_version, sc) 
+	values($1, $2, $3, $4, $5)
+	RETURNING id;
+	`
+	fun := func() error {
+		row := r.db.QueryRowContext(
+			ctx, query,
+			userID, req.Meta.Name, req.Payload,
+
+			req.DataKey.Version,
+			req.DataKey.Key,
+		)
+		err := row.Scan(&result.Meta.ID)
+		if err != nil {
+			return err
+		}
+		return err
+
+	}
+
+	err := r.retrier.Do(ctx, fun, recoverableErrors...)
+	if err != nil {
+		return nil, fmt.Errorf("create password error: %w", err)
+	}
+	return &result, nil
+}
+
+func (r *SecretRepo) UpdateCard(ctx context.Context, req model.EncryptedCard, userID int64) (*EncryptedCard, error) {
+	result := EncryptedCard{Meta: req.Meta, Payload: req.Payload, DataKey: req.DataKey}
+	query := "UPDATE cards SET name=$1, payload=$2, sc_version=$3, sc=$4 WHERE id=$5 AND user_id=$6;"
+
+	fun := func() error {
+		result, err := r.db.ExecContext(
+			ctx, query,
+			req.Meta.Name, req.Payload,
+			req.DataKey.Version, req.DataKey.Key,
+			req.Meta.ID, userID,
+		)
+		if err != nil {
+			return err
+		}
+		affeted, err := result.RowsAffected()
+		if err != nil {
+			return err
+		}
+		if affeted == 0 {
+			return coreErrors.ErrNotFound404
+		}
+		return err
+
+	}
+
+	err := r.retrier.Do(ctx, fun, recoverableErrors...)
+	if err != nil {
+		return nil, fmt.Errorf("update password error: %w", err)
+	}
+	return &result, nil
+}

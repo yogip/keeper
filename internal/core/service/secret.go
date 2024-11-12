@@ -13,12 +13,13 @@ import (
 )
 
 type SecretService struct {
-	secretRepo *repo.SecretRepo
-	encrypter  *encryption.EncryptionService
+	secretRepo        *repo.SecretRepo
+	encrypter         *encryption.EncryptionService
+	lastEncKeyVersion int64
 }
 
-func NewSecretService(repo *repo.SecretRepo, encrypter *encryption.EncryptionService) *SecretService {
-	return &SecretService{secretRepo: repo, encrypter: encrypter}
+func NewSecretService(repo *repo.SecretRepo, encrypter *encryption.EncryptionService, lastEncKeyVersion int64) *SecretService {
+	return &SecretService{secretRepo: repo, encrypter: encrypter, lastEncKeyVersion: lastEncKeyVersion}
 }
 
 func (s *SecretService) ListSecretsMeta(ctx context.Context, req *model.SecretListRequest) (*model.SecretList, error) {
@@ -46,6 +47,86 @@ func (s *SecretService) GetPassword(ctx context.Context, req model.SecretRequest
 
 	pwd.Item.Type = model.SecretTypePassword
 	pwd.Item.Password = string(p)
+	return pwd.Item, nil
+}
+
+func (s *SecretService) CreatePassword(ctx context.Context, req model.UpdatePasswordRequest) (*model.Password, error) {
+	plaintext := req.Data.Password
+	enc, key, err := s.encrypter.Encrypt([]byte(req.Data.Password), s.lastEncKeyVersion)
+	if err != nil {
+		return nil, errors.Wrapf(err, "failed to encrypt password")
+	}
+
+	req.Data.Password = enc
+	req.Key = &model.DataKey{Key: key, Version: s.lastEncKeyVersion}
+
+	pwd, err := s.secretRepo.CreatePassword(ctx, req)
+	if err != nil {
+		return nil, errors.Wrapf(err, "failed to crete password")
+	}
+
+	pwd.Item.Type = model.SecretTypePassword
+	pwd.Item.Password = plaintext
+	return pwd.Item, nil
+}
+
+func (s *SecretService) UpdatePassword(ctx context.Context, req model.UpdatePasswordRequest) (*model.Password, error) {
+	plaintext := req.Data.Password
+	enc, key, err := s.encrypter.Encrypt([]byte(req.Data.Password), s.lastEncKeyVersion)
+	if err != nil {
+		return nil, errors.Wrapf(err, "failed to encrypt password")
+	}
+
+	req.Data.Password = enc
+	req.Key = &model.DataKey{Key: key, Version: s.lastEncKeyVersion}
+
+	pwd, err := s.secretRepo.UpdatePassword(ctx, req)
+	if err != nil {
+		return nil, errors.Wrapf(err, "failed to update password")
+	}
+
+	pwd.Item.Type = model.SecretTypePassword
+	pwd.Item.Password = plaintext
+	return pwd.Item, nil
+}
+
+func (s *SecretService) CreateNote(ctx context.Context, req model.UpdateNoteRequest) (*model.Note, error) {
+	plaintext := req.Data.Note
+	enc, key, err := s.encrypter.Encrypt([]byte(req.Data.Note), s.lastEncKeyVersion)
+	if err != nil {
+		return nil, errors.Wrapf(err, "failed to encrypt password")
+	}
+
+	req.Data.Note = enc
+	req.Key = &model.DataKey{Key: key, Version: s.lastEncKeyVersion}
+
+	pwd, err := s.secretRepo.CreateNote(ctx, req)
+	if err != nil {
+		return nil, errors.Wrapf(err, "failed to crete password")
+	}
+
+	pwd.Item.Type = model.SecretTypeNote
+	pwd.Item.Note = plaintext
+	return pwd.Item, nil
+}
+
+func (s *SecretService) UpdateNote(ctx context.Context, req model.UpdateNoteRequest) (*model.Note, error) {
+	plaintext := req.Data.Note
+	enc, key, err := s.encrypter.Encrypt([]byte(req.Data.Note), s.lastEncKeyVersion)
+	if err != nil {
+		return nil, errors.Wrapf(err, "failed to encrypt password")
+	}
+
+	req.Data.Note = enc
+	req.Key = &model.DataKey{Key: key, Version: s.lastEncKeyVersion}
+
+	pwd, err := s.secretRepo.UpdateNote(ctx, req)
+	if err != nil {
+		return nil, errors.Wrapf(err, "failed to update password")
+	}
+
+	pwd.Item.Type = model.SecretTypeNote
+	pwd.Item.Note = plaintext
 	return pwd.Item, nil
 }
 
@@ -95,5 +176,64 @@ func (s *SecretService) GetCard(ctx context.Context, req model.SecretRequest) (*
 		SecretMeta: *encCard.Meta,
 		CardData:   card,
 	}, nil
+}
 
+func (s *SecretService) CreateCard(ctx context.Context, req model.UpdateCardRequest) (*model.Card, error) {
+	payload, err := json.Marshal(req.Card.CardData)
+	if err != nil {
+		return nil, errors.Wrapf(err, "failed to crete card")
+	}
+
+	enc, key, err := s.encrypter.Encrypt([]byte(payload), s.lastEncKeyVersion)
+	if err != nil {
+		return nil, errors.Wrapf(err, "failed to encrypt password")
+	}
+
+	encCard := model.EncryptedCard{
+		Meta:    &req.Card.SecretMeta,
+		Payload: enc,
+		DataKey: &model.DataKey{Key: key, Version: s.lastEncKeyVersion},
+	}
+
+	cardResult, err := s.secretRepo.CreateCard(ctx, encCard, req.UserID)
+
+	if err != nil {
+		return nil, errors.Wrapf(err, "failed to crete password")
+	}
+	result := model.Card{
+		SecretMeta: req.Card.SecretMeta,
+		CardData:   req.Card.CardData,
+	}
+	result.ID = cardResult.Meta.ID
+	return &result, nil
+}
+
+func (s *SecretService) UpdateCard(ctx context.Context, req model.UpdateCardRequest) (*model.Card, error) {
+	payload, err := json.Marshal(req.Card.CardData)
+	if err != nil {
+		return nil, errors.Wrapf(err, "failed to crete card")
+	}
+
+	enc, key, err := s.encrypter.Encrypt([]byte(payload), s.lastEncKeyVersion)
+	if err != nil {
+		return nil, errors.Wrapf(err, "failed to encrypt password")
+	}
+
+	encCard := model.EncryptedCard{
+		Meta:    &req.Card.SecretMeta,
+		Payload: enc,
+		DataKey: &model.DataKey{Key: key, Version: s.lastEncKeyVersion},
+	}
+
+	cardResult, err := s.secretRepo.UpdateCard(ctx, encCard, req.UserID)
+
+	if err != nil {
+		return nil, errors.Wrapf(err, "failed to crete password")
+	}
+	result := model.Card{
+		SecretMeta: req.Card.SecretMeta,
+		CardData:   req.Card.CardData,
+	}
+	result.ID = cardResult.Meta.ID
+	return &result, nil
 }

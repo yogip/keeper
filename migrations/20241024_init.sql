@@ -45,17 +45,15 @@ CREATE TABLE IF NOT EXISTS cards(
     sc          VARCHAR NOT NULL
 );
 
-
-
 -- Metadata table to store tags
-CREATE TYPE TAG_RELATIONS AS ENUM ('password', 'note', 'file', 'card');
+CREATE TYPE SECRET_TYPE AS ENUM ('password', 'note', 'file', 'card');
 
 CREATE TABLE IF NOT EXISTS tags(
-    id       BIGSERIAL PRIMARY KEY,
-    user_id  BIGINT REFERENCES users(id),
-    relation TAG_RELATIONS NOT NULL,
-    name     VARCHAR NOT NULL,
-    value    VARCHAR NOT NULL
+    id           BIGSERIAL PRIMARY KEY,
+    secret_type  SECRET_TYPE NOT NULL,
+    user_id      BIGINT REFERENCES users(id),
+    name         VARCHAR NOT NULL,
+    value        VARCHAR NOT NULL
 );
 -- +goose StatementEnd
 
@@ -65,6 +63,6 @@ DROP TABLE IF EXISTS passwords;
 DROP TABLE IF EXISTS files;
 DROP TABLE IF EXISTS notes;
 DROP TABLE IF EXISTS tags;
-DROP TYPE IF EXISTS TAG_RELATIONS;
+DROP TYPE IF EXISTS SECRET_TYPE;
 DROP TABLE IF EXISTS users;
 -- +goose StatementEnd

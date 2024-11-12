@@ -59,6 +59,18 @@ type Password struct {
 	Password string `json:"password"`
 }
 
+type UpdatePasswordRequest struct {
+	UserID int64
+	Data   *Password
+	Key    *DataKey
+}
+
+type UpdateNoteRequest struct {
+	UserID int64
+	Data   *Note
+	Key    *DataKey
+}
+
 type Note struct {
 	SecretMeta
 	Note string `json:"Note"`
@@ -75,4 +87,16 @@ type CardData struct {
 type Card struct {
 	SecretMeta
 	CardData
+}
+
+type EncryptedCard struct {
+	Payload string
+	Meta    *SecretMeta
+	DataKey *DataKey
+}
+
+type UpdateCardRequest struct {
+	UserID int64
+	Card   Card
+	Key    *DataKey
 }
