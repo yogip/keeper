@@ -100,3 +100,19 @@ type UpdateCardRequest struct {
 	Card   Card
 	Key    *DataKey
 }
+
+type FileMeta struct {
+	SecretMeta
+	Path string
+}
+
+type File struct {
+	FileMeta
+	Body []byte
+}
+
+type CreateFileRequest struct {
+	UserID int64
+	File   File
+	Key    *DataKey
+}

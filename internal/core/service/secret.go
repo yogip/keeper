@@ -1,6 +1,7 @@
 package service
 
 import (
+	"bytes"
 	"context"
 	"encoding/json"
 	"fmt"
@@ -8,22 +9,29 @@ import (
 	"keeper/internal/core/encryption"
 	"keeper/internal/core/model"
 	"keeper/internal/infra/repo"
+	"keeper/internal/infra/s3"
 
 	"github.com/go-faster/errors"
 )
 
 type SecretService struct {
-	secretRepo        *repo.SecretRepo
+	repo              *repo.SecretRepo
 	encrypter         *encryption.EncryptionService
+	s3client          *s3.S3Client
 	lastEncKeyVersion int64
 }
 
-func NewSecretService(repo *repo.SecretRepo, encrypter *encryption.EncryptionService, lastEncKeyVersion int64) *SecretService {
-	return &SecretService{secretRepo: repo, encrypter: encrypter, lastEncKeyVersion: lastEncKeyVersion}
+func NewSecretService(
+	repo *repo.SecretRepo,
+	s3client *s3.S3Client,
+	encrypter *encryption.EncryptionService,
+	lastEncKeyVersion int64,
+) *SecretService {
+	return &SecretService{repo: repo, s3client: s3client, encrypter: encrypter, lastEncKeyVersion: lastEncKeyVersion}
 }
 
 func (s *SecretService) ListSecretsMeta(ctx context.Context, req *model.SecretListRequest) (*model.SecretList, error) {
-	secrets, err := s.secretRepo.ListSecrets(ctx, req)
+	secrets, err := s.repo.ListSecrets(ctx, req)
 	if err != nil {
 		return nil, errors.Wrapf(err, "failed to get password")
 	}
@@ -35,7 +43,7 @@ func (s *SecretService) GetPassword(ctx context.Context, req model.SecretRequest
 		return nil, fmt.Errorf("type must be %s, got: %s", model.SecretTypePassword, req.Type)
 	}
 
-	pwd, err := s.secretRepo.GetPassword(ctx, req)
+	pwd, err := s.repo.GetPassword(ctx, req)
 	if err != nil {
 		return nil, errors.Wrapf(err, "failed to get password")
 	}
@@ -60,7 +68,7 @@ func (s *SecretService) CreatePassword(ctx context.Context, req model.UpdatePass
 	req.Data.Password = enc
 	req.Key = &model.DataKey{Key: key, Version: s.lastEncKeyVersion}
 
-	pwd, err := s.secretRepo.CreatePassword(ctx, req)
+	pwd, err := s.repo.CreatePassword(ctx, req)
 	if err != nil {
 		return nil, errors.Wrapf(err, "failed to crete password")
 	}
@@ -80,7 +88,7 @@ func (s *SecretService) UpdatePassword(ctx context.Context, req model.UpdatePass
 	req.Data.Password = enc
 	req.Key = &model.DataKey{Key: key, Version: s.lastEncKeyVersion}
 
-	pwd, err := s.secretRepo.UpdatePassword(ctx, req)
+	pwd, err := s.repo.UpdatePassword(ctx, req)
 	if err != nil {
 		return nil, errors.Wrapf(err, "failed to update password")
 	}
@@ -100,7 +108,7 @@ func (s *SecretService) CreateNote(ctx context.Context, req model.UpdateNoteRequ
 	req.Data.Note = enc
 	req.Key = &model.DataKey{Key: key, Version: s.lastEncKeyVersion}
 
-	pwd, err := s.secretRepo.CreateNote(ctx, req)
+	pwd, err := s.repo.CreateNote(ctx, req)
 	if err != nil {
 		return nil, errors.Wrapf(err, "failed to crete password")
 	}
@@ -120,7 +128,7 @@ func (s *SecretService) UpdateNote(ctx context.Context, req model.UpdateNoteRequ
 	req.Data.Note = enc
 	req.Key = &model.DataKey{Key: key, Version: s.lastEncKeyVersion}
 
-	pwd, err := s.secretRepo.UpdateNote(ctx, req)
+	pwd, err := s.repo.UpdateNote(ctx, req)
 	if err != nil {
 		return nil, errors.Wrapf(err, "failed to update password")
 	}
@@ -135,7 +143,7 @@ func (s *SecretService) GetNote(ctx context.Context, req model.SecretRequest) (*
 		return nil, fmt.Errorf("type must be %s, got: %s", model.SecretTypeNote, req.Type)
 	}
 
-	note, err := s.secretRepo.GetNote(ctx, req)
+	note, err := s.repo.GetNote(ctx, req)
 	if err != nil {
 		return nil, errors.Wrapf(err, "failed to get note")
 	}
@@ -155,7 +163,7 @@ func (s *SecretService) GetCard(ctx context.Context, req model.SecretRequest) (*
 		return nil, fmt.Errorf("type must be %s, got: %s", model.SecretTypeCard, req.Type)
 	}
 
-	encCard, err := s.secretRepo.GetCard(ctx, req)
+	encCard, err := s.repo.GetCard(ctx, req)
 	if err != nil {
 		return nil, errors.Wrapf(err, "failed to get card")
 	}
@@ -195,7 +203,7 @@ func (s *SecretService) CreateCard(ctx context.Context, req model.UpdateCardRequ
 		DataKey: &model.DataKey{Key: key, Version: s.lastEncKeyVersion},
 	}
 
-	cardResult, err := s.secretRepo.CreateCard(ctx, encCard, req.UserID)
+	cardResult, err := s.repo.CreateCard(ctx, encCard, req.UserID)
 
 	if err != nil {
 		return nil, errors.Wrapf(err, "failed to crete password")
@@ -225,7 +233,7 @@ func (s *SecretService) UpdateCard(ctx context.Context, req model.UpdateCardRequ
 		DataKey: &model.DataKey{Key: key, Version: s.lastEncKeyVersion},
 	}
 
-	cardResult, err := s.secretRepo.UpdateCard(ctx, encCard, req.UserID)
+	cardResult, err := s.repo.UpdateCard(ctx, encCard, req.UserID)
 
 	if err != nil {
 		return nil, errors.Wrapf(err, "failed to crete password")
@@ -236,4 +244,43 @@ func (s *SecretService) UpdateCard(ctx context.Context, req model.UpdateCardRequ
 	}
 	result.ID = cardResult.Meta.ID
 	return &result, nil
+}
+
+func (s *SecretService) GetFile(ctx context.Context, req model.SecretRequest) (*model.File, error) {
+	if req.Type != model.SecretTypeFile {
+		return nil, fmt.Errorf("type must be %s, got: %s", model.SecretTypeFile, req.Type)
+	}
+
+	fileMeta, err := s.repo.GetFileMeta(ctx, req)
+	if err != nil {
+		return nil, errors.Wrapf(err, "failed to get File")
+	}
+
+	encText, err := s.s3client.GetObject(ctx, fileMeta.Meta.Path)
+	plText, err := s.encrypter.Decrypt(string(encText), fileMeta.DataKey)
+	if err != nil {
+		return nil, errors.Wrapf(err, "failed to decrypt File")
+	}
+
+	return &model.File{Body: plText, FileMeta: *fileMeta.Meta}, nil
+}
+
+func (s *SecretService) CreateFile(ctx context.Context, req model.CreateFileRequest) (*model.FileMeta, error) {
+	enc, key, err := s.encrypter.Encrypt(req.File.Body, s.lastEncKeyVersion)
+	if err != nil {
+		return nil, errors.Wrapf(err, "failed to encrypt file")
+	}
+
+	buff := bytes.NewBufferString(enc)
+	err = s.s3client.PutObject(ctx, req.File.Name, buff, int64(buff.Len()))
+	if err != nil {
+		return nil, errors.Wrapf(err, "failed to crete password")
+	}
+
+	req.Key = &model.DataKey{Key: key, Version: s.lastEncKeyVersion}
+	meta, err := s.repo.CreateFileMeta(ctx, req)
+	if err != nil {
+		return nil, errors.Wrapf(err, "failed to crete password")
+	}
+	return meta.Meta, nil
 }

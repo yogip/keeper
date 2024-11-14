@@ -29,7 +29,7 @@ func NewS3Client(ctx context.Context, cfg *config.S3Config) (*S3Client, error) {
 
 	exists, err := client.BucketExists(ctx, cfg.BucketName)
 	if err != nil {
-		return nil, fmt.Errorf("failed to check if bucket exists: %w", err)
+		return nil, fmt.Errorf("failed to check if bucket (%s) exists: %w", cfg.BucketName, err)
 	}
 	if !exists {
 		logger.Log.Debug("Bucket not found, create backet.", zap.String("BacketName", cfg.BucketName))

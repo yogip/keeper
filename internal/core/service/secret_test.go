@@ -407,3 +407,32 @@ func (s *TestSuite) TestUpdateCard() {
 	s.Require().NoError(err)
 	s.Assert().Equal(expected, *actual)
 }
+
+func (s *TestSuite) TestFile() {
+	ctx := context.Background()
+
+	crReq := model.CreateFileRequest{
+		UserID: 1,
+		File: model.File{
+			Body: []byte("test"),
+			FileMeta: model.FileMeta{
+				Path:       "test.txt",
+				SecretMeta: model.SecretMeta{Name: "test file"},
+			},
+		},
+	}
+
+	fileMeta, err := s.secretSrv.CreateFile(ctx, crReq)
+	s.Require().NoError(err)
+	s.Assert().GreaterOrEqual(fileMeta.ID, int64(1))
+	s.Assert().Equal(fileMeta.Name, crReq.File.Name)
+	s.Assert().Equal(fileMeta.Path, crReq.File.Path)
+
+	req := model.SecretRequest{ID: fileMeta.ID, UserID: 1, Type: model.SecretTypeFile}
+	file, err := s.secretSrv.GetFile(ctx, req)
+	s.Require().NoError(err)
+	s.Assert().GreaterOrEqual(fileMeta.ID, file.ID)
+	s.Assert().Equal(fileMeta.Name, file.Name)
+	s.Assert().Equal(fileMeta.Path, file.Path)
+	s.Assert().Equal(string(crReq.File.Body), string(file.Body))
+}

@@ -16,7 +16,7 @@ services:
 
   minio:
     container_name: minio
-    image: bitnami/minio:latest
+    image: bitnami/minio:2024.11.7
     volumes:
       - minio_data:/data
     ports:

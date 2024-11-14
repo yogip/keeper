@@ -4,9 +4,11 @@ import (
 	"context"
 	"database/sql"
 	"fmt"
+	"keeper/internal/core/config"
 	"keeper/internal/core/encryption"
 	"keeper/internal/helpers/container"
 	"keeper/internal/infra/repo"
+	"keeper/internal/infra/s3"
 	"keeper/migrations"
 	"os"
 	"testing"
@@ -18,10 +20,11 @@ import (
 
 type TestSuite struct {
 	suite.Suite
-	psqlContainer *container.PostgreSQLContainer
-	encrypter     *encryption.EncryptionService
-	secretSrv     *SecretService
-	db            *sql.DB
+	psqlContainer  *container.PostgreSQLContainer
+	minIOContainer *container.MinIOContainer
+	encrypter      *encryption.EncryptionService
+	secretSrv      *SecretService
+	db             *sql.DB
 }
 
 func TestSuite_Run(t *testing.T) {
@@ -83,11 +86,14 @@ LfHpc4xLw78xk5cdTurPtU6IA4/eGoflewTxj6vl5RAAZDAspSj22nuoh1w=
 -----END RSA PRIVATE KEY-----
 `
 
-	ctx, ctxCancel := context.WithTimeout(context.Background(), 30*time.Second)
+	ctx, ctxCancel := context.WithTimeout(context.Background(), 100*time.Second)
 	defer ctxCancel()
 
 	// Prepare test contaner
 	psqlContainer, err := container.NewPostgreSQLContainer(ctx)
+	s.Require().NoError(err)
+
+	s3Container, err := container.NewMinIOContainer(ctx)
 	s.Require().NoError(err)
 
 	err = migrations.RunMigration(ctx, psqlContainer.GetDSN())
@@ -120,10 +126,22 @@ LfHpc4xLw78xk5cdTurPtU6IA4/eGoflewTxj6vl5RAAZDAspSj22nuoh1w=
 	f.Write(encPrivateKey)
 	f.Close()
 
+	s3Client, err := s3.NewS3Client(
+		ctx,
+		&config.S3Config{
+			BucketName:      s3Container.Config.BucketName,
+			Endpoint:        s3Container.GetDSN(),
+			AccessKeyID:     s3Container.Config.User,
+			SecretAccessKey: s3Container.Config.Password,
+		},
+	)
+	s.Require().NoError(err)
+
 	s.db = db
 	s.psqlContainer = psqlContainer
+	s.minIOContainer = s3Container
 	s.encrypter = encryption.NewEncryptionService("/tmp", masterKey)
-	s.secretSrv = NewSecretService(repoSecret, s.encrypter, 1)
+	s.secretSrv = NewSecretService(repoSecret, s3Client, s.encrypter, 1)
 }
 
 // Helper to construct fixtures secret part.
@@ -143,7 +161,9 @@ func (s *TestSuite) TearDownSuite() {
 	s.db.Close()
 
 	err := s.psqlContainer.Terminate(ctx)
-	fmt.Println(err)
+	s.Require().NoError(err)
+
+	err = s.minIOContainer.Terminate(ctx)
 	s.Require().NoError(err)
 
 	os.Remove("/tmp/encription_key_v_1.pem")

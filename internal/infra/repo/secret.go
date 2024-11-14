@@ -29,6 +29,11 @@ type EncryptedCard struct {
 	DataKey *model.DataKey
 }
 
+type EncryptedFileMeta struct {
+	Meta    *model.FileMeta
+	DataKey *model.DataKey
+}
+
 type SecretRepo struct {
 	db      *sql.DB
 	retrier *retrier.Retrier
@@ -383,6 +388,73 @@ func (r *SecretRepo) UpdateCard(ctx context.Context, req model.EncryptedCard, us
 	err := r.retrier.Do(ctx, fun, recoverableErrors...)
 	if err != nil {
 		return nil, fmt.Errorf("update password error: %w", err)
+	}
+	return &result, nil
+}
+
+func (r *SecretRepo) CreateFileMeta(ctx context.Context, req model.CreateFileRequest) (*EncryptedFileMeta, error) {
+	result := EncryptedFileMeta{Meta: &req.File.FileMeta, DataKey: req.Key}
+	query := `
+	INSERT INTO 
+		files(user_id, name, path, sc_version, sc) 
+	values($1, $2, $3, $4, $5)
+	RETURNING id;
+	`
+	fun := func() error {
+		row := r.db.QueryRowContext(
+			ctx, query,
+			req.UserID, req.File.Name, req.File.Path,
+			req.Key.Version,
+			req.Key.Key,
+		)
+		err := row.Scan(&result.Meta.ID)
+		if err != nil {
+			return err
+		}
+		return err
+
+	}
+
+	err := r.retrier.Do(ctx, fun, recoverableErrors...)
+	if err != nil {
+		return nil, fmt.Errorf("create password error: %w", err)
+	}
+	return &result, nil
+}
+
+func (r *SecretRepo) GetFileMeta(ctx context.Context, req model.SecretRequest) (*EncryptedFileMeta, error) {
+	// var result EncryptedFileMeta
+	result := EncryptedFileMeta{
+		Meta:    &model.FileMeta{SecretMeta: model.SecretMeta{}},
+		DataKey: &model.DataKey{},
+	}
+	query := `
+		SELECT 
+			id, name, path, sc_version, sc
+		FROM 
+			public.files
+		WHERE id = $1 AND user_id = $2;
+	`
+
+	fun := func() error {
+		row := r.db.QueryRowContext(ctx, query, req.ID, req.UserID)
+
+		err := row.Scan(
+			&result.Meta.ID,
+			&result.Meta.Name,
+			&result.Meta.Path,
+			&result.DataKey.Version,
+			&result.DataKey.Key,
+		)
+		if errors.Is(err, sql.ErrNoRows) {
+			return coreErrors.ErrNotFound404
+		}
+		return err
+	}
+
+	err := r.retrier.Do(ctx, fun, recoverableErrors...)
+	if err != nil {
+		return nil, fmt.Errorf("create password error: %w", err)
 	}
 	return &result, nil
 }
