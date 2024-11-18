@@ -25,3 +25,6 @@ migrate-down:
 keys:
 	openssl genrsa -out private.pem 4096
 	openssl rsa -in private.pem -outform PEM -pubout -out public.pem
+
+proto:
+	protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative internal/proto/keeper.proto

@@ -1,5 +1,7 @@
 package model
 
+const UserCtxKey string = "user"
+
 type UserRequest struct {
 	Login    string `json:"login"`
 	Password string `json:"password"`
@@ -113,6 +115,6 @@ type File struct {
 
 type CreateFileRequest struct {
 	UserID int64
-	File   File
-	Key    *DataKey
+	Name   string
+	Body   []byte
 }

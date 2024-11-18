@@ -20,11 +20,12 @@ type S3Config struct {
 }
 
 type ServerConfig struct {
-	Address           string `env:"RUN_ADDRESS" envDefault:"0.0.0.0:8080"`
-	DatabaseDSN       string `env:"DATABASE_URI,unset" envDefault:"host=postgres-gophermart port=25432 user=username password=password dbname=gophermart sslmode=disable"`
-	LogLevel          string `env:"LOG_LEVEL" envDefault:"debug"`
-	MasterKey         string `env:"MASTER_KEY,unset" envDefault:"stub-master-secret"`
-	EncryptionKeyPath string `env:"ENCRYPTION_KEY_PATH" envDefault:"encryption_keys/"`
+	Address              string `env:"RUN_ADDRESS" envDefault:"0.0.0.0:8080"`
+	DatabaseDSN          string `env:"DATABASE_URI,unset" envDefault:"host=postgres-gophermart port=25432 user=username password=password dbname=gophermart sslmode=disable"`
+	LogLevel             string `env:"LOG_LEVEL" envDefault:"debug"`
+	MasterKey            string `env:"MASTER_KEY,unset" envDefault:"stub-master-secret"` // todo
+	EncryptionKeyPath    string `env:"ENCRYPTION_KEY_PATH" envDefault:"encryption_keys/"`
+	EncryptionKeyVersion int64  `env:"ENCRYPTION_KEY_VERSION" envDefault:"1"`
 }
 
 type Config struct {

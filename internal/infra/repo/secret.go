@@ -392,8 +392,17 @@ func (r *SecretRepo) UpdateCard(ctx context.Context, req model.EncryptedCard, us
 	return &result, nil
 }
 
-func (r *SecretRepo) CreateFileMeta(ctx context.Context, req model.CreateFileRequest) (*EncryptedFileMeta, error) {
-	result := EncryptedFileMeta{Meta: &req.File.FileMeta, DataKey: req.Key}
+func (r *SecretRepo) CreateFileMeta(ctx context.Context, req model.CreateFileRequest, path string, key *model.DataKey) (*EncryptedFileMeta, error) {
+	result := EncryptedFileMeta{
+		Meta: &model.FileMeta{
+			SecretMeta: model.SecretMeta{
+				Name: req.Name,
+				Type: model.SecretTypeFile,
+			},
+			Path: path,
+		},
+		DataKey: key,
+	}
 	query := `
 	INSERT INTO 
 		files(user_id, name, path, sc_version, sc) 
@@ -403,9 +412,9 @@ func (r *SecretRepo) CreateFileMeta(ctx context.Context, req model.CreateFileReq
 	fun := func() error {
 		row := r.db.QueryRowContext(
 			ctx, query,
-			req.UserID, req.File.Name, req.File.Path,
-			req.Key.Version,
-			req.Key.Key,
+			req.UserID, req.Name, path,
+			key.Version,
+			key.Key,
 		)
 		err := row.Scan(&result.Meta.ID)
 		if err != nil {

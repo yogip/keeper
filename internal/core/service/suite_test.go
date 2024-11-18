@@ -9,6 +9,7 @@ import (
 	"keeper/internal/helpers/container"
 	"keeper/internal/infra/repo"
 	"keeper/internal/infra/s3"
+	"keeper/internal/logger"
 	"keeper/migrations"
 	"os"
 	"testing"
@@ -90,12 +91,15 @@ LfHpc4xLw78xk5cdTurPtU6IA4/eGoflewTxj6vl5RAAZDAspSj22nuoh1w=
 	defer ctxCancel()
 
 	// Prepare test contaner
+	logger.Log.Debug("Creating PostgreSQL container")
 	psqlContainer, err := container.NewPostgreSQLContainer(ctx)
 	s.Require().NoError(err)
 
+	logger.Log.Debug("Creating MinIO container")
 	s3Container, err := container.NewMinIOContainer(ctx)
 	s.Require().NoError(err)
 
+	logger.Log.Debug("Run DB migration")
 	err = migrations.RunMigration(ctx, psqlContainer.GetDSN())
 	s.Require().NoError(err)
 
@@ -103,6 +107,7 @@ LfHpc4xLw78xk5cdTurPtU6IA4/eGoflewTxj6vl5RAAZDAspSj22nuoh1w=
 	s.Require().NoError(err)
 
 	// Load fixtures
+	logger.Log.Debug("Load fixtures")
 	fixtures, err := testfixtures.New(
 		testfixtures.Database(db),
 		testfixtures.Dialect("postgres"),
@@ -142,6 +147,7 @@ LfHpc4xLw78xk5cdTurPtU6IA4/eGoflewTxj6vl5RAAZDAspSj22nuoh1w=
 	s.minIOContainer = s3Container
 	s.encrypter = encryption.NewEncryptionService("/tmp", masterKey)
 	s.secretSrv = NewSecretService(repoSecret, s3Client, s.encrypter, 1)
+	logger.Log.Debug("Setup done")
 }
 
 // Helper to construct fixtures secret part.
@@ -155,7 +161,8 @@ func (s *TestSuite) encript(plaitext string) {
 }
 
 func (s *TestSuite) TearDownSuite() {
-	ctx, ctxCancel := context.WithTimeout(context.Background(), 5*time.Second)
+	logger.Log.Debug("Start to tear down")
+	ctx, ctxCancel := context.WithTimeout(context.Background(), 15*time.Second)
 	defer ctxCancel()
 
 	s.db.Close()

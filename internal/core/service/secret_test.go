@@ -3,6 +3,8 @@ package service
 import (
 	"context"
 	"keeper/internal/core/model"
+
+	"github.com/google/uuid"
 )
 
 func (s *TestSuite) TestGetPassword() {
@@ -413,20 +415,16 @@ func (s *TestSuite) TestFile() {
 
 	crReq := model.CreateFileRequest{
 		UserID: 1,
-		File: model.File{
-			Body: []byte("test"),
-			FileMeta: model.FileMeta{
-				Path:       "test.txt",
-				SecretMeta: model.SecretMeta{Name: "test file"},
-			},
-		},
+		Body:   []byte("test"),
+		Name:   "test file",
 	}
 
 	fileMeta, err := s.secretSrv.CreateFile(ctx, crReq)
 	s.Require().NoError(err)
 	s.Assert().GreaterOrEqual(fileMeta.ID, int64(1))
-	s.Assert().Equal(fileMeta.Name, crReq.File.Name)
-	s.Assert().Equal(fileMeta.Path, crReq.File.Path)
+	s.Assert().Equal(fileMeta.Name, crReq.Name)
+	_, err = uuid.Parse(fileMeta.Path)
+	s.Require().NoError(err)
 
 	req := model.SecretRequest{ID: fileMeta.ID, UserID: 1, Type: model.SecretTypeFile}
 	file, err := s.secretSrv.GetFile(ctx, req)
@@ -434,5 +432,5 @@ func (s *TestSuite) TestFile() {
 	s.Assert().GreaterOrEqual(fileMeta.ID, file.ID)
 	s.Assert().Equal(fileMeta.Name, file.Name)
 	s.Assert().Equal(fileMeta.Path, file.Path)
-	s.Assert().Equal(string(crReq.File.Body), string(file.Body))
+	s.Assert().Equal(string(crReq.Body), string(file.Body))
 }

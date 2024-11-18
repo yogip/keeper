@@ -13,8 +13,10 @@ import (
 	"go.uber.org/zap"
 
 	"keeper/internal/core/config"
+	"keeper/internal/core/encryption"
 	"keeper/internal/core/service"
 	"keeper/internal/infra/repo"
+	"keeper/internal/infra/s3"
 	"keeper/internal/logger"
 	"keeper/migrations"
 )
@@ -43,6 +45,7 @@ func main() {
 }
 
 func run(ctx context.Context, cfg *config.Config) error {
+	logger.Log.Debug("Connecting to DB")
 	db, err := sql.Open("pgx", cfg.Server.DatabaseDSN)
 	if err != nil {
 		return fmt.Errorf("failed to initialize Database: %w", err)
@@ -51,12 +54,30 @@ func run(ctx context.Context, cfg *config.Config) error {
 
 	cancelCtx, cancel := context.WithCancel(ctx)
 
+	logger.Log.Debug("Connecting Repos")
 	repoUser := repo.NewUserRepo(db)
+	repoSecret := repo.NewSecretRepo(db)
+
+	logger.Log.Debug("Connecting Master Key")
+	masterKey, err := encryption.LoadPrivateKey([]byte(cfg.Server.MasterKey))
+	if err != nil {
+		logger.Log.Fatal("Master Key error", zap.String("error", err.Error()))
+	}
+
+	logger.Log.Debug("Creatin EncryptionService")
+	encrypter := encryption.NewEncryptionService(cfg.Server.EncryptionKeyPath, masterKey)
+
+	logger.Log.Debug("Creating S3 Client")
+	s3Client, err := s3.NewS3Client(ctx, &cfg.S3)
+	if err != nil {
+		logger.Log.Fatal("Creating S3 client error", zap.String("error", err.Error()))
+	}
 
 	iamService := service.NewIAMService(repoUser, &cfg.IAM)
+	secretService := service.NewSecretService(repoSecret, s3Client, encrypter, cfg.Server.EncryptionKeyVersion)
 	logger.Log.Info("Service initialized")
 
-	fmt.Println(iamService, cancelCtx)
+	fmt.Println(iamService, cancelCtx, secretService) // todo
 	// api := rest.NewAPI(cfg, iamService, ordersService, balanceService)
 
 	// https://github.com/gin-gonic/gin/blob/master/docs/doc.md#manually

@@ -12,6 +12,7 @@ import (
 	"keeper/internal/infra/s3"
 
 	"github.com/go-faster/errors"
+	"github.com/google/uuid"
 )
 
 type SecretService struct {
@@ -266,19 +267,20 @@ func (s *SecretService) GetFile(ctx context.Context, req model.SecretRequest) (*
 }
 
 func (s *SecretService) CreateFile(ctx context.Context, req model.CreateFileRequest) (*model.FileMeta, error) {
-	enc, key, err := s.encrypter.Encrypt(req.File.Body, s.lastEncKeyVersion)
+	enc, key, err := s.encrypter.Encrypt(req.Body, s.lastEncKeyVersion)
 	if err != nil {
 		return nil, errors.Wrapf(err, "failed to encrypt file")
 	}
 
 	buff := bytes.NewBufferString(enc)
-	err = s.s3client.PutObject(ctx, req.File.Name, buff, int64(buff.Len()))
+	path := uuid.NewString()
+	err = s.s3client.PutObject(ctx, path, buff, int64(buff.Len()))
 	if err != nil {
 		return nil, errors.Wrapf(err, "failed to crete password")
 	}
 
-	req.Key = &model.DataKey{Key: key, Version: s.lastEncKeyVersion}
-	meta, err := s.repo.CreateFileMeta(ctx, req)
+	dKey := &model.DataKey{Key: key, Version: s.lastEncKeyVersion}
+	meta, err := s.repo.CreateFileMeta(ctx, req, path, dKey)
 	if err != nil {
 		return nil, errors.Wrapf(err, "failed to crete password")
 	}

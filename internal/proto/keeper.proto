@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package proto;
+
+option go_package = "./proto/proto";
+
+// Password section
+message Password {
+  sint64 id = 1; 
+  string name = 2; 
+  string login = 3; 
+  string password = 4;
+}
+
+message PasswordRequest {
+  sint64 id = 1; 
+}
+
+message CreatePasswordRequest {
+  string name = 1; 
+  string login = 2; 
+  string password = 3;
+}
+
+message UpdatePasswordRequest {
+  sint64 id = 1; 
+  string name = 2; 
+  string login = 3; 
+  string password = 4;
+}
+// End of Password section
+
+
+service Keeper {
+  rpc GetPassword(PasswordRequest) returns (Password);
+  rpc CreatePassword(CreatePasswordRequest) returns (Password);  
+  rpc UpdatePassword(UpdatePasswordRequest) returns (Password);  
+}
