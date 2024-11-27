@@ -5,6 +5,7 @@ import (
 	"errors"
 	"fmt"
 	"net"
+	"slices"
 
 	"keeper/internal/core/config"
 	coreErrors "keeper/internal/core/errors"
@@ -26,6 +27,7 @@ type KeeperServer struct {
 
 	cfg           *config.Config
 	secretService *service.SecretService
+	iam           *service.IAM
 
 	srv *grpc.Server
 }
@@ -34,10 +36,10 @@ func iamInterceptor(iam *service.IAM) func(context.Context, interface{}, *grpc.U
 	return func(
 		ctx context.Context, req interface{}, info *grpc.UnaryServerInfo, handler grpc.UnaryHandler,
 	) (interface{}, error) {
-		// todo
-		// if slices.Contains(excludeMethods, info.FullMethod) {
-		// 	return handler(ctx, req)
-		// }
+		logger.Log.Debug(fmt.Sprintf("------- Got request from: %s", info.FullMethod))
+		if slices.Contains([]string{"/proto.Keeper/Login", "/proto.Keeper/Register"}, info.FullMethod) {
+			return handler(ctx, req)
+		}
 		md, ok := metadata.FromIncomingContext(ctx)
 		if !ok {
 			logger.Log.Error("failed to get metadata")
@@ -68,12 +70,12 @@ func NewKeeperServer(
 	iamService *service.IAM,
 	secretService *service.SecretService,
 ) *KeeperServer {
-	s := grpc.NewServer()
-	// s = grpc.NewServer(grpc.UnaryInterceptor(subnetInterceptor(cfg.TrustedSubnet)))
+	s := grpc.NewServer(grpc.UnaryInterceptor(iamInterceptor(iamService)))
 
 	m := KeeperServer{
 		cfg:           cfg,
 		secretService: secretService,
+		iam:           iamService,
 		srv:           s,
 	}
 	pb.RegisterKeeperServer(s, &m)

@@ -4,6 +4,22 @@ package proto;
 
 option go_package = "./proto/proto";
 
+// IAM section
+message LoginRequest {
+	string login    = 1;
+	string password = 2;
+} 
+
+message SignUpRequest {
+	string login    = 1;
+	string password = 2;
+} 
+
+message Token {
+	string token    = 1;
+} 
+// End of IAM
+
 // Password section
 message Password {
   sint64 id = 1; 
@@ -32,6 +48,11 @@ message UpdatePasswordRequest {
 
 
 service Keeper {
+  // IAM
+  rpc Login(LoginRequest) returns (Token);
+  rpc SignUp(SignUpRequest) returns (Token);
+
+  // Secret
   rpc GetPassword(PasswordRequest) returns (Password);
   rpc CreatePassword(CreatePasswordRequest) returns (Password);  
   rpc UpdatePassword(UpdatePasswordRequest) returns (Password);  

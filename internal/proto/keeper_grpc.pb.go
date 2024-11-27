@@ -19,6 +19,8 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
+	Keeper_Login_FullMethodName          = "/proto.Keeper/Login"
+	Keeper_SignUp_FullMethodName         = "/proto.Keeper/SignUp"
 	Keeper_GetPassword_FullMethodName    = "/proto.Keeper/GetPassword"
 	Keeper_CreatePassword_FullMethodName = "/proto.Keeper/CreatePassword"
 	Keeper_UpdatePassword_FullMethodName = "/proto.Keeper/UpdatePassword"
@@ -28,6 +30,10 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type KeeperClient interface {
+	// IAM
+	Login(ctx context.Context, in *LoginRequest, opts ...grpc.CallOption) (*Token, error)
+	SignUp(ctx context.Context, in *SignUpRequest, opts ...grpc.CallOption) (*Token, error)
+	// Secret
 	GetPassword(ctx context.Context, in *PasswordRequest, opts ...grpc.CallOption) (*Password, error)
 	CreatePassword(ctx context.Context, in *CreatePasswordRequest, opts ...grpc.CallOption) (*Password, error)
 	UpdatePassword(ctx context.Context, in *UpdatePasswordRequest, opts ...grpc.CallOption) (*Password, error)
@@ -39,6 +45,26 @@ type keeperClient struct {
 
 func NewKeeperClient(cc grpc.ClientConnInterface) KeeperClient {
 	return &keeperClient{cc}
+}
+
+func (c *keeperClient) Login(ctx context.Context, in *LoginRequest, opts ...grpc.CallOption) (*Token, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(Token)
+	err := c.cc.Invoke(ctx, Keeper_Login_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *keeperClient) SignUp(ctx context.Context, in *SignUpRequest, opts ...grpc.CallOption) (*Token, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(Token)
+	err := c.cc.Invoke(ctx, Keeper_SignUp_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *keeperClient) GetPassword(ctx context.Context, in *PasswordRequest, opts ...grpc.CallOption) (*Password, error) {
@@ -75,6 +101,10 @@ func (c *keeperClient) UpdatePassword(ctx context.Context, in *UpdatePasswordReq
 // All implementations must embed UnimplementedKeeperServer
 // for forward compatibility.
 type KeeperServer interface {
+	// IAM
+	Login(context.Context, *LoginRequest) (*Token, error)
+	SignUp(context.Context, *SignUpRequest) (*Token, error)
+	// Secret
 	GetPassword(context.Context, *PasswordRequest) (*Password, error)
 	CreatePassword(context.Context, *CreatePasswordRequest) (*Password, error)
 	UpdatePassword(context.Context, *UpdatePasswordRequest) (*Password, error)
@@ -88,6 +118,12 @@ type KeeperServer interface {
 // pointer dereference when methods are called.
 type UnimplementedKeeperServer struct{}
 
+func (UnimplementedKeeperServer) Login(context.Context, *LoginRequest) (*Token, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Login not implemented")
+}
+func (UnimplementedKeeperServer) SignUp(context.Context, *SignUpRequest) (*Token, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SignUp not implemented")
+}
 func (UnimplementedKeeperServer) GetPassword(context.Context, *PasswordRequest) (*Password, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPassword not implemented")
 }
@@ -116,6 +152,42 @@ func RegisterKeeperServer(s grpc.ServiceRegistrar, srv KeeperServer) {
 		t.testEmbeddedByValue()
 	}
 	s.RegisterService(&Keeper_ServiceDesc, srv)
+}
+
+func _Keeper_Login_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LoginRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(KeeperServer).Login(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Keeper_Login_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(KeeperServer).Login(ctx, req.(*LoginRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Keeper_SignUp_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SignUpRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(KeeperServer).SignUp(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Keeper_SignUp_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(KeeperServer).SignUp(ctx, req.(*SignUpRequest))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _Keeper_GetPassword_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -179,6 +251,14 @@ var Keeper_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "proto.Keeper",
 	HandlerType: (*KeeperServer)(nil),
 	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Login",
+			Handler:    _Keeper_Login_Handler,
+		},
+		{
+			MethodName: "SignUp",
+			Handler:    _Keeper_SignUp_Handler,
+		},
 		{
 			MethodName: "GetPassword",
 			Handler:    _Keeper_GetPassword_Handler,

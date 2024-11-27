@@ -13,6 +13,8 @@ type User struct {
 	PasswordHash *[]byte `json:"password,omitempty"`
 }
 
+type Token string
+
 type SecretType string
 
 const (

@@ -15,6 +15,7 @@ import (
 	"keeper/internal/core/config"
 	"keeper/internal/core/encryption"
 	"keeper/internal/core/service"
+	"keeper/internal/infra/api/grpc"
 	"keeper/internal/infra/repo"
 	"keeper/internal/infra/s3"
 	"keeper/internal/logger"
@@ -77,17 +78,16 @@ func run(ctx context.Context, cfg *config.Config) error {
 	secretService := service.NewSecretService(repoSecret, s3Client, encrypter, cfg.Server.EncryptionKeyVersion)
 	logger.Log.Info("Service initialized")
 
-	fmt.Println(iamService, cancelCtx, secretService) // todo
-	// api := rest.NewAPI(cfg, iamService, ordersService, balanceService)
+	fmt.Println(cancelCtx)
+	app := grpc.NewKeeperServer(cfg, iamService, secretService)
 
 	// https://github.com/gin-gonic/gin/blob/master/docs/doc.md#manually
 	// Initializing the server in a goroutine so that
 	// it won't block the graceful shutdown handling below
 	go func() {
-		fmt.Println("Runned")
-		// if err := api.Run(cfg.Server.Address); err != nil && !errors.Is(err, http.ErrServerClosed) {
-		// 	logger.Log.Info("Runing server error", zap.Error(err))
-		// }
+		if err := app.Run(cfg.Server.Address); err != nil {
+			logger.Log.Fatal("Runing server error", zap.Error(err))
+		}
 	}()
 
 	// Wait for interrupt signal to gracefully shutdown the server with
