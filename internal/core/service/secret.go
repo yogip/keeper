@@ -34,7 +34,7 @@ func NewSecretService(
 func (s *SecretService) ListSecretsMeta(ctx context.Context, req *model.SecretListRequest) (*model.SecretList, error) {
 	secrets, err := s.repo.ListSecrets(ctx, req)
 	if err != nil {
-		return nil, errors.Wrapf(err, "failed to get password")
+		return nil, errors.Wrapf(err, "failed to list secrets")
 	}
 	return &model.SecretList{Secrets: secrets}, nil
 }

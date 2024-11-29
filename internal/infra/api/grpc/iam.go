@@ -35,7 +35,7 @@ func (s *KeeperServer) Login(ctx context.Context, in *pb.LoginRequest) (*pb.Toke
 	return &pb.Token{Token: token}, nil
 }
 
-func (s *KeeperServer) Register(ctx context.Context, in *pb.SignUpRequest) (*pb.Token, error) {
+func (s *KeeperServer) SignUp(ctx context.Context, in *pb.SignUpRequest) (*pb.Token, error) {
 	log := logger.Log.With(zap.Any("Login", in.Login))
 	log.Info("Register request")
 

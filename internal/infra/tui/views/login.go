@@ -11,8 +11,11 @@ import (
 	tea "github.com/charmbracelet/bubbletea"
 )
 
-type LoginMsg struct {
-	Token model.Token
+type LoginMsg struct{}
+
+type ClientIAM interface {
+	Login(req model.UserRequest) error
+	SignUp(req model.UserRequest) error
 }
 
 type LoginView struct {
@@ -21,10 +24,10 @@ type LoginView struct {
 	focusSubmit int
 	focusSignUp int
 	inputs      []textinput.Model
-	iam         IAMClient
+	iam         ClientIAM
 }
 
-func NewLoginView(iam IAMClient) *LoginView {
+func NewLoginView(iam ClientIAM) *LoginView {
 	inputs := make([]textinput.Model, 2)
 
 	for i := range inputs {
@@ -59,12 +62,12 @@ func NewLoginView(iam IAMClient) *LoginView {
 
 func (m *LoginView) loginCmd(user string, password string) tea.Cmd {
 	return func() tea.Msg {
-		token, err := m.iam.Login(model.UserRequest{Login: user, Password: password})
+		err := m.iam.Login(model.UserRequest{Login: user, Password: password})
 		if err != nil {
 			log.Println("Login failed.", err)
 			return NewErrorMsg(err, time.Second*10)
 		}
-		return LoginMsg{Token: token}
+		return LoginMsg{}
 	}
 }
 

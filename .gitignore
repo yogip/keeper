@@ -26,3 +26,5 @@ go.work.sum
 
 temp.go
 encryption_keys/
+
+*.log

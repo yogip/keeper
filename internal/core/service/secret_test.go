@@ -148,7 +148,7 @@ func (s *TestSuite) TestList() {
 		{
 			name: "Test passwords",
 			args: args{
-				req: model.SecretListRequest{UserID: 1, Type: model.SecretTypePassword},
+				req: model.SecretListRequest{UserID: 1, Name: "pwd"},
 			},
 			expected: []model.SecretMeta{
 				{
@@ -166,7 +166,7 @@ func (s *TestSuite) TestList() {
 		{
 			name: "Test notes",
 			args: args{
-				req: model.SecretListRequest{UserID: 1, Type: model.SecretTypeNote},
+				req: model.SecretListRequest{UserID: 1, Name: "note"},
 			},
 			expected: []model.SecretMeta{
 				{
@@ -184,7 +184,7 @@ func (s *TestSuite) TestList() {
 		{
 			name: "Test cards",
 			args: args{
-				req: model.SecretListRequest{UserID: 1, Type: model.SecretTypeCard},
+				req: model.SecretListRequest{UserID: 1, Name: "card-1"},
 			},
 			expected: []model.SecretMeta{
 				{
@@ -197,7 +197,7 @@ func (s *TestSuite) TestList() {
 		{
 			name: "Test cards - empty",
 			args: args{
-				req: model.SecretListRequest{UserID: 3, Type: model.SecretTypeCard},
+				req: model.SecretListRequest{UserID: 3},
 			},
 			expected: []model.SecretMeta{},
 		},

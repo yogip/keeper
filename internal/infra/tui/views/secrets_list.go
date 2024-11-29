@@ -1,11 +1,15 @@
 package views
 
 import (
+	"fmt"
+	"keeper/internal/core/model"
 	"log"
 	"strings"
+	"time"
 
 	"github.com/charmbracelet/bubbles/table"
 	"github.com/charmbracelet/bubbles/textinput"
+
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/charmbracelet/lipgloss"
 )
@@ -14,6 +18,10 @@ var baseStyle = lipgloss.NewStyle().
 	BorderStyle(lipgloss.NormalBorder()).
 	BorderForeground(lipgloss.Color("240"))
 
+type ClientApp interface {
+	ListSecrets(secretName string) (*model.SecretList, error)
+}
+
 type SecretListView struct {
 	focusIndex     int
 	focusMax       int
@@ -21,9 +29,10 @@ type SecretListView struct {
 	focusTable     int
 	searchInput    textinput.Model
 	table          table.Model
+	app            ClientApp
 }
 
-func NewSecretList() *SecretListView {
+func NewSecretList(app ClientApp) *SecretListView {
 	searchInput := textinput.New()
 	searchInput.Cursor.Style = cursorStyle
 	searchInput.CharLimit = 50
@@ -39,17 +48,17 @@ func NewSecretList() *SecretListView {
 	}
 
 	rows := []table.Row{
-		{"1", "Name", "Password"},
-		{"2", "Name 2", "Password"},
-		{"3", "Name 24", "Password"},
-		{"4", "Name 22", "Password"},
-		{"6", "Name 21", "Password"},
-		{"7", "Name 2e", "Password"},
-		{"8", "Name 2", "Password"},
-		{"9", "Namef2", "Password"},
-		{"10", "Namef2", "Password"},
-		{"11", "Namde2", "Password"},
-		{"12", "Name12", "Password"},
+		// {"1", "Name", "Password"},
+		// {"2", "Name 2", "Password"},
+		// {"3", "Name 24", "Password"},
+		// {"4", "Name 22", "Password"},
+		// {"6", "Name 21", "Password"},
+		// {"7", "Name 2e", "Password"},
+		// {"8", "Name 2", "Password"},
+		// {"9", "Namef2", "Password"},
+		// {"10", "Namef2", "Password"},
+		// {"11", "Namde2", "Password"},
+		// {"12", "Name12", "Password"},
 	}
 
 	t := table.New(
@@ -77,11 +86,32 @@ func NewSecretList() *SecretListView {
 		focusTable:     1,
 		searchInput:    searchInput,
 		table:          t,
+		app:            app,
+	}
+}
+
+func (m *SecretListView) Init() tea.Cmd {
+	return m.searchSecrets("")
+}
+
+func (m *SecretListView) searchSecrets(secretName string) tea.Cmd {
+	return func() tea.Msg {
+		l, err := m.app.ListSecrets(secretName)
+		if err != nil {
+			log.Println("Error loading secrets", err)
+			return NewErrorMsg(err, time.Second*30)
+		}
+
+		rows := make([]table.Row, 0, len(l.Secrets))
+		for _, s := range l.Secrets {
+			rows = append(rows, table.Row{fmt.Sprint(s.ID), s.Name, string(s.Type)})
+		}
+		m.table.SetRows(rows)
+		return nil
 	}
 }
 
 func (m *SecretListView) Update(msg tea.Msg) tea.Cmd {
-	log.Println("Update SecretListView", msg)
 	switch msg := msg.(type) {
 	case tea.KeyMsg:
 		log.Println("Update KeyMsg", msg.String())
@@ -89,27 +119,39 @@ func (m *SecretListView) Update(msg tea.Msg) tea.Cmd {
 		switch msg.String() {
 		case "ctrl+c", "esc":
 			return tea.Quit
-
 		// Set focus to next input
-		case "tab", "shift+tab", "enter":
+		case "tab", "shift+tab", "up", "down", "enter":
 			s := msg.String()
 
-			// Did the user press enter while the submit button was focused?
-			// if s == "enter" && m.focusIndex == m.focusSubmit {
-			// 	return changeScreenCmd(ScreenLogin)
-			// }
-
-			// Cycle indexes
-			if s == "shift+tab" {
-				m.focusIndex--
-			} else {
-				m.focusIndex++
+			var skip bool
+			// If User taps up button while Table is active and Selected first column
+			// Then set focus to Input
+			if m.focusTable == m.focusIndex && (s == "shift+tab" || s == "up") && m.table.Cursor() == 0 {
+				m.focusIndex = m.focusSearchInp
+				skip = true
+			}
+			// If User taps down button while Table is active and Selected last column
+			// Then set focus to Input
+			if m.focusTable == m.focusIndex && (s == "tab" || s == "down") && m.table.Cursor() == len(m.table.Rows())-1 {
+				m.focusIndex = m.focusSearchInp
+				skip = true
 			}
 
-			if m.focusIndex > m.focusMax {
-				m.focusIndex = 0
-			} else if m.focusIndex < 0 {
-				m.focusIndex = m.focusMax
+			// len(m.table.Rows())
+
+			// Cycle indexes
+			if !skip {
+				if s == "shift+tab" {
+					m.focusIndex--
+				} else {
+					m.focusIndex++
+				}
+
+				if m.focusIndex > m.focusMax {
+					m.focusIndex = 0
+				} else if m.focusIndex < 0 {
+					m.focusIndex = m.focusMax
+				}
 			}
 
 			var cmd tea.Cmd
@@ -134,25 +176,33 @@ func (m *SecretListView) Update(msg tea.Msg) tea.Cmd {
 			}
 
 			return cmd
+		default:
+			if m.focusIndex == m.focusSearchInp {
+				var cmd tea.Cmd
+				m.searchInput, cmd = m.searchInput.Update(msg)
+				return tea.Batch(
+					cmd,
+					m.searchSecrets(m.searchInput.Value()),
+				)
+			}
 		}
 	}
 
-	// Handle character input and blinking
-	cmd := m.updateInputs(msg)
-
+	var cmd tea.Cmd
+	m.table, cmd = m.table.Update(msg)
 	return cmd
 }
 
-func (m *SecretListView) updateInputs(msg tea.Msg) tea.Cmd {
-	// Only text inputs with Focus() set will respond, so it's safe to simply
-	// update all of them here without any further logic.
-	cmds := make([]tea.Cmd, 2)
+// func (m *SecretListView) updateInputs(msg tea.Msg) tea.Cmd {
+// 	// Only text inputs with Focus() set will respond, so it's safe to simply
+// 	// update all of them here without any further logic.
+// 	cmds := make([]tea.Cmd, 2)
 
-	m.searchInput, cmds[0] = m.searchInput.Update(msg)
-	m.table, cmds[1] = m.table.Update(msg)
+// 	m.searchInput, cmds[0] = m.searchInput.Update(msg)
+// 	m.table, cmds[1] = m.table.Update(msg)
 
-	return tea.Batch(cmds...)
-}
+// 	return tea.Batch(cmds...)
+// }
 
 func (m *SecretListView) View() string {
 	var b strings.Builder
@@ -171,7 +221,7 @@ func (m *SecretListView) View() string {
 
 	// help info
 	b.WriteString("\n")
-	b.WriteString(helpStyle.Render("Use `tab` to switch between secret name input and table"))
+	b.WriteString(helpStyle.Render("Use `up` and `down` or `tab` and `shift+tab` to navigate"))
 	b.WriteString("\n")
 	b.WriteString(helpStyle.Render("Use `e` to edit secret, `enter` to see secret info "))
 	b.WriteString(helpStyle.Render("and `n` to create a new secret."))

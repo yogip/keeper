@@ -10,6 +10,7 @@ import (
 
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
+	"google.golang.org/grpc/metadata"
 )
 
 type Client struct {
@@ -38,23 +39,42 @@ func (c *Client) Close() {
 	c.conn.Close()
 }
 
-func (c *Client) Login(req model.UserRequest) (model.Token, error) {
+func (c *Client) setToken(token string) {
+	log.Println("Call SetToken method")
+	c.ctx = metadata.NewOutgoingContext(c.ctx, metadata.Pairs("token", string(token)))
+}
+
+func (c *Client) Login(req model.UserRequest) error {
 	log.Println("Call Login method", "Login", req.Login)
 	token, err := c.client.Login(c.ctx, &pb.LoginRequest{Login: req.Login, Password: req.Password})
 	if err != nil {
-		return "", fmt.Errorf("grpc - login error: %w", err)
+		return fmt.Errorf("grpc - login error: %w", err)
 	}
-
-	return model.Token(token.Token), nil
+	c.setToken(token.Token)
+	return nil
 }
 
-func (c *Client) SignUp(req model.UserRequest) (model.Token, error) {
+func (c *Client) SignUp(req model.UserRequest) error {
 	token, err := c.client.SignUp(c.ctx, &pb.SignUpRequest{Login: req.Login, Password: req.Password})
 	if err != nil {
-		return "", fmt.Errorf("grpc - signup update error: %w", err)
+		return fmt.Errorf("grpc - signup update error: %w", err)
 	}
 
-	return model.Token(token.Token), nil
+	c.setToken(token.Token)
+	return nil
+}
+
+func (c *Client) ListSecrets(secretName string) (*model.SecretList, error) {
+	l, err := c.client.ListSecrets(c.ctx, &pb.ListRequest{Name: secretName})
+	if err != nil {
+		return nil, fmt.Errorf("grpc - get secret list error: %w", err)
+	}
+	var resp model.SecretList
+	for _, s := range l.Secrets {
+		t := pbTypeToSecretType(s.Type)
+		resp.Secrets = append(resp.Secrets, &model.SecretMeta{ID: s.Id, Name: s.Name, Type: t})
+	}
+	return &resp, nil
 }
 
 func (c *Client) GetPassword(metricID int64) (*model.Password, error) {

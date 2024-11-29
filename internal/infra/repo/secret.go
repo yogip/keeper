@@ -60,26 +60,22 @@ func NewSecretRepo(db *sql.DB) *SecretRepo {
 
 func (r *SecretRepo) ListSecrets(ctx context.Context, req *model.SecretListRequest) ([]*model.SecretMeta, error) {
 	items := make([]*model.SecretMeta, 0, 10)
-	var query string
-	switch req.Type {
-	case model.SecretTypePassword:
-		query = "SELECT id, name FROM public.passwords WHERE user_id = $1"
-	case model.SecretTypeNote:
-		query = "SELECT id, name FROM public.notes WHERE user_id = $1"
-	case model.SecretTypeCard:
-		query = "SELECT id, name FROM public.cards WHERE user_id = $1"
-	}
+	query := `
+		SELECT id, name, secret_type 
+		FROM public.secrets WHERE user_id = $1 AND name ^@ $2 
+		ORDER BY secret_type, name;
+	`
 
 	fun := func() error {
-		rows, err := r.db.QueryContext(ctx, query, req.UserID)
+		rows, err := r.db.QueryContext(ctx, query, req.UserID, req.Name)
 		if err != nil {
 			return fmt.Errorf("selecting ListSecrets error: %w", err)
 		}
 
 		for rows.Next() {
-			m := model.SecretMeta{Type: req.Type}
+			var m model.SecretMeta
 
-			err = rows.Scan(&m.ID, &m.Name)
+			err = rows.Scan(&m.ID, &m.Name, &m.Type)
 			if err != nil {
 				return fmt.Errorf("read ListSecrets error: %w", err)
 			}

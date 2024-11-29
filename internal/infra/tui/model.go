@@ -2,7 +2,6 @@ package tui
 
 import (
 	"fmt"
-	"keeper/internal/core/model"
 	"keeper/internal/infra/tui/views"
 	"log"
 	"strings"
@@ -17,8 +16,8 @@ type Viewer interface {
 }
 
 type Client interface {
-	Login(req model.UserRequest) (model.Token, error)
-	SignUp(req model.UserRequest) (model.Token, error)
+	views.ClientIAM
+	views.ClientApp
 }
 
 type updateErrMsg string
@@ -28,6 +27,7 @@ func updatErrListCmd() tea.Msg {
 }
 
 type Model struct {
+	app            Client
 	screen         views.ScreenType
 	viewLogin      *views.LoginView
 	viewSignUp     *views.SignUpView
@@ -39,10 +39,11 @@ type Model struct {
 func InitModel(app Client) Model {
 	l := views.NewLoginView(app)
 	return Model{
+		app:            app,
 		screen:         views.ScreenLogin,
 		viewLogin:      l,
 		viewSignUp:     views.NewSignUpView(app),
-		viewSecretList: views.NewSecretList(),
+		viewSecretList: views.NewSecretList(app),
 		activeView:     l,
 		errors:         make([]*views.ErrorMsg, 0),
 	}
@@ -57,7 +58,6 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	case views.ScreenType:
 		m.changeViewer(msg)
 	case views.LoginMsg:
-		log.Println("Login:", msg.Token)
 		m.changeViewer(views.ScreenSecretList)
 	case views.ErrorMsg:
 		log.Println("Got error", msg.Error())
@@ -76,7 +76,11 @@ func (m Model) View() string {
 		return v
 	}
 
+	// Render errors
 	var b strings.Builder
+	b.WriteString(v)
+	b.WriteRune('\n')
+
 	b.WriteString("----------------")
 	b.WriteRune('\n')
 	for _, err := range m.errors {
@@ -84,9 +88,7 @@ func (m Model) View() string {
 		b.WriteString(fmt.Sprintf(" (%d)", err.HideAterSec()))
 		b.WriteString("\n----------------\n")
 	}
-	b.WriteRune('\n')
 
-	b.WriteString(v)
 	return b.String()
 }
 
@@ -113,5 +115,6 @@ func (m *Model) changeViewer(active views.ScreenType) {
 		m.activeView = m.viewSignUp
 	case views.ScreenSecretList:
 		m.activeView = m.viewSecretList
+		m.viewSecretList.Init()
 	}
 }

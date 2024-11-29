@@ -1,8 +1,12 @@
 package views
 
 import (
+	"errors"
 	"fmt"
+	"keeper/internal/core/model"
+	"log"
 	"strings"
+	"time"
 
 	"github.com/charmbracelet/bubbles/textinput"
 	tea "github.com/charmbracelet/bubbletea"
@@ -11,10 +15,10 @@ import (
 type SignUpView struct {
 	focusIndex int
 	inputs     []textinput.Model
-	iam        IAMClient
+	iam        ClientIAM
 }
 
-func NewSignUpView(iam IAMClient) *SignUpView {
+func NewSignUpView(iam ClientIAM) *SignUpView {
 	inputs := make([]textinput.Model, 3)
 
 	for i := range inputs {
@@ -42,8 +46,20 @@ func NewSignUpView(iam IAMClient) *SignUpView {
 		inputs[i] = t
 	}
 	return &SignUpView{
+		iam:        iam,
 		focusIndex: 0,
 		inputs:     inputs,
+	}
+}
+
+func (m *SignUpView) signUpCmd(user string, password string) tea.Cmd {
+	return func() tea.Msg {
+		err := m.iam.SignUp(model.UserRequest{Login: user, Password: password})
+		if err != nil {
+			log.Println("Login failed.", err)
+			return NewErrorMsg(err, time.Second*10)
+		}
+		return LoginMsg{}
 	}
 }
 
@@ -59,11 +75,12 @@ func (m *SignUpView) Update(msg tea.Msg) tea.Cmd {
 		case "tab", "shift+tab", "enter", "up", "down":
 			s := msg.String()
 
-			// Did the user press enter while the submit button was focused?
-			// If so, exit.
-			if s == "enter" && m.focusIndex == len(m.inputs) {
-				// todo login ?
-				return tea.Quit
+			// Did the user press enter while the submit button was focused
+			if s == "enter" && m.focusIndex == len(m.inputs) && m.inputs[1].Value() == m.inputs[2].Value() {
+				return m.signUpCmd(m.inputs[0].Value(), m.inputs[1].Value())
+			}
+			if s == "enter" && m.focusIndex == len(m.inputs) && m.inputs[1].Value() != m.inputs[2].Value() {
+				return ErrorCmd(errors.New("Password isn't match"), time.Second*5)
 			}
 
 			// Cycle indexes

@@ -2,7 +2,6 @@ package views
 
 import (
 	"fmt"
-	"keeper/internal/core/model"
 	"time"
 
 	tea "github.com/charmbracelet/bubbletea"
@@ -37,11 +36,6 @@ func changeScreenCmd(screen ScreenType) tea.Cmd {
 	}
 }
 
-type IAMClient interface {
-	Login(req model.UserRequest) (model.Token, error)
-	SignUp(req model.UserRequest) (model.Token, error)
-}
-
 type ErrorMsg struct {
 	Err       error
 	hideAfter time.Time
@@ -62,4 +56,10 @@ func (e *ErrorMsg) HideAterSec() int {
 
 func (e *ErrorMsg) IsShowing() bool {
 	return time.Now().Before(e.hideAfter)
+}
+
+func ErrorCmd(err error, hideAter time.Duration) tea.Cmd {
+	return func() tea.Msg {
+		return NewErrorMsg(err, hideAter)
+	}
 }

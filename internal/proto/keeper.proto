@@ -20,6 +20,30 @@ message Token {
 } 
 // End of IAM
 
+
+enum SecretType {
+  PASSWORD = 0;
+  CARD = 1;
+  NOTE = 2;
+  FILE = 3;
+}
+
+// List Secrets
+message ListRequest {
+  string name = 1; 
+}
+
+message SecretMeta {
+  sint64 id = 1; 
+  string name = 2; 
+  SecretType type = 3; 
+}
+
+message ListResponse {
+  repeated SecretMeta secrets = 1;
+}
+// End of List Secrets
+
 // Password section
 message Password {
   sint64 id = 1; 
@@ -53,6 +77,7 @@ service Keeper {
   rpc SignUp(SignUpRequest) returns (Token);
 
   // Secret
+  rpc ListSecrets(ListRequest) returns (ListResponse);
   rpc GetPassword(PasswordRequest) returns (Password);
   rpc CreatePassword(CreatePasswordRequest) returns (Password);  
   rpc UpdatePassword(UpdatePasswordRequest) returns (Password);  

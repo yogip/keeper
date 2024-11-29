@@ -47,8 +47,8 @@ type SecretList struct {
 }
 
 type SecretListRequest struct {
-	UserID int64      `json:"user_id"`
-	Type   SecretType `json:"type"`
+	UserID int64  `json:"user_id"`
+	Name   string `json:"name"`
 }
 
 type SecretRequest struct {

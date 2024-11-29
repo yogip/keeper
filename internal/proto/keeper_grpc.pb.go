@@ -21,6 +21,7 @@ const _ = grpc.SupportPackageIsVersion9
 const (
 	Keeper_Login_FullMethodName          = "/proto.Keeper/Login"
 	Keeper_SignUp_FullMethodName         = "/proto.Keeper/SignUp"
+	Keeper_ListSecrets_FullMethodName    = "/proto.Keeper/ListSecrets"
 	Keeper_GetPassword_FullMethodName    = "/proto.Keeper/GetPassword"
 	Keeper_CreatePassword_FullMethodName = "/proto.Keeper/CreatePassword"
 	Keeper_UpdatePassword_FullMethodName = "/proto.Keeper/UpdatePassword"
@@ -34,6 +35,7 @@ type KeeperClient interface {
 	Login(ctx context.Context, in *LoginRequest, opts ...grpc.CallOption) (*Token, error)
 	SignUp(ctx context.Context, in *SignUpRequest, opts ...grpc.CallOption) (*Token, error)
 	// Secret
+	ListSecrets(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*ListResponse, error)
 	GetPassword(ctx context.Context, in *PasswordRequest, opts ...grpc.CallOption) (*Password, error)
 	CreatePassword(ctx context.Context, in *CreatePasswordRequest, opts ...grpc.CallOption) (*Password, error)
 	UpdatePassword(ctx context.Context, in *UpdatePasswordRequest, opts ...grpc.CallOption) (*Password, error)
@@ -61,6 +63,16 @@ func (c *keeperClient) SignUp(ctx context.Context, in *SignUpRequest, opts ...gr
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(Token)
 	err := c.cc.Invoke(ctx, Keeper_SignUp_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *keeperClient) ListSecrets(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*ListResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListResponse)
+	err := c.cc.Invoke(ctx, Keeper_ListSecrets_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -105,6 +117,7 @@ type KeeperServer interface {
 	Login(context.Context, *LoginRequest) (*Token, error)
 	SignUp(context.Context, *SignUpRequest) (*Token, error)
 	// Secret
+	ListSecrets(context.Context, *ListRequest) (*ListResponse, error)
 	GetPassword(context.Context, *PasswordRequest) (*Password, error)
 	CreatePassword(context.Context, *CreatePasswordRequest) (*Password, error)
 	UpdatePassword(context.Context, *UpdatePasswordRequest) (*Password, error)
@@ -123,6 +136,9 @@ func (UnimplementedKeeperServer) Login(context.Context, *LoginRequest) (*Token, 
 }
 func (UnimplementedKeeperServer) SignUp(context.Context, *SignUpRequest) (*Token, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SignUp not implemented")
+}
+func (UnimplementedKeeperServer) ListSecrets(context.Context, *ListRequest) (*ListResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListSecrets not implemented")
 }
 func (UnimplementedKeeperServer) GetPassword(context.Context, *PasswordRequest) (*Password, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPassword not implemented")
@@ -186,6 +202,24 @@ func _Keeper_SignUp_Handler(srv interface{}, ctx context.Context, dec func(inter
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(KeeperServer).SignUp(ctx, req.(*SignUpRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Keeper_ListSecrets_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(KeeperServer).ListSecrets(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Keeper_ListSecrets_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(KeeperServer).ListSecrets(ctx, req.(*ListRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -258,6 +292,10 @@ var Keeper_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "SignUp",
 			Handler:    _Keeper_SignUp_Handler,
+		},
+		{
+			MethodName: "ListSecrets",
+			Handler:    _Keeper_ListSecrets_Handler,
 		},
 		{
 			MethodName: "GetPassword",

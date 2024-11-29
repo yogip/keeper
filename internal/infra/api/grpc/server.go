@@ -37,7 +37,7 @@ func iamInterceptor(iam *service.IAM) func(context.Context, interface{}, *grpc.U
 		ctx context.Context, req interface{}, info *grpc.UnaryServerInfo, handler grpc.UnaryHandler,
 	) (interface{}, error) {
 		logger.Log.Debug(fmt.Sprintf("------- Got request from: %s", info.FullMethod))
-		if slices.Contains([]string{"/proto.Keeper/Login", "/proto.Keeper/Register"}, info.FullMethod) {
+		if slices.Contains([]string{"/proto.Keeper/Login", "/proto.Keeper/SignUp"}, info.FullMethod) {
 			return handler(ctx, req)
 		}
 		md, ok := metadata.FromIncomingContext(ctx)
@@ -100,6 +100,40 @@ func (s *KeeperServer) Shutdown(ctx context.Context) error {
 	s.srv.GracefulStop()
 	logger.Log.Info("gRPC server is down")
 	return nil
+}
+
+func (s *KeeperServer) ListSecrets(ctx context.Context, in *pb.ListRequest) (*pb.ListResponse, error) {
+	user, ok := ctx.Value(model.UserCtxKey).(*model.User)
+	if !ok {
+		logger.Log.Error("failed to get user from context")
+		return nil, status.Errorf(codes.Unauthenticated, "Access denied")
+	}
+
+	log := logger.Log.With(
+		zap.Any("request", in),
+		zap.Int64("user_id", user.ID),
+		zap.String("login", user.Login),
+	)
+	log.Info("ListSecrets request")
+
+	l, err := s.secretService.ListSecretsMeta(
+		ctx,
+		&model.SecretListRequest{
+			UserID: user.ID,
+			Name:   in.Name,
+		},
+	)
+	if err != nil {
+		return nil, status.Errorf(codes.Unknown, "ListSecrets error: %s", err)
+	}
+
+	secrets := make([]*pb.SecretMeta, 0, len(l.Secrets))
+	for _, secret := range l.Secrets {
+		st := secretTypeToPbType(secret.Type)
+		secrets = append(secrets, &pb.SecretMeta{Id: secret.ID, Name: secret.Name, Type: st})
+	}
+	response := pb.ListResponse{Secrets: secrets}
+	return &response, nil
 }
 
 func (s *KeeperServer) GetPassword(ctx context.Context, in *pb.PasswordRequest) (*pb.Password, error) {
