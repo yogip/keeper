@@ -19,12 +19,12 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Keeper_Login_FullMethodName          = "/proto.Keeper/Login"
-	Keeper_SignUp_FullMethodName         = "/proto.Keeper/SignUp"
-	Keeper_ListSecrets_FullMethodName    = "/proto.Keeper/ListSecrets"
-	Keeper_GetPassword_FullMethodName    = "/proto.Keeper/GetPassword"
-	Keeper_CreatePassword_FullMethodName = "/proto.Keeper/CreatePassword"
-	Keeper_UpdatePassword_FullMethodName = "/proto.Keeper/UpdatePassword"
+	Keeper_Login_FullMethodName        = "/proto.Keeper/Login"
+	Keeper_SignUp_FullMethodName       = "/proto.Keeper/SignUp"
+	Keeper_ListSecrets_FullMethodName  = "/proto.Keeper/ListSecrets"
+	Keeper_GetSecret_FullMethodName    = "/proto.Keeper/GetSecret"
+	Keeper_CreateSecret_FullMethodName = "/proto.Keeper/CreateSecret"
+	Keeper_UpdateSecret_FullMethodName = "/proto.Keeper/UpdateSecret"
 )
 
 // KeeperClient is the client API for Keeper service.
@@ -36,9 +36,9 @@ type KeeperClient interface {
 	SignUp(ctx context.Context, in *SignUpRequest, opts ...grpc.CallOption) (*Token, error)
 	// Secret
 	ListSecrets(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*ListResponse, error)
-	GetPassword(ctx context.Context, in *PasswordRequest, opts ...grpc.CallOption) (*Password, error)
-	CreatePassword(ctx context.Context, in *CreatePasswordRequest, opts ...grpc.CallOption) (*Password, error)
-	UpdatePassword(ctx context.Context, in *UpdatePasswordRequest, opts ...grpc.CallOption) (*Password, error)
+	GetSecret(ctx context.Context, in *SecretRequest, opts ...grpc.CallOption) (*Secret, error)
+	CreateSecret(ctx context.Context, in *SecretCreateRequest, opts ...grpc.CallOption) (*Secret, error)
+	UpdateSecret(ctx context.Context, in *SecretUpdateRequest, opts ...grpc.CallOption) (*Secret, error)
 }
 
 type keeperClient struct {
@@ -79,30 +79,30 @@ func (c *keeperClient) ListSecrets(ctx context.Context, in *ListRequest, opts ..
 	return out, nil
 }
 
-func (c *keeperClient) GetPassword(ctx context.Context, in *PasswordRequest, opts ...grpc.CallOption) (*Password, error) {
+func (c *keeperClient) GetSecret(ctx context.Context, in *SecretRequest, opts ...grpc.CallOption) (*Secret, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(Password)
-	err := c.cc.Invoke(ctx, Keeper_GetPassword_FullMethodName, in, out, cOpts...)
+	out := new(Secret)
+	err := c.cc.Invoke(ctx, Keeper_GetSecret_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *keeperClient) CreatePassword(ctx context.Context, in *CreatePasswordRequest, opts ...grpc.CallOption) (*Password, error) {
+func (c *keeperClient) CreateSecret(ctx context.Context, in *SecretCreateRequest, opts ...grpc.CallOption) (*Secret, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(Password)
-	err := c.cc.Invoke(ctx, Keeper_CreatePassword_FullMethodName, in, out, cOpts...)
+	out := new(Secret)
+	err := c.cc.Invoke(ctx, Keeper_CreateSecret_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *keeperClient) UpdatePassword(ctx context.Context, in *UpdatePasswordRequest, opts ...grpc.CallOption) (*Password, error) {
+func (c *keeperClient) UpdateSecret(ctx context.Context, in *SecretUpdateRequest, opts ...grpc.CallOption) (*Secret, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(Password)
-	err := c.cc.Invoke(ctx, Keeper_UpdatePassword_FullMethodName, in, out, cOpts...)
+	out := new(Secret)
+	err := c.cc.Invoke(ctx, Keeper_UpdateSecret_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -118,9 +118,9 @@ type KeeperServer interface {
 	SignUp(context.Context, *SignUpRequest) (*Token, error)
 	// Secret
 	ListSecrets(context.Context, *ListRequest) (*ListResponse, error)
-	GetPassword(context.Context, *PasswordRequest) (*Password, error)
-	CreatePassword(context.Context, *CreatePasswordRequest) (*Password, error)
-	UpdatePassword(context.Context, *UpdatePasswordRequest) (*Password, error)
+	GetSecret(context.Context, *SecretRequest) (*Secret, error)
+	CreateSecret(context.Context, *SecretCreateRequest) (*Secret, error)
+	UpdateSecret(context.Context, *SecretUpdateRequest) (*Secret, error)
 	mustEmbedUnimplementedKeeperServer()
 }
 
@@ -140,14 +140,14 @@ func (UnimplementedKeeperServer) SignUp(context.Context, *SignUpRequest) (*Token
 func (UnimplementedKeeperServer) ListSecrets(context.Context, *ListRequest) (*ListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListSecrets not implemented")
 }
-func (UnimplementedKeeperServer) GetPassword(context.Context, *PasswordRequest) (*Password, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetPassword not implemented")
+func (UnimplementedKeeperServer) GetSecret(context.Context, *SecretRequest) (*Secret, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetSecret not implemented")
 }
-func (UnimplementedKeeperServer) CreatePassword(context.Context, *CreatePasswordRequest) (*Password, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreatePassword not implemented")
+func (UnimplementedKeeperServer) CreateSecret(context.Context, *SecretCreateRequest) (*Secret, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateSecret not implemented")
 }
-func (UnimplementedKeeperServer) UpdatePassword(context.Context, *UpdatePasswordRequest) (*Password, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdatePassword not implemented")
+func (UnimplementedKeeperServer) UpdateSecret(context.Context, *SecretUpdateRequest) (*Secret, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateSecret not implemented")
 }
 func (UnimplementedKeeperServer) mustEmbedUnimplementedKeeperServer() {}
 func (UnimplementedKeeperServer) testEmbeddedByValue()                {}
@@ -224,56 +224,56 @@ func _Keeper_ListSecrets_Handler(srv interface{}, ctx context.Context, dec func(
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Keeper_GetPassword_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PasswordRequest)
+func _Keeper_GetSecret_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SecretRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(KeeperServer).GetPassword(ctx, in)
+		return srv.(KeeperServer).GetSecret(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Keeper_GetPassword_FullMethodName,
+		FullMethod: Keeper_GetSecret_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(KeeperServer).GetPassword(ctx, req.(*PasswordRequest))
+		return srv.(KeeperServer).GetSecret(ctx, req.(*SecretRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Keeper_CreatePassword_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreatePasswordRequest)
+func _Keeper_CreateSecret_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SecretCreateRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(KeeperServer).CreatePassword(ctx, in)
+		return srv.(KeeperServer).CreateSecret(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Keeper_CreatePassword_FullMethodName,
+		FullMethod: Keeper_CreateSecret_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(KeeperServer).CreatePassword(ctx, req.(*CreatePasswordRequest))
+		return srv.(KeeperServer).CreateSecret(ctx, req.(*SecretCreateRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Keeper_UpdatePassword_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdatePasswordRequest)
+func _Keeper_UpdateSecret_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SecretUpdateRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(KeeperServer).UpdatePassword(ctx, in)
+		return srv.(KeeperServer).UpdateSecret(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Keeper_UpdatePassword_FullMethodName,
+		FullMethod: Keeper_UpdateSecret_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(KeeperServer).UpdatePassword(ctx, req.(*UpdatePasswordRequest))
+		return srv.(KeeperServer).UpdateSecret(ctx, req.(*SecretUpdateRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -298,16 +298,16 @@ var Keeper_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Keeper_ListSecrets_Handler,
 		},
 		{
-			MethodName: "GetPassword",
-			Handler:    _Keeper_GetPassword_Handler,
+			MethodName: "GetSecret",
+			Handler:    _Keeper_GetSecret_Handler,
 		},
 		{
-			MethodName: "CreatePassword",
-			Handler:    _Keeper_CreatePassword_Handler,
+			MethodName: "CreateSecret",
+			Handler:    _Keeper_CreateSecret_Handler,
 		},
 		{
-			MethodName: "UpdatePassword",
-			Handler:    _Keeper_UpdatePassword_Handler,
+			MethodName: "UpdateSecret",
+			Handler:    _Keeper_UpdateSecret_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

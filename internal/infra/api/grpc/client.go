@@ -77,14 +77,47 @@ func (c *Client) ListSecrets(secretName string) (*model.SecretList, error) {
 	return &resp, nil
 }
 
-func (c *Client) GetPassword(metricID int64) (*model.Password, error) {
-	pwd, err := c.client.GetPassword(c.ctx, &pb.PasswordRequest{Id: metricID})
+func (c *Client) GetSecret(metricID int64) (*model.Secret, error) {
+	r, err := c.client.GetSecret(c.ctx, &pb.SecretRequest{Id: metricID})
 	if err != nil {
-		return nil, fmt.Errorf("grpc - get secret error: %w", err)
+		return nil, fmt.Errorf("grpc - get secret (id: %d) error: %w", metricID, err)
 	}
-	resp := &model.Password{
-		SecretMeta: model.SecretMeta{ID: pwd.Id, Name: pwd.Name},
-		Password:   pwd.Password,
+	t := pbTypeToSecretType(r.Type)
+	secret := model.NewSecret(r.Id, r.Name, t, r.Payload)
+	return secret, nil
+}
+
+func (c *Client) CreateSecret(secretType model.SecretType, name string, payload []byte) (*model.Secret, error) {
+	r, err := c.client.CreateSecret(
+		c.ctx,
+		&pb.SecretCreateRequest{
+			Type:    secretTypeToPbType(secretType),
+			Name:    name,
+			Payload: payload,
+		},
+	)
+	if err != nil {
+		return nil, fmt.Errorf("grpc - create secret error: %w", err)
 	}
-	return resp, nil
+	t := pbTypeToSecretType(r.Type)
+	secret := model.NewSecret(r.Id, r.Name, t, r.Payload)
+	return secret, nil
+}
+
+func (c *Client) UpdateSecret(id int64, secretType model.SecretType, name string, payload []byte) (*model.Secret, error) {
+	r, err := c.client.UpdateSecret(
+		c.ctx,
+		&pb.SecretUpdateRequest{
+			Id:      id,
+			Type:    secretTypeToPbType(secretType),
+			Name:    name,
+			Payload: payload,
+		},
+	)
+	if err != nil {
+		return nil, fmt.Errorf("grpc - update secret error: %w", err)
+	}
+	t := pbTypeToSecretType(r.Type)
+	secret := model.NewSecret(r.Id, r.Name, t, r.Payload)
+	return secret, nil
 }

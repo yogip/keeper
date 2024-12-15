@@ -13,6 +13,11 @@ import (
 	"keeper/internal/retrier"
 )
 
+type EncryptedSecret struct {
+	Item    *model.Secret
+	DataKey *model.DataKey
+}
+
 type EncryptedPassword struct {
 	Item    *model.Password
 	DataKey *model.DataKey
@@ -94,6 +99,102 @@ func (r *SecretRepo) ListSecrets(ctx context.Context, req *model.SecretListReque
 		return nil, err
 	}
 	return items, nil
+}
+
+// Read Secret with secret key from DB.
+func (r *SecretRepo) GetSecret(ctx context.Context, req model.SecretRequest) (*EncryptedSecret, error) {
+	secret := &model.Secret{}
+	dataSecret := &model.DataKey{}
+	query := `
+		SELECT 
+			id, name, payload, secret_type, sc_version, sc
+		FROM 
+			secrets
+		WHERE id = $1 AND user_id = $2;
+	`
+
+	fun := func() error {
+		row := r.db.QueryRowContext(ctx, query, req.ID, req.UserID)
+
+		err := row.Scan(
+			&secret.ID,
+			&secret.Name,
+			&secret.Payload,
+			&secret.Type,
+			&dataSecret.Version,
+			&dataSecret.Key,
+		)
+		if errors.Is(err, sql.ErrNoRows) {
+			return coreErrors.ErrNotFound404
+		}
+		return err
+	}
+	err := r.retrier.Do(ctx, fun, recoverableErrors...)
+	if err != nil {
+		return nil, fmt.Errorf("error reading password: %w", err)
+	}
+	return &EncryptedSecret{Item: secret, DataKey: dataSecret}, nil
+}
+
+func (r *SecretRepo) CreateSecret(ctx context.Context, req *model.SecretCreateRequest, key *model.DataKey) (int64, error) {
+	var secretID int64
+	query := `
+	INSERT INTO 
+		secrets(user_id, name, payload, secret_type, sc_version, sc) 
+	values($1, $2, $3, $4, $5, $6)
+	RETURNING id;
+	`
+	fun := func() error {
+		row := r.db.QueryRowContext(
+			ctx, query,
+			req.UserID, req.Name, req.Payload, req.Type,
+			key.Version,
+			key.Key,
+		)
+		err := row.Scan(&secretID)
+		if err != nil {
+			return err
+		}
+		return err
+
+	}
+
+	err := r.retrier.Do(ctx, fun, recoverableErrors...)
+	if err != nil {
+		return 0, fmt.Errorf("create password error: %w", err)
+	}
+	return secretID, nil
+}
+
+func (r *SecretRepo) UpdateSecret(ctx context.Context, req *model.SecretUpdateRequest, key *model.DataKey) error {
+	query := "UPDATE secrets SET name=$1, type=$2, payload=$3, sc_version=$4, sc=$5 WHERE id=$6 AND user_id=$7;"
+
+	fun := func() error {
+		result, err := r.db.ExecContext(
+			ctx, query,
+			req.Name, req.Type, req.Payload,
+			key.Version, key.Key,
+			req.ID, req.UserID,
+		)
+		if err != nil {
+			return err
+		}
+		affeted, err := result.RowsAffected()
+		if err != nil {
+			return err
+		}
+		if affeted == 0 {
+			return coreErrors.ErrNotFound404
+		}
+		return err
+
+	}
+
+	err := r.retrier.Do(ctx, fun, recoverableErrors...)
+	if err != nil {
+		return fmt.Errorf("update secret error: %w", err)
+	}
+	return nil
 }
 
 // Read Password with secret key from DB.

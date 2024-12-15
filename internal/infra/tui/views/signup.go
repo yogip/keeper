@@ -135,7 +135,7 @@ func (m *SignUpView) updateInputs(msg tea.Msg) tea.Cmd {
 
 func (m *SignUpView) View() string {
 	var b strings.Builder
-	b.WriteString(headerStyle.Render("Create new account:"))
+	b.WriteString(boldStyle.Render("Create new account:"))
 	b.WriteRune('\n')
 	b.WriteRune('\n')
 

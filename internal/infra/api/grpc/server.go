@@ -136,7 +136,7 @@ func (s *KeeperServer) ListSecrets(ctx context.Context, in *pb.ListRequest) (*pb
 	return &response, nil
 }
 
-func (s *KeeperServer) GetPassword(ctx context.Context, in *pb.PasswordRequest) (*pb.Password, error) {
+func (s *KeeperServer) GetSecret(ctx context.Context, in *pb.SecretRequest) (*pb.Secret, error) {
 	user, ok := ctx.Value(model.UserCtxKey).(*model.User)
 	if !ok {
 		logger.Log.Error("failed to get user from context")
@@ -148,34 +148,34 @@ func (s *KeeperServer) GetPassword(ctx context.Context, in *pb.PasswordRequest) 
 		zap.Int64("user_id", user.ID),
 		zap.String("login", user.Login),
 	)
-	log.Info("GetPassword request")
+	log.Info("GetSecret request")
 
-	secret, err := s.secretService.GetPassword(
+	secret, err := s.secretService.GetSecret(
 		ctx,
 		model.SecretRequest{
 			UserID: user.ID,
 			ID:     in.Id,
-			Type:   model.SecretTypePassword,
+			Type:   pbTypeToSecretType(in.Type),
 		},
 	)
 	if err != nil && errors.Is(err, coreErrors.ErrNotFound404) {
 		return nil, status.Errorf(codes.NotFound, "Not found")
 	}
 	if err != nil {
-		log.Error("GetPassword error", zap.Error(err))
-		return nil, status.Errorf(codes.Unknown, "Reading Password error: %s", err)
+		log.Error("GetSecret error", zap.Error(err))
+		return nil, status.Errorf(codes.Unknown, "Reading Secret error: %s", err)
 	}
 
-	response := pb.Password{
-		Id:       secret.ID,
-		Name:     secret.Name,
-		Login:    secret.Login,
-		Password: secret.Password,
+	response := pb.Secret{
+		Id:      secret.ID,
+		Name:    secret.Name,
+		Type:    secretTypeToPbType(secret.Type),
+		Payload: secret.Payload,
 	}
 	return &response, nil
 }
 
-func (s *KeeperServer) CreatePassword(ctx context.Context, in *pb.CreatePasswordRequest) (*pb.Password, error) {
+func (s *KeeperServer) CreateSecret(ctx context.Context, in *pb.SecretCreateRequest) (*pb.Secret, error) {
 	user, ok := ctx.Value(model.UserCtxKey).(*model.User)
 	if !ok {
 		logger.Log.Error("failed to get user from context")
@@ -187,28 +187,63 @@ func (s *KeeperServer) CreatePassword(ctx context.Context, in *pb.CreatePassword
 		zap.Int64("user_id", user.ID),
 		zap.String("login", user.Login),
 	)
-	log.Info("CreatePassword request")
+	log.Info("CreateSecret request")
 
-	secret, err := s.secretService.CreatePassword(
+	secret, err := s.secretService.CreateSecret(
 		ctx,
-		model.UpdatePasswordRequest{
-			UserID: 0,
-			Data: &model.Password{
-				SecretMeta: model.SecretMeta{Name: in.Name},
-				Login:      in.Login,
-				Password:   in.Password,
-			},
+		model.SecretCreateRequest{
+			UserID:  user.ID,
+			Name:    in.Name,
+			Type:    pbTypeToSecretType(in.Type),
+			Payload: in.Payload,
 		},
 	)
 	if err != nil {
-		return nil, status.Errorf(codes.Unknown, "CreatePassword error: %s", err)
+		return nil, status.Errorf(codes.Unknown, "CreateSecret error: %s", err)
 	}
 
-	response := pb.Password{
-		Id:       secret.ID,
-		Name:     secret.Name,
-		Login:    secret.Login,
-		Password: secret.Password,
+	response := pb.Secret{
+		Id:      secret.ID,
+		Name:    secret.Name,
+		Type:    secretTypeToPbType(secret.Type),
+		Payload: secret.Payload,
+	}
+	return &response, nil
+}
+
+func (s *KeeperServer) UpdateSecret(ctx context.Context, in *pb.SecretUpdateRequest) (*pb.Secret, error) {
+	user, ok := ctx.Value(model.UserCtxKey).(*model.User)
+	if !ok {
+		logger.Log.Error("failed to get user from context")
+		return nil, status.Errorf(codes.Unauthenticated, "Access denied")
+	}
+
+	log := logger.Log.With(
+		zap.Any("request", in),
+		zap.Int64("user_id", user.ID),
+		zap.String("login", user.Login),
+	)
+	log.Info("UpdateSecret request")
+
+	secret, err := s.secretService.UpdateSecret(
+		ctx,
+		model.SecretUpdateRequest{
+			ID:      in.Id,
+			UserID:  user.ID,
+			Name:    in.Name,
+			Type:    pbTypeToSecretType(in.Type),
+			Payload: in.Payload,
+		},
+	)
+	if err != nil {
+		return nil, status.Errorf(codes.Unknown, "UpdateSecret error: %s", err)
+	}
+
+	response := pb.Secret{
+		Id:      secret.ID,
+		Name:    secret.Name,
+		Type:    secretTypeToPbType(secret.Type),
+		Payload: secret.Payload,
 	}
 	return &response, nil
 }

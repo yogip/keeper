@@ -27,7 +27,6 @@ func (s *TestSuite) TestGetPassword() {
 				SecretMeta: model.SecretMeta{
 					ID:   1,
 					Name: "pwd-1",
-					Tags: nil,
 					Type: model.SecretTypePassword,
 				},
 				Login:    "stub-login",
@@ -43,7 +42,6 @@ func (s *TestSuite) TestGetPassword() {
 				SecretMeta: model.SecretMeta{
 					ID:   2,
 					Name: "pwd-2",
-					Tags: nil,
 					Type: model.SecretTypePassword,
 				},
 				Login:    "stub-login",
@@ -79,7 +77,6 @@ func (s *TestSuite) TestGetNote() {
 				SecretMeta: model.SecretMeta{
 					ID:   1,
 					Name: "note-1",
-					Tags: nil,
 					Type: model.SecretTypeNote,
 				},
 				Note: "stub-note",
@@ -94,7 +91,6 @@ func (s *TestSuite) TestGetNote() {
 				SecretMeta: model.SecretMeta{
 					ID:   2,
 					Name: "note-2",
-					Tags: nil,
 					Type: model.SecretTypeNote,
 				},
 				Note: "stub-note",
@@ -117,7 +113,6 @@ func (s *TestSuite) TestGetCard() {
 		SecretMeta: model.SecretMeta{
 			ID:   1,
 			Name: "card-1",
-			Tags: nil,
 			Type: model.SecretTypeCard,
 		},
 		CardData: model.CardData{
@@ -345,7 +340,6 @@ func (s *TestSuite) TestCreateCard() {
 		SecretMeta: model.SecretMeta{
 			ID:   1,
 			Name: "card-1",
-			Tags: nil,
 			Type: model.SecretTypeCard,
 		},
 		CardData: model.CardData{

@@ -31,10 +31,10 @@ type Tag struct {
 }
 
 type SecretMeta struct {
-	ID   int64      `json:"id"`
-	Name string     `json:"name"`
-	Tags []*Tag     `json:"tags"`
-	Type SecretType `json:"type"`
+	ID   int64
+	Name string
+	// Tags []*Tag     `json:"tags"` todo
+	Type SecretType
 }
 
 type DataKey struct {
@@ -47,14 +47,29 @@ type SecretList struct {
 }
 
 type SecretListRequest struct {
-	UserID int64  `json:"user_id"`
-	Name   string `json:"name"`
+	UserID int64
+	Name   string
 }
 
 type SecretRequest struct {
-	ID     int64      `json:"id"`
-	UserID int64      `json:"user_id"`
-	Type   SecretType `json:"type"`
+	ID     int64
+	UserID int64
+	Type   SecretType
+}
+
+type SecretUpdateRequest struct {
+	ID      int64
+	UserID  int64
+	Type    SecretType
+	Name    string
+	Payload []byte
+}
+
+type SecretCreateRequest struct {
+	UserID  int64
+	Type    SecretType
+	Name    string
+	Payload []byte
 }
 
 type Password struct {

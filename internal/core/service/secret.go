@@ -39,6 +39,60 @@ func (s *SecretService) ListSecretsMeta(ctx context.Context, req *model.SecretLi
 	return &model.SecretList{Secrets: secrets}, nil
 }
 
+func (s *SecretService) GetSecret(ctx context.Context, req model.SecretRequest) (*model.Secret, error) {
+	pwd, err := s.repo.GetSecret(ctx, req)
+	if err != nil {
+		return nil, errors.Wrapf(err, "failed to get secret")
+	}
+
+	p, err := s.encrypter.Decrypt(string(pwd.Item.Payload), pwd.DataKey)
+	if err != nil {
+		return nil, errors.Wrapf(err, "failed to decrypt secret")
+	}
+
+	pwd.Item.Payload = p
+	return pwd.Item, nil
+}
+
+func (s *SecretService) CreateSecret(ctx context.Context, req model.SecretCreateRequest) (*model.Secret, error) {
+	resp := model.Secret{
+		SecretMeta: model.SecretMeta{Name: req.Name, Type: req.Type},
+		Payload:    req.Payload,
+	}
+	enc, key, err := s.encrypter.Encrypt(req.Payload, s.lastEncKeyVersion)
+	if err != nil {
+		return nil, errors.Wrapf(err, "failed to encrypt secret")
+	}
+
+	req.Payload = []byte(enc)
+	secretID, err := s.repo.CreateSecret(ctx, &req, &model.DataKey{Key: key, Version: s.lastEncKeyVersion})
+	if err != nil {
+		return nil, errors.Wrapf(err, "failed to create secret")
+	}
+
+	resp.ID = secretID
+	return &resp, nil
+}
+
+func (s *SecretService) UpdateSecret(ctx context.Context, req model.SecretUpdateRequest) (*model.Secret, error) {
+	resp := model.Secret{
+		SecretMeta: model.SecretMeta{ID: req.ID, Name: req.Name, Type: req.Type},
+		Payload:    req.Payload,
+	}
+	enc, key, err := s.encrypter.Encrypt([]byte(req.Payload), s.lastEncKeyVersion)
+	if err != nil {
+		return nil, errors.Wrapf(err, "failed to encrypt password")
+	}
+	req.Payload = []byte(enc)
+
+	err = s.repo.UpdateSecret(ctx, &req, &model.DataKey{Key: key, Version: s.lastEncKeyVersion})
+	if err != nil {
+		return nil, errors.Wrapf(err, "failed to update password")
+	}
+
+	return &resp, nil
+}
+
 func (s *SecretService) GetPassword(ctx context.Context, req model.SecretRequest) (*model.Password, error) {
 	if req.Type != model.SecretTypePassword {
 		return nil, fmt.Errorf("type must be %s, got: %s", model.SecretTypePassword, req.Type)

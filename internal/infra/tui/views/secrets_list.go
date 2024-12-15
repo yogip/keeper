@@ -2,7 +2,6 @@ package views
 
 import (
 	"fmt"
-	"keeper/internal/core/model"
 	"log"
 	"strings"
 	"time"
@@ -17,10 +16,6 @@ import (
 var baseStyle = lipgloss.NewStyle().
 	BorderStyle(lipgloss.NormalBorder()).
 	BorderForeground(lipgloss.Color("240"))
-
-type ClientApp interface {
-	ListSecrets(secretName string) (*model.SecretList, error)
-}
 
 type SecretListView struct {
 	focusIndex     int
@@ -117,6 +112,8 @@ func (m *SecretListView) Update(msg tea.Msg) tea.Cmd {
 		log.Println("Update KeyMsg", msg.String())
 
 		switch msg.String() {
+		case "n":
+			return changeScreenCmd(ScreenNewSecret)
 		case "ctrl+c", "esc":
 			return tea.Quit
 		// Set focus to next input
@@ -206,7 +203,7 @@ func (m *SecretListView) Update(msg tea.Msg) tea.Cmd {
 
 func (m *SecretListView) View() string {
 	var b strings.Builder
-	b.WriteString(headerStyle.Render("Search secret:"))
+	b.WriteString(boldStyle.Render("Search secret:"))
 	b.WriteRune('\n')
 
 	// search text input
@@ -224,7 +221,7 @@ func (m *SecretListView) View() string {
 	b.WriteString(helpStyle.Render("Use `up` and `down` or `tab` and `shift+tab` to navigate"))
 	b.WriteString("\n")
 	b.WriteString(helpStyle.Render("Use `e` to edit secret, `enter` to see secret info "))
-	b.WriteString(helpStyle.Render("and `n` to create a new secret."))
+	b.WriteString(helpStyle.Render("and `n` to create a new one."))
 
 	return b.String()
 }

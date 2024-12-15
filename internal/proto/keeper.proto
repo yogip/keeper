@@ -44,31 +44,32 @@ message ListResponse {
 }
 // End of List Secrets
 
-// Password section
-message Password {
-  sint64 id = 1; 
-  string name = 2; 
-  string login = 3; 
-  string password = 4;
+// Secret section
+message Secret {
+  sint64     id = 1; 
+  string     name = 2; 
+  SecretType type = 3; 
+  bytes      payload = 4;
 }
 
-message PasswordRequest {
-  sint64 id = 1; 
+message SecretRequest {
+  sint64     id = 1; 
+  SecretType type = 2; 
 }
 
-message CreatePasswordRequest {
-  string name = 1; 
-  string login = 2; 
-  string password = 3;
+message SecretCreateRequest {
+  string     name = 1; 
+  SecretType type = 2; 
+  bytes      payload = 3; 
 }
 
-message UpdatePasswordRequest {
-  sint64 id = 1; 
-  string name = 2; 
-  string login = 3; 
-  string password = 4;
+message SecretUpdateRequest {
+  sint64     id = 1;
+  string     name = 2; 
+  SecretType type = 3; 
+  bytes      payload = 4; 
 }
-// End of Password section
+// End of Secret section
 
 
 service Keeper {
@@ -78,7 +79,7 @@ service Keeper {
 
   // Secret
   rpc ListSecrets(ListRequest) returns (ListResponse);
-  rpc GetPassword(PasswordRequest) returns (Password);
-  rpc CreatePassword(CreatePasswordRequest) returns (Password);  
-  rpc UpdatePassword(UpdatePasswordRequest) returns (Password);  
+  rpc GetSecret(SecretRequest) returns (Secret);
+  rpc CreateSecret(SecretCreateRequest) returns (Secret);  
+  rpc UpdateSecret(SecretUpdateRequest) returns (Secret);  
 }

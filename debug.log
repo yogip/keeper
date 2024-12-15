@@ -6401,3 +6401,729 @@ debug 2024/11/27 11:22:36 Init grpc client serverHost 127.0.0.1:8080
 debug 2024/11/27 11:22:41 Call Login method Login 1
 debug 2024/11/27 11:22:41 Login failed. grpc - login error: rpc error: code = NotFound desc = Not found
 debug 2024/11/27 11:22:41 Got error grpc - login error: rpc error: code = NotFound desc = Not found
+debug 2024/12/03 11:04:56 Init grpc client serverHost 127.0.0.1:8080
+debug 2024/12/03 11:05:05 Call Login method Login peter@test.ru
+debug 2024/12/03 11:05:05 Call SetToken method
+debug 2024/12/03 11:05:07 Update KeyMsg n
+debug 2024/12/03 11:05:35 Update KeyMsg down
+debug 2024/12/03 11:05:35 Update KeyMsg down
+debug 2024/12/03 11:05:35 Update KeyMsg down
+debug 2024/12/03 11:05:35 Update KeyMsg down
+debug 2024/12/03 11:05:35 Update KeyMsg down
+debug 2024/12/03 11:05:35 Update KeyMsg down
+debug 2024/12/03 11:05:35 Update KeyMsg down
+debug 2024/12/03 11:05:35 Update KeyMsg down
+debug 2024/12/03 11:05:35 Update KeyMsg down
+debug 2024/12/03 11:05:35 Update KeyMsg down
+debug 2024/12/03 11:05:35 Update KeyMsg down
+debug 2024/12/03 11:05:35 Update KeyMsg down
+debug 2024/12/03 11:05:35 Update KeyMsg down
+debug 2024/12/03 11:05:35 Update KeyMsg down
+debug 2024/12/03 11:05:35 Update KeyMsg down
+debug 2024/12/03 11:05:35 Update KeyMsg down
+debug 2024/12/03 11:05:35 Update KeyMsg down
+debug 2024/12/03 11:05:35 Update KeyMsg down
+debug 2024/12/03 11:05:35 Update KeyMsg down
+debug 2024/12/03 11:05:35 Update KeyMsg down
+debug 2024/12/03 11:05:35 Update KeyMsg down
+debug 2024/12/03 11:05:35 Update KeyMsg down
+debug 2024/12/03 11:05:35 Update KeyMsg down
+debug 2024/12/03 11:05:35 Update KeyMsg down
+debug 2024/12/03 11:05:36 Update KeyMsg up
+debug 2024/12/03 11:05:36 Update KeyMsg up
+debug 2024/12/03 11:05:36 Update KeyMsg up
+debug 2024/12/03 11:05:36 Update KeyMsg up
+debug 2024/12/03 11:05:36 Update KeyMsg up
+debug 2024/12/03 11:05:36 Update KeyMsg up
+debug 2024/12/03 11:05:36 Update KeyMsg up
+debug 2024/12/03 11:05:36 Update KeyMsg up
+debug 2024/12/03 11:05:36 Update KeyMsg up
+debug 2024/12/03 11:05:36 Update KeyMsg up
+debug 2024/12/03 11:05:36 Update KeyMsg up
+debug 2024/12/03 11:05:36 Update KeyMsg up
+debug 2024/12/03 11:05:36 Update KeyMsg up
+debug 2024/12/03 11:05:36 Update KeyMsg up
+debug 2024/12/03 11:05:36 Update KeyMsg up
+debug 2024/12/03 11:05:37 Update KeyMsg n
+debug 2024/12/03 11:05:39 Update KeyMsg n
+debug 2024/12/03 11:05:39 Update KeyMsg n
+debug 2024/12/03 11:05:39 Update KeyMsg n
+debug 2024/12/03 11:08:01 Update KeyMsg ctrl+c
+debug 2024/12/03 11:08:03 Init grpc client serverHost 127.0.0.1:8080
+debug 2024/12/03 11:08:12 Call Login method Login peter@test.ru
+debug 2024/12/03 11:08:12 Call SetToken method
+debug 2024/12/03 11:08:14 Update KeyMsg n
+debug 2024/12/06 10:42:37 Init grpc client serverHost 127.0.0.1:8080
+debug 2024/12/06 10:42:45 Call Login method Login peter@test.ru
+debug 2024/12/06 10:42:45 Call SetToken method
+debug 2024/12/06 10:42:49 Update KeyMsg n
+debug 2024/12/06 10:45:13 Init grpc client serverHost 127.0.0.1:8080
+debug 2024/12/06 10:45:26 Call Login method Login peter@test.ru
+debug 2024/12/06 10:45:26 Call SetToken method
+debug 2024/12/06 10:45:28 Update KeyMsg n
+debug 2024/12/06 10:48:31 Init grpc client serverHost 127.0.0.1:8080
+debug 2024/12/06 10:48:42 Call Login method Login peter@test.ru
+debug 2024/12/06 10:48:42 Call SetToken method
+debug 2024/12/06 10:48:50 Update KeyMsg n
+debug 2024/12/06 10:53:48 Init grpc client serverHost 127.0.0.1:8080
+debug 2024/12/06 10:54:14 Call Login method Login peter@test.ru
+debug 2024/12/06 10:54:14 Call SetToken method
+debug 2024/12/06 10:54:16 Update KeyMsg n
+debug 2024/12/06 10:54:37 -- skip false 0 1 0 3
+debug 2024/12/06 10:54:37 -- new focusIndex 0 == secretType false
+debug 2024/12/06 10:54:59 -- skip false 0 1 0 3
+debug 2024/12/06 10:54:59 -- new focusIndex 0 == secretType false
+debug 2024/12/06 10:58:15 Init grpc client serverHost 127.0.0.1:8080
+debug 2024/12/06 10:58:25 Call Login method Login peter@test.ru
+debug 2024/12/06 10:58:25 Call SetToken method
+debug 2024/12/06 10:58:26 Update KeyMsg n
+debug 2024/12/06 10:58:30 -- skip false 0 1 0 3
+debug 2024/12/06 10:58:30 -- new focusIndex 1 == secretType true
+debug 2024/12/06 10:58:31 -- skip true 1 1 1 3
+debug 2024/12/06 10:58:31 -- new focusIndex 1 == secretType true
+debug 2024/12/06 10:58:32 -- skip false 1 1 0 3
+debug 2024/12/06 10:58:32 -- new focusIndex 0 == secretType false
+debug 2024/12/06 10:59:01 -- skip false 0 1 0 3
+debug 2024/12/06 10:59:01 -- new focusIndex 1 == secretType true
+debug 2024/12/06 10:59:01 -- skip true 1 1 1 3
+debug 2024/12/06 10:59:01 -- new focusIndex 1 == secretType true
+debug 2024/12/06 10:59:02 -- skip true 1 1 2 3
+debug 2024/12/06 10:59:02 -- new focusIndex 1 == secretType true
+debug 2024/12/06 10:59:02 -- skip false 1 1 3 3
+debug 2024/12/06 10:59:02 -- new focusIndex 0 == secretType false
+debug 2024/12/06 10:59:02 -- skip false 0 1 3 3
+debug 2024/12/06 10:59:02 -- new focusIndex 3 == secretType false
+debug 2024/12/06 10:59:04 -- skip false 3 1 3 3
+debug 2024/12/06 10:59:04 -- new focusIndex 2 == secretType false
+debug 2024/12/06 10:59:04 -- skip false 2 1 3 3
+debug 2024/12/06 10:59:04 -- new focusIndex 1 == secretType true
+debug 2024/12/06 10:59:05 -- skip true 1 1 2 3
+debug 2024/12/06 10:59:05 -- new focusIndex 1 == secretType true
+debug 2024/12/06 10:59:05 -- skip true 1 1 1 3
+debug 2024/12/06 10:59:05 -- new focusIndex 1 == secretType true
+debug 2024/12/06 10:59:05 -- skip false 1 1 0 3
+debug 2024/12/06 10:59:05 -- new focusIndex 0 == secretType false
+debug 2024/12/06 10:59:06 -- skip false 0 1 0 3
+debug 2024/12/06 10:59:06 -- new focusIndex 1 == secretType true
+debug 2024/12/06 10:59:07 -- skip true 1 1 1 3
+debug 2024/12/06 10:59:07 -- new focusIndex 1 == secretType true
+debug 2024/12/06 10:59:07 -- skip true 1 1 2 3
+debug 2024/12/06 10:59:07 -- new focusIndex 1 == secretType true
+debug 2024/12/06 10:59:07 -- skip true 1 1 1 3
+debug 2024/12/06 10:59:07 -- new focusIndex 1 == secretType true
+debug 2024/12/06 10:59:08 -- skip false 1 1 0 3
+debug 2024/12/06 10:59:08 -- new focusIndex 2 == secretType false
+debug 2024/12/06 10:59:10 -- skip false 2 1 0 3
+debug 2024/12/06 10:59:10 -- new focusIndex 3 == secretType false
+debug 2024/12/06 10:59:10 -- skip false 3 1 0 3
+debug 2024/12/06 10:59:10 -- new focusIndex 0 == secretType false
+debug 2024/12/06 10:59:11 -- skip false 0 1 0 3
+debug 2024/12/06 10:59:11 -- new focusIndex 1 == secretType true
+debug 2024/12/06 10:59:12 -- skip true 1 1 1 3
+debug 2024/12/06 10:59:12 -- new focusIndex 1 == secretType true
+debug 2024/12/06 10:59:13 -- skip true 1 1 2 3
+debug 2024/12/06 10:59:13 -- new focusIndex 1 == secretType true
+debug 2024/12/06 10:59:13 -- skip true 1 1 1 3
+debug 2024/12/06 10:59:13 -- new focusIndex 1 == secretType true
+debug 2024/12/06 10:59:14 -- skip false 1 1 0 3
+debug 2024/12/06 10:59:14 -- new focusIndex 2 == secretType false
+debug 2024/12/06 10:59:19 -- skip false 2 1 0 3
+debug 2024/12/06 10:59:19 -- new focusIndex 3 == secretType false
+debug 2024/12/06 10:59:19 -- skip false 3 1 0 3
+debug 2024/12/06 10:59:19 -- new focusIndex 0 == secretType false
+debug 2024/12/06 10:59:19 -- skip false 0 1 0 3
+debug 2024/12/06 10:59:19 -- new focusIndex 1 == secretType true
+debug 2024/12/06 10:59:20 -- skip true 1 1 1 3
+debug 2024/12/06 10:59:20 -- new focusIndex 1 == secretType true
+debug 2024/12/06 10:59:20 -- skip true 1 1 2 3
+debug 2024/12/06 10:59:20 -- new focusIndex 1 == secretType true
+debug 2024/12/06 10:59:22 -- skip true 1 1 2 3
+debug 2024/12/06 10:59:22 -- new focusIndex 1 == secretType true
+debug 2024/12/06 10:59:22 -- skip false 1 1 3 3
+debug 2024/12/06 10:59:22 -- new focusIndex 0 == secretType false
+debug 2024/12/06 11:02:12 -- skip false 0 1 3 3
+debug 2024/12/06 11:02:12 -- new focusIndex 3 == secretType false
+debug 2024/12/06 11:02:12 -- skip false 3 1 3 3
+debug 2024/12/06 11:02:12 -- new focusIndex 2 == secretType false
+debug 2024/12/06 11:02:12 -- skip false 2 1 3 3
+debug 2024/12/06 11:02:12 -- new focusIndex 1 == secretType true
+debug 2024/12/06 11:02:12 -- skip true 1 1 2 3
+debug 2024/12/06 11:02:12 -- new focusIndex 1 == secretType true
+debug 2024/12/06 11:02:12 -- skip true 1 1 1 3
+debug 2024/12/06 11:02:12 -- new focusIndex 1 == secretType true
+debug 2024/12/06 11:02:12 -- skip false 1 1 0 3
+debug 2024/12/06 11:02:12 -- new focusIndex 0 == secretType false
+debug 2024/12/06 11:02:13 -- skip false 0 1 0 3
+debug 2024/12/06 11:02:13 -- new focusIndex 1 == secretType true
+debug 2024/12/06 11:02:13 -- skip true 1 1 1 3
+debug 2024/12/06 11:02:13 -- new focusIndex 1 == secretType true
+debug 2024/12/06 11:02:13 -- skip true 1 1 2 3
+debug 2024/12/06 11:02:13 -- new focusIndex 1 == secretType true
+debug 2024/12/06 11:02:15 -- skip false 1 1 3 3
+debug 2024/12/06 11:02:15 -- new focusIndex 0 == secretType false
+debug 2024/12/06 11:02:15 -- skip false 0 1 3 3
+debug 2024/12/06 11:02:15 -- new focusIndex 3 == secretType false
+debug 2024/12/06 11:02:15 -- skip false 3 1 3 3
+debug 2024/12/06 11:02:15 -- new focusIndex 2 == secretType false
+debug 2024/12/06 11:02:15 -- skip false 2 1 3 3
+debug 2024/12/06 11:02:15 -- new focusIndex 1 == secretType true
+debug 2024/12/06 11:02:15 -- skip true 1 1 2 3
+debug 2024/12/06 11:02:15 -- new focusIndex 1 == secretType true
+debug 2024/12/06 11:02:15 -- skip true 1 1 1 3
+debug 2024/12/06 11:02:15 -- new focusIndex 1 == secretType true
+debug 2024/12/06 11:02:15 -- skip false 1 1 0 3
+debug 2024/12/06 11:02:15 -- new focusIndex 0 == secretType false
+debug 2024/12/06 11:02:15 -- skip false 0 1 0 3
+debug 2024/12/06 11:02:15 -- new focusIndex 3 == secretType false
+debug 2024/12/06 11:02:15 -- skip false 3 1 0 3
+debug 2024/12/06 11:02:15 -- new focusIndex 2 == secretType false
+debug 2024/12/06 11:02:15 -- skip false 2 1 0 3
+debug 2024/12/06 11:02:15 -- new focusIndex 1 == secretType true
+debug 2024/12/06 11:02:15 -- skip false 1 1 0 3
+debug 2024/12/06 11:02:15 -- new focusIndex 0 == secretType false
+debug 2024/12/06 11:02:15 -- skip false 0 1 0 3
+debug 2024/12/06 11:02:15 -- new focusIndex 3 == secretType false
+debug 2024/12/06 11:02:15 -- skip false 3 1 0 3
+debug 2024/12/06 11:02:15 -- new focusIndex 2 == secretType false
+debug 2024/12/06 11:02:15 -- skip false 2 1 0 3
+debug 2024/12/06 11:02:15 -- new focusIndex 1 == secretType true
+debug 2024/12/06 11:02:15 -- skip false 1 1 0 3
+debug 2024/12/06 11:02:15 -- new focusIndex 0 == secretType false
+debug 2024/12/06 11:02:15 -- skip false 0 1 0 3
+debug 2024/12/06 11:02:15 -- new focusIndex 3 == secretType false
+debug 2024/12/06 11:02:15 -- skip false 3 1 0 3
+debug 2024/12/06 11:02:15 -- new focusIndex 2 == secretType false
+debug 2024/12/06 11:02:15 -- skip false 2 1 0 3
+debug 2024/12/06 11:02:15 -- new focusIndex 1 == secretType true
+debug 2024/12/06 11:02:15 -- skip false 1 1 0 3
+debug 2024/12/06 11:02:15 -- new focusIndex 0 == secretType false
+debug 2024/12/06 11:02:15 -- skip false 0 1 0 3
+debug 2024/12/06 11:02:15 -- new focusIndex 3 == secretType false
+debug 2024/12/06 11:02:15 -- skip false 3 1 0 3
+debug 2024/12/06 11:02:15 -- new focusIndex 2 == secretType false
+debug 2024/12/06 11:02:15 -- skip false 2 1 0 3
+debug 2024/12/06 11:02:15 -- new focusIndex 1 == secretType true
+debug 2024/12/06 11:02:15 -- skip false 1 1 0 3
+debug 2024/12/06 11:02:15 -- new focusIndex 0 == secretType false
+debug 2024/12/06 11:02:15 -- skip false 0 1 0 3
+debug 2024/12/06 11:02:15 -- new focusIndex 3 == secretType false
+debug 2024/12/06 11:02:15 -- skip false 3 1 0 3
+debug 2024/12/06 11:02:15 -- new focusIndex 2 == secretType false
+debug 2024/12/06 11:02:15 -- skip false 2 1 0 3
+debug 2024/12/06 11:02:15 -- new focusIndex 1 == secretType true
+debug 2024/12/06 11:02:15 -- skip false 1 1 0 3
+debug 2024/12/06 11:02:15 -- new focusIndex 0 == secretType false
+debug 2024/12/06 11:02:15 -- skip false 0 1 0 3
+debug 2024/12/06 11:02:15 -- new focusIndex 3 == secretType false
+debug 2024/12/06 11:02:15 -- skip false 3 1 0 3
+debug 2024/12/06 11:02:15 -- new focusIndex 2 == secretType false
+debug 2024/12/06 11:02:15 -- skip false 2 1 0 3
+debug 2024/12/06 11:02:15 -- new focusIndex 3 == secretType false
+debug 2024/12/06 11:02:15 -- skip false 3 1 0 3
+debug 2024/12/06 11:02:15 -- new focusIndex 0 == secretType false
+debug 2024/12/06 11:02:15 -- skip false 0 1 0 3
+debug 2024/12/06 11:02:15 -- new focusIndex 1 == secretType true
+debug 2024/12/06 11:02:15 -- skip true 1 1 1 3
+debug 2024/12/06 11:02:15 -- new focusIndex 1 == secretType true
+debug 2024/12/06 11:02:16 -- skip true 1 1 2 3
+debug 2024/12/06 11:02:16 -- new focusIndex 1 == secretType true
+debug 2024/12/06 11:02:16 -- skip false 1 1 3 3
+debug 2024/12/06 11:02:16 -- new focusIndex 2 == secretType false
+debug 2024/12/06 11:02:16 -- skip false 2 1 3 3
+debug 2024/12/06 11:02:16 -- new focusIndex 3 == secretType false
+debug 2024/12/06 11:02:16 -- skip false 3 1 3 3
+debug 2024/12/06 11:02:16 -- new focusIndex 0 == secretType false
+debug 2024/12/06 11:02:16 -- skip false 0 1 3 3
+debug 2024/12/06 11:02:16 -- new focusIndex 1 == secretType true
+debug 2024/12/06 11:02:16 -- skip false 1 1 3 3
+debug 2024/12/06 11:02:16 -- new focusIndex 2 == secretType false
+debug 2024/12/06 11:02:16 -- skip false 2 1 3 3
+debug 2024/12/06 11:02:16 -- new focusIndex 3 == secretType false
+debug 2024/12/06 11:02:16 -- skip false 3 1 3 3
+debug 2024/12/06 11:02:16 -- new focusIndex 0 == secretType false
+debug 2024/12/06 11:02:16 -- skip false 0 1 3 3
+debug 2024/12/06 11:02:16 -- new focusIndex 1 == secretType true
+debug 2024/12/06 11:02:16 -- skip false 1 1 3 3
+debug 2024/12/06 11:02:16 -- new focusIndex 2 == secretType false
+debug 2024/12/06 11:02:16 -- skip false 2 1 3 3
+debug 2024/12/06 11:02:16 -- new focusIndex 3 == secretType false
+debug 2024/12/06 11:02:16 -- skip false 3 1 3 3
+debug 2024/12/06 11:02:16 -- new focusIndex 0 == secretType false
+debug 2024/12/06 11:02:16 -- skip false 0 1 3 3
+debug 2024/12/06 11:02:16 -- new focusIndex 1 == secretType true
+debug 2024/12/06 11:02:16 -- skip false 1 1 3 3
+debug 2024/12/06 11:02:16 -- new focusIndex 2 == secretType false
+debug 2024/12/06 11:02:16 -- skip false 2 1 3 3
+debug 2024/12/06 11:02:16 -- new focusIndex 3 == secretType false
+debug 2024/12/06 11:02:16 -- skip false 3 1 3 3
+debug 2024/12/06 11:02:16 -- new focusIndex 0 == secretType false
+debug 2024/12/06 11:02:16 -- skip false 0 1 3 3
+debug 2024/12/06 11:02:16 -- new focusIndex 1 == secretType true
+debug 2024/12/06 11:02:16 -- skip false 1 1 3 3
+debug 2024/12/06 11:02:16 -- new focusIndex 2 == secretType false
+debug 2024/12/06 11:02:16 -- skip false 2 1 3 3
+debug 2024/12/06 11:02:16 -- new focusIndex 3 == secretType false
+debug 2024/12/06 11:02:16 -- skip false 3 1 3 3
+debug 2024/12/06 11:02:16 -- new focusIndex 0 == secretType false
+debug 2024/12/06 11:02:16 -- skip false 0 1 3 3
+debug 2024/12/06 11:02:16 -- new focusIndex 1 == secretType true
+debug 2024/12/06 11:02:16 -- skip false 1 1 3 3
+debug 2024/12/06 11:02:16 -- new focusIndex 2 == secretType false
+debug 2024/12/06 11:02:16 -- skip false 2 1 3 3
+debug 2024/12/06 11:02:16 -- new focusIndex 3 == secretType false
+debug 2024/12/06 11:02:16 -- skip false 3 1 3 3
+debug 2024/12/06 11:02:16 -- new focusIndex 0 == secretType false
+debug 2024/12/06 11:03:30 Init grpc client serverHost 127.0.0.1:8080
+debug 2024/12/06 11:03:37 Call Login method Login peter@test.ru
+debug 2024/12/06 11:03:37 Call SetToken method
+debug 2024/12/06 11:03:38 Update KeyMsg n
+debug 2024/12/06 11:04:22 -- skip false 0 1 0 3
+debug 2024/12/06 11:04:22 -- new focusIndex 1 == secretType true
+debug 2024/12/06 11:04:25 Init grpc client serverHost 127.0.0.1:8080
+debug 2024/12/06 11:04:31 Call Login method Login peter@test.ru
+debug 2024/12/06 11:04:31 Call SetToken method
+debug 2024/12/06 11:04:33 Update KeyMsg n
+debug 2024/12/06 11:04:34 -- skip false 0 1 0 3
+debug 2024/12/06 11:04:34 -- new focusIndex 1 == secretType true
+debug 2024/12/06 11:04:34 -- skip true 1 1 1 3
+debug 2024/12/06 11:04:34 -- new focusIndex 1 == secretType true
+debug 2024/12/06 11:04:34 -- skip true 1 1 2 3
+debug 2024/12/06 11:04:34 -- new focusIndex 1 == secretType true
+debug 2024/12/06 11:04:35 -- skip false 1 1 3 3
+debug 2024/12/06 11:04:35 -- new focusIndex 2 == secretType false
+debug 2024/12/06 11:04:36 -- skip false 2 1 3 3
+debug 2024/12/06 11:04:36 -- new focusIndex 3 == secretType false
+debug 2024/12/06 11:04:37 -- skip false 3 1 3 3
+debug 2024/12/06 11:04:37 -- new focusIndex 2 == secretType false
+debug 2024/12/06 11:04:37 -- skip false 2 1 3 3
+debug 2024/12/06 11:04:37 -- new focusIndex 1 == secretType true
+debug 2024/12/06 11:04:38 -- skip true 1 1 2 3
+debug 2024/12/06 11:04:38 -- new focusIndex 1 == secretType true
+debug 2024/12/06 11:04:38 -- skip true 1 1 1 3
+debug 2024/12/06 11:04:38 -- new focusIndex 1 == secretType true
+debug 2024/12/06 11:04:39 -- skip false 1 1 0 3
+debug 2024/12/06 11:04:39 -- new focusIndex 0 == secretType false
+debug 2024/12/06 11:04:40 -- skip false 0 1 0 3
+debug 2024/12/06 11:04:40 -- new focusIndex 1 == secretType true
+debug 2024/12/06 11:04:41 -- skip true 1 1 1 3
+debug 2024/12/06 11:04:41 -- new focusIndex 1 == secretType true
+debug 2024/12/06 11:04:42 -- skip false 1 1 0 3
+debug 2024/12/06 11:04:42 -- new focusIndex 0 == secretType false
+debug 2024/12/06 11:04:43 -- skip false 0 1 0 3
+debug 2024/12/06 11:04:43 -- new focusIndex 1 == secretType true
+debug 2024/12/06 11:04:45 -- skip true 1 1 1 3
+debug 2024/12/06 11:04:45 -- new focusIndex 1 == secretType true
+debug 2024/12/06 11:04:47 -- skip false 1 1 0 3
+debug 2024/12/06 11:04:47 -- new focusIndex 2 == secretType false
+debug 2024/12/06 11:04:48 -- skip false 2 1 0 3
+debug 2024/12/06 11:04:48 -- new focusIndex 3 == secretType false
+debug 2024/12/06 11:04:48 -- skip false 3 1 0 3
+debug 2024/12/06 11:04:48 -- new focusIndex 0 == secretType false
+debug 2024/12/06 11:04:49 -- skip false 0 1 0 3
+debug 2024/12/06 11:04:49 -- new focusIndex 3 == secretType false
+debug 2024/12/06 11:04:49 -- skip false 3 1 0 3
+debug 2024/12/06 11:04:49 -- new focusIndex 0 == secretType false
+debug 2024/12/06 11:04:49 -- skip false 0 1 0 3
+debug 2024/12/06 11:04:49 -- new focusIndex 1 == secretType true
+debug 2024/12/06 11:04:50 -- skip true 1 1 1 3
+debug 2024/12/06 11:04:50 -- new focusIndex 1 == secretType true
+debug 2024/12/06 11:04:50 -- skip true 1 1 2 3
+debug 2024/12/06 11:04:50 -- new focusIndex 1 == secretType true
+debug 2024/12/06 11:04:51 -- skip true 1 1 1 3
+debug 2024/12/06 11:04:51 -- new focusIndex 1 == secretType true
+debug 2024/12/06 11:04:51 -- skip false 1 1 0 3
+debug 2024/12/06 11:04:51 -- new focusIndex 2 == secretType false
+debug 2024/12/06 11:07:20 Init grpc client serverHost 127.0.0.1:8080
+debug 2024/12/06 11:07:27 Call Login method Login peter@test.ru
+debug 2024/12/06 11:07:27 Call SetToken method
+debug 2024/12/06 11:07:27 Update KeyMsg n
+debug 2024/12/06 11:07:29 -- skip false 0 1 0 3
+debug 2024/12/06 11:07:29 -- new focusIndex 1 == secretType true
+debug 2024/12/06 11:07:30 -- skip false 1 1 1 3
+debug 2024/12/06 11:07:30 -- new focusIndex 0 == secretType false
+debug 2024/12/06 11:07:31 -- skip false 0 1 1 3
+debug 2024/12/06 11:07:31 -- new focusIndex 1 == secretType true
+debug 2024/12/06 11:07:32 -- skip false 1 1 2 3
+debug 2024/12/06 11:07:32 -- new focusIndex 2 == secretType false
+debug 2024/12/06 11:07:33 -- skip false 2 1 2 3
+debug 2024/12/06 11:07:33 -- new focusIndex 1 == secretType true
+debug 2024/12/06 11:07:34 -- skip false 1 1 1 3
+debug 2024/12/06 11:07:34 -- new focusIndex 0 == secretType false
+debug 2024/12/06 11:07:34 -- skip false 0 1 1 3
+debug 2024/12/06 11:07:34 -- new focusIndex 1 == secretType true
+debug 2024/12/06 11:07:35 -- skip false 1 1 2 3
+debug 2024/12/06 11:07:35 -- new focusIndex 2 == secretType false
+debug 2024/12/06 11:07:36 -- skip false 2 1 2 3
+debug 2024/12/06 11:07:36 -- new focusIndex 1 == secretType true
+debug 2024/12/06 11:07:36 -- skip false 1 1 1 3
+debug 2024/12/06 11:07:36 -- new focusIndex 0 == secretType false
+debug 2024/12/06 11:07:42 -- skip false 0 1 1 3
+debug 2024/12/06 11:07:42 -- new focusIndex 1 == secretType true
+debug 2024/12/06 11:07:43 -- skip false 1 1 2 3
+debug 2024/12/06 11:07:43 -- new focusIndex 2 == secretType false
+debug 2024/12/06 11:11:37 Init grpc client serverHost 127.0.0.1:8080
+debug 2024/12/06 11:11:44 Call Login method Login peter@test.ru
+debug 2024/12/06 11:11:44 Call SetToken method
+debug 2024/12/06 11:11:45 Update KeyMsg n
+debug 2024/12/06 11:11:46 -- skip true 0 1 0 3
+debug 2024/12/06 11:11:46 -- new focusIndex 0 == secretType false
+debug 2024/12/06 11:11:48 -- skip true 0 1 0 3
+debug 2024/12/06 11:11:48 -- new focusIndex 0 == secretType false
+debug 2024/12/06 11:11:48 -- skip true 0 1 0 3
+debug 2024/12/06 11:11:48 -- new focusIndex 0 == secretType false
+debug 2024/12/06 11:11:48 -- skip true 0 1 0 3
+debug 2024/12/06 11:11:48 -- new focusIndex 0 == secretType false
+debug 2024/12/06 11:11:49 -- skip true 0 1 0 3
+debug 2024/12/06 11:11:49 -- new focusIndex 0 == secretType false
+debug 2024/12/06 11:11:49 -- skip true 0 1 0 3
+debug 2024/12/06 11:11:49 -- new focusIndex 0 == secretType false
+debug 2024/12/06 11:11:50 -- skip true 0 1 0 3
+debug 2024/12/06 11:11:50 -- new focusIndex 0 == secretType false
+debug 2024/12/06 11:11:50 -- skip true 0 1 0 3
+debug 2024/12/06 11:11:50 -- new focusIndex 0 == secretType false
+debug 2024/12/06 11:11:50 -- skip true 0 1 0 3
+debug 2024/12/06 11:11:50 -- new focusIndex 0 == secretType false
+debug 2024/12/06 11:11:51 -- skip true 0 1 0 3
+debug 2024/12/06 11:11:51 -- new focusIndex 0 == secretType false
+debug 2024/12/06 11:11:51 -- skip true 0 1 0 3
+debug 2024/12/06 11:11:51 -- new focusIndex 0 == secretType false
+debug 2024/12/06 11:11:51 -- skip true 0 1 0 3
+debug 2024/12/06 11:11:51 -- new focusIndex 0 == secretType false
+debug 2024/12/06 11:11:52 -- skip true 0 1 0 3
+debug 2024/12/06 11:11:52 -- new focusIndex 0 == secretType false
+debug 2024/12/06 11:11:52 -- skip true 0 1 0 3
+debug 2024/12/06 11:11:52 -- new focusIndex 0 == secretType false
+debug 2024/12/06 11:11:52 -- skip true 0 1 0 3
+debug 2024/12/06 11:11:52 -- new focusIndex 0 == secretType false
+debug 2024/12/06 11:11:52 -- skip true 0 1 0 3
+debug 2024/12/06 11:11:52 -- new focusIndex 0 == secretType false
+debug 2024/12/06 11:11:52 -- skip true 0 1 0 3
+debug 2024/12/06 11:11:52 -- new focusIndex 0 == secretType false
+debug 2024/12/06 11:11:52 -- skip true 0 1 0 3
+debug 2024/12/06 11:11:52 -- new focusIndex 0 == secretType false
+debug 2024/12/06 11:11:53 -- skip true 0 1 0 3
+debug 2024/12/06 11:11:53 -- new focusIndex 0 == secretType false
+debug 2024/12/06 11:11:53 -- skip true 0 1 0 3
+debug 2024/12/06 11:11:53 -- new focusIndex 0 == secretType false
+debug 2024/12/06 11:11:53 -- skip true 0 1 0 3
+debug 2024/12/06 11:11:53 -- new focusIndex 0 == secretType false
+debug 2024/12/06 11:11:53 -- skip true 0 1 0 3
+debug 2024/12/06 11:11:53 -- new focusIndex 0 == secretType false
+debug 2024/12/06 11:11:53 -- skip true 0 1 0 3
+debug 2024/12/06 11:11:53 -- new focusIndex 0 == secretType false
+debug 2024/12/06 11:11:54 -- skip true 0 1 0 3
+debug 2024/12/06 11:11:54 -- new focusIndex 0 == secretType false
+debug 2024/12/06 11:11:54 -- skip true 0 1 0 3
+debug 2024/12/06 11:11:54 -- new focusIndex 0 == secretType false
+debug 2024/12/06 11:11:54 -- skip true 0 1 0 3
+debug 2024/12/06 11:11:54 -- new focusIndex 0 == secretType false
+debug 2024/12/06 11:11:54 -- skip true 0 1 0 3
+debug 2024/12/06 11:11:54 -- new focusIndex 0 == secretType false
+debug 2024/12/06 11:11:54 -- skip true 0 1 0 3
+debug 2024/12/06 11:11:54 -- new focusIndex 0 == secretType false
+debug 2024/12/06 11:11:55 -- skip true 0 1 0 3
+debug 2024/12/06 11:11:55 -- new focusIndex 0 == secretType false
+debug 2024/12/06 11:11:55 -- skip true 0 1 0 3
+debug 2024/12/06 11:11:55 -- new focusIndex 0 == secretType false
+debug 2024/12/06 11:11:55 -- skip true 0 1 0 3
+debug 2024/12/06 11:11:55 -- new focusIndex 0 == secretType false
+debug 2024/12/06 11:11:55 -- skip true 0 1 0 3
+debug 2024/12/06 11:11:55 -- new focusIndex 0 == secretType false
+debug 2024/12/06 11:11:55 -- skip true 0 1 0 3
+debug 2024/12/06 11:11:55 -- new focusIndex 0 == secretType false
+debug 2024/12/06 11:11:56 -- skip true 0 1 0 3
+debug 2024/12/06 11:11:56 -- new focusIndex 0 == secretType false
+debug 2024/12/06 11:11:56 -- skip true 0 1 0 3
+debug 2024/12/06 11:11:56 -- new focusIndex 0 == secretType false
+debug 2024/12/06 11:11:56 -- skip true 0 1 0 3
+debug 2024/12/06 11:11:56 -- new focusIndex 0 == secretType false
+debug 2024/12/06 11:11:57 -- skip true 0 1 0 3
+debug 2024/12/06 11:11:57 -- new focusIndex 0 == secretType false
+debug 2024/12/06 11:11:57 -- skip true 0 1 0 3
+debug 2024/12/06 11:11:57 -- new focusIndex 0 == secretType false
+debug 2024/12/06 11:11:57 -- skip true 0 1 0 3
+debug 2024/12/06 11:11:57 -- new focusIndex 0 == secretType false
+debug 2024/12/06 11:12:25 Init grpc client serverHost 127.0.0.1:8080
+debug 2024/12/06 11:12:34 Call Login method Login peter@test.ru
+debug 2024/12/06 11:12:34 Call SetToken method
+debug 2024/12/06 11:12:35 Update KeyMsg n
+debug 2024/12/06 11:12:36 -- skip false 0 1 0 3
+debug 2024/12/06 11:12:36 -- new focusIndex 1 == secretType true
+debug 2024/12/06 11:12:37 -- skip true 1 1 1 3
+debug 2024/12/06 11:12:37 -- new focusIndex 1 == secretType true
+debug 2024/12/06 11:12:37 -- skip true 1 1 2 3
+debug 2024/12/06 11:12:37 -- new focusIndex 1 == secretType true
+debug 2024/12/06 11:12:37 -- skip true 1 1 1 3
+debug 2024/12/06 11:12:37 -- new focusIndex 1 == secretType true
+debug 2024/12/06 11:12:38 -- skip false 1 1 0 3
+debug 2024/12/06 11:12:38 -- new focusIndex 0 == secretType false
+debug 2024/12/06 11:12:39 -- skip false 0 1 0 3
+debug 2024/12/06 11:12:39 -- new focusIndex 1 == secretType true
+debug 2024/12/06 11:12:39 -- skip true 1 1 1 3
+debug 2024/12/06 11:12:39 -- new focusIndex 1 == secretType true
+debug 2024/12/06 11:12:40 -- skip true 1 1 2 3
+debug 2024/12/06 11:12:40 -- new focusIndex 1 == secretType true
+debug 2024/12/06 11:12:40 -- skip false 1 1 3 3
+debug 2024/12/06 11:12:40 -- new focusIndex 2 == secretType false
+debug 2024/12/06 11:12:41 -- skip false 2 1 3 3
+debug 2024/12/06 11:12:41 -- new focusIndex 1 == secretType true
+debug 2024/12/06 11:12:42 -- skip true 1 1 2 3
+debug 2024/12/06 11:12:42 -- new focusIndex 1 == secretType true
+debug 2024/12/06 11:12:42 -- skip false 1 1 3 3
+debug 2024/12/06 11:12:42 -- new focusIndex 2 == secretType false
+debug 2024/12/06 11:12:42 -- skip false 2 1 3 3
+debug 2024/12/06 11:12:42 -- new focusIndex 3 == secretType false
+debug 2024/12/06 11:12:43 -- skip false 3 1 3 3
+debug 2024/12/06 11:12:43 -- new focusIndex 0 == secretType false
+debug 2024/12/06 11:12:43 -- skip false 0 1 3 3
+debug 2024/12/06 11:12:43 -- new focusIndex 1 == secretType true
+debug 2024/12/06 11:12:44 -- skip false 1 1 3 3
+debug 2024/12/06 11:12:44 -- new focusIndex 2 == secretType false
+debug 2024/12/06 11:12:45 -- skip false 2 1 3 3
+debug 2024/12/06 11:12:45 -- new focusIndex 3 == secretType false
+debug 2024/12/06 11:12:45 -- skip false 3 1 3 3
+debug 2024/12/06 11:12:45 -- new focusIndex 0 == secretType false
+debug 2024/12/06 11:12:45 -- skip false 0 1 3 3
+debug 2024/12/06 11:12:45 -- new focusIndex 1 == secretType true
+debug 2024/12/06 11:12:46 -- skip true 1 1 3 3
+debug 2024/12/06 11:12:46 -- new focusIndex 1 == secretType true
+debug 2024/12/06 11:12:46 -- skip true 1 1 2 3
+debug 2024/12/06 11:12:46 -- new focusIndex 1 == secretType true
+debug 2024/12/06 11:12:47 -- skip true 1 1 1 3
+debug 2024/12/06 11:12:47 -- new focusIndex 1 == secretType true
+debug 2024/12/06 11:12:47 -- skip false 1 1 0 3
+debug 2024/12/06 11:12:47 -- new focusIndex 0 == secretType false
+debug 2024/12/06 11:12:48 -- skip false 0 1 0 3
+debug 2024/12/06 11:12:48 -- new focusIndex 1 == secretType true
+debug 2024/12/15 17:19:36 Init grpc client serverHost 127.0.0.1:8080
+debug 2024/12/15 17:19:50 Call Login method Login peter@test.ru
+debug 2024/12/15 17:19:50 Call SetToken method
+debug 2024/12/15 17:19:52 Update KeyMsg n
+debug 2024/12/15 17:19:58 -- skip false 0 1 0 3
+debug 2024/12/15 17:19:58 -- new focusIndex 1 == secretType true
+debug 2024/12/15 17:19:58 -- skip true 1 1 1 3
+debug 2024/12/15 17:19:58 -- new focusIndex 1 == secretType true
+debug 2024/12/15 17:19:59 -- skip true 1 1 0 3
+debug 2024/12/15 17:19:59 -- new focusIndex 1 == secretType true
+debug 2024/12/15 17:19:59 -- skip true 1 1 1 3
+debug 2024/12/15 17:19:59 -- new focusIndex 1 == secretType true
+debug 2024/12/15 17:19:59 -- skip true 1 1 2 3
+debug 2024/12/15 17:19:59 -- new focusIndex 1 == secretType true
+debug 2024/12/15 17:20:00 -- skip false 1 1 3 3
+debug 2024/12/15 17:20:00 -- new focusIndex 2 == secretType false
+debug 2024/12/15 17:20:00 -- skip false 2 1 3 3
+debug 2024/12/15 17:20:00 -- new focusIndex 1 == secretType true
+debug 2024/12/15 17:20:01 -- skip true 1 1 2 3
+debug 2024/12/15 17:20:01 -- new focusIndex 1 == secretType true
+debug 2024/12/15 17:20:01 -- skip true 1 1 1 3
+debug 2024/12/15 17:20:01 -- new focusIndex 1 == secretType true
+debug 2024/12/15 17:20:02 -- skip true 1 1 0 3
+debug 2024/12/15 17:20:02 -- new focusIndex 1 == secretType true
+debug 2024/12/15 17:20:02 -- skip true 1 1 1 3
+debug 2024/12/15 17:20:02 -- new focusIndex 1 == secretType true
+debug 2024/12/15 17:20:02 -- skip true 1 1 2 3
+debug 2024/12/15 17:20:02 -- new focusIndex 1 == secretType true
+debug 2024/12/15 17:20:03 -- skip false 1 1 3 3
+debug 2024/12/15 17:20:03 -- new focusIndex 2 == secretType false
+debug 2024/12/15 17:20:03 -- skip false 2 1 3 3
+debug 2024/12/15 17:20:03 -- new focusIndex 1 == secretType true
+debug 2024/12/15 17:20:04 -- skip true 1 1 2 3
+debug 2024/12/15 17:20:04 -- new focusIndex 1 == secretType true
+debug 2024/12/15 17:20:04 -- skip true 1 1 1 3
+debug 2024/12/15 17:20:04 -- new focusIndex 1 == secretType true
+debug 2024/12/15 17:20:05 -- skip false 1 1 0 3
+debug 2024/12/15 17:20:05 -- new focusIndex 0 == secretType false
+debug 2024/12/15 17:20:05 -- skip false 0 1 0 3
+debug 2024/12/15 17:20:05 -- new focusIndex 1 == secretType true
+debug 2024/12/15 17:20:06 -- skip true 1 1 1 3
+debug 2024/12/15 17:20:06 -- new focusIndex 1 == secretType true
+debug 2024/12/15 17:20:07 -- skip false 1 1 0 3
+debug 2024/12/15 17:20:07 -- new focusIndex 0 == secretType false
+debug 2024/12/15 17:20:08 -- skip false 0 1 0 3
+debug 2024/12/15 17:20:08 -- new focusIndex 1 == secretType true
+debug 2024/12/15 17:20:13 -- skip true 1 1 1 3
+debug 2024/12/15 17:20:13 -- new focusIndex 1 == secretType true
+debug 2024/12/15 17:20:14 -- skip true 1 1 2 3
+debug 2024/12/15 17:20:14 -- new focusIndex 1 == secretType true
+debug 2024/12/15 17:20:14 -- skip false 1 1 3 3
+debug 2024/12/15 17:20:14 -- new focusIndex 2 == secretType false
+debug 2024/12/15 17:20:14 -- skip false 2 1 3 3
+debug 2024/12/15 17:20:14 -- new focusIndex 1 == secretType true
+debug 2024/12/15 17:20:15 -- skip true 1 1 2 3
+debug 2024/12/15 17:20:15 -- new focusIndex 1 == secretType true
+debug 2024/12/15 17:20:15 -- skip false 1 1 3 3
+debug 2024/12/15 17:20:15 -- new focusIndex 2 == secretType false
+debug 2024/12/15 17:20:16 -- skip false 2 1 3 3
+debug 2024/12/15 17:20:16 -- new focusIndex 3 == secretType false
+debug 2024/12/15 17:20:16 -- skip false 3 1 3 3
+debug 2024/12/15 17:20:16 -- new focusIndex 2 == secretType false
+debug 2024/12/15 17:20:17 -- skip false 2 1 3 3
+debug 2024/12/15 17:20:17 -- new focusIndex 1 == secretType true
+debug 2024/12/15 17:23:21 -- skip true 1 1 2 3
+debug 2024/12/15 17:23:21 -- new focusIndex 1 == secretType true
+debug 2024/12/15 17:23:22 -- skip true 1 1 1 3
+debug 2024/12/15 17:23:22 -- new focusIndex 1 == secretType true
+debug 2024/12/15 17:23:22 -- skip true 1 1 0 3
+debug 2024/12/15 17:23:22 -- new focusIndex 1 == secretType true
+debug 2024/12/15 17:23:22 -- skip true 1 1 0 3
+debug 2024/12/15 17:23:22 -- new focusIndex 1 == secretType true
+debug 2024/12/15 17:23:23 -- skip true 1 1 0 3
+debug 2024/12/15 17:23:23 -- new focusIndex 1 == secretType true
+debug 2024/12/15 17:23:23 -- skip true 1 1 0 3
+debug 2024/12/15 17:23:23 -- new focusIndex 1 == secretType true
+debug 2024/12/15 17:23:23 -- skip true 1 1 0 3
+debug 2024/12/15 17:23:23 -- new focusIndex 1 == secretType true
+debug 2024/12/15 17:23:23 -- skip true 1 1 0 3
+debug 2024/12/15 17:23:23 -- new focusIndex 1 == secretType true
+debug 2024/12/15 17:26:39 Init grpc client serverHost 127.0.0.1:8080
+debug 2024/12/15 17:26:49 Call Login method Login peter@test.ru
+debug 2024/12/15 17:26:49 Call SetToken method
+debug 2024/12/15 17:26:51 Update KeyMsg n
+debug 2024/12/15 17:26:53 -- skip false 0 1 0 3
+debug 2024/12/15 17:26:53 -- new focusIndex 1 == secretType true
+debug 2024/12/15 17:26:57 -- skip true 1 1 1 3
+debug 2024/12/15 17:26:57 -- new focusIndex 1 == secretType true
+debug 2024/12/15 17:26:58 --
+debug 2024/12/15 17:26:58 -- select secretType password
+debug 2024/12/15 17:26:58 -- skip true 1 1 0 3
+debug 2024/12/15 17:26:58 -- new focusIndex 1 == secretType true
+debug 2024/12/15 17:27:07 -- skip false 1 1 0 3
+debug 2024/12/15 17:27:07 -- new focusIndex 0 == secretType false
+debug 2024/12/15 17:27:08 -- skip false 0 1 0 3
+debug 2024/12/15 17:27:08 -- new focusIndex 3 == secretType false
+debug 2024/12/15 17:27:10 -- skip false 3 1 0 3
+debug 2024/12/15 17:27:10 -- new focusIndex 2 == secretType false
+debug 2024/12/15 17:27:10 -- skip false 2 1 0 3
+debug 2024/12/15 17:27:10 -- new focusIndex 3 == secretType false
+debug 2024/12/15 17:27:11 -- skip false 3 1 0 3
+debug 2024/12/15 17:27:11 -- new focusIndex 2 == secretType false
+debug 2024/12/15 17:27:11 -- skip false 2 1 0 3
+debug 2024/12/15 17:27:11 -- new focusIndex 1 == secretType true
+debug 2024/12/15 17:27:11 -- skip false 1 1 0 3
+debug 2024/12/15 17:27:11 -- new focusIndex 0 == secretType false
+debug 2024/12/15 17:27:12 -- skip false 0 1 0 3
+debug 2024/12/15 17:27:12 -- new focusIndex 3 == secretType false
+debug 2024/12/15 17:27:12 -- skip false 3 1 0 3
+debug 2024/12/15 17:27:12 -- new focusIndex 0 == secretType false
+debug 2024/12/15 17:27:12 -- skip false 0 1 0 3
+debug 2024/12/15 17:27:12 -- new focusIndex 1 == secretType true
+debug 2024/12/15 17:27:12 -- skip true 1 1 1 3
+debug 2024/12/15 17:27:12 -- new focusIndex 1 == secretType true
+debug 2024/12/15 17:27:13 -- skip true 1 1 2 3
+debug 2024/12/15 17:27:13 -- new focusIndex 1 == secretType true
+debug 2024/12/15 17:27:13 -- skip false 1 1 3 3
+debug 2024/12/15 17:27:13 -- new focusIndex 2 == secretType false
+debug 2024/12/15 17:27:14 -- skip false 2 1 3 3
+debug 2024/12/15 17:27:14 -- new focusIndex 1 == secretType true
+debug 2024/12/15 17:27:14 -- skip true 1 1 2 3
+debug 2024/12/15 17:27:14 -- new focusIndex 1 == secretType true
+debug 2024/12/15 17:27:14 -- skip true 1 1 1 3
+debug 2024/12/15 17:27:14 -- new focusIndex 1 == secretType true
+debug 2024/12/15 17:27:14 -- skip false 1 1 0 3
+debug 2024/12/15 17:27:14 -- new focusIndex 0 == secretType false
+debug 2024/12/15 17:27:15 -- skip false 0 1 0 3
+debug 2024/12/15 17:27:15 -- new focusIndex 3 == secretType false
+debug 2024/12/15 17:27:15 -- skip false 3 1 0 3
+debug 2024/12/15 17:27:15 -- new focusIndex 0 == secretType false
+debug 2024/12/15 17:27:15 -- skip false 0 1 0 3
+debug 2024/12/15 17:27:15 -- new focusIndex 1 == secretType true
+debug 2024/12/15 17:27:16 -- skip true 1 1 1 3
+debug 2024/12/15 17:27:16 -- new focusIndex 1 == secretType true
+debug 2024/12/15 17:27:16 -- skip true 1 1 2 3
+debug 2024/12/15 17:27:16 -- new focusIndex 1 == secretType true
+debug 2024/12/15 17:27:16 -- skip false 1 1 3 3
+debug 2024/12/15 17:27:16 -- new focusIndex 2 == secretType false
+debug 2024/12/15 17:27:16 -- skip false 2 1 3 3
+debug 2024/12/15 17:27:16 -- new focusIndex 3 == secretType false
+debug 2024/12/15 17:27:17 -- skip false 3 1 3 3
+debug 2024/12/15 17:27:17 -- new focusIndex 0 == secretType false
+debug 2024/12/15 17:27:17 -- skip false 0 1 3 3
+debug 2024/12/15 17:27:17 -- new focusIndex 1 == secretType true
+debug 2024/12/15 17:27:17 -- skip true 1 1 3 3
+debug 2024/12/15 17:27:17 -- new focusIndex 1 == secretType true
+debug 2024/12/15 17:27:17 -- skip true 1 1 2 3
+debug 2024/12/15 17:27:17 -- new focusIndex 1 == secretType true
+debug 2024/12/15 17:27:18 -- skip true 1 1 1 3
+debug 2024/12/15 17:27:18 -- new focusIndex 1 == secretType true
+debug 2024/12/15 17:27:18 -- skip false 1 1 0 3
+debug 2024/12/15 17:27:18 -- new focusIndex 0 == secretType false
+debug 2024/12/15 17:27:19 -- skip false 0 1 0 3
+debug 2024/12/15 17:27:19 -- new focusIndex 1 == secretType true
+debug 2024/12/15 17:27:21 -- skip true 1 1 1 3
+debug 2024/12/15 17:27:21 -- new focusIndex 1 == secretType true
+debug 2024/12/15 17:27:21 -- skip false 1 1 0 3
+debug 2024/12/15 17:27:21 -- new focusIndex 0 == secretType false
+debug 2024/12/15 17:27:21 -- skip false 0 1 0 3
+debug 2024/12/15 17:27:21 -- new focusIndex 3 == secretType false
+debug 2024/12/15 17:27:21 -- skip false 3 1 0 3
+debug 2024/12/15 17:27:21 -- new focusIndex 2 == secretType false
+debug 2024/12/15 17:27:21 -- skip false 2 1 0 3
+debug 2024/12/15 17:27:21 -- new focusIndex 1 == secretType true
+debug 2024/12/15 17:27:21 -- skip false 1 1 0 3
+debug 2024/12/15 17:27:21 -- new focusIndex 0 == secretType false
+debug 2024/12/15 17:27:21 -- skip false 0 1 0 3
+debug 2024/12/15 17:27:21 -- new focusIndex 3 == secretType false
+debug 2024/12/15 17:27:21 -- skip false 3 1 0 3
+debug 2024/12/15 17:27:21 -- new focusIndex 2 == secretType false
+debug 2024/12/15 17:27:21 -- skip false 2 1 0 3
+debug 2024/12/15 17:27:21 -- new focusIndex 1 == secretType true
+debug 2024/12/15 17:27:21 -- skip false 1 1 0 3
+debug 2024/12/15 17:27:21 -- new focusIndex 0 == secretType false
+debug 2024/12/15 17:27:21 -- skip false 0 1 0 3
+debug 2024/12/15 17:27:21 -- new focusIndex 3 == secretType false
+debug 2024/12/15 17:27:21 -- skip false 3 1 0 3
+debug 2024/12/15 17:27:21 -- new focusIndex 2 == secretType false
+debug 2024/12/15 17:27:21 -- skip false 2 1 0 3
+debug 2024/12/15 17:27:21 -- new focusIndex 1 == secretType true
+debug 2024/12/15 17:27:21 -- skip false 1 1 0 3
+debug 2024/12/15 17:27:21 -- new focusIndex 0 == secretType false
+debug 2024/12/15 17:27:21 -- skip false 0 1 0 3
+debug 2024/12/15 17:27:21 -- new focusIndex 1 == secretType true
+debug 2024/12/15 17:27:25 -- skip true 1 1 1 3
+debug 2024/12/15 17:27:25 -- new focusIndex 1 == secretType true
+debug 2024/12/15 17:27:25 -- skip false 1 1 0 3
+debug 2024/12/15 17:27:25 -- new focusIndex 0 == secretType false
+debug 2024/12/15 17:27:27 -- skip false 0 1 0 3
+debug 2024/12/15 17:27:27 -- new focusIndex 1 == secretType true
+debug 2024/12/15 17:27:28 -- skip true 1 1 1 3
+debug 2024/12/15 17:27:28 -- new focusIndex 1 == secretType true
+debug 2024/12/15 17:27:28 -- skip true 1 1 2 3
+debug 2024/12/15 17:27:28 -- new focusIndex 1 == secretType true
+debug 2024/12/15 17:27:29 -- skip false 1 1 3 3
+debug 2024/12/15 17:27:29 -- new focusIndex 2 == secretType false
+debug 2024/12/15 17:27:30 -- skip false 2 1 3 3
+debug 2024/12/15 17:27:30 -- new focusIndex 3 == secretType false
+debug 2024/12/15 17:48:13 Init grpc client serverHost 127.0.0.1:8080
+debug 2024/12/15 17:48:20 Call Login method Login peter@test.ru
+debug 2024/12/15 17:48:20 Call SetToken method
+debug 2024/12/15 17:48:22 Update KeyMsg n
+debug 2024/12/15 18:56:32 Init grpc client serverHost 127.0.0.1:8080
+debug 2024/12/15 18:56:38 Call Login method Login peter@test.ru
+debug 2024/12/15 18:56:38 Call SetToken method
+debug 2024/12/15 18:56:39 Update KeyMsg n
+debug 2024/12/15 19:04:34 Init grpc client serverHost 127.0.0.1:8080
+debug 2024/12/15 19:04:42 Call Login method Login peter@test.ru
+debug 2024/12/15 19:04:42 Call SetToken method
+debug 2024/12/15 19:04:43 Update KeyMsg n
+debug 2024/12/15 19:04:43 create changeScreenCmd. screen:  new-secret
+debug 2024/12/15 19:04:50 --- nextStageView password
+debug 2024/12/15 19:04:50 create changeScreenCmd. screen:  new-secret-pwd
+debug 2024/12/15 19:10:35 Init grpc client serverHost 127.0.0.1:8080
+debug 2024/12/15 19:10:42 Call Login method Login peter@test.ru
+debug 2024/12/15 19:10:42 Call SetToken method
+debug 2024/12/15 19:10:42 Main View. Change Screent to secret-list from login
+debug 2024/12/15 19:10:43 Update KeyMsg n
+debug 2024/12/15 19:10:43 create changeScreenCmd. screen:  new-secret
+debug 2024/12/15 19:10:43 Main View. Change Screent to new-secret from secret-list
+debug 2024/12/15 19:12:50 create changeScreenCmd. screen:  new-secret-pwd
+debug 2024/12/15 19:13:30 create changeScreenCmd. screen:  new-secret-pwd
+debug 2024/12/15 19:14:38 Init grpc client serverHost 127.0.0.1:8080
+debug 2024/12/15 19:14:44 Call Login method Login peter@test.ru
+debug 2024/12/15 19:14:44 Call SetToken method
+debug 2024/12/15 19:14:44 Main View. Change Screent to secret-list from login
+debug 2024/12/15 19:14:45 Update KeyMsg n
+debug 2024/12/15 19:14:45 create changeScreenCmd. screen:  new-secret
+debug 2024/12/15 19:14:45 Main View. Change Screent to new-secret from secret-list
+debug 2024/12/15 19:15:04 create changeScreenCmd. screen:  new-secret-pwd
+debug 2024/12/15 19:15:04 Main View. Change Screent to new-secret-pwd from new-secret
+debug 2024/12/15 19:17:11 Init grpc client serverHost 127.0.0.1:8080

@@ -143,7 +143,7 @@ func (m *LoginView) updateInputs(msg tea.Msg) tea.Cmd {
 
 func (m *LoginView) View() string {
 	var b strings.Builder
-	b.WriteString(headerStyle.Render("Enter your credentials:"))
+	b.WriteString(boldStyle.Render("Enter your credentials:"))
 	b.WriteRune('\n')
 	b.WriteRune('\n')
 

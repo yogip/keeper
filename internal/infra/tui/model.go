@@ -32,19 +32,30 @@ type Model struct {
 	viewLogin      *views.LoginView
 	viewSignUp     *views.SignUpView
 	viewSecretList *views.SecretListView
+	viewNewSecret  *views.CreateSecretView
+	viewNewPwd     *views.CreatePwdView
+	viewNewNote    *views.CreatePwdView
+	viewNewFile    *views.CreatePwdView
+	viewNewCard    *views.CreatePwdView
 	activeView     Viewer
 	errors         []*views.ErrorMsg
 }
 
 func InitModel(app Client) Model {
 	l := views.NewLoginView(app)
+	p := views.NewCreatePwdView(app)
 	return Model{
 		app:            app,
 		screen:         views.ScreenLogin,
 		viewLogin:      l,
 		viewSignUp:     views.NewSignUpView(app),
 		viewSecretList: views.NewSecretList(app),
-		activeView:     l,
+		viewNewSecret:  views.NewCreateSecretView(app),
+		viewNewPwd:     p,
+		viewNewNote:    views.NewCreatePwdView(app), // todo
+		viewNewFile:    views.NewCreatePwdView(app), // todo
+		viewNewCard:    views.NewCreatePwdView(app), // todo
+		activeView:     p,
 		errors:         make([]*views.ErrorMsg, 0),
 	}
 }
@@ -107,14 +118,34 @@ func (m *Model) tickErrors() tea.Cmd {
 }
 
 func (m *Model) changeViewer(active views.ScreenType) {
+	log.Printf("Main View. Change Screent to %s from %s\n", string(active), string(m.screen))
 	m.screen = active
 	switch active {
+	// Login
 	case views.ScreenLogin:
 		m.activeView = m.viewLogin
+	// Sign Up
 	case views.ScreenSignUp:
 		m.activeView = m.viewSignUp
+	// List View
 	case views.ScreenSecretList:
 		m.activeView = m.viewSecretList
 		m.viewSecretList.Init()
+	// New Secret (select secret type)
+	case views.ScreenNewSecret:
+		m.activeView = m.viewNewSecret
+
+	// New Password
+	case views.ScreenNewPassword:
+		m.activeView = m.viewNewPwd
+	// New Note
+	case views.ScreenNewNote:
+		m.activeView = m.viewNewNote
+	// New card
+	case views.ScreenNewCard:
+		m.activeView = m.viewNewCard
+	// New File
+	case views.ScreenNewFile:
+		m.activeView = m.viewNewFile
 	}
 }
