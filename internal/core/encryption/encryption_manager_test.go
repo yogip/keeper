@@ -91,7 +91,7 @@ LfHpc4xLw78xk5cdTurPtU6IA4/eGoflewTxj6vl5RAAZDAspSj22nuoh1w=
 					return nil, errors.New("test_error")
 				},
 			},
-			wantErr: errors.New("decoding private key (/tmp/encription_key_v_1.pem) error: test_error"),
+			wantErr: errors.New("decoding private key (/tmp/encryption_key_v_1.pem) error: test_error"),
 		},
 		{
 			name: "Test with error in LoadPrivateKey",
@@ -101,12 +101,12 @@ LfHpc4xLw78xk5cdTurPtU6IA4/eGoflewTxj6vl5RAAZDAspSj22nuoh1w=
 					return []byte("stub - not a key"), nil
 				},
 			},
-			wantErr: errors.New("parsing private key (/tmp/encription_key_v_1.pem) error: failed to decode private key"),
+			wantErr: errors.New("parsing private key (/tmp/encryption_key_v_1.pem) error: failed to decode private key"),
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			keyPath := fmt.Sprintf("/tmp/encription_key_v_%d.pem", tt.args.version)
+			keyPath := fmt.Sprintf("/tmp/encryption_key_v_%d.pem", tt.args.version)
 			f, err := os.OpenFile(keyPath, os.O_CREATE|os.O_WRONLY, 0777)
 			require.NoError(t, err)
 			defer os.Remove(keyPath)
@@ -179,7 +179,7 @@ LfHpc4xLw78xk5cdTurPtU6IA4/eGoflewTxj6vl5RAAZDAspSj22nuoh1w=
 -----END RSA PRIVATE KEY-----
 `
 
-	keyPath := "/tmp/encription_key_v_1.pem"
+	keyPath := "/tmp/encryption_key_v_1.pem"
 	f, err := os.OpenFile(keyPath, os.O_CREATE|os.O_WRONLY, 0777)
 	require.NoError(t, err)
 	defer os.Remove(keyPath)

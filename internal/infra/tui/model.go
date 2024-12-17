@@ -43,7 +43,6 @@ type Model struct {
 
 func InitModel(app Client) Model {
 	l := views.NewLoginView(app)
-	p := views.NewCreatePwdView(app)
 	return Model{
 		app:            app,
 		screen:         views.ScreenLogin,
@@ -51,11 +50,11 @@ func InitModel(app Client) Model {
 		viewSignUp:     views.NewSignUpView(app),
 		viewSecretList: views.NewSecretList(app),
 		viewNewSecret:  views.NewCreateSecretView(app),
-		viewNewPwd:     p,
+		viewNewPwd:     views.NewCreatePwdView(app),
 		viewNewNote:    views.NewCreatePwdView(app), // todo
 		viewNewFile:    views.NewCreatePwdView(app), // todo
 		viewNewCard:    views.NewCreatePwdView(app), // todo
-		activeView:     p,
+		activeView:     l,
 		errors:         make([]*views.ErrorMsg, 0),
 	}
 }

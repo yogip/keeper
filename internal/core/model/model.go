@@ -30,13 +30,6 @@ type Tag struct {
 	Value string `json:"value"`
 }
 
-type SecretMeta struct {
-	ID   int64
-	Name string
-	// Tags []*Tag     `json:"tags"` todo
-	Type SecretType
-}
-
 type DataKey struct {
 	Version int64
 	Key     string
@@ -70,12 +63,6 @@ type SecretCreateRequest struct {
 	Type    SecretType
 	Name    string
 	Payload []byte
-}
-
-type Password struct {
-	SecretMeta
-	Login    string `json:"login"`
-	Password string `json:"password"`
 }
 
 type UpdatePasswordRequest struct {

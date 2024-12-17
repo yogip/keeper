@@ -30,7 +30,7 @@ func readPrivateKey(file string) ([]byte, error) {
 
 // NewEncryptionManager loads encryption key from file and creates new encryption manager.
 func NewEncryptionManager(version int64, keyDir string, decoder func([]byte) ([]byte, error)) (*EncryptionManager, error) {
-	keyPath := fmt.Sprintf("%s/encription_key_v_%d.pem", keyDir, version)
+	keyPath := fmt.Sprintf("%s/encryption_key_v_%d.pem", keyDir, version)
 	encPrivateKey, err := readPrivateKey(keyPath)
 	if err != nil {
 		return nil, fmt.Errorf("encryption manager creating error: %w", err)

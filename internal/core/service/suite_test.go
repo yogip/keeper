@@ -125,7 +125,7 @@ LfHpc4xLw78xk5cdTurPtU6IA4/eGoflewTxj6vl5RAAZDAspSj22nuoh1w=
 	encPrivateKey, err := masterKey.Encrypt([]byte(privKeyData))
 	s.Require().NoError(err)
 
-	f, err := os.OpenFile("/tmp/encription_key_v_1.pem", os.O_CREATE|os.O_WRONLY, 0777)
+	f, err := os.OpenFile("/tmp/encryption_key_v_1.pem", os.O_CREATE|os.O_WRONLY, 0777)
 	s.Require().NoError(err)
 
 	f.Write(encPrivateKey)
@@ -173,5 +173,5 @@ func (s *TestSuite) TearDownSuite() {
 	err = s.minIOContainer.Terminate(ctx)
 	s.Require().NoError(err)
 
-	os.Remove("/tmp/encription_key_v_1.pem")
+	os.Remove("/tmp/encryption_key_v_1.pem")
 }

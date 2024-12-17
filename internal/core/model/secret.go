@@ -27,3 +27,33 @@ func (s *Secret) AsPassword() (*Password, error) {
 	p.SecretMeta = s.SecretMeta
 	return &p, nil
 }
+
+type SecretMeta struct {
+	ID   int64
+	Name string
+	Type SecretType
+	// Note string `json:"note"`
+}
+
+type Password struct {
+	SecretMeta
+	Login    string `json:"login"`
+	Password string `json:"password"`
+}
+
+func NewPassword(id int64, name, login, password, note string) *Password {
+	// todo use note
+	return &Password{
+		SecretMeta: SecretMeta{id, name, SecretTypePassword},
+		Login:      login,
+		Password:   password,
+	}
+}
+
+func (p *Password) GetPayload() ([]byte, error) {
+	payload, err := json.Marshal(p)
+	if err != nil {
+		return nil, fmt.Errorf("could not Marshal Password payload: %w", err)
+	}
+	return payload, nil
+}

@@ -6,7 +6,6 @@ import (
 	"log"
 	"time"
 
-	"github.com/charmbracelet/bubbles/textinput"
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/charmbracelet/lipgloss"
 )
@@ -44,6 +43,7 @@ const (
 )
 
 type ClientApp interface {
+	CreateSecret(secretType model.SecretType, name string, payload []byte) (*model.Secret, error)
 	ListSecrets(secretName string) (*model.SecretList, error)
 }
 
@@ -80,18 +80,4 @@ func ErrorCmd(err error, hideAter time.Duration) tea.Cmd {
 	return func() tea.Msg {
 		return NewErrorMsg(err, hideAter)
 	}
-}
-
-func blurInput(input *textinput.Model) {
-	input.Blur()
-	input.PromptStyle = noStyle
-	input.TextStyle = noStyle
-}
-
-func focusInput(input *textinput.Model) tea.Cmd {
-	cmd := input.Focus()
-	input.Blur()
-	input.PromptStyle = focusedStyle
-	input.TextStyle = focusedStyle
-	return cmd
 }

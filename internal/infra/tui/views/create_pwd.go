@@ -3,6 +3,7 @@ package views
 import (
 	"errors"
 	"fmt"
+	"keeper/internal/core/model"
 	"log"
 	"strings"
 	"time"
@@ -22,11 +23,10 @@ type CreatePwdView struct {
 	focusSubmit int
 	focusCancel int
 
-	nameInput  *textinput.Model
-	loginInput *textinput.Model
-	pwdInput   *textinput.Model
-	noteInput  *textinput.Model
-	inputs     []*textinput.Model
+	nameInput  textinput.Model
+	loginInput textinput.Model
+	pwdInput   textinput.Model
+	noteInput  textinput.Model
 
 	app ClientApp
 }
@@ -58,6 +58,8 @@ func NewCreatePwdView(app ClientApp) *CreatePwdView {
 	pwdInput.Blur()
 	pwdInput.PromptStyle = focusedStyle
 	pwdInput.TextStyle = focusedStyle
+	pwdInput.EchoMode = textinput.EchoPassword
+	pwdInput.EchoCharacter = '•'
 
 	// Note
 	noteInput := textinput.New()
@@ -79,18 +81,32 @@ func NewCreatePwdView(app ClientApp) *CreatePwdView {
 		focusSubmit: 4,
 		focusCancel: 5,
 
-		nameInput:  &nameInput,
-		loginInput: &loginInput,
-		pwdInput:   &pwdInput,
-		noteInput:  &noteInput,
-		inputs:     []*textinput.Model{&nameInput, &loginInput, &pwdInput, &noteInput},
+		nameInput:  nameInput,
+		loginInput: loginInput,
+		pwdInput:   pwdInput,
+		noteInput:  noteInput,
 
 		app: app,
 	}
 }
 
-func (m *CreatePwdView) Init() tea.Cmd {
-	return nil
+func (m *CreatePwdView) createPwdCmd(name, login, password, note string) tea.Cmd {
+	return func() tea.Msg {
+		pwd := model.NewPassword(0, name, login, password, note)
+		payload, err := pwd.GetPayload()
+		if err != nil {
+			log.Println("creating password payload error", err)
+			return NewErrorMsg(err, time.Second*10)
+		}
+
+		_, err = m.app.CreateSecret(model.SecretTypePassword, name, payload)
+		if err != nil {
+			log.Println("call grpc method CreateSecret error", err)
+			return NewErrorMsg(err, time.Second*10)
+		}
+		log.Println("Succesfully create secret", name, login)
+		return changeScreenCmd(ScreenSecretList)
+	}
 }
 
 func (m *CreatePwdView) Update(msg tea.Msg) tea.Cmd {
@@ -110,7 +126,12 @@ func (m *CreatePwdView) Update(msg tea.Msg) tea.Cmd {
 				if m.nameInput.Value() == "" || m.pwdInput.Value() == "" {
 					return ErrorCmd(errors.New("Secret Name and Password cannot be empty"), time.Second*5)
 				}
-				// todo calse grpc
+				return m.createPwdCmd(
+					m.nameInput.Value(),
+					m.loginInput.Value(),
+					m.pwdInput.Value(),
+					m.noteInput.Value(),
+				)
 			}
 
 			// Cycle indexes
@@ -127,7 +148,46 @@ func (m *CreatePwdView) Update(msg tea.Msg) tea.Cmd {
 			}
 
 			var cmd tea.Cmd
-			cmd = m.handleFocus(m.focusIndex)
+			// Name Component
+			if m.focusIndex == m.focusName {
+				cmd = m.nameInput.Focus()
+				m.nameInput.PromptStyle = focusedStyle
+				m.nameInput.TextStyle = focusedStyle
+			} else {
+				m.nameInput.Blur()
+				m.nameInput.PromptStyle = noStyle
+				m.nameInput.TextStyle = noStyle
+			}
+			// Login Component
+			if m.focusIndex == m.focusLogin {
+				cmd = m.loginInput.Focus()
+				m.loginInput.PromptStyle = focusedStyle
+				m.loginInput.TextStyle = focusedStyle
+			} else {
+				m.loginInput.Blur()
+				m.loginInput.PromptStyle = noStyle
+				m.loginInput.TextStyle = noStyle
+			}
+			// Pwd Component
+			if m.focusIndex == m.focusPwd {
+				cmd = m.pwdInput.Focus()
+				m.pwdInput.PromptStyle = focusedStyle
+				m.pwdInput.TextStyle = focusedStyle
+			} else {
+				m.pwdInput.Blur()
+				m.pwdInput.PromptStyle = noStyle
+				m.pwdInput.TextStyle = noStyle
+			}
+			// Note Component
+			if m.focusIndex == m.focusNote {
+				cmd = m.noteInput.Focus()
+				m.noteInput.PromptStyle = focusedStyle
+				m.noteInput.TextStyle = focusedStyle
+			} else {
+				m.noteInput.Blur()
+				m.noteInput.PromptStyle = noStyle
+				m.noteInput.TextStyle = noStyle
+			}
 
 			return cmd
 		}
@@ -137,28 +197,15 @@ func (m *CreatePwdView) Update(msg tea.Msg) tea.Cmd {
 	return nil
 }
 
-func (m *CreatePwdView) handleFocus(index int) tea.Cmd {
-	var cmd tea.Cmd
-	for i, inp := range m.inputs {
-		log.Printf("createPwd handleFocus i: %d, index: %d, ", i, index)
-		if i != index {
-			blurInput(inp)
-		}
-		if i == index {
-			cmd = focusInput(inp)
-		}
-	}
-	return cmd
-}
-
 func (m *CreatePwdView) updateInputs(msg tea.Msg) tea.Cmd {
-	if m.focusIndex >= len(m.inputs) {
-		return nil
-	}
-	inp, cmd := m.inputs[m.focusIndex].Update(msg)
-	m.inputs[m.focusIndex] = &inp
+	cmds := make([]tea.Cmd, 4)
 
-	return cmd
+	m.nameInput, cmds[0] = m.nameInput.Update(msg)
+	m.loginInput, cmds[1] = m.loginInput.Update(msg)
+	m.pwdInput, cmds[2] = m.pwdInput.Update(msg)
+	m.noteInput, cmds[3] = m.noteInput.Update(msg)
+
+	return tea.Batch(cmds...)
 }
 
 func (m *CreatePwdView) View() string {

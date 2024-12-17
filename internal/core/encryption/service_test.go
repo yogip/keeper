@@ -89,13 +89,13 @@ LfHpc4xLw78xk5cdTurPtU6IA4/eGoflewTxj6vl5RAAZDAspSj22nuoh1w=
 			wantErr: nil,
 		},
 		{
-			name: "Test failed: encription key in wrong format",
+			name: "Test failed: encryption key in wrong format",
 			args: args{
 				plainText:     []byte("plain text"),
 				encPrivateKey: []byte(privKeyData), // not encrypted
 				keyDir:        "/tmp",
 			},
-			wantErr: errors.New("failed to create encryption manager: decoding private key (/tmp/encription_key_v_10.pem) error: decrypt chunk error:rsa OAEP decrypt error:crypto/rsa: decryption error"),
+			wantErr: errors.New("failed to create encryption manager: decoding private key (/tmp/encryption_key_v_10.pem) error: decrypt chunk error:rsa OAEP decrypt error:crypto/rsa: decryption error"),
 		},
 		{
 			name: "Test failed: There is no key file",
@@ -104,12 +104,12 @@ LfHpc4xLw78xk5cdTurPtU6IA4/eGoflewTxj6vl5RAAZDAspSj22nuoh1w=
 				encPrivateKey: []byte(privKeyData),
 				keyDir:        "/not_exists",
 			},
-			wantErr: errors.New("failed to create encryption manager: encryption manager creating error: reading private key from file (/not_exists/encription_key_v_10.pem) error: open /not_exists/encription_key_v_10.pem: no such file or directory"),
+			wantErr: errors.New("failed to create encryption manager: encryption manager creating error: reading private key from file (/not_exists/encryption_key_v_10.pem) error: open /not_exists/encryption_key_v_10.pem: no such file or directory"),
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			keyPath := "/tmp/encription_key_v_10.pem"
+			keyPath := "/tmp/encryption_key_v_10.pem"
 			f, err := os.OpenFile(keyPath, os.O_CREATE|os.O_WRONLY, 0777)
 			require.NoError(t, err)
 			defer os.Remove(keyPath)

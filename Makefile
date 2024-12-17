@@ -67,6 +67,9 @@ export MASTER_KEY
 server:
 	go run cmd/server/main.go -l debug -a 127.0.0.1:8080 -d "host=localhost port=35432 user=username password=password dbname=keeper sslmode=disable"
 
+generate-key:
+	go run cmd/key/main.go -v 1
+
 migrate-new:
 	goose create $@ sql
 

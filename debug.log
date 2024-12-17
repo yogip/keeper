@@ -7127,3 +7127,768 @@ debug 2024/12/15 19:14:45 Main View. Change Screent to new-secret from secret-li
 debug 2024/12/15 19:15:04 create changeScreenCmd. screen:  new-secret-pwd
 debug 2024/12/15 19:15:04 Main View. Change Screent to new-secret-pwd from new-secret
 debug 2024/12/15 19:17:11 Init grpc client serverHost 127.0.0.1:8080
+debug 2024/12/17 10:15:01 Init grpc client serverHost 127.0.0.1:8080
+debug 2024/12/17 10:15:05 createPwd handleFocus i: 0, index: 1, 
+debug 2024/12/17 10:15:05 createPwd handleFocus i: 1, index: 1, 
+debug 2024/12/17 10:15:05 createPwd handleFocus i: 2, index: 1, 
+debug 2024/12/17 10:15:05 createPwd handleFocus i: 3, index: 1, 
+debug 2024/12/17 10:15:06 createPwd handleFocus i: 0, index: 2, 
+debug 2024/12/17 10:15:06 createPwd handleFocus i: 1, index: 2, 
+debug 2024/12/17 10:15:06 createPwd handleFocus i: 2, index: 2, 
+debug 2024/12/17 10:15:06 createPwd handleFocus i: 3, index: 2, 
+debug 2024/12/17 10:15:07 createPwd handleFocus i: 0, index: 1, 
+debug 2024/12/17 10:15:07 createPwd handleFocus i: 1, index: 1, 
+debug 2024/12/17 10:15:07 createPwd handleFocus i: 2, index: 1, 
+debug 2024/12/17 10:15:07 createPwd handleFocus i: 3, index: 1, 
+debug 2024/12/17 10:15:10 createPwd handleFocus i: 0, index: 2, 
+debug 2024/12/17 10:15:10 createPwd handleFocus i: 1, index: 2, 
+debug 2024/12/17 10:15:10 createPwd handleFocus i: 2, index: 2, 
+debug 2024/12/17 10:15:10 createPwd handleFocus i: 3, index: 2, 
+debug 2024/12/17 10:15:11 createPwd handleFocus i: 0, index: 3, 
+debug 2024/12/17 10:15:11 createPwd handleFocus i: 1, index: 3, 
+debug 2024/12/17 10:15:11 createPwd handleFocus i: 2, index: 3, 
+debug 2024/12/17 10:15:11 createPwd handleFocus i: 3, index: 3, 
+debug 2024/12/17 10:15:11 createPwd handleFocus i: 0, index: 4, 
+debug 2024/12/17 10:15:11 createPwd handleFocus i: 1, index: 4, 
+debug 2024/12/17 10:15:11 createPwd handleFocus i: 2, index: 4, 
+debug 2024/12/17 10:15:11 createPwd handleFocus i: 3, index: 4, 
+debug 2024/12/17 10:15:11 createPwd handleFocus i: 0, index: 5, 
+debug 2024/12/17 10:15:11 createPwd handleFocus i: 1, index: 5, 
+debug 2024/12/17 10:15:11 createPwd handleFocus i: 2, index: 5, 
+debug 2024/12/17 10:15:11 createPwd handleFocus i: 3, index: 5, 
+debug 2024/12/17 10:15:12 create changeScreenCmd. screen:  secret-list
+debug 2024/12/17 10:15:12 Main View. Change Screent to secret-list from login
+debug 2024/12/17 10:15:15 Update KeyMsg esc
+debug 2024/12/17 10:20:30 Init grpc client serverHost 127.0.0.1:8080
+debug 2024/12/17 10:22:27 createPwd handleFocus i: 0, index: 5, 
+debug 2024/12/17 10:22:27 createPwd handleFocus i: 1, index: 5, 
+debug 2024/12/17 10:22:27 createPwd handleFocus i: 2, index: 5, 
+debug 2024/12/17 10:22:27 createPwd handleFocus i: 3, index: 5, 
+debug 2024/12/17 10:22:27 createPwd handleFocus i: 0, index: 0, 
+debug 2024/12/17 10:22:27 createPwd handleFocus i: 1, index: 0, 
+debug 2024/12/17 10:22:27 createPwd handleFocus i: 2, index: 0, 
+debug 2024/12/17 10:22:27 createPwd handleFocus i: 3, index: 0, 
+debug 2024/12/17 10:22:28 createPwd handleFocus i: 0, index: 1, 
+debug 2024/12/17 10:22:28 createPwd handleFocus i: 1, index: 1, 
+debug 2024/12/17 10:22:28 createPwd handleFocus i: 2, index: 1, 
+debug 2024/12/17 10:22:28 createPwd handleFocus i: 3, index: 1, 
+debug 2024/12/17 10:22:28 createPwd handleFocus i: 0, index: 2, 
+debug 2024/12/17 10:22:28 createPwd handleFocus i: 1, index: 2, 
+debug 2024/12/17 10:22:28 createPwd handleFocus i: 2, index: 2, 
+debug 2024/12/17 10:22:28 createPwd handleFocus i: 3, index: 2, 
+debug 2024/12/17 10:22:29 createPwd handleFocus i: 0, index: 3, 
+debug 2024/12/17 10:22:29 createPwd handleFocus i: 1, index: 3, 
+debug 2024/12/17 10:22:29 createPwd handleFocus i: 2, index: 3, 
+debug 2024/12/17 10:22:29 createPwd handleFocus i: 3, index: 3, 
+debug 2024/12/17 10:22:29 createPwd handleFocus i: 0, index: 2, 
+debug 2024/12/17 10:22:29 createPwd handleFocus i: 1, index: 2, 
+debug 2024/12/17 10:22:29 createPwd handleFocus i: 2, index: 2, 
+debug 2024/12/17 10:22:29 createPwd handleFocus i: 3, index: 2, 
+debug 2024/12/17 10:22:30 createPwd handleFocus i: 0, index: 1, 
+debug 2024/12/17 10:22:30 createPwd handleFocus i: 1, index: 1, 
+debug 2024/12/17 10:22:30 createPwd handleFocus i: 2, index: 1, 
+debug 2024/12/17 10:22:30 createPwd handleFocus i: 3, index: 1, 
+debug 2024/12/17 10:22:37 createPwd handleFocus i: 0, index: 0, 
+debug 2024/12/17 10:22:37 createPwd handleFocus i: 1, index: 0, 
+debug 2024/12/17 10:22:37 createPwd handleFocus i: 2, index: 0, 
+debug 2024/12/17 10:22:37 createPwd handleFocus i: 3, index: 0, 
+debug 2024/12/17 10:22:44 createPwd handleFocus i: 0, index: 5, 
+debug 2024/12/17 10:22:44 createPwd handleFocus i: 1, index: 5, 
+debug 2024/12/17 10:22:44 createPwd handleFocus i: 2, index: 5, 
+debug 2024/12/17 10:22:44 createPwd handleFocus i: 3, index: 5, 
+debug 2024/12/17 10:22:44 createPwd handleFocus i: 0, index: 4, 
+debug 2024/12/17 10:22:44 createPwd handleFocus i: 1, index: 4, 
+debug 2024/12/17 10:22:44 createPwd handleFocus i: 2, index: 4, 
+debug 2024/12/17 10:22:44 createPwd handleFocus i: 3, index: 4, 
+debug 2024/12/17 10:22:46 createPwd handleFocus i: 0, index: 3, 
+debug 2024/12/17 10:22:46 createPwd handleFocus i: 1, index: 3, 
+debug 2024/12/17 10:22:46 createPwd handleFocus i: 2, index: 3, 
+debug 2024/12/17 10:22:46 createPwd handleFocus i: 3, index: 3, 
+debug 2024/12/17 10:22:48 createPwd handleFocus i: 0, index: 2, 
+debug 2024/12/17 10:22:48 createPwd handleFocus i: 1, index: 2, 
+debug 2024/12/17 10:22:48 createPwd handleFocus i: 2, index: 2, 
+debug 2024/12/17 10:22:48 createPwd handleFocus i: 3, index: 2, 
+debug 2024/12/17 10:22:49 createPwd handleFocus i: 0, index: 1, 
+debug 2024/12/17 10:22:49 createPwd handleFocus i: 1, index: 1, 
+debug 2024/12/17 10:22:49 createPwd handleFocus i: 2, index: 1, 
+debug 2024/12/17 10:22:49 createPwd handleFocus i: 3, index: 1, 
+debug 2024/12/17 10:22:49 createPwd handleFocus i: 0, index: 0, 
+debug 2024/12/17 10:22:49 createPwd handleFocus i: 1, index: 0, 
+debug 2024/12/17 10:22:49 createPwd handleFocus i: 2, index: 0, 
+debug 2024/12/17 10:22:49 createPwd handleFocus i: 3, index: 0, 
+debug 2024/12/17 10:22:49 createPwd handleFocus i: 0, index: 5, 
+debug 2024/12/17 10:22:49 createPwd handleFocus i: 1, index: 5, 
+debug 2024/12/17 10:22:49 createPwd handleFocus i: 2, index: 5, 
+debug 2024/12/17 10:22:49 createPwd handleFocus i: 3, index: 5, 
+debug 2024/12/17 10:22:49 createPwd handleFocus i: 0, index: 4, 
+debug 2024/12/17 10:22:49 createPwd handleFocus i: 1, index: 4, 
+debug 2024/12/17 10:22:49 createPwd handleFocus i: 2, index: 4, 
+debug 2024/12/17 10:22:49 createPwd handleFocus i: 3, index: 4, 
+debug 2024/12/17 10:22:50 createPwd handleFocus i: 0, index: 3, 
+debug 2024/12/17 10:22:50 createPwd handleFocus i: 1, index: 3, 
+debug 2024/12/17 10:22:50 createPwd handleFocus i: 2, index: 3, 
+debug 2024/12/17 10:22:50 createPwd handleFocus i: 3, index: 3, 
+debug 2024/12/17 10:22:50 createPwd handleFocus i: 0, index: 2, 
+debug 2024/12/17 10:22:50 createPwd handleFocus i: 1, index: 2, 
+debug 2024/12/17 10:22:50 createPwd handleFocus i: 2, index: 2, 
+debug 2024/12/17 10:22:50 createPwd handleFocus i: 3, index: 2, 
+debug 2024/12/17 10:25:21 Init grpc client serverHost 127.0.0.1:8080
+debug 2024/12/17 10:25:24 createPwd handleFocus --- 
+%!(EXTRA int=1)
+debug 2024/12/17 10:25:24 createPwd handleFocus i: 0, BLUR 
+debug 2024/12/17 10:25:24 createPwd handleFocus i: 1, FOCUS 
+debug 2024/12/17 10:25:24 createPwd handleFocus i: 2, BLUR 
+debug 2024/12/17 10:25:24 createPwd handleFocus i: 3, BLUR 
+debug 2024/12/17 10:25:29 Init grpc client serverHost 127.0.0.1:8080
+debug 2024/12/17 10:25:48 createPwd handleFocus --- 
+%!(EXTRA int=1)
+debug 2024/12/17 10:25:48 createPwd handleFocus i: 0, BLUR 
+debug 2024/12/17 10:25:48 createPwd handleFocus i: 1, FOCUS 
+debug 2024/12/17 10:25:48 createPwd handleFocus i: 2, BLUR 
+debug 2024/12/17 10:25:48 createPwd handleFocus i: 3, BLUR 
+debug 2024/12/17 10:25:52 createPwd handleFocus --- 
+%!(EXTRA int=2)
+debug 2024/12/17 10:25:52 createPwd handleFocus i: 0, BLUR 
+debug 2024/12/17 10:25:52 createPwd handleFocus i: 1, BLUR 
+debug 2024/12/17 10:25:52 createPwd handleFocus i: 2, FOCUS 
+debug 2024/12/17 10:25:52 createPwd handleFocus i: 3, BLUR 
+debug 2024/12/17 10:25:55 createPwd handleFocus --- 
+%!(EXTRA int=3)
+debug 2024/12/17 10:25:55 createPwd handleFocus i: 0, BLUR 
+debug 2024/12/17 10:25:55 createPwd handleFocus i: 1, BLUR 
+debug 2024/12/17 10:25:55 createPwd handleFocus i: 2, BLUR 
+debug 2024/12/17 10:25:55 createPwd handleFocus i: 3, FOCUS 
+debug 2024/12/17 10:25:55 createPwd handleFocus --- 
+%!(EXTRA int=4)
+debug 2024/12/17 10:25:55 createPwd handleFocus i: 0, BLUR 
+debug 2024/12/17 10:25:55 createPwd handleFocus i: 1, BLUR 
+debug 2024/12/17 10:25:55 createPwd handleFocus i: 2, BLUR 
+debug 2024/12/17 10:25:55 createPwd handleFocus i: 3, BLUR 
+debug 2024/12/17 10:25:55 createPwd handleFocus --- 
+%!(EXTRA int=5)
+debug 2024/12/17 10:25:55 createPwd handleFocus i: 0, BLUR 
+debug 2024/12/17 10:25:55 createPwd handleFocus i: 1, BLUR 
+debug 2024/12/17 10:25:55 createPwd handleFocus i: 2, BLUR 
+debug 2024/12/17 10:25:55 createPwd handleFocus i: 3, BLUR 
+debug 2024/12/17 10:25:55 createPwd handleFocus --- 
+%!(EXTRA int=4)
+debug 2024/12/17 10:25:55 createPwd handleFocus i: 0, BLUR 
+debug 2024/12/17 10:25:55 createPwd handleFocus i: 1, BLUR 
+debug 2024/12/17 10:25:55 createPwd handleFocus i: 2, BLUR 
+debug 2024/12/17 10:25:55 createPwd handleFocus i: 3, BLUR 
+debug 2024/12/17 10:25:55 createPwd handleFocus --- 
+%!(EXTRA int=3)
+debug 2024/12/17 10:25:55 createPwd handleFocus i: 0, BLUR 
+debug 2024/12/17 10:25:55 createPwd handleFocus i: 1, BLUR 
+debug 2024/12/17 10:25:55 createPwd handleFocus i: 2, BLUR 
+debug 2024/12/17 10:25:55 createPwd handleFocus i: 3, FOCUS 
+debug 2024/12/17 10:25:56 createPwd handleFocus --- 
+%!(EXTRA int=2)
+debug 2024/12/17 10:25:56 createPwd handleFocus i: 0, BLUR 
+debug 2024/12/17 10:25:56 createPwd handleFocus i: 1, BLUR 
+debug 2024/12/17 10:25:56 createPwd handleFocus i: 2, FOCUS 
+debug 2024/12/17 10:25:56 createPwd handleFocus i: 3, BLUR 
+debug 2024/12/17 10:25:56 createPwd handleFocus --- 
+%!(EXTRA int=1)
+debug 2024/12/17 10:25:56 createPwd handleFocus i: 0, BLUR 
+debug 2024/12/17 10:25:56 createPwd handleFocus i: 1, FOCUS 
+debug 2024/12/17 10:25:56 createPwd handleFocus i: 2, BLUR 
+debug 2024/12/17 10:25:56 createPwd handleFocus i: 3, BLUR 
+debug 2024/12/17 10:25:56 createPwd handleFocus --- 
+%!(EXTRA int=2)
+debug 2024/12/17 10:25:56 createPwd handleFocus i: 0, BLUR 
+debug 2024/12/17 10:25:56 createPwd handleFocus i: 1, BLUR 
+debug 2024/12/17 10:25:56 createPwd handleFocus i: 2, FOCUS 
+debug 2024/12/17 10:25:56 createPwd handleFocus i: 3, BLUR 
+debug 2024/12/17 10:25:57 createPwd handleFocus --- 
+%!(EXTRA int=1)
+debug 2024/12/17 10:25:57 createPwd handleFocus i: 0, BLUR 
+debug 2024/12/17 10:25:57 createPwd handleFocus i: 1, FOCUS 
+debug 2024/12/17 10:25:57 createPwd handleFocus i: 2, BLUR 
+debug 2024/12/17 10:25:57 createPwd handleFocus i: 3, BLUR 
+debug 2024/12/17 10:25:57 createPwd handleFocus --- 
+%!(EXTRA int=0)
+debug 2024/12/17 10:25:57 createPwd handleFocus i: 0, FOCUS 
+debug 2024/12/17 10:25:57 createPwd handleFocus i: 1, BLUR 
+debug 2024/12/17 10:25:57 createPwd handleFocus i: 2, BLUR 
+debug 2024/12/17 10:25:57 createPwd handleFocus i: 3, BLUR 
+debug 2024/12/17 10:25:57 createPwd handleFocus --- 
+%!(EXTRA int=5)
+debug 2024/12/17 10:25:57 createPwd handleFocus i: 0, BLUR 
+debug 2024/12/17 10:25:57 createPwd handleFocus i: 1, BLUR 
+debug 2024/12/17 10:25:57 createPwd handleFocus i: 2, BLUR 
+debug 2024/12/17 10:25:57 createPwd handleFocus i: 3, BLUR 
+debug 2024/12/17 10:25:57 createPwd handleFocus --- 
+%!(EXTRA int=4)
+debug 2024/12/17 10:25:57 createPwd handleFocus i: 0, BLUR 
+debug 2024/12/17 10:25:57 createPwd handleFocus i: 1, BLUR 
+debug 2024/12/17 10:25:57 createPwd handleFocus i: 2, BLUR 
+debug 2024/12/17 10:25:57 createPwd handleFocus i: 3, BLUR 
+debug 2024/12/17 10:25:57 createPwd handleFocus --- 
+%!(EXTRA int=3)
+debug 2024/12/17 10:25:57 createPwd handleFocus i: 0, BLUR 
+debug 2024/12/17 10:25:57 createPwd handleFocus i: 1, BLUR 
+debug 2024/12/17 10:25:57 createPwd handleFocus i: 2, BLUR 
+debug 2024/12/17 10:25:57 createPwd handleFocus i: 3, FOCUS 
+debug 2024/12/17 10:25:58 createPwd handleFocus --- 
+%!(EXTRA int=4)
+debug 2024/12/17 10:25:58 createPwd handleFocus i: 0, BLUR 
+debug 2024/12/17 10:25:58 createPwd handleFocus i: 1, BLUR 
+debug 2024/12/17 10:25:58 createPwd handleFocus i: 2, BLUR 
+debug 2024/12/17 10:25:58 createPwd handleFocus i: 3, BLUR 
+debug 2024/12/17 10:25:59 createPwd handleFocus --- 
+%!(EXTRA int=5)
+debug 2024/12/17 10:25:59 createPwd handleFocus i: 0, BLUR 
+debug 2024/12/17 10:25:59 createPwd handleFocus i: 1, BLUR 
+debug 2024/12/17 10:25:59 createPwd handleFocus i: 2, BLUR 
+debug 2024/12/17 10:25:59 createPwd handleFocus i: 3, BLUR 
+debug 2024/12/17 10:25:59 createPwd handleFocus --- 
+%!(EXTRA int=4)
+debug 2024/12/17 10:25:59 createPwd handleFocus i: 0, BLUR 
+debug 2024/12/17 10:25:59 createPwd handleFocus i: 1, BLUR 
+debug 2024/12/17 10:25:59 createPwd handleFocus i: 2, BLUR 
+debug 2024/12/17 10:25:59 createPwd handleFocus i: 3, BLUR 
+debug 2024/12/17 10:26:00 createPwd handleFocus --- 
+%!(EXTRA int=3)
+debug 2024/12/17 10:26:00 createPwd handleFocus i: 0, BLUR 
+debug 2024/12/17 10:26:00 createPwd handleFocus i: 1, BLUR 
+debug 2024/12/17 10:26:00 createPwd handleFocus i: 2, BLUR 
+debug 2024/12/17 10:26:00 createPwd handleFocus i: 3, FOCUS 
+debug 2024/12/17 10:27:35 Init grpc client serverHost 127.0.0.1:8080
+debug 2024/12/17 10:27:42 createPwd handleFocus --- 1
+debug 2024/12/17 10:27:42 createPwd handleFocus i: 0, BLUR 
+debug 2024/12/17 10:27:42 createPwd handleFocus i: 1, FOCUS 
+debug 2024/12/17 10:27:42 createPwd handleFocus i: 2, BLUR 
+debug 2024/12/17 10:27:42 createPwd handleFocus i: 3, BLUR 
+debug 2024/12/17 10:27:44 createPwd handleFocus --- 0
+debug 2024/12/17 10:27:44 createPwd handleFocus i: 0, FOCUS 
+debug 2024/12/17 10:27:44 createPwd handleFocus i: 1, BLUR 
+debug 2024/12/17 10:27:44 createPwd handleFocus i: 2, BLUR 
+debug 2024/12/17 10:27:44 createPwd handleFocus i: 3, BLUR 
+debug 2024/12/17 10:27:44 createPwd handleFocus --- 1
+debug 2024/12/17 10:27:44 createPwd handleFocus i: 0, BLUR 
+debug 2024/12/17 10:27:44 createPwd handleFocus i: 1, FOCUS 
+debug 2024/12/17 10:27:44 createPwd handleFocus i: 2, BLUR 
+debug 2024/12/17 10:27:44 createPwd handleFocus i: 3, BLUR 
+debug 2024/12/17 10:27:45 createPwd handleFocus --- 2
+debug 2024/12/17 10:27:45 createPwd handleFocus i: 0, BLUR 
+debug 2024/12/17 10:27:45 createPwd handleFocus i: 1, BLUR 
+debug 2024/12/17 10:27:45 createPwd handleFocus i: 2, FOCUS 
+debug 2024/12/17 10:27:45 createPwd handleFocus i: 3, BLUR 
+debug 2024/12/17 10:27:45 createPwd handleFocus --- 1
+debug 2024/12/17 10:27:45 createPwd handleFocus i: 0, BLUR 
+debug 2024/12/17 10:27:45 createPwd handleFocus i: 1, FOCUS 
+debug 2024/12/17 10:27:45 createPwd handleFocus i: 2, BLUR 
+debug 2024/12/17 10:27:45 createPwd handleFocus i: 3, BLUR 
+debug 2024/12/17 10:27:46 createPwd handleFocus --- 0
+debug 2024/12/17 10:27:46 createPwd handleFocus i: 0, FOCUS 
+debug 2024/12/17 10:27:46 createPwd handleFocus i: 1, BLUR 
+debug 2024/12/17 10:27:46 createPwd handleFocus i: 2, BLUR 
+debug 2024/12/17 10:27:46 createPwd handleFocus i: 3, BLUR 
+debug 2024/12/17 10:27:46 createPwd handleFocus --- 1
+debug 2024/12/17 10:27:46 createPwd handleFocus i: 0, BLUR 
+debug 2024/12/17 10:27:46 createPwd handleFocus i: 1, FOCUS 
+debug 2024/12/17 10:27:46 createPwd handleFocus i: 2, BLUR 
+debug 2024/12/17 10:27:46 createPwd handleFocus i: 3, BLUR 
+debug 2024/12/17 10:27:47 createPwd handleFocus --- 2
+debug 2024/12/17 10:27:47 createPwd handleFocus i: 0, BLUR 
+debug 2024/12/17 10:27:47 createPwd handleFocus i: 1, BLUR 
+debug 2024/12/17 10:27:47 createPwd handleFocus i: 2, FOCUS 
+debug 2024/12/17 10:27:47 createPwd handleFocus i: 3, BLUR 
+debug 2024/12/17 10:27:52 createPwd handleFocus --- 1
+debug 2024/12/17 10:27:52 createPwd handleFocus i: 0, BLUR 
+debug 2024/12/17 10:27:52 createPwd handleFocus i: 1, FOCUS 
+debug 2024/12/17 10:27:52 createPwd handleFocus i: 2, BLUR 
+debug 2024/12/17 10:27:52 createPwd handleFocus i: 3, BLUR 
+debug 2024/12/17 10:27:54 createPwd handleFocus --- 0
+debug 2024/12/17 10:27:54 createPwd handleFocus i: 0, FOCUS 
+debug 2024/12/17 10:27:54 createPwd handleFocus i: 1, BLUR 
+debug 2024/12/17 10:27:54 createPwd handleFocus i: 2, BLUR 
+debug 2024/12/17 10:27:54 createPwd handleFocus i: 3, BLUR 
+debug 2024/12/17 10:27:54 createPwd handleFocus --- 5
+debug 2024/12/17 10:27:54 createPwd handleFocus i: 0, BLUR 
+debug 2024/12/17 10:27:54 createPwd handleFocus i: 1, BLUR 
+debug 2024/12/17 10:27:54 createPwd handleFocus i: 2, BLUR 
+debug 2024/12/17 10:27:54 createPwd handleFocus i: 3, BLUR 
+debug 2024/12/17 10:27:54 createPwd handleFocus --- 0
+debug 2024/12/17 10:27:54 createPwd handleFocus i: 0, FOCUS 
+debug 2024/12/17 10:27:54 createPwd handleFocus i: 1, BLUR 
+debug 2024/12/17 10:27:54 createPwd handleFocus i: 2, BLUR 
+debug 2024/12/17 10:27:54 createPwd handleFocus i: 3, BLUR 
+debug 2024/12/17 10:27:55 createPwd handleFocus --- 1
+debug 2024/12/17 10:27:55 createPwd handleFocus i: 0, BLUR 
+debug 2024/12/17 10:27:55 createPwd handleFocus i: 1, FOCUS 
+debug 2024/12/17 10:27:55 createPwd handleFocus i: 2, BLUR 
+debug 2024/12/17 10:27:55 createPwd handleFocus i: 3, BLUR 
+debug 2024/12/17 10:27:55 createPwd handleFocus --- 2
+debug 2024/12/17 10:27:55 createPwd handleFocus i: 0, BLUR 
+debug 2024/12/17 10:27:55 createPwd handleFocus i: 1, BLUR 
+debug 2024/12/17 10:27:55 createPwd handleFocus i: 2, FOCUS 
+debug 2024/12/17 10:27:55 createPwd handleFocus i: 3, BLUR 
+debug 2024/12/17 10:27:55 createPwd handleFocus --- 3
+debug 2024/12/17 10:27:55 createPwd handleFocus i: 0, BLUR 
+debug 2024/12/17 10:27:55 createPwd handleFocus i: 1, BLUR 
+debug 2024/12/17 10:27:55 createPwd handleFocus i: 2, BLUR 
+debug 2024/12/17 10:27:55 createPwd handleFocus i: 3, FOCUS 
+debug 2024/12/17 10:27:55 createPwd handleFocus --- 4
+debug 2024/12/17 10:27:55 createPwd handleFocus i: 0, BLUR 
+debug 2024/12/17 10:27:55 createPwd handleFocus i: 1, BLUR 
+debug 2024/12/17 10:27:55 createPwd handleFocus i: 2, BLUR 
+debug 2024/12/17 10:27:55 createPwd handleFocus i: 3, BLUR 
+debug 2024/12/17 10:27:55 createPwd handleFocus --- 5
+debug 2024/12/17 10:27:55 createPwd handleFocus i: 0, BLUR 
+debug 2024/12/17 10:27:55 createPwd handleFocus i: 1, BLUR 
+debug 2024/12/17 10:27:55 createPwd handleFocus i: 2, BLUR 
+debug 2024/12/17 10:27:55 createPwd handleFocus i: 3, BLUR 
+debug 2024/12/17 10:27:55 createPwd handleFocus --- 0
+debug 2024/12/17 10:27:55 createPwd handleFocus i: 0, FOCUS 
+debug 2024/12/17 10:27:55 createPwd handleFocus i: 1, BLUR 
+debug 2024/12/17 10:27:55 createPwd handleFocus i: 2, BLUR 
+debug 2024/12/17 10:27:55 createPwd handleFocus i: 3, BLUR 
+debug 2024/12/17 10:27:56 createPwd handleFocus --- 1
+debug 2024/12/17 10:27:56 createPwd handleFocus i: 0, BLUR 
+debug 2024/12/17 10:27:56 createPwd handleFocus i: 1, FOCUS 
+debug 2024/12/17 10:27:56 createPwd handleFocus i: 2, BLUR 
+debug 2024/12/17 10:27:56 createPwd handleFocus i: 3, BLUR 
+debug 2024/12/17 10:27:56 createPwd handleFocus --- 0
+debug 2024/12/17 10:27:56 createPwd handleFocus i: 0, FOCUS 
+debug 2024/12/17 10:27:56 createPwd handleFocus i: 1, BLUR 
+debug 2024/12/17 10:27:56 createPwd handleFocus i: 2, BLUR 
+debug 2024/12/17 10:27:56 createPwd handleFocus i: 3, BLUR 
+debug 2024/12/17 10:27:56 createPwd handleFocus --- 5
+debug 2024/12/17 10:27:56 createPwd handleFocus i: 0, BLUR 
+debug 2024/12/17 10:27:56 createPwd handleFocus i: 1, BLUR 
+debug 2024/12/17 10:27:56 createPwd handleFocus i: 2, BLUR 
+debug 2024/12/17 10:27:56 createPwd handleFocus i: 3, BLUR 
+debug 2024/12/17 10:27:56 createPwd handleFocus --- 4
+debug 2024/12/17 10:27:56 createPwd handleFocus i: 0, BLUR 
+debug 2024/12/17 10:27:56 createPwd handleFocus i: 1, BLUR 
+debug 2024/12/17 10:27:56 createPwd handleFocus i: 2, BLUR 
+debug 2024/12/17 10:27:56 createPwd handleFocus i: 3, BLUR 
+debug 2024/12/17 10:27:56 createPwd handleFocus --- 3
+debug 2024/12/17 10:27:56 createPwd handleFocus i: 0, BLUR 
+debug 2024/12/17 10:27:56 createPwd handleFocus i: 1, BLUR 
+debug 2024/12/17 10:27:56 createPwd handleFocus i: 2, BLUR 
+debug 2024/12/17 10:27:56 createPwd handleFocus i: 3, FOCUS 
+debug 2024/12/17 10:27:57 createPwd handleFocus --- 2
+debug 2024/12/17 10:27:57 createPwd handleFocus i: 0, BLUR 
+debug 2024/12/17 10:27:57 createPwd handleFocus i: 1, BLUR 
+debug 2024/12/17 10:27:57 createPwd handleFocus i: 2, FOCUS 
+debug 2024/12/17 10:27:57 createPwd handleFocus i: 3, BLUR 
+debug 2024/12/17 10:27:57 createPwd handleFocus --- 1
+debug 2024/12/17 10:27:57 createPwd handleFocus i: 0, BLUR 
+debug 2024/12/17 10:27:57 createPwd handleFocus i: 1, FOCUS 
+debug 2024/12/17 10:27:57 createPwd handleFocus i: 2, BLUR 
+debug 2024/12/17 10:27:57 createPwd handleFocus i: 3, BLUR 
+debug 2024/12/17 10:27:57 createPwd handleFocus --- 0
+debug 2024/12/17 10:27:57 createPwd handleFocus i: 0, FOCUS 
+debug 2024/12/17 10:27:57 createPwd handleFocus i: 1, BLUR 
+debug 2024/12/17 10:27:57 createPwd handleFocus i: 2, BLUR 
+debug 2024/12/17 10:27:57 createPwd handleFocus i: 3, BLUR 
+debug 2024/12/17 10:27:57 createPwd handleFocus --- 5
+debug 2024/12/17 10:27:57 createPwd handleFocus i: 0, BLUR 
+debug 2024/12/17 10:27:57 createPwd handleFocus i: 1, BLUR 
+debug 2024/12/17 10:27:57 createPwd handleFocus i: 2, BLUR 
+debug 2024/12/17 10:27:57 createPwd handleFocus i: 3, BLUR 
+debug 2024/12/17 10:27:57 createPwd handleFocus --- 4
+debug 2024/12/17 10:27:57 createPwd handleFocus i: 0, BLUR 
+debug 2024/12/17 10:27:57 createPwd handleFocus i: 1, BLUR 
+debug 2024/12/17 10:27:57 createPwd handleFocus i: 2, BLUR 
+debug 2024/12/17 10:27:57 createPwd handleFocus i: 3, BLUR 
+debug 2024/12/17 10:27:58 createPwd handleFocus --- 3
+debug 2024/12/17 10:27:58 createPwd handleFocus i: 0, BLUR 
+debug 2024/12/17 10:27:58 createPwd handleFocus i: 1, BLUR 
+debug 2024/12/17 10:27:58 createPwd handleFocus i: 2, BLUR 
+debug 2024/12/17 10:27:58 createPwd handleFocus i: 3, FOCUS 
+debug 2024/12/17 10:27:58 createPwd handleFocus --- 2
+debug 2024/12/17 10:27:58 createPwd handleFocus i: 0, BLUR 
+debug 2024/12/17 10:27:58 createPwd handleFocus i: 1, BLUR 
+debug 2024/12/17 10:27:58 createPwd handleFocus i: 2, FOCUS 
+debug 2024/12/17 10:27:58 createPwd handleFocus i: 3, BLUR 
+debug 2024/12/17 10:27:58 createPwd handleFocus --- 1
+debug 2024/12/17 10:27:58 createPwd handleFocus i: 0, BLUR 
+debug 2024/12/17 10:27:58 createPwd handleFocus i: 1, FOCUS 
+debug 2024/12/17 10:27:58 createPwd handleFocus i: 2, BLUR 
+debug 2024/12/17 10:27:58 createPwd handleFocus i: 3, BLUR 
+debug 2024/12/17 10:30:28 Init grpc client serverHost 127.0.0.1:8080
+debug 2024/12/17 10:30:29 createPwd handleFocus --- 1
+debug 2024/12/17 10:30:29 createPwd handleFocus i: 0, BLUR 
+debug 2024/12/17 10:30:29 createPwd handleFocus i: 1, FOCUS 
+debug 2024/12/17 10:30:29 createPwd handleFocus i: 2, BLUR 
+debug 2024/12/17 10:30:29 createPwd handleFocus i: 3, BLUR 
+debug 2024/12/17 10:30:30 createPwd handleFocus --- 0
+debug 2024/12/17 10:30:30 createPwd handleFocus i: 0, FOCUS 
+debug 2024/12/17 10:30:30 createPwd handleFocus i: 1, BLUR 
+debug 2024/12/17 10:30:30 createPwd handleFocus i: 2, BLUR 
+debug 2024/12/17 10:30:30 createPwd handleFocus i: 3, BLUR 
+debug 2024/12/17 10:30:31 createPwd handleFocus --- 1
+debug 2024/12/17 10:30:31 createPwd handleFocus i: 0, BLUR 
+debug 2024/12/17 10:30:31 createPwd handleFocus i: 1, FOCUS 
+debug 2024/12/17 10:30:31 createPwd handleFocus i: 2, BLUR 
+debug 2024/12/17 10:30:31 createPwd handleFocus i: 3, BLUR 
+debug 2024/12/17 10:30:31 createPwd handleFocus --- 2
+debug 2024/12/17 10:30:31 createPwd handleFocus i: 0, BLUR 
+debug 2024/12/17 10:30:31 createPwd handleFocus i: 1, BLUR 
+debug 2024/12/17 10:30:31 createPwd handleFocus i: 2, FOCUS 
+debug 2024/12/17 10:30:31 createPwd handleFocus i: 3, BLUR 
+debug 2024/12/17 10:30:31 createPwd handleFocus --- 3
+debug 2024/12/17 10:30:31 createPwd handleFocus i: 0, BLUR 
+debug 2024/12/17 10:30:31 createPwd handleFocus i: 1, BLUR 
+debug 2024/12/17 10:30:31 createPwd handleFocus i: 2, BLUR 
+debug 2024/12/17 10:30:31 createPwd handleFocus i: 3, FOCUS 
+debug 2024/12/17 10:30:31 createPwd handleFocus --- 4
+debug 2024/12/17 10:30:31 createPwd handleFocus i: 0, BLUR 
+debug 2024/12/17 10:30:31 createPwd handleFocus i: 1, BLUR 
+debug 2024/12/17 10:30:31 createPwd handleFocus i: 2, BLUR 
+debug 2024/12/17 10:30:31 createPwd handleFocus i: 3, BLUR 
+debug 2024/12/17 10:30:31 createPwd handleFocus --- 3
+debug 2024/12/17 10:30:31 createPwd handleFocus i: 0, BLUR 
+debug 2024/12/17 10:30:31 createPwd handleFocus i: 1, BLUR 
+debug 2024/12/17 10:30:31 createPwd handleFocus i: 2, BLUR 
+debug 2024/12/17 10:30:31 createPwd handleFocus i: 3, FOCUS 
+debug 2024/12/17 10:30:32 createPwd handleFocus --- 2
+debug 2024/12/17 10:30:32 createPwd handleFocus i: 0, BLUR 
+debug 2024/12/17 10:30:32 createPwd handleFocus i: 1, BLUR 
+debug 2024/12/17 10:30:32 createPwd handleFocus i: 2, FOCUS 
+debug 2024/12/17 10:30:32 createPwd handleFocus i: 3, BLUR 
+debug 2024/12/17 10:30:32 createPwd handleFocus --- 1
+debug 2024/12/17 10:30:32 createPwd handleFocus i: 0, BLUR 
+debug 2024/12/17 10:30:32 createPwd handleFocus i: 1, FOCUS 
+debug 2024/12/17 10:30:32 createPwd handleFocus i: 2, BLUR 
+debug 2024/12/17 10:30:32 createPwd handleFocus i: 3, BLUR 
+debug 2024/12/17 10:35:34 Init grpc client serverHost 127.0.0.1:8080
+debug 2024/12/17 10:35:58 create changeScreenCmd. screen:  secret-list
+debug 2024/12/17 10:35:58 Main View. Change Screent to secret-list from login
+debug 2024/12/17 10:36:40 Update KeyMsg esc
+debug 2024/12/17 10:36:42 Init grpc client serverHost 127.0.0.1:8080
+debug 2024/12/17 10:39:45 Init grpc client serverHost 127.0.0.1:8080
+debug 2024/12/17 10:39:46 updateInputs s
+debug 2024/12/17 10:39:46 0 inp {<nil> >  Secret name 0 42 {530ms [38;5;63m[0m   0 true false 0xc00012cd38 2 0} 0s [38;5;63m[0m [38;5;63m[0m [38;5;240m[0m [38;5;240m[0m  50 0 {{[right ctrl+f] { } false} {[left ctrl+b] { } false} {[alt+right ctrl+right alt+f] { } false} {[alt+left ctrl+left alt+b] { } false} {[alt+backspace ctrl+w] { } false} {[alt+delete alt+d] { } false} {[ctrl+k] { } false} {[ctrl+u] { } false} {[backspace ctrl+h] { } false} {[delete ctrl+d] { } false} {[home ctrl+a] { } false} {[end ctrl+e] { } false} {[ctrl+v] { } false} {[tab] { } false} {[down ctrl+n] { } false} {[up ctrl+p] { } false}} [115] true 1 0 1 <nil> 0xc000594030 false [] [] 0} &{<nil> >  Secret name 0 42 {530ms [38;5;63m[0m   0 true false 0xc00012cd38 1 0} 0s [38;5;63m[0m [38;5;63m[0m [38;5;240m[0m [38;5;240m[0m  50 0 {{[right ctrl+f] { } false} {[left ctrl+b] { } false} {[alt+right ctrl+right alt+f] { } false} {[alt+left ctrl+left alt+b] { } false} {[alt+backspace ctrl+w] { } false} {[alt+delete alt+d] { } false} {[ctrl+k] { } false} {[ctrl+u] { } false} {[backspace ctrl+h] { } false} {[delete ctrl+d] { } false} {[home ctrl+a] { } false} {[end ctrl+e] { } false} {[ctrl+v] { } false} {[tab] { } false} {[down ctrl+n] { } false} {[up ctrl+p] { } false}} [] true 0 0 0 <nil> <nil> false [] [] 0}
+debug 2024/12/17 10:39:46 1 inp {<nil> >  Login 0 42 {530ms [38;5;63m[0m   0 false true 0xc00012cd50 0 0} 0s [38;5;63m[0m [38;5;63m[0m [38;5;240m[0m [38;5;240m[0m  50 0 {{[right ctrl+f] { } false} {[left ctrl+b] { } false} {[alt+right ctrl+right alt+f] { } false} {[alt+left ctrl+left alt+b] { } false} {[alt+backspace ctrl+w] { } false} {[alt+delete alt+d] { } false} {[ctrl+k] { } false} {[ctrl+u] { } false} {[backspace ctrl+h] { } false} {[delete ctrl+d] { } false} {[home ctrl+a] { } false} {[end ctrl+e] { } false} {[ctrl+v] { } false} {[tab] { } false} {[down ctrl+n] { } false} {[up ctrl+p] { } false}} [] false 0 0 0 <nil> <nil> false [] [] 0} &{<nil> >  Login 0 42 {530ms [38;5;63m[0m   0 false true 0xc00012cd50 0 0} 0s [38;5;63m[0m [38;5;63m[0m [38;5;240m[0m [38;5;240m[0m  50 0 {{[right ctrl+f] { } false} {[left ctrl+b] { } false} {[alt+right ctrl+right alt+f] { } false} {[alt+left ctrl+left alt+b] { } false} {[alt+backspace ctrl+w] { } false} {[alt+delete alt+d] { } false} {[ctrl+k] { } false} {[ctrl+u] { } false} {[backspace ctrl+h] { } false} {[delete ctrl+d] { } false} {[home ctrl+a] { } false} {[end ctrl+e] { } false} {[ctrl+v] { } false} {[tab] { } false} {[down ctrl+n] { } false} {[up ctrl+p] { } false}} [] false 0 0 0 <nil> <nil> false [] [] 0}
+debug 2024/12/17 10:39:46 2 inp {<nil> >  Password 0 42 {530ms [38;5;63m[0m   0 false true 0xc00012cd68 0 0} 0s [38;5;63m[0m [38;5;63m[0m [38;5;240m[0m [38;5;240m[0m  50 0 {{[right ctrl+f] { } false} {[left ctrl+b] { } false} {[alt+right ctrl+right alt+f] { } false} {[alt+left ctrl+left alt+b] { } false} {[alt+backspace ctrl+w] { } false} {[alt+delete alt+d] { } false} {[ctrl+k] { } false} {[ctrl+u] { } false} {[backspace ctrl+h] { } false} {[delete ctrl+d] { } false} {[home ctrl+a] { } false} {[end ctrl+e] { } false} {[ctrl+v] { } false} {[tab] { } false} {[down ctrl+n] { } false} {[up ctrl+p] { } false}} [] false 0 0 0 <nil> <nil> false [] [] 0} &{<nil> >  Password 0 42 {530ms [38;5;63m[0m   0 false true 0xc00012cd68 0 0} 0s [38;5;63m[0m [38;5;63m[0m [38;5;240m[0m [38;5;240m[0m  50 0 {{[right ctrl+f] { } false} {[left ctrl+b] { } false} {[alt+right ctrl+right alt+f] { } false} {[alt+left ctrl+left alt+b] { } false} {[alt+backspace ctrl+w] { } false} {[alt+delete alt+d] { } false} {[ctrl+k] { } false} {[ctrl+u] { } false} {[backspace ctrl+h] { } false} {[delete ctrl+d] { } false} {[home ctrl+a] { } false} {[end ctrl+e] { } false} {[ctrl+v] { } false} {[tab] { } false} {[down ctrl+n] { } false} {[up ctrl+p] { } false}} [] false 0 0 0 <nil> <nil> false [] [] 0}
+debug 2024/12/17 10:39:46 3 inp {<nil> >  Note 0 42 {530ms [38;5;63m[0m   0 false true 0xc00012cd80 0 0} 0s [38;5;63m[0m [38;5;63m[0m [38;5;240m[0m [38;5;240m[0m  50 0 {{[right ctrl+f] { } false} {[left ctrl+b] { } false} {[alt+right ctrl+right alt+f] { } false} {[alt+left ctrl+left alt+b] { } false} {[alt+backspace ctrl+w] { } false} {[alt+delete alt+d] { } false} {[ctrl+k] { } false} {[ctrl+u] { } false} {[backspace ctrl+h] { } false} {[delete ctrl+d] { } false} {[home ctrl+a] { } false} {[end ctrl+e] { } false} {[ctrl+v] { } false} {[tab] { } false} {[down ctrl+n] { } false} {[up ctrl+p] { } false}} [] false 0 0 0 <nil> <nil> false [] [] 0} &{<nil> >  Note 0 42 {530ms [38;5;63m[0m   0 false true 0xc00012cd80 0 0} 0s [38;5;63m[0m [38;5;63m[0m [38;5;240m[0m [38;5;240m[0m  50 0 {{[right ctrl+f] { } false} {[left ctrl+b] { } false} {[alt+right ctrl+right alt+f] { } false} {[alt+left ctrl+left alt+b] { } false} {[alt+backspace ctrl+w] { } false} {[alt+delete alt+d] { } false} {[ctrl+k] { } false} {[ctrl+u] { } false} {[backspace ctrl+h] { } false} {[delete ctrl+d] { } false} {[home ctrl+a] { } false} {[end ctrl+e] { } false} {[ctrl+v] { } false} {[tab] { } false} {[down ctrl+n] { } false} {[up ctrl+p] { } false}} [] false 0 0 0 <nil> <nil> false [] [] 0}
+debug 2024/12/17 10:39:46 updateInputs d
+debug 2024/12/17 10:39:46 0 inp {<nil> >  Secret name 0 42 {530ms [38;5;63m[0m   0 true false 0xc00012cd38 3 0} 0s [38;5;63m[0m [38;5;63m[0m [38;5;240m[0m [38;5;240m[0m  50 0 {{[right ctrl+f] { } false} {[left ctrl+b] { } false} {[alt+right ctrl+right alt+f] { } false} {[alt+left ctrl+left alt+b] { } false} {[alt+backspace ctrl+w] { } false} {[alt+delete alt+d] { } false} {[ctrl+k] { } false} {[ctrl+u] { } false} {[backspace ctrl+h] { } false} {[delete ctrl+d] { } false} {[home ctrl+a] { } false} {[end ctrl+e] { } false} {[ctrl+v] { } false} {[tab] { } false} {[down ctrl+n] { } false} {[up ctrl+p] { } false}} [115 100] true 2 0 2 <nil> 0xc000594030 false [] [] 0} &{<nil> >  Secret name 0 42 {530ms [38;5;63m[0m   0 true false 0xc00012cd38 2 0} 0s [38;5;63m[0m [38;5;63m[0m [38;5;240m[0m [38;5;240m[0m  50 0 {{[right ctrl+f] { } false} {[left ctrl+b] { } false} {[alt+right ctrl+right alt+f] { } false} {[alt+left ctrl+left alt+b] { } false} {[alt+backspace ctrl+w] { } false} {[alt+delete alt+d] { } false} {[ctrl+k] { } false} {[ctrl+u] { } false} {[backspace ctrl+h] { } false} {[delete ctrl+d] { } false} {[home ctrl+a] { } false} {[end ctrl+e] { } false} {[ctrl+v] { } false} {[tab] { } false} {[down ctrl+n] { } false} {[up ctrl+p] { } false}} [115] true 1 0 1 <nil> 0xc000594030 false [] [] 0}
+debug 2024/12/17 10:39:46 1 inp {<nil> >  Login 0 42 {530ms [38;5;63m[0m   0 false true 0xc00012cd50 0 0} 0s [38;5;63m[0m [38;5;63m[0m [38;5;240m[0m [38;5;240m[0m  50 0 {{[right ctrl+f] { } false} {[left ctrl+b] { } false} {[alt+right ctrl+right alt+f] { } false} {[alt+left ctrl+left alt+b] { } false} {[alt+backspace ctrl+w] { } false} {[alt+delete alt+d] { } false} {[ctrl+k] { } false} {[ctrl+u] { } false} {[backspace ctrl+h] { } false} {[delete ctrl+d] { } false} {[home ctrl+a] { } false} {[end ctrl+e] { } false} {[ctrl+v] { } false} {[tab] { } false} {[down ctrl+n] { } false} {[up ctrl+p] { } false}} [] false 0 0 0 <nil> <nil> false [] [] 0} &{<nil> >  Login 0 42 {530ms [38;5;63m[0m   0 false true 0xc00012cd50 0 0} 0s [38;5;63m[0m [38;5;63m[0m [38;5;240m[0m [38;5;240m[0m  50 0 {{[right ctrl+f] { } false} {[left ctrl+b] { } false} {[alt+right ctrl+right alt+f] { } false} {[alt+left ctrl+left alt+b] { } false} {[alt+backspace ctrl+w] { } false} {[alt+delete alt+d] { } false} {[ctrl+k] { } false} {[ctrl+u] { } false} {[backspace ctrl+h] { } false} {[delete ctrl+d] { } false} {[home ctrl+a] { } false} {[end ctrl+e] { } false} {[ctrl+v] { } false} {[tab] { } false} {[down ctrl+n] { } false} {[up ctrl+p] { } false}} [] false 0 0 0 <nil> <nil> false [] [] 0}
+debug 2024/12/17 10:39:46 2 inp {<nil> >  Password 0 42 {530ms [38;5;63m[0m   0 false true 0xc00012cd68 0 0} 0s [38;5;63m[0m [38;5;63m[0m [38;5;240m[0m [38;5;240m[0m  50 0 {{[right ctrl+f] { } false} {[left ctrl+b] { } false} {[alt+right ctrl+right alt+f] { } false} {[alt+left ctrl+left alt+b] { } false} {[alt+backspace ctrl+w] { } false} {[alt+delete alt+d] { } false} {[ctrl+k] { } false} {[ctrl+u] { } false} {[backspace ctrl+h] { } false} {[delete ctrl+d] { } false} {[home ctrl+a] { } false} {[end ctrl+e] { } false} {[ctrl+v] { } false} {[tab] { } false} {[down ctrl+n] { } false} {[up ctrl+p] { } false}} [] false 0 0 0 <nil> <nil> false [] [] 0} &{<nil> >  Password 0 42 {530ms [38;5;63m[0m   0 false true 0xc00012cd68 0 0} 0s [38;5;63m[0m [38;5;63m[0m [38;5;240m[0m [38;5;240m[0m  50 0 {{[right ctrl+f] { } false} {[left ctrl+b] { } false} {[alt+right ctrl+right alt+f] { } false} {[alt+left ctrl+left alt+b] { } false} {[alt+backspace ctrl+w] { } false} {[alt+delete alt+d] { } false} {[ctrl+k] { } false} {[ctrl+u] { } false} {[backspace ctrl+h] { } false} {[delete ctrl+d] { } false} {[home ctrl+a] { } false} {[end ctrl+e] { } false} {[ctrl+v] { } false} {[tab] { } false} {[down ctrl+n] { } false} {[up ctrl+p] { } false}} [] false 0 0 0 <nil> <nil> false [] [] 0}
+debug 2024/12/17 10:39:46 3 inp {<nil> >  Note 0 42 {530ms [38;5;63m[0m   0 false true 0xc00012cd80 0 0} 0s [38;5;63m[0m [38;5;63m[0m [38;5;240m[0m [38;5;240m[0m  50 0 {{[right ctrl+f] { } false} {[left ctrl+b] { } false} {[alt+right ctrl+right alt+f] { } false} {[alt+left ctrl+left alt+b] { } false} {[alt+backspace ctrl+w] { } false} {[alt+delete alt+d] { } false} {[ctrl+k] { } false} {[ctrl+u] { } false} {[backspace ctrl+h] { } false} {[delete ctrl+d] { } false} {[home ctrl+a] { } false} {[end ctrl+e] { } false} {[ctrl+v] { } false} {[tab] { } false} {[down ctrl+n] { } false} {[up ctrl+p] { } false}} [] false 0 0 0 <nil> <nil> false [] [] 0} &{<nil> >  Note 0 42 {530ms [38;5;63m[0m   0 false true 0xc00012cd80 0 0} 0s [38;5;63m[0m [38;5;63m[0m [38;5;240m[0m [38;5;240m[0m  50 0 {{[right ctrl+f] { } false} {[left ctrl+b] { } false} {[alt+right ctrl+right alt+f] { } false} {[alt+left ctrl+left alt+b] { } false} {[alt+backspace ctrl+w] { } false} {[alt+delete alt+d] { } false} {[ctrl+k] { } false} {[ctrl+u] { } false} {[backspace ctrl+h] { } false} {[delete ctrl+d] { } false} {[home ctrl+a] { } false} {[end ctrl+e] { } false} {[ctrl+v] { } false} {[tab] { } false} {[down ctrl+n] { } false} {[up ctrl+p] { } false}} [] false 0 0 0 <nil> <nil> false [] [] 0}
+debug 2024/12/17 10:39:47 updateInputs s
+debug 2024/12/17 10:39:47 0 inp {<nil> >  Secret name 0 42 {530ms [38;5;63m[0m   0 true false 0xc00012cd38 4 0} 0s [38;5;63m[0m [38;5;63m[0m [38;5;240m[0m [38;5;240m[0m  50 0 {{[right ctrl+f] { } false} {[left ctrl+b] { } false} {[alt+right ctrl+right alt+f] { } false} {[alt+left ctrl+left alt+b] { } false} {[alt+backspace ctrl+w] { } false} {[alt+delete alt+d] { } false} {[ctrl+k] { } false} {[ctrl+u] { } false} {[backspace ctrl+h] { } false} {[delete ctrl+d] { } false} {[home ctrl+a] { } false} {[end ctrl+e] { } false} {[ctrl+v] { } false} {[tab] { } false} {[down ctrl+n] { } false} {[up ctrl+p] { } false}} [115 100 115] true 3 0 3 <nil> 0xc000594030 false [] [] 0} &{<nil> >  Secret name 0 42 {530ms [38;5;63m[0m   0 true false 0xc00012cd38 3 0} 0s [38;5;63m[0m [38;5;63m[0m [38;5;240m[0m [38;5;240m[0m  50 0 {{[right ctrl+f] { } false} {[left ctrl+b] { } false} {[alt+right ctrl+right alt+f] { } false} {[alt+left ctrl+left alt+b] { } false} {[alt+backspace ctrl+w] { } false} {[alt+delete alt+d] { } false} {[ctrl+k] { } false} {[ctrl+u] { } false} {[backspace ctrl+h] { } false} {[delete ctrl+d] { } false} {[home ctrl+a] { } false} {[end ctrl+e] { } false} {[ctrl+v] { } false} {[tab] { } false} {[down ctrl+n] { } false} {[up ctrl+p] { } false}} [115 100] true 2 0 2 <nil> 0xc000594030 false [] [] 0}
+debug 2024/12/17 10:39:47 1 inp {<nil> >  Login 0 42 {530ms [38;5;63m[0m   0 false true 0xc00012cd50 0 0} 0s [38;5;63m[0m [38;5;63m[0m [38;5;240m[0m [38;5;240m[0m  50 0 {{[right ctrl+f] { } false} {[left ctrl+b] { } false} {[alt+right ctrl+right alt+f] { } false} {[alt+left ctrl+left alt+b] { } false} {[alt+backspace ctrl+w] { } false} {[alt+delete alt+d] { } false} {[ctrl+k] { } false} {[ctrl+u] { } false} {[backspace ctrl+h] { } false} {[delete ctrl+d] { } false} {[home ctrl+a] { } false} {[end ctrl+e] { } false} {[ctrl+v] { } false} {[tab] { } false} {[down ctrl+n] { } false} {[up ctrl+p] { } false}} [] false 0 0 0 <nil> <nil> false [] [] 0} &{<nil> >  Login 0 42 {530ms [38;5;63m[0m   0 false true 0xc00012cd50 0 0} 0s [38;5;63m[0m [38;5;63m[0m [38;5;240m[0m [38;5;240m[0m  50 0 {{[right ctrl+f] { } false} {[left ctrl+b] { } false} {[alt+right ctrl+right alt+f] { } false} {[alt+left ctrl+left alt+b] { } false} {[alt+backspace ctrl+w] { } false} {[alt+delete alt+d] { } false} {[ctrl+k] { } false} {[ctrl+u] { } false} {[backspace ctrl+h] { } false} {[delete ctrl+d] { } false} {[home ctrl+a] { } false} {[end ctrl+e] { } false} {[ctrl+v] { } false} {[tab] { } false} {[down ctrl+n] { } false} {[up ctrl+p] { } false}} [] false 0 0 0 <nil> <nil> false [] [] 0}
+debug 2024/12/17 10:39:47 2 inp {<nil> >  Password 0 42 {530ms [38;5;63m[0m   0 false true 0xc00012cd68 0 0} 0s [38;5;63m[0m [38;5;63m[0m [38;5;240m[0m [38;5;240m[0m  50 0 {{[right ctrl+f] { } false} {[left ctrl+b] { } false} {[alt+right ctrl+right alt+f] { } false} {[alt+left ctrl+left alt+b] { } false} {[alt+backspace ctrl+w] { } false} {[alt+delete alt+d] { } false} {[ctrl+k] { } false} {[ctrl+u] { } false} {[backspace ctrl+h] { } false} {[delete ctrl+d] { } false} {[home ctrl+a] { } false} {[end ctrl+e] { } false} {[ctrl+v] { } false} {[tab] { } false} {[down ctrl+n] { } false} {[up ctrl+p] { } false}} [] false 0 0 0 <nil> <nil> false [] [] 0} &{<nil> >  Password 0 42 {530ms [38;5;63m[0m   0 false true 0xc00012cd68 0 0} 0s [38;5;63m[0m [38;5;63m[0m [38;5;240m[0m [38;5;240m[0m  50 0 {{[right ctrl+f] { } false} {[left ctrl+b] { } false} {[alt+right ctrl+right alt+f] { } false} {[alt+left ctrl+left alt+b] { } false} {[alt+backspace ctrl+w] { } false} {[alt+delete alt+d] { } false} {[ctrl+k] { } false} {[ctrl+u] { } false} {[backspace ctrl+h] { } false} {[delete ctrl+d] { } false} {[home ctrl+a] { } false} {[end ctrl+e] { } false} {[ctrl+v] { } false} {[tab] { } false} {[down ctrl+n] { } false} {[up ctrl+p] { } false}} [] false 0 0 0 <nil> <nil> false [] [] 0}
+debug 2024/12/17 10:39:47 3 inp {<nil> >  Note 0 42 {530ms [38;5;63m[0m   0 false true 0xc00012cd80 0 0} 0s [38;5;63m[0m [38;5;63m[0m [38;5;240m[0m [38;5;240m[0m  50 0 {{[right ctrl+f] { } false} {[left ctrl+b] { } false} {[alt+right ctrl+right alt+f] { } false} {[alt+left ctrl+left alt+b] { } false} {[alt+backspace ctrl+w] { } false} {[alt+delete alt+d] { } false} {[ctrl+k] { } false} {[ctrl+u] { } false} {[backspace ctrl+h] { } false} {[delete ctrl+d] { } false} {[home ctrl+a] { } false} {[end ctrl+e] { } false} {[ctrl+v] { } false} {[tab] { } false} {[down ctrl+n] { } false} {[up ctrl+p] { } false}} [] false 0 0 0 <nil> <nil> false [] [] 0} &{<nil> >  Note 0 42 {530ms [38;5;63m[0m   0 false true 0xc00012cd80 0 0} 0s [38;5;63m[0m [38;5;63m[0m [38;5;240m[0m [38;5;240m[0m  50 0 {{[right ctrl+f] { } false} {[left ctrl+b] { } false} {[alt+right ctrl+right alt+f] { } false} {[alt+left ctrl+left alt+b] { } false} {[alt+backspace ctrl+w] { } false} {[alt+delete alt+d] { } false} {[ctrl+k] { } false} {[ctrl+u] { } false} {[backspace ctrl+h] { } false} {[delete ctrl+d] { } false} {[home ctrl+a] { } false} {[end ctrl+e] { } false} {[ctrl+v] { } false} {[tab] { } false} {[down ctrl+n] { } false} {[up ctrl+p] { } false}} [] false 0 0 0 <nil> <nil> false [] [] 0}
+debug 2024/12/17 10:39:47 updateInputs d
+debug 2024/12/17 10:39:47 0 inp {<nil> >  Secret name 0 42 {530ms [38;5;63m[0m   0 true false 0xc00012cd38 5 0} 0s [38;5;63m[0m [38;5;63m[0m [38;5;240m[0m [38;5;240m[0m  50 0 {{[right ctrl+f] { } false} {[left ctrl+b] { } false} {[alt+right ctrl+right alt+f] { } false} {[alt+left ctrl+left alt+b] { } false} {[alt+backspace ctrl+w] { } false} {[alt+delete alt+d] { } false} {[ctrl+k] { } false} {[ctrl+u] { } false} {[backspace ctrl+h] { } false} {[delete ctrl+d] { } false} {[home ctrl+a] { } false} {[end ctrl+e] { } false} {[ctrl+v] { } false} {[tab] { } false} {[down ctrl+n] { } false} {[up ctrl+p] { } false}} [115 100 115 100] true 4 0 4 <nil> 0xc000594030 false [] [] 0} &{<nil> >  Secret name 0 42 {530ms [38;5;63m[0m   0 true false 0xc00012cd38 4 0} 0s [38;5;63m[0m [38;5;63m[0m [38;5;240m[0m [38;5;240m[0m  50 0 {{[right ctrl+f] { } false} {[left ctrl+b] { } false} {[alt+right ctrl+right alt+f] { } false} {[alt+left ctrl+left alt+b] { } false} {[alt+backspace ctrl+w] { } false} {[alt+delete alt+d] { } false} {[ctrl+k] { } false} {[ctrl+u] { } false} {[backspace ctrl+h] { } false} {[delete ctrl+d] { } false} {[home ctrl+a] { } false} {[end ctrl+e] { } false} {[ctrl+v] { } false} {[tab] { } false} {[down ctrl+n] { } false} {[up ctrl+p] { } false}} [115 100 115] true 3 0 3 <nil> 0xc000594030 false [] [] 0}
+debug 2024/12/17 10:39:47 1 inp {<nil> >  Login 0 42 {530ms [38;5;63m[0m   0 false true 0xc00012cd50 0 0} 0s [38;5;63m[0m [38;5;63m[0m [38;5;240m[0m [38;5;240m[0m  50 0 {{[right ctrl+f] { } false} {[left ctrl+b] { } false} {[alt+right ctrl+right alt+f] { } false} {[alt+left ctrl+left alt+b] { } false} {[alt+backspace ctrl+w] { } false} {[alt+delete alt+d] { } false} {[ctrl+k] { } false} {[ctrl+u] { } false} {[backspace ctrl+h] { } false} {[delete ctrl+d] { } false} {[home ctrl+a] { } false} {[end ctrl+e] { } false} {[ctrl+v] { } false} {[tab] { } false} {[down ctrl+n] { } false} {[up ctrl+p] { } false}} [] false 0 0 0 <nil> <nil> false [] [] 0} &{<nil> >  Login 0 42 {530ms [38;5;63m[0m   0 false true 0xc00012cd50 0 0} 0s [38;5;63m[0m [38;5;63m[0m [38;5;240m[0m [38;5;240m[0m  50 0 {{[right ctrl+f] { } false} {[left ctrl+b] { } false} {[alt+right ctrl+right alt+f] { } false} {[alt+left ctrl+left alt+b] { } false} {[alt+backspace ctrl+w] { } false} {[alt+delete alt+d] { } false} {[ctrl+k] { } false} {[ctrl+u] { } false} {[backspace ctrl+h] { } false} {[delete ctrl+d] { } false} {[home ctrl+a] { } false} {[end ctrl+e] { } false} {[ctrl+v] { } false} {[tab] { } false} {[down ctrl+n] { } false} {[up ctrl+p] { } false}} [] false 0 0 0 <nil> <nil> false [] [] 0}
+debug 2024/12/17 10:39:47 2 inp {<nil> >  Password 0 42 {530ms [38;5;63m[0m   0 false true 0xc00012cd68 0 0} 0s [38;5;63m[0m [38;5;63m[0m [38;5;240m[0m [38;5;240m[0m  50 0 {{[right ctrl+f] { } false} {[left ctrl+b] { } false} {[alt+right ctrl+right alt+f] { } false} {[alt+left ctrl+left alt+b] { } false} {[alt+backspace ctrl+w] { } false} {[alt+delete alt+d] { } false} {[ctrl+k] { } false} {[ctrl+u] { } false} {[backspace ctrl+h] { } false} {[delete ctrl+d] { } false} {[home ctrl+a] { } false} {[end ctrl+e] { } false} {[ctrl+v] { } false} {[tab] { } false} {[down ctrl+n] { } false} {[up ctrl+p] { } false}} [] false 0 0 0 <nil> <nil> false [] [] 0} &{<nil> >  Password 0 42 {530ms [38;5;63m[0m   0 false true 0xc00012cd68 0 0} 0s [38;5;63m[0m [38;5;63m[0m [38;5;240m[0m [38;5;240m[0m  50 0 {{[right ctrl+f] { } false} {[left ctrl+b] { } false} {[alt+right ctrl+right alt+f] { } false} {[alt+left ctrl+left alt+b] { } false} {[alt+backspace ctrl+w] { } false} {[alt+delete alt+d] { } false} {[ctrl+k] { } false} {[ctrl+u] { } false} {[backspace ctrl+h] { } false} {[delete ctrl+d] { } false} {[home ctrl+a] { } false} {[end ctrl+e] { } false} {[ctrl+v] { } false} {[tab] { } false} {[down ctrl+n] { } false} {[up ctrl+p] { } false}} [] false 0 0 0 <nil> <nil> false [] [] 0}
+debug 2024/12/17 10:39:47 3 inp {<nil> >  Note 0 42 {530ms [38;5;63m[0m   0 false true 0xc00012cd80 0 0} 0s [38;5;63m[0m [38;5;63m[0m [38;5;240m[0m [38;5;240m[0m  50 0 {{[right ctrl+f] { } false} {[left ctrl+b] { } false} {[alt+right ctrl+right alt+f] { } false} {[alt+left ctrl+left alt+b] { } false} {[alt+backspace ctrl+w] { } false} {[alt+delete alt+d] { } false} {[ctrl+k] { } false} {[ctrl+u] { } false} {[backspace ctrl+h] { } false} {[delete ctrl+d] { } false} {[home ctrl+a] { } false} {[end ctrl+e] { } false} {[ctrl+v] { } false} {[tab] { } false} {[down ctrl+n] { } false} {[up ctrl+p] { } false}} [] false 0 0 0 <nil> <nil> false [] [] 0} &{<nil> >  Note 0 42 {530ms [38;5;63m[0m   0 false true 0xc00012cd80 0 0} 0s [38;5;63m[0m [38;5;63m[0m [38;5;240m[0m [38;5;240m[0m  50 0 {{[right ctrl+f] { } false} {[left ctrl+b] { } false} {[alt+right ctrl+right alt+f] { } false} {[alt+left ctrl+left alt+b] { } false} {[alt+backspace ctrl+w] { } false} {[alt+delete alt+d] { } false} {[ctrl+k] { } false} {[ctrl+u] { } false} {[backspace ctrl+h] { } false} {[delete ctrl+d] { } false} {[home ctrl+a] { } false} {[end ctrl+e] { } false} {[ctrl+v] { } false} {[tab] { } false} {[down ctrl+n] { } false} {[up ctrl+p] { } false}} [] false 0 0 0 <nil> <nil> false [] [] 0}
+debug 2024/12/17 10:39:48 updateInputs d
+debug 2024/12/17 10:39:48 0 inp {<nil> >  Secret name 0 42 {530ms [38;5;63m[0m   0 true false 0xc00012cd38 6 0} 0s [38;5;63m[0m [38;5;63m[0m [38;5;240m[0m [38;5;240m[0m  50 0 {{[right ctrl+f] { } false} {[left ctrl+b] { } false} {[alt+right ctrl+right alt+f] { } false} {[alt+left ctrl+left alt+b] { } false} {[alt+backspace ctrl+w] { } false} {[alt+delete alt+d] { } false} {[ctrl+k] { } false} {[ctrl+u] { } false} {[backspace ctrl+h] { } false} {[delete ctrl+d] { } false} {[home ctrl+a] { } false} {[end ctrl+e] { } false} {[ctrl+v] { } false} {[tab] { } false} {[down ctrl+n] { } false} {[up ctrl+p] { } false}} [115 100 115 100 100] true 5 0 5 <nil> 0xc000594030 false [] [] 0} &{<nil> >  Secret name 0 42 {530ms [38;5;63m[0m   0 true false 0xc00012cd38 5 0} 0s [38;5;63m[0m [38;5;63m[0m [38;5;240m[0m [38;5;240m[0m  50 0 {{[right ctrl+f] { } false} {[left ctrl+b] { } false} {[alt+right ctrl+right alt+f] { } false} {[alt+left ctrl+left alt+b] { } false} {[alt+backspace ctrl+w] { } false} {[alt+delete alt+d] { } false} {[ctrl+k] { } false} {[ctrl+u] { } false} {[backspace ctrl+h] { } false} {[delete ctrl+d] { } false} {[home ctrl+a] { } false} {[end ctrl+e] { } false} {[ctrl+v] { } false} {[tab] { } false} {[down ctrl+n] { } false} {[up ctrl+p] { } false}} [115 100 115 100] true 4 0 4 <nil> 0xc000594030 false [] [] 0}
+debug 2024/12/17 10:39:48 1 inp {<nil> >  Login 0 42 {530ms [38;5;63m[0m   0 false true 0xc00012cd50 0 0} 0s [38;5;63m[0m [38;5;63m[0m [38;5;240m[0m [38;5;240m[0m  50 0 {{[right ctrl+f] { } false} {[left ctrl+b] { } false} {[alt+right ctrl+right alt+f] { } false} {[alt+left ctrl+left alt+b] { } false} {[alt+backspace ctrl+w] { } false} {[alt+delete alt+d] { } false} {[ctrl+k] { } false} {[ctrl+u] { } false} {[backspace ctrl+h] { } false} {[delete ctrl+d] { } false} {[home ctrl+a] { } false} {[end ctrl+e] { } false} {[ctrl+v] { } false} {[tab] { } false} {[down ctrl+n] { } false} {[up ctrl+p] { } false}} [] false 0 0 0 <nil> <nil> false [] [] 0} &{<nil> >  Login 0 42 {530ms [38;5;63m[0m   0 false true 0xc00012cd50 0 0} 0s [38;5;63m[0m [38;5;63m[0m [38;5;240m[0m [38;5;240m[0m  50 0 {{[right ctrl+f] { } false} {[left ctrl+b] { } false} {[alt+right ctrl+right alt+f] { } false} {[alt+left ctrl+left alt+b] { } false} {[alt+backspace ctrl+w] { } false} {[alt+delete alt+d] { } false} {[ctrl+k] { } false} {[ctrl+u] { } false} {[backspace ctrl+h] { } false} {[delete ctrl+d] { } false} {[home ctrl+a] { } false} {[end ctrl+e] { } false} {[ctrl+v] { } false} {[tab] { } false} {[down ctrl+n] { } false} {[up ctrl+p] { } false}} [] false 0 0 0 <nil> <nil> false [] [] 0}
+debug 2024/12/17 10:39:48 2 inp {<nil> >  Password 0 42 {530ms [38;5;63m[0m   0 false true 0xc00012cd68 0 0} 0s [38;5;63m[0m [38;5;63m[0m [38;5;240m[0m [38;5;240m[0m  50 0 {{[right ctrl+f] { } false} {[left ctrl+b] { } false} {[alt+right ctrl+right alt+f] { } false} {[alt+left ctrl+left alt+b] { } false} {[alt+backspace ctrl+w] { } false} {[alt+delete alt+d] { } false} {[ctrl+k] { } false} {[ctrl+u] { } false} {[backspace ctrl+h] { } false} {[delete ctrl+d] { } false} {[home ctrl+a] { } false} {[end ctrl+e] { } false} {[ctrl+v] { } false} {[tab] { } false} {[down ctrl+n] { } false} {[up ctrl+p] { } false}} [] false 0 0 0 <nil> <nil> false [] [] 0} &{<nil> >  Password 0 42 {530ms [38;5;63m[0m   0 false true 0xc00012cd68 0 0} 0s [38;5;63m[0m [38;5;63m[0m [38;5;240m[0m [38;5;240m[0m  50 0 {{[right ctrl+f] { } false} {[left ctrl+b] { } false} {[alt+right ctrl+right alt+f] { } false} {[alt+left ctrl+left alt+b] { } false} {[alt+backspace ctrl+w] { } false} {[alt+delete alt+d] { } false} {[ctrl+k] { } false} {[ctrl+u] { } false} {[backspace ctrl+h] { } false} {[delete ctrl+d] { } false} {[home ctrl+a] { } false} {[end ctrl+e] { } false} {[ctrl+v] { } false} {[tab] { } false} {[down ctrl+n] { } false} {[up ctrl+p] { } false}} [] false 0 0 0 <nil> <nil> false [] [] 0}
+debug 2024/12/17 10:39:48 3 inp {<nil> >  Note 0 42 {530ms [38;5;63m[0m   0 false true 0xc00012cd80 0 0} 0s [38;5;63m[0m [38;5;63m[0m [38;5;240m[0m [38;5;240m[0m  50 0 {{[right ctrl+f] { } false} {[left ctrl+b] { } false} {[alt+right ctrl+right alt+f] { } false} {[alt+left ctrl+left alt+b] { } false} {[alt+backspace ctrl+w] { } false} {[alt+delete alt+d] { } false} {[ctrl+k] { } false} {[ctrl+u] { } false} {[backspace ctrl+h] { } false} {[delete ctrl+d] { } false} {[home ctrl+a] { } false} {[end ctrl+e] { } false} {[ctrl+v] { } false} {[tab] { } false} {[down ctrl+n] { } false} {[up ctrl+p] { } false}} [] false 0 0 0 <nil> <nil> false [] [] 0} &{<nil> >  Note 0 42 {530ms [38;5;63m[0m   0 false true 0xc00012cd80 0 0} 0s [38;5;63m[0m [38;5;63m[0m [38;5;240m[0m [38;5;240m[0m  50 0 {{[right ctrl+f] { } false} {[left ctrl+b] { } false} {[alt+right ctrl+right alt+f] { } false} {[alt+left ctrl+left alt+b] { } false} {[alt+backspace ctrl+w] { } false} {[alt+delete alt+d] { } false} {[ctrl+k] { } false} {[ctrl+u] { } false} {[backspace ctrl+h] { } false} {[delete ctrl+d] { } false} {[home ctrl+a] { } false} {[end ctrl+e] { } false} {[ctrl+v] { } false} {[tab] { } false} {[down ctrl+n] { } false} {[up ctrl+p] { } false}} [] false 0 0 0 <nil> <nil> false [] [] 0}
+debug 2024/12/17 10:39:51 updateInputs d
+debug 2024/12/17 10:39:51 0 inp {<nil> >  Secret name 0 42 {530ms [38;5;63m[0m   0 true false 0xc00012cd38 7 0} 0s [38;5;63m[0m [38;5;63m[0m [38;5;240m[0m [38;5;240m[0m  50 0 {{[right ctrl+f] { } false} {[left ctrl+b] { } false} {[alt+right ctrl+right alt+f] { } false} {[alt+left ctrl+left alt+b] { } false} {[alt+backspace ctrl+w] { } false} {[alt+delete alt+d] { } false} {[ctrl+k] { } false} {[ctrl+u] { } false} {[backspace ctrl+h] { } false} {[delete ctrl+d] { } false} {[home ctrl+a] { } false} {[end ctrl+e] { } false} {[ctrl+v] { } false} {[tab] { } false} {[down ctrl+n] { } false} {[up ctrl+p] { } false}} [115 100 115 100 100 100] true 6 0 6 <nil> 0xc000594030 false [] [] 0} &{<nil> >  Secret name 0 42 {530ms [38;5;63m[0m   0 true false 0xc00012cd38 6 0} 0s [38;5;63m[0m [38;5;63m[0m [38;5;240m[0m [38;5;240m[0m  50 0 {{[right ctrl+f] { } false} {[left ctrl+b] { } false} {[alt+right ctrl+right alt+f] { } false} {[alt+left ctrl+left alt+b] { } false} {[alt+backspace ctrl+w] { } false} {[alt+delete alt+d] { } false} {[ctrl+k] { } false} {[ctrl+u] { } false} {[backspace ctrl+h] { } false} {[delete ctrl+d] { } false} {[home ctrl+a] { } false} {[end ctrl+e] { } false} {[ctrl+v] { } false} {[tab] { } false} {[down ctrl+n] { } false} {[up ctrl+p] { } false}} [115 100 115 100 100] true 5 0 5 <nil> 0xc000594030 false [] [] 0}
+debug 2024/12/17 10:39:51 1 inp {<nil> >  Login 0 42 {530ms [38;5;63m[0m   0 false true 0xc00012cd50 0 0} 0s [38;5;63m[0m [38;5;63m[0m [38;5;240m[0m [38;5;240m[0m  50 0 {{[right ctrl+f] { } false} {[left ctrl+b] { } false} {[alt+right ctrl+right alt+f] { } false} {[alt+left ctrl+left alt+b] { } false} {[alt+backspace ctrl+w] { } false} {[alt+delete alt+d] { } false} {[ctrl+k] { } false} {[ctrl+u] { } false} {[backspace ctrl+h] { } false} {[delete ctrl+d] { } false} {[home ctrl+a] { } false} {[end ctrl+e] { } false} {[ctrl+v] { } false} {[tab] { } false} {[down ctrl+n] { } false} {[up ctrl+p] { } false}} [] false 0 0 0 <nil> <nil> false [] [] 0} &{<nil> >  Login 0 42 {530ms [38;5;63m[0m   0 false true 0xc00012cd50 0 0} 0s [38;5;63m[0m [38;5;63m[0m [38;5;240m[0m [38;5;240m[0m  50 0 {{[right ctrl+f] { } false} {[left ctrl+b] { } false} {[alt+right ctrl+right alt+f] { } false} {[alt+left ctrl+left alt+b] { } false} {[alt+backspace ctrl+w] { } false} {[alt+delete alt+d] { } false} {[ctrl+k] { } false} {[ctrl+u] { } false} {[backspace ctrl+h] { } false} {[delete ctrl+d] { } false} {[home ctrl+a] { } false} {[end ctrl+e] { } false} {[ctrl+v] { } false} {[tab] { } false} {[down ctrl+n] { } false} {[up ctrl+p] { } false}} [] false 0 0 0 <nil> <nil> false [] [] 0}
+debug 2024/12/17 10:39:51 2 inp {<nil> >  Password 0 42 {530ms [38;5;63m[0m   0 false true 0xc00012cd68 0 0} 0s [38;5;63m[0m [38;5;63m[0m [38;5;240m[0m [38;5;240m[0m  50 0 {{[right ctrl+f] { } false} {[left ctrl+b] { } false} {[alt+right ctrl+right alt+f] { } false} {[alt+left ctrl+left alt+b] { } false} {[alt+backspace ctrl+w] { } false} {[alt+delete alt+d] { } false} {[ctrl+k] { } false} {[ctrl+u] { } false} {[backspace ctrl+h] { } false} {[delete ctrl+d] { } false} {[home ctrl+a] { } false} {[end ctrl+e] { } false} {[ctrl+v] { } false} {[tab] { } false} {[down ctrl+n] { } false} {[up ctrl+p] { } false}} [] false 0 0 0 <nil> <nil> false [] [] 0} &{<nil> >  Password 0 42 {530ms [38;5;63m[0m   0 false true 0xc00012cd68 0 0} 0s [38;5;63m[0m [38;5;63m[0m [38;5;240m[0m [38;5;240m[0m  50 0 {{[right ctrl+f] { } false} {[left ctrl+b] { } false} {[alt+right ctrl+right alt+f] { } false} {[alt+left ctrl+left alt+b] { } false} {[alt+backspace ctrl+w] { } false} {[alt+delete alt+d] { } false} {[ctrl+k] { } false} {[ctrl+u] { } false} {[backspace ctrl+h] { } false} {[delete ctrl+d] { } false} {[home ctrl+a] { } false} {[end ctrl+e] { } false} {[ctrl+v] { } false} {[tab] { } false} {[down ctrl+n] { } false} {[up ctrl+p] { } false}} [] false 0 0 0 <nil> <nil> false [] [] 0}
+debug 2024/12/17 10:39:51 3 inp {<nil> >  Note 0 42 {530ms [38;5;63m[0m   0 false true 0xc00012cd80 0 0} 0s [38;5;63m[0m [38;5;63m[0m [38;5;240m[0m [38;5;240m[0m  50 0 {{[right ctrl+f] { } false} {[left ctrl+b] { } false} {[alt+right ctrl+right alt+f] { } false} {[alt+left ctrl+left alt+b] { } false} {[alt+backspace ctrl+w] { } false} {[alt+delete alt+d] { } false} {[ctrl+k] { } false} {[ctrl+u] { } false} {[backspace ctrl+h] { } false} {[delete ctrl+d] { } false} {[home ctrl+a] { } false} {[end ctrl+e] { } false} {[ctrl+v] { } false} {[tab] { } false} {[down ctrl+n] { } false} {[up ctrl+p] { } false}} [] false 0 0 0 <nil> <nil> false [] [] 0} &{<nil> >  Note 0 42 {530ms [38;5;63m[0m   0 false true 0xc00012cd80 0 0} 0s [38;5;63m[0m [38;5;63m[0m [38;5;240m[0m [38;5;240m[0m  50 0 {{[right ctrl+f] { } false} {[left ctrl+b] { } false} {[alt+right ctrl+right alt+f] { } false} {[alt+left ctrl+left alt+b] { } false} {[alt+backspace ctrl+w] { } false} {[alt+delete alt+d] { } false} {[ctrl+k] { } false} {[ctrl+u] { } false} {[backspace ctrl+h] { } false} {[delete ctrl+d] { } false} {[home ctrl+a] { } false} {[end ctrl+e] { } false} {[ctrl+v] { } false} {[tab] { } false} {[down ctrl+n] { } false} {[up ctrl+p] { } false}} [] false 0 0 0 <nil> <nil> false [] [] 0}
+debug 2024/12/17 10:39:52 updateInputs d
+debug 2024/12/17 10:39:52 0 inp {<nil> >  Secret name 0 42 {530ms [38;5;63m[0m   0 true false 0xc00012cd38 8 0} 0s [38;5;63m[0m [38;5;63m[0m [38;5;240m[0m [38;5;240m[0m  50 0 {{[right ctrl+f] { } false} {[left ctrl+b] { } false} {[alt+right ctrl+right alt+f] { } false} {[alt+left ctrl+left alt+b] { } false} {[alt+backspace ctrl+w] { } false} {[alt+delete alt+d] { } false} {[ctrl+k] { } false} {[ctrl+u] { } false} {[backspace ctrl+h] { } false} {[delete ctrl+d] { } false} {[home ctrl+a] { } false} {[end ctrl+e] { } false} {[ctrl+v] { } false} {[tab] { } false} {[down ctrl+n] { } false} {[up ctrl+p] { } false}} [115 100 115 100 100 100 100] true 7 0 7 <nil> 0xc000594030 false [] [] 0} &{<nil> >  Secret name 0 42 {530ms [38;5;63m[0m   0 true false 0xc00012cd38 7 0} 0s [38;5;63m[0m [38;5;63m[0m [38;5;240m[0m [38;5;240m[0m  50 0 {{[right ctrl+f] { } false} {[left ctrl+b] { } false} {[alt+right ctrl+right alt+f] { } false} {[alt+left ctrl+left alt+b] { } false} {[alt+backspace ctrl+w] { } false} {[alt+delete alt+d] { } false} {[ctrl+k] { } false} {[ctrl+u] { } false} {[backspace ctrl+h] { } false} {[delete ctrl+d] { } false} {[home ctrl+a] { } false} {[end ctrl+e] { } false} {[ctrl+v] { } false} {[tab] { } false} {[down ctrl+n] { } false} {[up ctrl+p] { } false}} [115 100 115 100 100 100] true 6 0 6 <nil> 0xc000594030 false [] [] 0}
+debug 2024/12/17 10:39:52 1 inp {<nil> >  Login 0 42 {530ms [38;5;63m[0m   0 false true 0xc00012cd50 0 0} 0s [38;5;63m[0m [38;5;63m[0m [38;5;240m[0m [38;5;240m[0m  50 0 {{[right ctrl+f] { } false} {[left ctrl+b] { } false} {[alt+right ctrl+right alt+f] { } false} {[alt+left ctrl+left alt+b] { } false} {[alt+backspace ctrl+w] { } false} {[alt+delete alt+d] { } false} {[ctrl+k] { } false} {[ctrl+u] { } false} {[backspace ctrl+h] { } false} {[delete ctrl+d] { } false} {[home ctrl+a] { } false} {[end ctrl+e] { } false} {[ctrl+v] { } false} {[tab] { } false} {[down ctrl+n] { } false} {[up ctrl+p] { } false}} [] false 0 0 0 <nil> <nil> false [] [] 0} &{<nil> >  Login 0 42 {530ms [38;5;63m[0m   0 false true 0xc00012cd50 0 0} 0s [38;5;63m[0m [38;5;63m[0m [38;5;240m[0m [38;5;240m[0m  50 0 {{[right ctrl+f] { } false} {[left ctrl+b] { } false} {[alt+right ctrl+right alt+f] { } false} {[alt+left ctrl+left alt+b] { } false} {[alt+backspace ctrl+w] { } false} {[alt+delete alt+d] { } false} {[ctrl+k] { } false} {[ctrl+u] { } false} {[backspace ctrl+h] { } false} {[delete ctrl+d] { } false} {[home ctrl+a] { } false} {[end ctrl+e] { } false} {[ctrl+v] { } false} {[tab] { } false} {[down ctrl+n] { } false} {[up ctrl+p] { } false}} [] false 0 0 0 <nil> <nil> false [] [] 0}
+debug 2024/12/17 10:39:52 2 inp {<nil> >  Password 0 42 {530ms [38;5;63m[0m   0 false true 0xc00012cd68 0 0} 0s [38;5;63m[0m [38;5;63m[0m [38;5;240m[0m [38;5;240m[0m  50 0 {{[right ctrl+f] { } false} {[left ctrl+b] { } false} {[alt+right ctrl+right alt+f] { } false} {[alt+left ctrl+left alt+b] { } false} {[alt+backspace ctrl+w] { } false} {[alt+delete alt+d] { } false} {[ctrl+k] { } false} {[ctrl+u] { } false} {[backspace ctrl+h] { } false} {[delete ctrl+d] { } false} {[home ctrl+a] { } false} {[end ctrl+e] { } false} {[ctrl+v] { } false} {[tab] { } false} {[down ctrl+n] { } false} {[up ctrl+p] { } false}} [] false 0 0 0 <nil> <nil> false [] [] 0} &{<nil> >  Password 0 42 {530ms [38;5;63m[0m   0 false true 0xc00012cd68 0 0} 0s [38;5;63m[0m [38;5;63m[0m [38;5;240m[0m [38;5;240m[0m  50 0 {{[right ctrl+f] { } false} {[left ctrl+b] { } false} {[alt+right ctrl+right alt+f] { } false} {[alt+left ctrl+left alt+b] { } false} {[alt+backspace ctrl+w] { } false} {[alt+delete alt+d] { } false} {[ctrl+k] { } false} {[ctrl+u] { } false} {[backspace ctrl+h] { } false} {[delete ctrl+d] { } false} {[home ctrl+a] { } false} {[end ctrl+e] { } false} {[ctrl+v] { } false} {[tab] { } false} {[down ctrl+n] { } false} {[up ctrl+p] { } false}} [] false 0 0 0 <nil> <nil> false [] [] 0}
+debug 2024/12/17 10:39:52 3 inp {<nil> >  Note 0 42 {530ms [38;5;63m[0m   0 false true 0xc00012cd80 0 0} 0s [38;5;63m[0m [38;5;63m[0m [38;5;240m[0m [38;5;240m[0m  50 0 {{[right ctrl+f] { } false} {[left ctrl+b] { } false} {[alt+right ctrl+right alt+f] { } false} {[alt+left ctrl+left alt+b] { } false} {[alt+backspace ctrl+w] { } false} {[alt+delete alt+d] { } false} {[ctrl+k] { } false} {[ctrl+u] { } false} {[backspace ctrl+h] { } false} {[delete ctrl+d] { } false} {[home ctrl+a] { } false} {[end ctrl+e] { } false} {[ctrl+v] { } false} {[tab] { } false} {[down ctrl+n] { } false} {[up ctrl+p] { } false}} [] false 0 0 0 <nil> <nil> false [] [] 0} &{<nil> >  Note 0 42 {530ms [38;5;63m[0m   0 false true 0xc00012cd80 0 0} 0s [38;5;63m[0m [38;5;63m[0m [38;5;240m[0m [38;5;240m[0m  50 0 {{[right ctrl+f] { } false} {[left ctrl+b] { } false} {[alt+right ctrl+right alt+f] { } false} {[alt+left ctrl+left alt+b] { } false} {[alt+backspace ctrl+w] { } false} {[alt+delete alt+d] { } false} {[ctrl+k] { } false} {[ctrl+u] { } false} {[backspace ctrl+h] { } false} {[delete ctrl+d] { } false} {[home ctrl+a] { } false} {[end ctrl+e] { } false} {[ctrl+v] { } false} {[tab] { } false} {[down ctrl+n] { } false} {[up ctrl+p] { } false}} [] false 0 0 0 <nil> <nil> false [] [] 0}
+debug 2024/12/17 10:39:52 updateInputs d
+debug 2024/12/17 10:39:52 0 inp {<nil> >  Secret name 0 42 {530ms [38;5;63m[0m   0 true false 0xc00012cd38 9 0} 0s [38;5;63m[0m [38;5;63m[0m [38;5;240m[0m [38;5;240m[0m  50 0 {{[right ctrl+f] { } false} {[left ctrl+b] { } false} {[alt+right ctrl+right alt+f] { } false} {[alt+left ctrl+left alt+b] { } false} {[alt+backspace ctrl+w] { } false} {[alt+delete alt+d] { } false} {[ctrl+k] { } false} {[ctrl+u] { } false} {[backspace ctrl+h] { } false} {[delete ctrl+d] { } false} {[home ctrl+a] { } false} {[end ctrl+e] { } false} {[ctrl+v] { } false} {[tab] { } false} {[down ctrl+n] { } false} {[up ctrl+p] { } false}} [115 100 115 100 100 100 100 100] true 8 0 8 <nil> 0xc000594030 false [] [] 0} &{<nil> >  Secret name 0 42 {530ms [38;5;63m[0m   0 true false 0xc00012cd38 8 0} 0s [38;5;63m[0m [38;5;63m[0m [38;5;240m[0m [38;5;240m[0m  50 0 {{[right ctrl+f] { } false} {[left ctrl+b] { } false} {[alt+right ctrl+right alt+f] { } false} {[alt+left ctrl+left alt+b] { } false} {[alt+backspace ctrl+w] { } false} {[alt+delete alt+d] { } false} {[ctrl+k] { } false} {[ctrl+u] { } false} {[backspace ctrl+h] { } false} {[delete ctrl+d] { } false} {[home ctrl+a] { } false} {[end ctrl+e] { } false} {[ctrl+v] { } false} {[tab] { } false} {[down ctrl+n] { } false} {[up ctrl+p] { } false}} [115 100 115 100 100 100 100] true 7 0 7 <nil> 0xc000594030 false [] [] 0}
+debug 2024/12/17 10:39:52 1 inp {<nil> >  Login 0 42 {530ms [38;5;63m[0m   0 false true 0xc00012cd50 0 0} 0s [38;5;63m[0m [38;5;63m[0m [38;5;240m[0m [38;5;240m[0m  50 0 {{[right ctrl+f] { } false} {[left ctrl+b] { } false} {[alt+right ctrl+right alt+f] { } false} {[alt+left ctrl+left alt+b] { } false} {[alt+backspace ctrl+w] { } false} {[alt+delete alt+d] { } false} {[ctrl+k] { } false} {[ctrl+u] { } false} {[backspace ctrl+h] { } false} {[delete ctrl+d] { } false} {[home ctrl+a] { } false} {[end ctrl+e] { } false} {[ctrl+v] { } false} {[tab] { } false} {[down ctrl+n] { } false} {[up ctrl+p] { } false}} [] false 0 0 0 <nil> <nil> false [] [] 0} &{<nil> >  Login 0 42 {530ms [38;5;63m[0m   0 false true 0xc00012cd50 0 0} 0s [38;5;63m[0m [38;5;63m[0m [38;5;240m[0m [38;5;240m[0m  50 0 {{[right ctrl+f] { } false} {[left ctrl+b] { } false} {[alt+right ctrl+right alt+f] { } false} {[alt+left ctrl+left alt+b] { } false} {[alt+backspace ctrl+w] { } false} {[alt+delete alt+d] { } false} {[ctrl+k] { } false} {[ctrl+u] { } false} {[backspace ctrl+h] { } false} {[delete ctrl+d] { } false} {[home ctrl+a] { } false} {[end ctrl+e] { } false} {[ctrl+v] { } false} {[tab] { } false} {[down ctrl+n] { } false} {[up ctrl+p] { } false}} [] false 0 0 0 <nil> <nil> false [] [] 0}
+debug 2024/12/17 10:39:52 2 inp {<nil> >  Password 0 42 {530ms [38;5;63m[0m   0 false true 0xc00012cd68 0 0} 0s [38;5;63m[0m [38;5;63m[0m [38;5;240m[0m [38;5;240m[0m  50 0 {{[right ctrl+f] { } false} {[left ctrl+b] { } false} {[alt+right ctrl+right alt+f] { } false} {[alt+left ctrl+left alt+b] { } false} {[alt+backspace ctrl+w] { } false} {[alt+delete alt+d] { } false} {[ctrl+k] { } false} {[ctrl+u] { } false} {[backspace ctrl+h] { } false} {[delete ctrl+d] { } false} {[home ctrl+a] { } false} {[end ctrl+e] { } false} {[ctrl+v] { } false} {[tab] { } false} {[down ctrl+n] { } false} {[up ctrl+p] { } false}} [] false 0 0 0 <nil> <nil> false [] [] 0} &{<nil> >  Password 0 42 {530ms [38;5;63m[0m   0 false true 0xc00012cd68 0 0} 0s [38;5;63m[0m [38;5;63m[0m [38;5;240m[0m [38;5;240m[0m  50 0 {{[right ctrl+f] { } false} {[left ctrl+b] { } false} {[alt+right ctrl+right alt+f] { } false} {[alt+left ctrl+left alt+b] { } false} {[alt+backspace ctrl+w] { } false} {[alt+delete alt+d] { } false} {[ctrl+k] { } false} {[ctrl+u] { } false} {[backspace ctrl+h] { } false} {[delete ctrl+d] { } false} {[home ctrl+a] { } false} {[end ctrl+e] { } false} {[ctrl+v] { } false} {[tab] { } false} {[down ctrl+n] { } false} {[up ctrl+p] { } false}} [] false 0 0 0 <nil> <nil> false [] [] 0}
+debug 2024/12/17 10:39:52 3 inp {<nil> >  Note 0 42 {530ms [38;5;63m[0m   0 false true 0xc00012cd80 0 0} 0s [38;5;63m[0m [38;5;63m[0m [38;5;240m[0m [38;5;240m[0m  50 0 {{[right ctrl+f] { } false} {[left ctrl+b] { } false} {[alt+right ctrl+right alt+f] { } false} {[alt+left ctrl+left alt+b] { } false} {[alt+backspace ctrl+w] { } false} {[alt+delete alt+d] { } false} {[ctrl+k] { } false} {[ctrl+u] { } false} {[backspace ctrl+h] { } false} {[delete ctrl+d] { } false} {[home ctrl+a] { } false} {[end ctrl+e] { } false} {[ctrl+v] { } false} {[tab] { } false} {[down ctrl+n] { } false} {[up ctrl+p] { } false}} [] false 0 0 0 <nil> <nil> false [] [] 0} &{<nil> >  Note 0 42 {530ms [38;5;63m[0m   0 false true 0xc00012cd80 0 0} 0s [38;5;63m[0m [38;5;63m[0m [38;5;240m[0m [38;5;240m[0m  50 0 {{[right ctrl+f] { } false} {[left ctrl+b] { } false} {[alt+right ctrl+right alt+f] { } false} {[alt+left ctrl+left alt+b] { } false} {[alt+backspace ctrl+w] { } false} {[alt+delete alt+d] { } false} {[ctrl+k] { } false} {[ctrl+u] { } false} {[backspace ctrl+h] { } false} {[delete ctrl+d] { } false} {[home ctrl+a] { } false} {[end ctrl+e] { } false} {[ctrl+v] { } false} {[tab] { } false} {[down ctrl+n] { } false} {[up ctrl+p] { } false}} [] false 0 0 0 <nil> <nil> false [] [] 0}
+debug 2024/12/17 10:39:52 updateInputs d
+debug 2024/12/17 10:39:52 0 inp {<nil> >  Secret name 0 42 {530ms [38;5;63m[0m   0 true false 0xc00012cd38 10 0} 0s [38;5;63m[0m [38;5;63m[0m [38;5;240m[0m [38;5;240m[0m  50 0 {{[right ctrl+f] { } false} {[left ctrl+b] { } false} {[alt+right ctrl+right alt+f] { } false} {[alt+left ctrl+left alt+b] { } false} {[alt+backspace ctrl+w] { } false} {[alt+delete alt+d] { } false} {[ctrl+k] { } false} {[ctrl+u] { } false} {[backspace ctrl+h] { } false} {[delete ctrl+d] { } false} {[home ctrl+a] { } false} {[end ctrl+e] { } false} {[ctrl+v] { } false} {[tab] { } false} {[down ctrl+n] { } false} {[up ctrl+p] { } false}} [115 100 115 100 100 100 100 100 100] true 9 0 9 <nil> 0xc000594030 false [] [] 0} &{<nil> >  Secret name 0 42 {530ms [38;5;63m[0m   0 true false 0xc00012cd38 9 0} 0s [38;5;63m[0m [38;5;63m[0m [38;5;240m[0m [38;5;240m[0m  50 0 {{[right ctrl+f] { } false} {[left ctrl+b] { } false} {[alt+right ctrl+right alt+f] { } false} {[alt+left ctrl+left alt+b] { } false} {[alt+backspace ctrl+w] { } false} {[alt+delete alt+d] { } false} {[ctrl+k] { } false} {[ctrl+u] { } false} {[backspace ctrl+h] { } false} {[delete ctrl+d] { } false} {[home ctrl+a] { } false} {[end ctrl+e] { } false} {[ctrl+v] { } false} {[tab] { } false} {[down ctrl+n] { } false} {[up ctrl+p] { } false}} [115 100 115 100 100 100 100 100] true 8 0 8 <nil> 0xc000594030 false [] [] 0}
+debug 2024/12/17 10:39:52 1 inp {<nil> >  Login 0 42 {530ms [38;5;63m[0m   0 false true 0xc00012cd50 0 0} 0s [38;5;63m[0m [38;5;63m[0m [38;5;240m[0m [38;5;240m[0m  50 0 {{[right ctrl+f] { } false} {[left ctrl+b] { } false} {[alt+right ctrl+right alt+f] { } false} {[alt+left ctrl+left alt+b] { } false} {[alt+backspace ctrl+w] { } false} {[alt+delete alt+d] { } false} {[ctrl+k] { } false} {[ctrl+u] { } false} {[backspace ctrl+h] { } false} {[delete ctrl+d] { } false} {[home ctrl+a] { } false} {[end ctrl+e] { } false} {[ctrl+v] { } false} {[tab] { } false} {[down ctrl+n] { } false} {[up ctrl+p] { } false}} [] false 0 0 0 <nil> <nil> false [] [] 0} &{<nil> >  Login 0 42 {530ms [38;5;63m[0m   0 false true 0xc00012cd50 0 0} 0s [38;5;63m[0m [38;5;63m[0m [38;5;240m[0m [38;5;240m[0m  50 0 {{[right ctrl+f] { } false} {[left ctrl+b] { } false} {[alt+right ctrl+right alt+f] { } false} {[alt+left ctrl+left alt+b] { } false} {[alt+backspace ctrl+w] { } false} {[alt+delete alt+d] { } false} {[ctrl+k] { } false} {[ctrl+u] { } false} {[backspace ctrl+h] { } false} {[delete ctrl+d] { } false} {[home ctrl+a] { } false} {[end ctrl+e] { } false} {[ctrl+v] { } false} {[tab] { } false} {[down ctrl+n] { } false} {[up ctrl+p] { } false}} [] false 0 0 0 <nil> <nil> false [] [] 0}
+debug 2024/12/17 10:39:52 2 inp {<nil> >  Password 0 42 {530ms [38;5;63m[0m   0 false true 0xc00012cd68 0 0} 0s [38;5;63m[0m [38;5;63m[0m [38;5;240m[0m [38;5;240m[0m  50 0 {{[right ctrl+f] { } false} {[left ctrl+b] { } false} {[alt+right ctrl+right alt+f] { } false} {[alt+left ctrl+left alt+b] { } false} {[alt+backspace ctrl+w] { } false} {[alt+delete alt+d] { } false} {[ctrl+k] { } false} {[ctrl+u] { } false} {[backspace ctrl+h] { } false} {[delete ctrl+d] { } false} {[home ctrl+a] { } false} {[end ctrl+e] { } false} {[ctrl+v] { } false} {[tab] { } false} {[down ctrl+n] { } false} {[up ctrl+p] { } false}} [] false 0 0 0 <nil> <nil> false [] [] 0} &{<nil> >  Password 0 42 {530ms [38;5;63m[0m   0 false true 0xc00012cd68 0 0} 0s [38;5;63m[0m [38;5;63m[0m [38;5;240m[0m [38;5;240m[0m  50 0 {{[right ctrl+f] { } false} {[left ctrl+b] { } false} {[alt+right ctrl+right alt+f] { } false} {[alt+left ctrl+left alt+b] { } false} {[alt+backspace ctrl+w] { } false} {[alt+delete alt+d] { } false} {[ctrl+k] { } false} {[ctrl+u] { } false} {[backspace ctrl+h] { } false} {[delete ctrl+d] { } false} {[home ctrl+a] { } false} {[end ctrl+e] { } false} {[ctrl+v] { } false} {[tab] { } false} {[down ctrl+n] { } false} {[up ctrl+p] { } false}} [] false 0 0 0 <nil> <nil> false [] [] 0}
+debug 2024/12/17 10:39:52 3 inp {<nil> >  Note 0 42 {530ms [38;5;63m[0m   0 false true 0xc00012cd80 0 0} 0s [38;5;63m[0m [38;5;63m[0m [38;5;240m[0m [38;5;240m[0m  50 0 {{[right ctrl+f] { } false} {[left ctrl+b] { } false} {[alt+right ctrl+right alt+f] { } false} {[alt+left ctrl+left alt+b] { } false} {[alt+backspace ctrl+w] { } false} {[alt+delete alt+d] { } false} {[ctrl+k] { } false} {[ctrl+u] { } false} {[backspace ctrl+h] { } false} {[delete ctrl+d] { } false} {[home ctrl+a] { } false} {[end ctrl+e] { } false} {[ctrl+v] { } false} {[tab] { } false} {[down ctrl+n] { } false} {[up ctrl+p] { } false}} [] false 0 0 0 <nil> <nil> false [] [] 0} &{<nil> >  Note 0 42 {530ms [38;5;63m[0m   0 false true 0xc00012cd80 0 0} 0s [38;5;63m[0m [38;5;63m[0m [38;5;240m[0m [38;5;240m[0m  50 0 {{[right ctrl+f] { } false} {[left ctrl+b] { } false} {[alt+right ctrl+right alt+f] { } false} {[alt+left ctrl+left alt+b] { } false} {[alt+backspace ctrl+w] { } false} {[alt+delete alt+d] { } false} {[ctrl+k] { } false} {[ctrl+u] { } false} {[backspace ctrl+h] { } false} {[delete ctrl+d] { } false} {[home ctrl+a] { } false} {[end ctrl+e] { } false} {[ctrl+v] { } false} {[tab] { } false} {[down ctrl+n] { } false} {[up ctrl+p] { } false}} [] false 0 0 0 <nil> <nil> false [] [] 0}
+debug 2024/12/17 10:39:52 updateInputs d
+debug 2024/12/17 10:39:52 0 inp {<nil> >  Secret name 0 42 {530ms [38;5;63m[0m   0 true false 0xc00012cd38 11 0} 0s [38;5;63m[0m [38;5;63m[0m [38;5;240m[0m [38;5;240m[0m  50 0 {{[right ctrl+f] { } false} {[left ctrl+b] { } false} {[alt+right ctrl+right alt+f] { } false} {[alt+left ctrl+left alt+b] { } false} {[alt+backspace ctrl+w] { } false} {[alt+delete alt+d] { } false} {[ctrl+k] { } false} {[ctrl+u] { } false} {[backspace ctrl+h] { } false} {[delete ctrl+d] { } false} {[home ctrl+a] { } false} {[end ctrl+e] { } false} {[ctrl+v] { } false} {[tab] { } false} {[down ctrl+n] { } false} {[up ctrl+p] { } false}} [115 100 115 100 100 100 100 100 100 100] true 10 0 10 <nil> 0xc000594030 false [] [] 0} &{<nil> >  Secret name 0 42 {530ms [38;5;63m[0m   0 true false 0xc00012cd38 10 0} 0s [38;5;63m[0m [38;5;63m[0m [38;5;240m[0m [38;5;240m[0m  50 0 {{[right ctrl+f] { } false} {[left ctrl+b] { } false} {[alt+right ctrl+right alt+f] { } false} {[alt+left ctrl+left alt+b] { } false} {[alt+backspace ctrl+w] { } false} {[alt+delete alt+d] { } false} {[ctrl+k] { } false} {[ctrl+u] { } false} {[backspace ctrl+h] { } false} {[delete ctrl+d] { } false} {[home ctrl+a] { } false} {[end ctrl+e] { } false} {[ctrl+v] { } false} {[tab] { } false} {[down ctrl+n] { } false} {[up ctrl+p] { } false}} [115 100 115 100 100 100 100 100 100] true 9 0 9 <nil> 0xc000594030 false [] [] 0}
+debug 2024/12/17 10:39:52 1 inp {<nil> >  Login 0 42 {530ms [38;5;63m[0m   0 false true 0xc00012cd50 0 0} 0s [38;5;63m[0m [38;5;63m[0m [38;5;240m[0m [38;5;240m[0m  50 0 {{[right ctrl+f] { } false} {[left ctrl+b] { } false} {[alt+right ctrl+right alt+f] { } false} {[alt+left ctrl+left alt+b] { } false} {[alt+backspace ctrl+w] { } false} {[alt+delete alt+d] { } false} {[ctrl+k] { } false} {[ctrl+u] { } false} {[backspace ctrl+h] { } false} {[delete ctrl+d] { } false} {[home ctrl+a] { } false} {[end ctrl+e] { } false} {[ctrl+v] { } false} {[tab] { } false} {[down ctrl+n] { } false} {[up ctrl+p] { } false}} [] false 0 0 0 <nil> <nil> false [] [] 0} &{<nil> >  Login 0 42 {530ms [38;5;63m[0m   0 false true 0xc00012cd50 0 0} 0s [38;5;63m[0m [38;5;63m[0m [38;5;240m[0m [38;5;240m[0m  50 0 {{[right ctrl+f] { } false} {[left ctrl+b] { } false} {[alt+right ctrl+right alt+f] { } false} {[alt+left ctrl+left alt+b] { } false} {[alt+backspace ctrl+w] { } false} {[alt+delete alt+d] { } false} {[ctrl+k] { } false} {[ctrl+u] { } false} {[backspace ctrl+h] { } false} {[delete ctrl+d] { } false} {[home ctrl+a] { } false} {[end ctrl+e] { } false} {[ctrl+v] { } false} {[tab] { } false} {[down ctrl+n] { } false} {[up ctrl+p] { } false}} [] false 0 0 0 <nil> <nil> false [] [] 0}
+debug 2024/12/17 10:39:52 2 inp {<nil> >  Password 0 42 {530ms [38;5;63m[0m   0 false true 0xc00012cd68 0 0} 0s [38;5;63m[0m [38;5;63m[0m [38;5;240m[0m [38;5;240m[0m  50 0 {{[right ctrl+f] { } false} {[left ctrl+b] { } false} {[alt+right ctrl+right alt+f] { } false} {[alt+left ctrl+left alt+b] { } false} {[alt+backspace ctrl+w] { } false} {[alt+delete alt+d] { } false} {[ctrl+k] { } false} {[ctrl+u] { } false} {[backspace ctrl+h] { } false} {[delete ctrl+d] { } false} {[home ctrl+a] { } false} {[end ctrl+e] { } false} {[ctrl+v] { } false} {[tab] { } false} {[down ctrl+n] { } false} {[up ctrl+p] { } false}} [] false 0 0 0 <nil> <nil> false [] [] 0} &{<nil> >  Password 0 42 {530ms [38;5;63m[0m   0 false true 0xc00012cd68 0 0} 0s [38;5;63m[0m [38;5;63m[0m [38;5;240m[0m [38;5;240m[0m  50 0 {{[right ctrl+f] { } false} {[left ctrl+b] { } false} {[alt+right ctrl+right alt+f] { } false} {[alt+left ctrl+left alt+b] { } false} {[alt+backspace ctrl+w] { } false} {[alt+delete alt+d] { } false} {[ctrl+k] { } false} {[ctrl+u] { } false} {[backspace ctrl+h] { } false} {[delete ctrl+d] { } false} {[home ctrl+a] { } false} {[end ctrl+e] { } false} {[ctrl+v] { } false} {[tab] { } false} {[down ctrl+n] { } false} {[up ctrl+p] { } false}} [] false 0 0 0 <nil> <nil> false [] [] 0}
+debug 2024/12/17 10:39:52 3 inp {<nil> >  Note 0 42 {530ms [38;5;63m[0m   0 false true 0xc00012cd80 0 0} 0s [38;5;63m[0m [38;5;63m[0m [38;5;240m[0m [38;5;240m[0m  50 0 {{[right ctrl+f] { } false} {[left ctrl+b] { } false} {[alt+right ctrl+right alt+f] { } false} {[alt+left ctrl+left alt+b] { } false} {[alt+backspace ctrl+w] { } false} {[alt+delete alt+d] { } false} {[ctrl+k] { } false} {[ctrl+u] { } false} {[backspace ctrl+h] { } false} {[delete ctrl+d] { } false} {[home ctrl+a] { } false} {[end ctrl+e] { } false} {[ctrl+v] { } false} {[tab] { } false} {[down ctrl+n] { } false} {[up ctrl+p] { } false}} [] false 0 0 0 <nil> <nil> false [] [] 0} &{<nil> >  Note 0 42 {530ms [38;5;63m[0m   0 false true 0xc00012cd80 0 0} 0s [38;5;63m[0m [38;5;63m[0m [38;5;240m[0m [38;5;240m[0m  50 0 {{[right ctrl+f] { } false} {[left ctrl+b] { } false} {[alt+right ctrl+right alt+f] { } false} {[alt+left ctrl+left alt+b] { } false} {[alt+backspace ctrl+w] { } false} {[alt+delete alt+d] { } false} {[ctrl+k] { } false} {[ctrl+u] { } false} {[backspace ctrl+h] { } false} {[delete ctrl+d] { } false} {[home ctrl+a] { } false} {[end ctrl+e] { } false} {[ctrl+v] { } false} {[tab] { } false} {[down ctrl+n] { } false} {[up ctrl+p] { } false}} [] false 0 0 0 <nil> <nil> false [] [] 0}
+debug 2024/12/17 10:40:16 Init grpc client serverHost 127.0.0.1:8080
+debug 2024/12/17 10:40:17 updateInputs d
+debug 2024/12/17 10:40:17 0 inp
+debug 2024/12/17 10:40:17 1 inp
+debug 2024/12/17 10:40:17 2 inp
+debug 2024/12/17 10:40:17 3 inp
+debug 2024/12/17 10:40:18 updateInputs d
+debug 2024/12/17 10:40:18 0 inp
+debug 2024/12/17 10:40:18 1 inp
+debug 2024/12/17 10:40:18 2 inp
+debug 2024/12/17 10:40:18 3 inp
+debug 2024/12/17 10:40:24 updateInputs f
+debug 2024/12/17 10:40:24 0 inp
+debug 2024/12/17 10:40:24 1 inp
+debug 2024/12/17 10:40:24 2 inp
+debug 2024/12/17 10:40:24 3 inp
+debug 2024/12/17 10:40:24 updateInputs d
+debug 2024/12/17 10:40:24 0 inp
+debug 2024/12/17 10:40:24 1 inp
+debug 2024/12/17 10:40:24 2 inp
+debug 2024/12/17 10:40:24 3 inp
+debug 2024/12/17 10:40:25 updateInputs s
+debug 2024/12/17 10:40:25 0 inp
+debug 2024/12/17 10:40:25 1 inp
+debug 2024/12/17 10:40:25 2 inp
+debug 2024/12/17 10:40:25 3 inp
+debug 2024/12/17 10:40:26 updateInputs s
+debug 2024/12/17 10:40:26 0 inp
+debug 2024/12/17 10:40:26 1 inp
+debug 2024/12/17 10:40:26 2 inp
+debug 2024/12/17 10:40:26 3 inp
+debug 2024/12/17 10:40:26 updateInputs d
+debug 2024/12/17 10:40:26 0 inp
+debug 2024/12/17 10:40:26 1 inp
+debug 2024/12/17 10:40:26 2 inp
+debug 2024/12/17 10:40:26 3 inp
+debug 2024/12/17 10:40:26 updateInputs f
+debug 2024/12/17 10:40:26 0 inp
+debug 2024/12/17 10:40:26 1 inp
+debug 2024/12/17 10:40:26 2 inp
+debug 2024/12/17 10:40:26 3 inp
+debug 2024/12/17 10:40:26 updateInputs s
+debug 2024/12/17 10:40:26 0 inp
+debug 2024/12/17 10:40:26 1 inp
+debug 2024/12/17 10:40:26 2 inp
+debug 2024/12/17 10:40:26 3 inp
+debug 2024/12/17 10:40:26 updateInputs d
+debug 2024/12/17 10:40:26 0 inp
+debug 2024/12/17 10:40:26 1 inp
+debug 2024/12/17 10:40:26 2 inp
+debug 2024/12/17 10:40:26 3 inp
+debug 2024/12/17 10:40:26 updateInputs f
+debug 2024/12/17 10:40:26 0 inp
+debug 2024/12/17 10:40:26 1 inp
+debug 2024/12/17 10:40:26 2 inp
+debug 2024/12/17 10:40:26 3 inp
+debug 2024/12/17 10:40:26 updateInputs s
+debug 2024/12/17 10:40:26 0 inp
+debug 2024/12/17 10:40:26 1 inp
+debug 2024/12/17 10:40:26 2 inp
+debug 2024/12/17 10:40:26 3 inp
+debug 2024/12/17 10:40:27 updateInputs d
+debug 2024/12/17 10:40:27 0 inp
+debug 2024/12/17 10:40:27 1 inp
+debug 2024/12/17 10:40:27 2 inp
+debug 2024/12/17 10:40:27 3 inp
+debug 2024/12/17 10:40:27 updateInputs f
+debug 2024/12/17 10:40:27 0 inp
+debug 2024/12/17 10:40:27 1 inp
+debug 2024/12/17 10:40:27 2 inp
+debug 2024/12/17 10:40:27 3 inp
+debug 2024/12/17 10:40:27 updateInputs s
+debug 2024/12/17 10:40:27 0 inp
+debug 2024/12/17 10:40:27 1 inp
+debug 2024/12/17 10:40:27 2 inp
+debug 2024/12/17 10:40:27 3 inp
+debug 2024/12/17 10:40:27 updateInputs d
+debug 2024/12/17 10:40:27 0 inp
+debug 2024/12/17 10:40:27 1 inp
+debug 2024/12/17 10:40:27 2 inp
+debug 2024/12/17 10:40:27 3 inp
+debug 2024/12/17 10:40:27 updateInputs f
+debug 2024/12/17 10:40:27 0 inp
+debug 2024/12/17 10:40:27 1 inp
+debug 2024/12/17 10:40:27 2 inp
+debug 2024/12/17 10:40:27 3 inp
+debug 2024/12/17 10:40:27 updateInputs s
+debug 2024/12/17 10:40:27 0 inp
+debug 2024/12/17 10:40:27 1 inp
+debug 2024/12/17 10:40:27 2 inp
+debug 2024/12/17 10:40:27 3 inp
+debug 2024/12/17 10:40:27 updateInputs d
+debug 2024/12/17 10:40:27 0 inp
+debug 2024/12/17 10:40:27 1 inp
+debug 2024/12/17 10:40:27 2 inp
+debug 2024/12/17 10:40:27 3 inp
+debug 2024/12/17 10:40:28 updateInputs s
+debug 2024/12/17 10:40:28 0 inp
+debug 2024/12/17 10:40:28 1 inp
+debug 2024/12/17 10:40:28 2 inp
+debug 2024/12/17 10:40:28 3 inp
+debug 2024/12/17 10:40:28 updateInputs d
+debug 2024/12/17 10:40:28 0 inp
+debug 2024/12/17 10:40:28 1 inp
+debug 2024/12/17 10:40:28 2 inp
+debug 2024/12/17 10:40:28 3 inp
+debug 2024/12/17 10:40:28 updateInputs f
+debug 2024/12/17 10:40:28 0 inp
+debug 2024/12/17 10:40:28 1 inp
+debug 2024/12/17 10:40:28 2 inp
+debug 2024/12/17 10:40:28 3 inp
+debug 2024/12/17 10:40:28 updateInputs s
+debug 2024/12/17 10:40:28 0 inp
+debug 2024/12/17 10:40:28 1 inp
+debug 2024/12/17 10:40:28 2 inp
+debug 2024/12/17 10:40:28 3 inp
+debug 2024/12/17 10:40:28 updateInputs d
+debug 2024/12/17 10:40:28 0 inp
+debug 2024/12/17 10:40:28 1 inp
+debug 2024/12/17 10:40:28 2 inp
+debug 2024/12/17 10:40:28 3 inp
+debug 2024/12/17 10:40:28 updateInputs f
+debug 2024/12/17 10:40:28 0 inp
+debug 2024/12/17 10:40:28 1 inp
+debug 2024/12/17 10:40:28 2 inp
+debug 2024/12/17 10:40:28 3 inp
+debug 2024/12/17 10:40:28 updateInputs a
+debug 2024/12/17 10:40:28 0 inp
+debug 2024/12/17 10:40:28 1 inp
+debug 2024/12/17 10:40:28 2 inp
+debug 2024/12/17 10:40:28 3 inp
+debug 2024/12/17 10:40:28 updateInputs s
+debug 2024/12/17 10:40:28 0 inp
+debug 2024/12/17 10:40:28 1 inp
+debug 2024/12/17 10:40:28 2 inp
+debug 2024/12/17 10:40:28 3 inp
+debug 2024/12/17 10:40:29 updateInputs s
+debug 2024/12/17 10:40:29 0 inp
+debug 2024/12/17 10:40:29 1 inp
+debug 2024/12/17 10:40:29 2 inp
+debug 2024/12/17 10:40:29 3 inp
+debug 2024/12/17 10:40:29 updateInputs a
+debug 2024/12/17 10:40:29 0 inp
+debug 2024/12/17 10:40:29 1 inp
+debug 2024/12/17 10:40:29 2 inp
+debug 2024/12/17 10:40:29 3 inp
+debug 2024/12/17 10:40:29 updateInputs d
+debug 2024/12/17 10:40:29 0 inp
+debug 2024/12/17 10:40:29 1 inp
+debug 2024/12/17 10:40:29 2 inp
+debug 2024/12/17 10:40:29 3 inp
+debug 2024/12/17 10:40:29 updateInputs a
+debug 2024/12/17 10:40:29 0 inp
+debug 2024/12/17 10:40:29 1 inp
+debug 2024/12/17 10:40:29 2 inp
+debug 2024/12/17 10:40:29 3 inp
+debug 2024/12/17 10:40:29 updateInputs s
+debug 2024/12/17 10:40:29 0 inp
+debug 2024/12/17 10:40:29 1 inp
+debug 2024/12/17 10:40:29 2 inp
+debug 2024/12/17 10:40:29 3 inp
+debug 2024/12/17 10:40:29 updateInputs f
+debug 2024/12/17 10:40:29 0 inp
+debug 2024/12/17 10:40:29 1 inp
+debug 2024/12/17 10:40:29 2 inp
+debug 2024/12/17 10:40:29 3 inp
+debug 2024/12/17 10:40:29 updateInputs d
+debug 2024/12/17 10:40:29 0 inp
+debug 2024/12/17 10:40:29 1 inp
+debug 2024/12/17 10:40:29 2 inp
+debug 2024/12/17 10:40:29 3 inp
+debug 2024/12/17 10:40:29 updateInputs s
+debug 2024/12/17 10:40:29 0 inp
+debug 2024/12/17 10:40:29 1 inp
+debug 2024/12/17 10:40:29 2 inp
+debug 2024/12/17 10:40:29 3 inp
+debug 2024/12/17 10:40:29 updateInputs f
+debug 2024/12/17 10:40:29 0 inp
+debug 2024/12/17 10:40:29 1 inp
+debug 2024/12/17 10:40:29 2 inp
+debug 2024/12/17 10:40:29 3 inp
+debug 2024/12/17 10:40:29 updateInputs d
+debug 2024/12/17 10:40:29 0 inp
+debug 2024/12/17 10:40:29 1 inp
+debug 2024/12/17 10:40:29 2 inp
+debug 2024/12/17 10:40:29 3 inp
+debug 2024/12/17 10:40:29 updateInputs s
+debug 2024/12/17 10:40:29 0 inp
+debug 2024/12/17 10:40:29 1 inp
+debug 2024/12/17 10:40:29 2 inp
+debug 2024/12/17 10:40:29 3 inp
+debug 2024/12/17 10:40:30 updateInputs d
+debug 2024/12/17 10:40:30 0 inp
+debug 2024/12/17 10:40:30 1 inp
+debug 2024/12/17 10:40:30 2 inp
+debug 2024/12/17 10:40:30 3 inp
+debug 2024/12/17 10:40:30 updateInputs s
+debug 2024/12/17 10:40:30 0 inp
+debug 2024/12/17 10:40:30 1 inp
+debug 2024/12/17 10:40:30 2 inp
+debug 2024/12/17 10:40:30 3 inp
+debug 2024/12/17 10:40:30 updateInputs f
+debug 2024/12/17 10:40:30 0 inp
+debug 2024/12/17 10:40:30 1 inp
+debug 2024/12/17 10:40:30 2 inp
+debug 2024/12/17 10:40:30 3 inp
+debug 2024/12/17 10:40:30 updateInputs g
+debug 2024/12/17 10:40:30 0 inp
+debug 2024/12/17 10:40:30 1 inp
+debug 2024/12/17 10:40:30 2 inp
+debug 2024/12/17 10:40:30 3 inp
+debug 2024/12/17 10:42:40 Init grpc client serverHost 127.0.0.1:8080
+debug 2024/12/17 10:42:41 updateInputs 1
+debug 2024/12/17 10:42:42 updateInputs 2
+debug 2024/12/17 10:42:42 updateInputs 3
+debug 2024/12/17 10:42:42 updateInputs 4
+debug 2024/12/17 10:42:43 updateInputs e
+debug 2024/12/17 10:42:44 updateInputs e
+debug 2024/12/17 10:42:45 updateInputs w
+debug 2024/12/17 10:42:45 updateInputs 3
+debug 2024/12/17 10:42:46 updateInputs e
+debug 2024/12/17 10:42:46 updateInputs e
+debug 2024/12/17 10:42:47 updateInputs e
+debug 2024/12/17 10:42:48 updateInputs w
+debug 2024/12/17 10:42:49 updateInputs w
+debug 2024/12/17 10:42:49 updateInputs w
+debug 2024/12/17 10:42:49 updateInputs s
+debug 2024/12/17 10:42:50 updateInputs d
+debug 2024/12/17 10:42:50 updateInputs f
+debug 2024/12/17 10:42:51 updateInputs d
+debug 2024/12/17 10:42:51 updateInputs d
+debug 2024/12/17 10:42:52 updateInputs f
+debug 2024/12/17 10:45:54 updateInputs backspace
+debug 2024/12/17 10:45:54 updateInputs backspace
+debug 2024/12/17 10:45:54 updateInputs backspace
+debug 2024/12/17 10:45:54 updateInputs backspace
+debug 2024/12/17 10:45:55 updateInputs backspace
+debug 2024/12/17 10:45:55 updateInputs backspace
+debug 2024/12/17 10:46:43 updateInputs backspace
+debug 2024/12/17 10:46:43 updateInputs backspace
+debug 2024/12/17 10:46:43 updateInputs backspace
+debug 2024/12/17 10:46:43 updateInputs backspace
+debug 2024/12/17 10:46:43 updateInputs backspace
+debug 2024/12/17 10:46:43 updateInputs backspace
+debug 2024/12/17 10:46:46 Got error Secret Name and Password cannot be empty
+debug 2024/12/17 11:21:00 Init grpc client serverHost 127.0.0.1:8080
+debug 2024/12/17 11:21:09 Call Login method Login peter@test.ru
+debug 2024/12/17 11:21:09 Call SetToken method
+debug 2024/12/17 11:21:09 Main View. Change Screent to secret-list from login
+debug 2024/12/17 11:21:11 Update KeyMsg n
+debug 2024/12/17 11:21:11 create changeScreenCmd. screen:  new-secret
+debug 2024/12/17 11:21:11 Main View. Change Screent to new-secret from secret-list
+debug 2024/12/17 11:21:15 create changeScreenCmd. screen:  new-secret-pwd
+debug 2024/12/17 11:21:15 Main View. Change Screent to new-secret-pwd from new-secret
+debug 2024/12/17 11:25:43 Init grpc client serverHost 127.0.0.1:8080
+debug 2024/12/17 11:25:49 Call Login method Login peter@test.ru
+debug 2024/12/17 11:25:50 Call SetToken method
+debug 2024/12/17 11:25:50 Main View. Change Screent to secret-list from login
+debug 2024/12/17 11:25:54 Update KeyMsg n
+debug 2024/12/17 11:25:54 create changeScreenCmd. screen:  new-secret
+debug 2024/12/17 11:25:54 Main View. Change Screent to new-secret from secret-list
+debug 2024/12/17 11:25:56 create changeScreenCmd. screen:  new-secret-pwd
+debug 2024/12/17 11:25:56 Main View. Change Screent to new-secret-pwd from new-secret
+debug 2024/12/17 11:26:29 call grpc method CreateSecret error grpc - create secret error: rpc error: code = Unknown desc = CreateSecret error: failed to encrypt secret: failed to create encryption manager: encryption manager creating error: reading private key from file (encryption_keys//encription_key_v_1.pem) error: open encryption_keys//encription_key_v_1.pem: no such file or directory
+debug 2024/12/17 11:26:29 Got error grpc - create secret error: rpc error: code = Unknown desc = CreateSecret error: failed to encrypt secret: failed to create encryption manager: encryption manager creating error: reading private key from file (encryption_keys//encription_key_v_1.pem) error: open encryption_keys//encription_key_v_1.pem: no such file or directory
+debug 2024/12/17 11:32:03 call grpc method CreateSecret error grpc - create secret error: rpc error: code = Unknown desc = CreateSecret error: failed to encrypt secret: failed to create encryption manager: decoding private key (encryption_keys//encription_key_v_1.pem) error: decrypt chunk error:rsa OAEP decrypt error:crypto/rsa: decryption error
+debug 2024/12/17 11:32:03 Got error grpc - create secret error: rpc error: code = Unknown desc = CreateSecret error: failed to encrypt secret: failed to create encryption manager: decoding private key (encryption_keys//encription_key_v_1.pem) error: decrypt chunk error:rsa OAEP decrypt error:crypto/rsa: decryption error
+debug 2024/12/17 11:33:45 call grpc method CreateSecret error grpc - create secret error: rpc error: code = Unknown desc = CreateSecret error: failed to encrypt secret: failed to create encryption manager: decoding private key (encryption_keys//encription_key_v_1.pem) error: decrypt chunk error:rsa OAEP decrypt error:crypto/rsa: decryption error
+debug 2024/12/17 11:33:45 Got error grpc - create secret error: rpc error: code = Unknown desc = CreateSecret error: failed to encrypt secret: failed to create encryption manager: decoding private key (encryption_keys//encription_key_v_1.pem) error: decrypt chunk error:rsa OAEP decrypt error:crypto/rsa: decryption error
+debug 2024/12/17 12:05:38 call grpc method CreateSecret error grpc - create secret error: rpc error: code = Unknown desc = CreateSecret error: failed to encrypt secret: failed to create encryption manager: encryption manager creating error: reading private key from file (encryption_keys//encription_key_v_1.pem) error: open encryption_keys//encription_key_v_1.pem: no such file or directory
+debug 2024/12/17 12:05:38 Got error grpc - create secret error: rpc error: code = Unknown desc = CreateSecret error: failed to encrypt secret: failed to create encryption manager: encryption manager creating error: reading private key from file (encryption_keys//encription_key_v_1.pem) error: open encryption_keys//encription_key_v_1.pem: no such file or directory
+debug 2024/12/17 12:07:27 Succesfully create secret Name t@t.com
+debug 2024/12/17 12:07:27 create changeScreenCmd. screen:  secret-list
+debug 2024/12/17 12:07:30 Succesfully create secret Name t@t.com
+debug 2024/12/17 12:07:30 create changeScreenCmd. screen:  secret-list
+debug 2024/12/17 12:07:43 create changeScreenCmd. screen:  secret-list
+debug 2024/12/17 12:07:43 Main View. Change Screent to secret-list from new-secret-pwd
+debug 2024/12/17 12:07:44 Update KeyMsg down
+debug 2024/12/17 12:07:50 Update KeyMsg `
+debug 2024/12/17 12:07:52 Update KeyMsg esc
