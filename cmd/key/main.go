@@ -25,7 +25,6 @@ func main() {
 	masterKey, err := encryption.LoadPrivateKey([]byte(cfg.MasterKey))
 	if err != nil {
 		log.Fatal("Loading master key error", err)
-
 	}
 
 	var version int
@@ -35,7 +34,7 @@ func main() {
 	path := fmt.Sprintf("encryption_keys/encryption_key_v_%d.pem", version)
 
 	if _, err := os.Stat(path); err == nil {
-		log.Printf("Key veriosn %d allready exists \n", version)
+		log.Fatalf("Key veriosn %d allready exists \n", version)
 	} else if !errors.Is(err, os.ErrNotExist) {
 		log.Fatal("Checking key version error. Path:", path, err)
 	}

@@ -55,6 +55,7 @@ type SecretUpdateRequest struct {
 	UserID  int64
 	Type    SecretType
 	Name    string
+	Note    string
 	Payload []byte
 }
 
@@ -62,6 +63,7 @@ type SecretCreateRequest struct {
 	UserID  int64
 	Type    SecretType
 	Name    string
+	Note    string
 	Payload []byte
 }
 
@@ -79,7 +81,6 @@ type UpdateNoteRequest struct {
 
 type Note struct {
 	SecretMeta
-	Note string `json:"Note"`
 }
 
 type CardData struct {

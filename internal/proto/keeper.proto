@@ -36,7 +36,8 @@ message ListRequest {
 message SecretMeta {
   sint64 id = 1; 
   string name = 2; 
-  SecretType type = 3; 
+  string note = 3;
+  SecretType type = 4; 
 }
 
 message ListResponse {
@@ -48,8 +49,9 @@ message ListResponse {
 message Secret {
   sint64     id = 1; 
   string     name = 2; 
-  SecretType type = 3; 
-  bytes      payload = 4;
+  string     note = 3;
+  SecretType type = 4; 
+  bytes      payload = 5;
 }
 
 message SecretRequest {
@@ -61,13 +63,15 @@ message SecretCreateRequest {
   string     name = 1; 
   SecretType type = 2; 
   bytes      payload = 3; 
+  string     note = 4;
 }
 
 message SecretUpdateRequest {
   sint64     id = 1;
   string     name = 2; 
-  SecretType type = 3; 
-  bytes      payload = 4; 
+  string     note = 3;
+  SecretType type = 4; 
+  bytes      payload = 5; 
 }
 // End of Secret section
 

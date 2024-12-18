@@ -11,8 +11,8 @@ type Secret struct {
 	Payload []byte
 }
 
-func NewSecret(id int64, name string, secretType SecretType, data []byte) *Secret {
-	return &Secret{SecretMeta{id, name, secretType}, data}
+func NewSecret(id int64, name string, secretType SecretType, data []byte, note string) *Secret {
+	return &Secret{SecretMeta{id, name, secretType, note}, data}
 }
 
 func (s *Secret) AsPassword() (*Password, error) {
@@ -32,7 +32,7 @@ type SecretMeta struct {
 	ID   int64
 	Name string
 	Type SecretType
-	// Note string `json:"note"`
+	Note string `json:"note"`
 }
 
 type Password struct {
@@ -42,9 +42,8 @@ type Password struct {
 }
 
 func NewPassword(id int64, name, login, password, note string) *Password {
-	// todo use note
 	return &Password{
-		SecretMeta: SecretMeta{id, name, SecretTypePassword},
+		SecretMeta: SecretMeta{id, name, SecretTypePassword, note},
 		Login:      login,
 		Password:   password,
 	}

@@ -78,8 +78,8 @@ func (s *TestSuite) TestGetNote() {
 					ID:   1,
 					Name: "note-1",
 					Type: model.SecretTypeNote,
+					Note: "stub-note",
 				},
-				Note: "stub-note",
 			},
 		},
 		{
@@ -92,8 +92,8 @@ func (s *TestSuite) TestGetNote() {
 					ID:   2,
 					Name: "note-2",
 					Type: model.SecretTypeNote,
+					Note: "stub-note",
 				},
-				Note: "stub-note",
 			},
 		},
 	}
@@ -271,8 +271,10 @@ func (s *TestSuite) TestCreateNote() {
 	req := model.UpdateNoteRequest{
 		UserID: 2,
 		Data: &model.Note{
-			SecretMeta: model.SecretMeta{Name: "note-name"},
-			Note:       "note ................................",
+			SecretMeta: model.SecretMeta{
+				Name: "note-name",
+				Note: "note ................................",
+			},
 		},
 	}
 	expected := model.Note{
@@ -280,8 +282,8 @@ func (s *TestSuite) TestCreateNote() {
 			ID:   3,
 			Name: "note-name",
 			Type: model.SecretTypeNote,
+			Note: "note ................................",
 		},
-		Note: "note ................................",
 	}
 
 	actual, err := s.secretSrv.CreateNote(ctx, req)
@@ -299,8 +301,8 @@ func (s *TestSuite) TestUpdateNote() {
 			SecretMeta: model.SecretMeta{
 				ID:   1,
 				Name: "new-name",
+				Note: "new-note",
 			},
-			Note: "new-note",
 		},
 	}
 	expected := model.Note{
@@ -308,8 +310,8 @@ func (s *TestSuite) TestUpdateNote() {
 			ID:   1,
 			Name: "new-name",
 			Type: model.SecretTypeNote,
+			Note: "new-note",
 		},
-		Note: "new-note",
 	}
 
 	actual, err := s.secretSrv.UpdateNote(ctx, req)

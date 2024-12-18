@@ -66,7 +66,7 @@ func NewSecretRepo(db *sql.DB) *SecretRepo {
 func (r *SecretRepo) ListSecrets(ctx context.Context, req *model.SecretListRequest) ([]*model.SecretMeta, error) {
 	items := make([]*model.SecretMeta, 0, 10)
 	query := `
-		SELECT id, name, secret_type 
+		SELECT id, name, secret_type, note 
 		FROM public.secrets WHERE user_id = $1 AND name ^@ $2 
 		ORDER BY secret_type, name;
 	`
@@ -80,7 +80,7 @@ func (r *SecretRepo) ListSecrets(ctx context.Context, req *model.SecretListReque
 		for rows.Next() {
 			var m model.SecretMeta
 
-			err = rows.Scan(&m.ID, &m.Name, &m.Type)
+			err = rows.Scan(&m.ID, &m.Name, &m.Type, &m.Note)
 			if err != nil {
 				return fmt.Errorf("read ListSecrets error: %w", err)
 			}
@@ -107,7 +107,7 @@ func (r *SecretRepo) GetSecret(ctx context.Context, req model.SecretRequest) (*E
 	dataSecret := &model.DataKey{}
 	query := `
 		SELECT 
-			id, name, payload, secret_type, sc_version, sc
+			id, name, payload, note, secret_type, sc_version, sc
 		FROM 
 			secrets
 		WHERE id = $1 AND user_id = $2;
@@ -120,6 +120,7 @@ func (r *SecretRepo) GetSecret(ctx context.Context, req model.SecretRequest) (*E
 			&secret.ID,
 			&secret.Name,
 			&secret.Payload,
+			&secret.Note,
 			&secret.Type,
 			&dataSecret.Version,
 			&dataSecret.Key,
@@ -140,14 +141,14 @@ func (r *SecretRepo) CreateSecret(ctx context.Context, req *model.SecretCreateRe
 	var secretID int64
 	query := `
 	INSERT INTO 
-		secrets(user_id, name, payload, secret_type, sc_version, sc) 
-	values($1, $2, $3, $4, $5, $6)
+		secrets(user_id, name, note, payload, secret_type, sc_version, sc) 
+	values($1, $2, $3, $4, $5, $6, $7)
 	RETURNING id;
 	`
 	fun := func() error {
 		row := r.db.QueryRowContext(
 			ctx, query,
-			req.UserID, req.Name, req.Payload, req.Type,
+			req.UserID, req.Name, req.Note, req.Payload, req.Type,
 			key.Version,
 			key.Key,
 		)
@@ -167,12 +168,12 @@ func (r *SecretRepo) CreateSecret(ctx context.Context, req *model.SecretCreateRe
 }
 
 func (r *SecretRepo) UpdateSecret(ctx context.Context, req *model.SecretUpdateRequest, key *model.DataKey) error {
-	query := "UPDATE secrets SET name=$1, type=$2, payload=$3, sc_version=$4, sc=$5 WHERE id=$6 AND user_id=$7;"
+	query := "UPDATE secrets SET name=$1, type=$2, note=$3, payload=$4, sc_version=$5, sc=$6 WHERE id=$7 AND user_id=$8;"
 
 	fun := func() error {
 		result, err := r.db.ExecContext(
 			ctx, query,
-			req.Name, req.Type, req.Payload,
+			req.Name, req.Type, req.Note, req.Payload,
 			key.Version, key.Key,
 			req.ID, req.UserID,
 		)

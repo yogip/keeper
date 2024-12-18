@@ -7892,3 +7892,186 @@ debug 2024/12/17 12:07:43 Main View. Change Screent to secret-list from new-secr
 debug 2024/12/17 12:07:44 Update KeyMsg down
 debug 2024/12/17 12:07:50 Update KeyMsg `
 debug 2024/12/17 12:07:52 Update KeyMsg esc
+debug 2024/12/18 09:52:25 Init grpc client serverHost 127.0.0.1:8080
+debug 2024/12/18 09:52:50 Call Login method Login peter@test.ru
+debug 2024/12/18 09:52:50 Call SetToken method
+debug 2024/12/18 09:52:50 Main View. Change Screent to secret-list from login
+debug 2024/12/18 09:52:53 Update KeyMsg n
+debug 2024/12/18 09:52:53 create changeScreenCmd. screen:  new-secret
+debug 2024/12/18 09:52:53 Main View. Change Screent to new-secret from secret-list
+debug 2024/12/18 09:52:56 create changeScreenCmd. screen:  new-secret-pwd
+debug 2024/12/18 09:52:56 Main View. Change Screent to new-secret-pwd from new-secret
+debug 2024/12/18 09:53:46 Succesfully create secret pwd test peter@t.c
+debug 2024/12/18 09:53:46 create changeScreenCmd. screen:  secret-list
+debug 2024/12/18 10:00:45 create changeScreenCmd. screen:  secret-list
+debug 2024/12/18 10:00:45 Main View. Change Screent to secret-list from new-secret-pwd
+debug 2024/12/18 10:00:46 Update KeyMsg up
+debug 2024/12/18 10:00:46 Update KeyMsg up
+debug 2024/12/18 10:00:46 Update KeyMsg up
+debug 2024/12/18 10:00:46 Update KeyMsg up
+debug 2024/12/18 10:00:46 Update KeyMsg up
+debug 2024/12/18 10:00:46 Update KeyMsg up
+debug 2024/12/18 10:00:46 Update KeyMsg up
+debug 2024/12/18 10:00:46 Update KeyMsg up
+debug 2024/12/18 10:00:46 Update KeyMsg up
+debug 2024/12/18 10:00:46 Update KeyMsg up
+debug 2024/12/18 10:00:46 Update KeyMsg up
+debug 2024/12/18 10:00:46 Update KeyMsg up
+debug 2024/12/18 10:00:46 Update KeyMsg up
+debug 2024/12/18 10:00:46 Update KeyMsg up
+debug 2024/12/18 10:00:46 Update KeyMsg up
+debug 2024/12/18 10:00:46 Update KeyMsg up
+debug 2024/12/18 10:00:46 Update KeyMsg up
+debug 2024/12/18 10:00:46 Update KeyMsg up
+debug 2024/12/18 10:00:46 Update KeyMsg up
+debug 2024/12/18 10:00:46 Update KeyMsg up
+debug 2024/12/18 10:00:46 Update KeyMsg up
+debug 2024/12/18 10:00:46 Update KeyMsg up
+debug 2024/12/18 10:00:46 Update KeyMsg up
+debug 2024/12/18 10:00:46 Update KeyMsg up
+debug 2024/12/18 10:00:46 Update KeyMsg up
+debug 2024/12/18 10:00:46 Update KeyMsg up
+debug 2024/12/18 10:00:46 Update KeyMsg up
+debug 2024/12/18 10:00:46 Update KeyMsg up
+debug 2024/12/18 10:00:46 Update KeyMsg down
+debug 2024/12/18 10:00:46 Update KeyMsg down
+debug 2024/12/18 10:00:46 Update KeyMsg down
+debug 2024/12/18 10:00:46 Update KeyMsg down
+debug 2024/12/18 10:00:46 Update KeyMsg down
+debug 2024/12/18 10:00:46 Update KeyMsg down
+debug 2024/12/18 10:00:46 Update KeyMsg down
+debug 2024/12/18 10:00:46 Update KeyMsg down
+debug 2024/12/18 10:00:46 Update KeyMsg down
+debug 2024/12/18 10:00:46 Update KeyMsg down
+debug 2024/12/18 10:00:47 Update KeyMsg down
+debug 2024/12/18 10:00:47 Update KeyMsg down
+debug 2024/12/18 10:00:47 Update KeyMsg down
+debug 2024/12/18 10:00:47 Update KeyMsg down
+debug 2024/12/18 10:00:47 Update KeyMsg down
+debug 2024/12/18 10:00:47 Update KeyMsg down
+debug 2024/12/18 10:00:47 Update KeyMsg down
+debug 2024/12/18 10:00:47 Update KeyMsg down
+debug 2024/12/18 10:00:53 Update KeyMsg t
+debug 2024/12/18 10:00:54 Update KeyMsg backspace
+debug 2024/12/18 10:22:03 Update KeyMsg p
+debug 2024/12/18 10:22:05 Update KeyMsg backspace
+debug 2024/12/18 10:22:07 Update KeyMsg n
+debug 2024/12/18 10:22:07 create changeScreenCmd. screen:  new-secret
+debug 2024/12/18 10:22:07 Main View. Change Screent to new-secret from secret-list
+debug 2024/12/18 10:22:26 create changeScreenCmd. screen:  secret-list
+debug 2024/12/18 10:22:26 Main View. Change Screent to secret-list from new-secret
+debug 2024/12/18 10:22:27 Update KeyMsg down
+debug 2024/12/18 10:22:28 Update KeyMsg up
+debug 2024/12/18 10:22:30 Update KeyMsg n
+debug 2024/12/18 10:22:30 create changeScreenCmd. screen:  new-secret
+debug 2024/12/18 10:22:30 Main View. Change Screent to new-secret from secret-list
+debug 2024/12/18 10:22:34 Init grpc client serverHost 127.0.0.1:8080
+debug 2024/12/18 10:22:44 Call Login method Login peter@test@ru
+debug 2024/12/18 10:22:44 Login failed. grpc - login error: rpc error: code = NotFound desc = Not found
+debug 2024/12/18 10:22:44 Got error grpc - login error: rpc error: code = NotFound desc = Not found
+debug 2024/12/18 10:22:52 Call Login method Login peter@test.ru
+debug 2024/12/18 10:22:52 Call SetToken method
+debug 2024/12/18 10:22:52 Main View. Change Screent to secret-list from login
+debug 2024/12/18 10:22:54 Update KeyMsg up
+debug 2024/12/18 10:22:54 Update KeyMsg up
+debug 2024/12/18 10:22:54 Update KeyMsg up
+debug 2024/12/18 10:22:54 Update KeyMsg up
+debug 2024/12/18 10:22:54 Update KeyMsg up
+debug 2024/12/18 10:22:54 Update KeyMsg up
+debug 2024/12/18 10:22:54 Update KeyMsg up
+debug 2024/12/18 10:22:55 Update KeyMsg up
+debug 2024/12/18 10:22:55 Update KeyMsg up
+debug 2024/12/18 10:22:55 Update KeyMsg up
+debug 2024/12/18 10:22:57 Update KeyMsg down
+debug 2024/12/18 10:22:57 Update KeyMsg down
+debug 2024/12/18 10:22:57 Update KeyMsg down
+debug 2024/12/18 10:22:57 Update KeyMsg down
+debug 2024/12/18 10:23:13 Update KeyMsg p
+debug 2024/12/18 10:23:13 ---- p
+debug 2024/12/18 10:23:13 Loaded secrets &{[0xc00034f9b0]}
+debug 2024/12/18 10:23:14 Update KeyMsg backspace
+debug 2024/12/18 10:23:14 ---- 
+debug 2024/12/18 10:23:14 Loaded secrets &{[0xc0002faa80 0xc0002faae0 0xc0002fabd0]}
+debug 2024/12/18 10:23:16 Update KeyMsg n
+debug 2024/12/18 10:23:16 create changeScreenCmd. screen:  new-secret
+debug 2024/12/18 10:23:16 Main View. Change Screent to new-secret from secret-list
+debug 2024/12/18 10:23:19 create changeScreenCmd. screen:  new-secret-pwd
+debug 2024/12/18 10:23:19 Main View. Change Screent to new-secret-pwd from new-secret
+debug 2024/12/18 10:26:03 Init grpc client serverHost 127.0.0.1:8080
+debug 2024/12/18 10:26:09 Call Login method Login peter@test.ru
+debug 2024/12/18 10:26:09 Call SetToken method
+debug 2024/12/18 10:26:09 Main View. Change Screent to secret-list from login
+debug 2024/12/18 10:26:09 ---- 
+debug 2024/12/18 10:26:09 Loaded secrets &{[0xc000305260 0xc000305290 0xc0003052c0]}
+debug 2024/12/18 10:26:20 Update KeyMsg down
+debug 2024/12/18 10:28:48 Update KeyMsg esc
+debug 2024/12/18 10:28:50 Init grpc client serverHost 127.0.0.1:8080
+debug 2024/12/18 10:28:55 Call Login method Login peter@test.ru
+debug 2024/12/18 10:28:55 Call SetToken method
+debug 2024/12/18 10:28:55 Main View. Change Screent to secret-list from login
+debug 2024/12/18 10:28:55 ---- 
+debug 2024/12/18 10:28:55 Loaded secrets &{[0xc0000c1950 0xc0000c1980 0xc0000c19b0]}
+debug 2024/12/18 10:29:01 Update KeyMsg esc
+debug 2024/12/18 11:34:40 Init grpc client serverHost 127.0.0.1:8080
+debug 2024/12/18 11:34:50 Call Login method Login peter@test.ru
+debug 2024/12/18 11:34:50 Call SetToken method
+debug 2024/12/18 11:34:50 Main View. Change Screent to secret-list from login
+debug 2024/12/18 11:34:54 Update KeyMsg down
+debug 2024/12/18 11:34:55 Update KeyMsg down
+debug 2024/12/18 11:34:56 Update KeyMsg down
+debug 2024/12/18 11:34:56 Update KeyMsg down
+debug 2024/12/18 11:34:56 Update KeyMsg down
+debug 2024/12/18 11:34:57 Update KeyMsg down
+debug 2024/12/18 11:34:57 Update KeyMsg down
+debug 2024/12/18 11:34:57 Update KeyMsg down
+debug 2024/12/18 11:34:58 Update KeyMsg down
+debug 2024/12/18 11:34:58 Update KeyMsg down
+debug 2024/12/18 11:34:58 Update KeyMsg down
+debug 2024/12/18 11:34:58 Update KeyMsg down
+debug 2024/12/18 11:34:59 Update KeyMsg down
+debug 2024/12/18 11:34:59 Update KeyMsg down
+debug 2024/12/18 11:34:59 Update KeyMsg down
+debug 2024/12/18 11:34:59 Update KeyMsg down
+debug 2024/12/18 11:35:00 Update KeyMsg down
+debug 2024/12/18 11:35:00 Update KeyMsg down
+debug 2024/12/18 11:35:00 Update KeyMsg down
+debug 2024/12/18 11:35:00 Update KeyMsg up
+debug 2024/12/18 11:35:00 Update KeyMsg up
+debug 2024/12/18 11:35:01 Update KeyMsg down
+debug 2024/12/18 11:35:01 Update KeyMsg down
+debug 2024/12/18 11:35:01 Update KeyMsg up
+debug 2024/12/18 11:35:03 Update KeyMsg p
+debug 2024/12/18 11:35:04 Update KeyMsg backspace
+debug 2024/12/18 11:35:07 Update KeyMsg n
+debug 2024/12/18 11:35:07 Update KeyMsg down
+debug 2024/12/18 11:35:08 Update KeyMsg up
+debug 2024/12/18 11:35:08 Update KeyMsg n
+debug 2024/12/18 11:35:09 Update KeyMsg n
+debug 2024/12/18 11:35:09 Update KeyMsg n
+debug 2024/12/18 11:35:09 Update KeyMsg n
+debug 2024/12/18 11:35:09 Update KeyMsg n
+debug 2024/12/18 11:35:11 Update KeyMsg up
+debug 2024/12/18 11:35:11 Update KeyMsg up
+debug 2024/12/18 11:35:12 Update KeyMsg n
+debug 2024/12/18 11:35:12 Update KeyMsg n
+debug 2024/12/18 11:35:13 Update KeyMsg n
+debug 2024/12/18 11:35:13 Update KeyMsg up
+debug 2024/12/18 11:35:13 Update KeyMsg n
+debug 2024/12/18 11:35:13 create changeScreenCmd. screen:  new-secret
+debug 2024/12/18 11:35:13 Main View. Change Screent to new-secret from secret-list
+debug 2024/12/18 11:35:15 create changeScreenCmd. screen:  new-secret-pwd
+debug 2024/12/18 11:35:15 Main View. Change Screent to new-secret-pwd from new-secret
+debug 2024/12/18 11:35:36 Succesfully create secret new pwd 1 peter
+debug 2024/12/18 11:35:36 create changeScreenCmd. screen:  secret-list
+debug 2024/12/18 11:35:49 create changeScreenCmd. screen:  secret-list
+debug 2024/12/18 11:35:49 Main View. Change Screent to secret-list from new-secret-pwd
+debug 2024/12/18 11:35:50 Update KeyMsg down
+debug 2024/12/18 11:35:50 Update KeyMsg down
+debug 2024/12/18 11:35:51 Update KeyMsg down
+debug 2024/12/18 11:35:51 Update KeyMsg down
+debug 2024/12/18 11:35:51 Update KeyMsg down
+debug 2024/12/18 11:35:51 Update KeyMsg down
+debug 2024/12/18 11:35:52 Update KeyMsg down
+debug 2024/12/18 11:35:52 Update KeyMsg down
+debug 2024/12/18 11:35:52 Update KeyMsg down
+debug 2024/12/18 11:35:52 Update KeyMsg down

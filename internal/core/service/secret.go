@@ -40,23 +40,23 @@ func (s *SecretService) ListSecretsMeta(ctx context.Context, req *model.SecretLi
 }
 
 func (s *SecretService) GetSecret(ctx context.Context, req model.SecretRequest) (*model.Secret, error) {
-	pwd, err := s.repo.GetSecret(ctx, req)
+	secret, err := s.repo.GetSecret(ctx, req)
 	if err != nil {
 		return nil, errors.Wrapf(err, "failed to get secret")
 	}
 
-	p, err := s.encrypter.Decrypt(string(pwd.Item.Payload), pwd.DataKey)
+	p, err := s.encrypter.Decrypt(string(secret.Item.Payload), secret.DataKey)
 	if err != nil {
 		return nil, errors.Wrapf(err, "failed to decrypt secret")
 	}
 
-	pwd.Item.Payload = p
-	return pwd.Item, nil
+	secret.Item.Payload = p
+	return secret.Item, nil
 }
 
 func (s *SecretService) CreateSecret(ctx context.Context, req model.SecretCreateRequest) (*model.Secret, error) {
 	resp := model.Secret{
-		SecretMeta: model.SecretMeta{Name: req.Name, Type: req.Type},
+		SecretMeta: model.SecretMeta{Name: req.Name, Type: req.Type, Note: req.Note},
 		Payload:    req.Payload,
 	}
 	enc, key, err := s.encrypter.Encrypt(req.Payload, s.lastEncKeyVersion)
@@ -76,7 +76,7 @@ func (s *SecretService) CreateSecret(ctx context.Context, req model.SecretCreate
 
 func (s *SecretService) UpdateSecret(ctx context.Context, req model.SecretUpdateRequest) (*model.Secret, error) {
 	resp := model.Secret{
-		SecretMeta: model.SecretMeta{ID: req.ID, Name: req.Name, Type: req.Type},
+		SecretMeta: model.SecretMeta{ID: req.ID, Name: req.Name, Type: req.Type, Note: req.Note},
 		Payload:    req.Payload,
 	}
 	enc, key, err := s.encrypter.Encrypt([]byte(req.Payload), s.lastEncKeyVersion)

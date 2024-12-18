@@ -9,7 +9,6 @@ import (
 	"time"
 
 	"github.com/charmbracelet/bubbles/list"
-	"github.com/charmbracelet/bubbles/textinput"
 
 	tea "github.com/charmbracelet/bubbletea"
 )
@@ -47,21 +46,9 @@ type CreateSecretView struct {
 	focusSecretType int
 	listSecretType  list.Model
 
-	// pwd
-	focusLoginInput int
-	focusPwdInput   int
-	loginInput      textinput.Model
-	pwdInput        textinput.Model
-
-	// note
-	focusNNoteInput int
-
 	// contorls
 	focusSubmit int
 	focusCancel int
-
-	// note
-	noteInput textinput.Model
 
 	secretType model.SecretType
 	app        ClientApp
@@ -87,9 +74,9 @@ func NewCreateSecretView(app ClientApp) *CreateSecretView {
 		focusIndex:      0,
 		focusMax:        2, // 0 - secretType, 1 - Next, 2 - cancel
 		focusSecretType: 0,
+		focusSubmit:     1,
+		focusCancel:     2,
 
-		focusSubmit:    1,
-		focusCancel:    2,
 		listSecretType: l,
 		app:            app,
 	}
@@ -133,7 +120,7 @@ func (m *CreateSecretView) Update(msg tea.Msg) tea.Cmd {
 				i, ok := m.listSecretType.SelectedItem().(item)
 				if ok {
 					m.secretType = model.SecretType(i)
-					m.focusIndex++
+					return m.nextStageView()
 				}
 			}
 			skip := m.focusIndex == m.focusSecretType

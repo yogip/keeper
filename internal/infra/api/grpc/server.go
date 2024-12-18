@@ -130,7 +130,7 @@ func (s *KeeperServer) ListSecrets(ctx context.Context, in *pb.ListRequest) (*pb
 	secrets := make([]*pb.SecretMeta, 0, len(l.Secrets))
 	for _, secret := range l.Secrets {
 		st := secretTypeToPbType(secret.Type)
-		secrets = append(secrets, &pb.SecretMeta{Id: secret.ID, Name: secret.Name, Type: st})
+		secrets = append(secrets, &pb.SecretMeta{Id: secret.ID, Name: secret.Name, Type: st, Note: secret.Note})
 	}
 	response := pb.ListResponse{Secrets: secrets}
 	return &response, nil
@@ -169,6 +169,7 @@ func (s *KeeperServer) GetSecret(ctx context.Context, in *pb.SecretRequest) (*pb
 	response := pb.Secret{
 		Id:      secret.ID,
 		Name:    secret.Name,
+		Note:    secret.Note,
 		Type:    secretTypeToPbType(secret.Type),
 		Payload: secret.Payload,
 	}
@@ -194,6 +195,7 @@ func (s *KeeperServer) CreateSecret(ctx context.Context, in *pb.SecretCreateRequ
 		model.SecretCreateRequest{
 			UserID:  user.ID,
 			Name:    in.Name,
+			Note:    in.Note,
 			Type:    pbTypeToSecretType(in.Type),
 			Payload: in.Payload,
 		},
@@ -205,6 +207,7 @@ func (s *KeeperServer) CreateSecret(ctx context.Context, in *pb.SecretCreateRequ
 	response := pb.Secret{
 		Id:      secret.ID,
 		Name:    secret.Name,
+		Note:    secret.Note,
 		Type:    secretTypeToPbType(secret.Type),
 		Payload: secret.Payload,
 	}
@@ -231,6 +234,7 @@ func (s *KeeperServer) UpdateSecret(ctx context.Context, in *pb.SecretUpdateRequ
 			ID:      in.Id,
 			UserID:  user.ID,
 			Name:    in.Name,
+			Note:    in.Note,
 			Type:    pbTypeToSecretType(in.Type),
 			Payload: in.Payload,
 		},
@@ -242,6 +246,7 @@ func (s *KeeperServer) UpdateSecret(ctx context.Context, in *pb.SecretUpdateRequ
 	response := pb.Secret{
 		Id:      secret.ID,
 		Name:    secret.Name,
+		Note:    secret.Note,
 		Type:    secretTypeToPbType(secret.Type),
 		Payload: secret.Payload,
 	}

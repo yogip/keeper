@@ -43,7 +43,7 @@ const (
 )
 
 type ClientApp interface {
-	CreateSecret(secretType model.SecretType, name string, payload []byte) (*model.Secret, error)
+	CreateSecret(secretType model.SecretType, name string, note string, payload []byte) (*model.Secret, error)
 	ListSecrets(secretName string) (*model.SecretList, error)
 }
 

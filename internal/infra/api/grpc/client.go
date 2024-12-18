@@ -72,7 +72,7 @@ func (c *Client) ListSecrets(secretName string) (*model.SecretList, error) {
 	var resp model.SecretList
 	for _, s := range l.Secrets {
 		t := pbTypeToSecretType(s.Type)
-		resp.Secrets = append(resp.Secrets, &model.SecretMeta{ID: s.Id, Name: s.Name, Type: t})
+		resp.Secrets = append(resp.Secrets, &model.SecretMeta{ID: s.Id, Name: s.Name, Type: t, Note: s.Note})
 	}
 	return &resp, nil
 }
@@ -83,16 +83,17 @@ func (c *Client) GetSecret(metricID int64) (*model.Secret, error) {
 		return nil, fmt.Errorf("grpc - get secret (id: %d) error: %w", metricID, err)
 	}
 	t := pbTypeToSecretType(r.Type)
-	secret := model.NewSecret(r.Id, r.Name, t, r.Payload)
+	secret := model.NewSecret(r.Id, r.Name, t, r.Payload, r.Note)
 	return secret, nil
 }
 
-func (c *Client) CreateSecret(secretType model.SecretType, name string, payload []byte) (*model.Secret, error) {
+func (c *Client) CreateSecret(secretType model.SecretType, name string, note string, payload []byte) (*model.Secret, error) {
 	r, err := c.client.CreateSecret(
 		c.ctx,
 		&pb.SecretCreateRequest{
 			Type:    secretTypeToPbType(secretType),
 			Name:    name,
+			Note:    note,
 			Payload: payload,
 		},
 	)
@@ -100,17 +101,18 @@ func (c *Client) CreateSecret(secretType model.SecretType, name string, payload 
 		return nil, fmt.Errorf("grpc - create secret error: %w", err)
 	}
 	t := pbTypeToSecretType(r.Type)
-	secret := model.NewSecret(r.Id, r.Name, t, r.Payload)
+	secret := model.NewSecret(r.Id, r.Name, t, r.Payload, r.Note)
 	return secret, nil
 }
 
-func (c *Client) UpdateSecret(id int64, secretType model.SecretType, name string, payload []byte) (*model.Secret, error) {
+func (c *Client) UpdateSecret(id int64, secretType model.SecretType, name string, note string, payload []byte) (*model.Secret, error) {
 	r, err := c.client.UpdateSecret(
 		c.ctx,
 		&pb.SecretUpdateRequest{
 			Id:      id,
 			Type:    secretTypeToPbType(secretType),
 			Name:    name,
+			Note:    note,
 			Payload: payload,
 		},
 	)
@@ -118,6 +120,6 @@ func (c *Client) UpdateSecret(id int64, secretType model.SecretType, name string
 		return nil, fmt.Errorf("grpc - update secret error: %w", err)
 	}
 	t := pbTypeToSecretType(r.Type)
-	secret := model.NewSecret(r.Id, r.Name, t, r.Payload)
+	secret := model.NewSecret(r.Id, r.Name, t, r.Payload, r.Note)
 	return secret, nil
 }

@@ -99,7 +99,7 @@ func (m *CreatePwdView) createPwdCmd(name, login, password, note string) tea.Cmd
 			return NewErrorMsg(err, time.Second*10)
 		}
 
-		_, err = m.app.CreateSecret(model.SecretTypePassword, name, payload)
+		_, err = m.app.CreateSecret(model.SecretTypePassword, name, note, payload)
 		if err != nil {
 			log.Println("call grpc method CreateSecret error", err)
 			return NewErrorMsg(err, time.Second*10)

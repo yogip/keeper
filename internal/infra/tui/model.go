@@ -66,9 +66,9 @@ func (m Model) Init() tea.Cmd {
 func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	switch msg := msg.(type) {
 	case views.ScreenType:
-		m.changeViewer(msg)
+		return m, m.changeViewer(msg)
 	case views.LoginMsg:
-		m.changeViewer(views.ScreenSecretList)
+		return m, m.changeViewer(views.ScreenSecretList)
 	case views.ErrorMsg:
 		log.Println("Got error", msg.Error())
 		m.errors = append(m.errors, &msg)
@@ -116,7 +116,7 @@ func (m *Model) tickErrors() tea.Cmd {
 	return updatErrListCmd
 }
 
-func (m *Model) changeViewer(active views.ScreenType) {
+func (m *Model) changeViewer(active views.ScreenType) tea.Cmd {
 	log.Printf("Main View. Change Screent to %s from %s\n", string(active), string(m.screen))
 	m.screen = active
 	switch active {
@@ -129,7 +129,7 @@ func (m *Model) changeViewer(active views.ScreenType) {
 	// List View
 	case views.ScreenSecretList:
 		m.activeView = m.viewSecretList
-		m.viewSecretList.Init()
+		return m.viewSecretList.Init()
 	// New Secret (select secret type)
 	case views.ScreenNewSecret:
 		m.activeView = m.viewNewSecret
@@ -147,4 +147,5 @@ func (m *Model) changeViewer(active views.ScreenType) {
 	case views.ScreenNewFile:
 		m.activeView = m.viewNewFile
 	}
+	return nil
 }

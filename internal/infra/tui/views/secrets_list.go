@@ -102,7 +102,7 @@ func (m *SecretListView) searchSecrets(secretName string) tea.Cmd {
 			rows = append(rows, table.Row{fmt.Sprint(s.ID), s.Name, string(s.Type)})
 		}
 		m.table.SetRows(rows)
-		return nil
+		return ""
 	}
 }
 
@@ -113,7 +113,9 @@ func (m *SecretListView) Update(msg tea.Msg) tea.Cmd {
 
 		switch msg.String() {
 		case "n":
-			return changeScreenCmd(ScreenNewSecret)
+			if m.focusIndex != m.focusSearchInp {
+				return changeScreenCmd(ScreenNewSecret)
+			}
 		case "ctrl+c", "esc":
 			return tea.Quit
 		// Set focus to next input
