@@ -32,6 +32,7 @@ type Model struct {
 	viewLogin      *views.LoginView
 	viewSignUp     *views.SignUpView
 	viewSecretList *views.SecretListView
+	viewSecretView *views.SecretView
 	viewNewSecret  *views.CreateSecretView
 	viewNewPwd     *views.CreatePwdView
 	viewNewNote    *views.CreatePwdView
@@ -49,6 +50,7 @@ func InitModel(app Client) Model {
 		viewLogin:      l,
 		viewSignUp:     views.NewSignUpView(app),
 		viewSecretList: views.NewSecretList(app),
+		viewSecretView: views.NewSecretView(app),
 		viewNewSecret:  views.NewCreateSecretView(app),
 		viewNewPwd:     views.NewCreatePwdView(app),
 		viewNewNote:    views.NewCreatePwdView(app), // todo
@@ -64,11 +66,12 @@ func (m Model) Init() tea.Cmd {
 }
 
 func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
+	ms, ok := msg.(views.ScreenTypeMsg)
+	log.Println("Main Update", ms, ok, msg)
+
 	switch msg := msg.(type) {
-	case views.ScreenType:
+	case views.ScreenTypeMsg:
 		return m, m.changeViewer(msg)
-	case views.LoginMsg:
-		return m, m.changeViewer(views.ScreenSecretList)
 	case views.ErrorMsg:
 		log.Println("Got error", msg.Error())
 		m.errors = append(m.errors, &msg)
@@ -116,10 +119,10 @@ func (m *Model) tickErrors() tea.Cmd {
 	return updatErrListCmd
 }
 
-func (m *Model) changeViewer(active views.ScreenType) tea.Cmd {
-	log.Printf("Main View. Change Screent to %s from %s\n", string(active), string(m.screen))
-	m.screen = active
-	switch active {
+func (m *Model) changeViewer(msg views.ScreenTypeMsg) tea.Cmd {
+	log.Printf("Main View. Change Screent to %s from %s\n", string(msg.Screen), string(m.screen))
+	m.screen = msg.Screen
+	switch msg.Screen {
 	// Login
 	case views.ScreenLogin:
 		m.activeView = m.viewLogin
@@ -130,6 +133,9 @@ func (m *Model) changeViewer(active views.ScreenType) tea.Cmd {
 	case views.ScreenSecretList:
 		m.activeView = m.viewSecretList
 		return m.viewSecretList.Init()
+	case views.ScreenSecretView:
+		m.activeView = m.viewSecretView
+		return m.viewSecretView.Init(msg.SecretID)
 	// New Secret (select secret type)
 	case views.ScreenNewSecret:
 		m.activeView = m.viewNewSecret

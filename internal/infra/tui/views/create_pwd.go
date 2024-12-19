@@ -105,7 +105,7 @@ func (m *CreatePwdView) createPwdCmd(name, login, password, note string) tea.Cmd
 			return NewErrorMsg(err, time.Second*10)
 		}
 		log.Println("Succesfully create secret", name, login)
-		return changeScreenCmd(ScreenSecretList)
+		return changeScreenCmd(ScreenTypeMsg{Screen: ScreenSecretList})
 	}
 }
 
@@ -114,13 +114,13 @@ func (m *CreatePwdView) Update(msg tea.Msg) tea.Cmd {
 	case tea.KeyMsg:
 		switch msg.String() {
 		case "ctrl+c", "esc":
-			return tea.Quit
+			return changeScreenCmd(ScreenTypeMsg{Screen: ScreenNewSecret})
 		// Set focus to next input
 		case "tab", "shift+tab", "up", "down", "enter":
 			s := msg.String()
 
 			if s == "enter" && m.focusIndex == m.focusCancel {
-				return changeScreenCmd(ScreenSecretList)
+				return changeScreenCmd(ScreenTypeMsg{Screen: ScreenSecretList})
 			}
 			if s == "enter" && m.focusIndex == m.focusSubmit {
 				if m.nameInput.Value() == "" || m.pwdInput.Value() == "" {

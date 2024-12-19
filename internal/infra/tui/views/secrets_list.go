@@ -3,6 +3,7 @@ package views
 import (
 	"fmt"
 	"log"
+	"strconv"
 	"strings"
 	"time"
 
@@ -42,23 +43,9 @@ func NewSecretList(app ClientApp) *SecretListView {
 		{Title: "Type", Width: 10},
 	}
 
-	rows := []table.Row{
-		// {"1", "Name", "Password"},
-		// {"2", "Name 2", "Password"},
-		// {"3", "Name 24", "Password"},
-		// {"4", "Name 22", "Password"},
-		// {"6", "Name 21", "Password"},
-		// {"7", "Name 2e", "Password"},
-		// {"8", "Name 2", "Password"},
-		// {"9", "Namef2", "Password"},
-		// {"10", "Namef2", "Password"},
-		// {"11", "Namde2", "Password"},
-		// {"12", "Name12", "Password"},
-	}
-
 	t := table.New(
 		table.WithColumns(columns),
-		table.WithRows(rows),
+		table.WithRows([]table.Row{}),
 		table.WithHeight(10),
 	)
 
@@ -112,31 +99,32 @@ func (m *SecretListView) Update(msg tea.Msg) tea.Cmd {
 		log.Println("Update KeyMsg", msg.String())
 
 		switch msg.String() {
-		case "n":
-			if m.focusIndex != m.focusSearchInp {
-				return changeScreenCmd(ScreenNewSecret)
-			}
 		case "ctrl+c", "esc":
 			return tea.Quit
+		case "enter":
+			row := m.table.SelectedRow()
+			if m.focusIndex == m.focusTable && row != nil {
+				sid, err := strconv.ParseInt(row[0], 10, 64)
+				if err != nil {
+					return ErrorCmd(err, time.Second*10)
+				}
+				return changeScreenCmd(ScreenTypeMsg{Screen: ScreenSecretView, SecretID: sid})
+			}
 		// Set focus to next input
-		case "tab", "shift+tab", "up", "down", "enter":
+		case "tab", "shift+tab", "up", "down":
 			s := msg.String()
 
 			var skip bool
-			// If User taps up button while Table is active and Selected first column
-			// Then set focus to Input
-			if m.focusTable == m.focusIndex && (s == "shift+tab" || s == "up") && m.table.Cursor() == 0 {
-				m.focusIndex = m.focusSearchInp
+			// If User taps up button while Table is active and cursor > 0
+			// then skip focusIndex increment
+			if m.focusTable == m.focusIndex && (s == "shift+tab" || s == "up") && m.table.Cursor() > 0 {
 				skip = true
 			}
-			// If User taps down button while Table is active and Selected last column
-			// Then set focus to Input
-			if m.focusTable == m.focusIndex && (s == "tab" || s == "down") && m.table.Cursor() == len(m.table.Rows())-1 {
-				m.focusIndex = m.focusSearchInp
+			// If User taps down button while Table is active and cursor < len(rows)-1
+			// then skip focusIndex increment
+			if m.focusTable == m.focusIndex && (s == "tab" || s == "down") && m.table.Cursor() < len(m.table.Rows())-1 {
 				skip = true
 			}
-
-			// len(m.table.Rows())
 
 			// Cycle indexes
 			if !skip {
@@ -168,14 +156,18 @@ func (m *SecretListView) Update(msg tea.Msg) tea.Cmd {
 
 			if m.focusIndex == m.focusTable {
 				// Set focused state
+				log.Println("Table focused")
 				m.table.Focus()
+				m.table, cmd = m.table.Update(msg)
 			} else {
 				// Remove focused state
+				log.Println("Table blured")
 				m.table.Blur()
 			}
 
 			return cmd
 		default:
+			log.Println("deault msg msg", msg.String())
 			if m.focusIndex == m.focusSearchInp {
 				var cmd tea.Cmd
 				m.searchInput, cmd = m.searchInput.Update(msg)
@@ -183,25 +175,17 @@ func (m *SecretListView) Update(msg tea.Msg) tea.Cmd {
 					cmd,
 					m.searchSecrets(m.searchInput.Value()),
 				)
+			} else if msg.String() == "n" {
+				return changeScreenCmd(ScreenTypeMsg{Screen: ScreenNewSecret})
+
 			}
 		}
 	}
 
-	var cmd tea.Cmd
-	m.table, cmd = m.table.Update(msg)
-	return cmd
+	// var cmd tea.Cmd
+	// m.table, cmd = m.table.Update(msg)
+	return nil
 }
-
-// func (m *SecretListView) updateInputs(msg tea.Msg) tea.Cmd {
-// 	// Only text inputs with Focus() set will respond, so it's safe to simply
-// 	// update all of them here without any further logic.
-// 	cmds := make([]tea.Cmd, 2)
-
-// 	m.searchInput, cmds[0] = m.searchInput.Update(msg)
-// 	m.table, cmds[1] = m.table.Update(msg)
-
-// 	return tea.Batch(cmds...)
-// }
 
 func (m *SecretListView) View() string {
 	var b strings.Builder

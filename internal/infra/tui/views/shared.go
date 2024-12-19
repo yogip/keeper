@@ -31,10 +31,16 @@ var (
 
 type ScreenType string
 
+type ScreenTypeMsg struct {
+	Screen   ScreenType
+	SecretID int64
+}
+
 const (
 	ScreenLogin       ScreenType = "login"
 	ScreenSignUp      ScreenType = "signup"
 	ScreenSecretList  ScreenType = "secret-list"
+	ScreenSecretView  ScreenType = "secret-view"
 	ScreenNewSecret   ScreenType = "new-secret"
 	ScreenNewPassword ScreenType = "new-secret-pwd"
 	ScreenNewNote     ScreenType = "new-secret-note"
@@ -45,9 +51,10 @@ const (
 type ClientApp interface {
 	CreateSecret(secretType model.SecretType, name string, note string, payload []byte) (*model.Secret, error)
 	ListSecrets(secretName string) (*model.SecretList, error)
+	GetSecret(secretID int64) (*model.Secret, error)
 }
 
-func changeScreenCmd(screen ScreenType) tea.Cmd {
+func changeScreenCmd(screen ScreenTypeMsg) tea.Cmd {
 	log.Println("create changeScreenCmd. screen: ", screen)
 	return func() tea.Msg {
 		return screen

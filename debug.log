@@ -8075,3 +8075,720 @@ debug 2024/12/18 11:35:52 Update KeyMsg down
 debug 2024/12/18 11:35:52 Update KeyMsg down
 debug 2024/12/18 11:35:52 Update KeyMsg down
 debug 2024/12/18 11:35:52 Update KeyMsg down
+debug 2024/12/19 09:32:26 Init grpc client serverHost 127.0.0.1:8080
+debug 2024/12/19 09:32:34 Call Login method Login peter@test.ru
+debug 2024/12/19 09:32:35 Call SetToken method
+debug 2024/12/19 09:32:35 Main View. Change Screent to secret-list from login
+debug 2024/12/19 09:32:36 Update KeyMsg down
+debug 2024/12/19 09:32:36 Update KeyMsg down
+debug 2024/12/19 09:32:37 Update KeyMsg down
+debug 2024/12/19 09:32:41 Update KeyMsg down
+debug 2024/12/19 09:32:41 Update KeyMsg down
+debug 2024/12/19 09:32:41 Update KeyMsg down
+debug 2024/12/19 09:32:41 Update KeyMsg up
+debug 2024/12/19 09:32:42 Update KeyMsg up
+debug 2024/12/19 09:32:42 Update KeyMsg down
+debug 2024/12/19 09:32:43 Update KeyMsg down
+debug 2024/12/19 09:32:43 Update KeyMsg down
+debug 2024/12/19 09:32:43 Update KeyMsg down
+debug 2024/12/19 09:32:43 Update KeyMsg down
+debug 2024/12/19 09:32:43 Update KeyMsg down
+debug 2024/12/19 09:32:44 Update KeyMsg down
+debug 2024/12/19 09:32:44 Update KeyMsg down
+debug 2024/12/19 09:32:44 Update KeyMsg down
+debug 2024/12/19 09:33:14 Update KeyMsg down
+debug 2024/12/19 09:33:15 Update KeyMsg w
+debug 2024/12/19 09:33:16 Update KeyMsg backspace
+debug 2024/12/19 09:33:17 Update KeyMsg n
+debug 2024/12/19 09:33:19 Update KeyMsg n
+debug 2024/12/19 09:33:20 Update KeyMsg n
+debug 2024/12/19 09:33:20 Update KeyMsg n
+debug 2024/12/19 09:33:20 Update KeyMsg a
+debug 2024/12/19 09:33:21 Update KeyMsg backspace
+debug 2024/12/19 09:41:59 Update KeyMsg esc
+debug 2024/12/19 09:42:01 Init grpc client serverHost 127.0.0.1:8080
+debug 2024/12/19 09:42:11 Call Login method Login peter@test.ru
+debug 2024/12/19 09:42:11 Call SetToken method
+debug 2024/12/19 09:42:11 Main View. Change Screent to secret-list from login
+debug 2024/12/19 09:42:14 Update KeyMsg n
+debug 2024/12/19 09:42:14 Update KeyMsg backspace
+debug 2024/12/19 09:42:15 Update KeyMsg down
+debug 2024/12/19 09:42:15 Update KeyMsg down
+debug 2024/12/19 09:42:15 Update KeyMsg down
+debug 2024/12/19 09:42:16 Update KeyMsg down
+debug 2024/12/19 09:42:16 Update KeyMsg down
+debug 2024/12/19 09:42:16 Update KeyMsg down
+debug 2024/12/19 09:42:16 Update KeyMsg up
+debug 2024/12/19 09:42:17 Update KeyMsg n
+debug 2024/12/19 09:42:17 create changeScreenCmd. screen:  new-secret
+debug 2024/12/19 09:42:17 Main View. Change Screent to new-secret from secret-list
+debug 2024/12/19 09:44:16 Init grpc client serverHost 127.0.0.1:8080
+debug 2024/12/19 09:44:24 Call Login method Login peter@test.ru
+debug 2024/12/19 09:44:24 Call SetToken method
+debug 2024/12/19 09:44:24 Main View. Change Screent to secret-list from login
+debug 2024/12/19 09:44:26 Update KeyMsg n
+debug 2024/12/19 09:44:27 Update KeyMsg backspace
+debug 2024/12/19 09:44:28 Update KeyMsg down
+debug 2024/12/19 09:44:30 Update KeyMsg up
+debug 2024/12/19 09:44:31 Update KeyMsg down
+debug 2024/12/19 09:44:31 Update KeyMsg down
+debug 2024/12/19 09:44:32 Update KeyMsg up
+debug 2024/12/19 09:44:34 Update KeyMsg down
+debug 2024/12/19 09:44:35 Update KeyMsg down
+debug 2024/12/19 09:50:30 Update KeyMsg esc
+debug 2024/12/19 09:51:33 Init grpc client serverHost 127.0.0.1:8080
+debug 2024/12/19 09:51:41 Call Login method Login peter@test.ru
+debug 2024/12/19 09:51:41 Call SetToken method
+debug 2024/12/19 09:51:41 Main View. Change Screent to secret-list from login
+debug 2024/12/19 09:51:42 Update KeyMsg down
+debug 2024/12/19 09:51:42 Table focused
+debug 2024/12/19 09:52:00 Update KeyMsg down
+debug 2024/12/19 09:52:00 Table blured
+debug 2024/12/19 09:52:05 Update KeyMsg esc
+debug 2024/12/19 09:54:46 Init grpc client serverHost 127.0.0.1:8080
+debug 2024/12/19 09:54:52 Call Login method Login peter@test.ru
+debug 2024/12/19 09:54:52 Call SetToken method
+debug 2024/12/19 09:54:52 Main View. Change Screent to secret-list from login
+debug 2024/12/19 09:54:59 Update KeyMsg down
+debug 2024/12/19 09:54:59 skip false 0 3
+debug 2024/12/19 09:54:59 Table focused
+debug 2024/12/19 09:55:09 Update KeyMsg down
+debug 2024/12/19 09:55:09 skip false 0 3
+debug 2024/12/19 09:55:09 Table blured
+debug 2024/12/19 09:56:11 Update KeyMsg esc
+debug 2024/12/19 09:56:16 Init grpc client serverHost 127.0.0.1:8080
+debug 2024/12/19 09:56:23 Call Login method Login peter@test.ru
+debug 2024/12/19 09:56:24 Call SetToken method
+debug 2024/12/19 09:56:24 Main View. Change Screent to secret-list from login
+debug 2024/12/19 09:56:24 Update KeyMsg down
+debug 2024/12/19 09:56:24 skip false 0 3
+debug 2024/12/19 09:56:24 Table focused
+debug 2024/12/19 09:56:26 Update KeyMsg down
+debug 2024/12/19 09:56:26 skip true 0 3
+debug 2024/12/19 09:56:26 Table blured
+debug 2024/12/19 09:56:26 Update KeyMsg down
+debug 2024/12/19 09:56:26 skip false 0 3
+debug 2024/12/19 09:56:26 Table focused
+debug 2024/12/19 09:56:28 Update KeyMsg down
+debug 2024/12/19 09:56:28 skip true 0 3
+debug 2024/12/19 09:56:28 Table blured
+debug 2024/12/19 09:56:29 Update KeyMsg up
+debug 2024/12/19 09:56:29 skip false 0 3
+debug 2024/12/19 09:56:29 Table focused
+debug 2024/12/19 09:56:37 Update KeyMsg down
+debug 2024/12/19 09:56:37 skip true 0 3
+debug 2024/12/19 09:56:37 Table blured
+debug 2024/12/19 09:56:38 Update KeyMsg down
+debug 2024/12/19 09:56:38 skip false 0 3
+debug 2024/12/19 09:56:38 Table focused
+debug 2024/12/19 09:56:38 Update KeyMsg down
+debug 2024/12/19 09:56:38 skip true 0 3
+debug 2024/12/19 09:56:38 Table blured
+debug 2024/12/19 09:56:39 Update KeyMsg down
+debug 2024/12/19 09:56:39 skip false 0 3
+debug 2024/12/19 09:56:39 Table focused
+debug 2024/12/19 09:56:39 Update KeyMsg down
+debug 2024/12/19 09:56:39 skip true 0 3
+debug 2024/12/19 09:56:39 Table blured
+debug 2024/12/19 09:56:40 Update KeyMsg down
+debug 2024/12/19 09:56:40 skip false 0 3
+debug 2024/12/19 09:56:40 Table focused
+debug 2024/12/19 09:56:41 Update KeyMsg down
+debug 2024/12/19 09:56:41 skip true 0 3
+debug 2024/12/19 09:56:41 Table blured
+debug 2024/12/19 09:56:41 Update KeyMsg down
+debug 2024/12/19 09:56:41 skip false 0 3
+debug 2024/12/19 09:56:41 Table focused
+debug 2024/12/19 09:56:41 Update KeyMsg down
+debug 2024/12/19 09:56:41 skip true 0 3
+debug 2024/12/19 09:56:41 Table blured
+debug 2024/12/19 09:56:42 Update KeyMsg down
+debug 2024/12/19 09:56:42 skip false 0 3
+debug 2024/12/19 09:56:42 Table focused
+debug 2024/12/19 09:56:43 Update KeyMsg down
+debug 2024/12/19 09:56:43 skip true 0 3
+debug 2024/12/19 09:56:43 Table blured
+debug 2024/12/19 09:56:43 Update KeyMsg down
+debug 2024/12/19 09:56:43 skip false 0 3
+debug 2024/12/19 09:56:43 Table focused
+debug 2024/12/19 09:56:43 Update KeyMsg down
+debug 2024/12/19 09:56:43 skip true 0 3
+debug 2024/12/19 09:56:43 Table blured
+debug 2024/12/19 09:56:44 Update KeyMsg down
+debug 2024/12/19 09:56:44 skip false 0 3
+debug 2024/12/19 09:56:44 Table focused
+debug 2024/12/19 09:56:44 Update KeyMsg down
+debug 2024/12/19 09:56:44 skip true 0 3
+debug 2024/12/19 09:56:44 Table blured
+debug 2024/12/19 09:56:45 Update KeyMsg down
+debug 2024/12/19 09:56:45 skip false 0 3
+debug 2024/12/19 09:56:45 Table focused
+debug 2024/12/19 09:56:45 Update KeyMsg down
+debug 2024/12/19 09:56:45 skip true 0 3
+debug 2024/12/19 09:56:45 Table blured
+debug 2024/12/19 09:56:45 Update KeyMsg down
+debug 2024/12/19 09:56:45 skip false 0 3
+debug 2024/12/19 09:56:45 Table focused
+debug 2024/12/19 09:56:46 Update KeyMsg down
+debug 2024/12/19 09:56:46 skip true 0 3
+debug 2024/12/19 09:56:46 Table blured
+debug 2024/12/19 09:56:46 Update KeyMsg down
+debug 2024/12/19 09:56:46 skip false 0 3
+debug 2024/12/19 09:56:46 Table focused
+debug 2024/12/19 09:56:46 Update KeyMsg down
+debug 2024/12/19 09:56:46 skip true 0 3
+debug 2024/12/19 09:56:46 Table blured
+debug 2024/12/19 09:56:46 Update KeyMsg down
+debug 2024/12/19 09:56:46 skip false 0 3
+debug 2024/12/19 09:56:46 Table focused
+debug 2024/12/19 10:03:43 Update KeyMsg esc
+debug 2024/12/19 10:03:45 Init grpc client serverHost 127.0.0.1:8080
+debug 2024/12/19 10:03:54 Call Login method Login peter@test.ru
+debug 2024/12/19 10:03:54 Call SetToken method
+debug 2024/12/19 10:03:54 Main View. Change Screent to secret-list from login
+debug 2024/12/19 10:04:01 Update KeyMsg down
+debug 2024/12/19 10:04:01 down skip false 0 ==0 true ==len false
+debug 2024/12/19 10:04:01 Table focused
+debug 2024/12/19 10:04:07 Update KeyMsg down
+debug 2024/12/19 10:04:07 down skip false 0 ==0 true ==len false
+debug 2024/12/19 10:04:07 Table blured
+debug 2024/12/19 10:05:28 Update KeyMsg esc
+debug 2024/12/19 10:05:29 Init grpc client serverHost 127.0.0.1:8080
+debug 2024/12/19 10:05:36 Call Login method Login peter@test.ru
+debug 2024/12/19 10:05:36 Call SetToken method
+debug 2024/12/19 10:05:36 Main View. Change Screent to secret-list from login
+debug 2024/12/19 10:05:37 Update KeyMsg down
+debug 2024/12/19 10:05:37 down skip false 0 ==0 true ==len false
+debug 2024/12/19 10:05:37 Table focused
+debug 2024/12/19 10:05:42 Update KeyMsg down
+debug 2024/12/19 10:05:42 down skip true 0 ==0 true ==len false
+debug 2024/12/19 10:05:42 Table focused
+debug 2024/12/19 10:05:53 Update KeyMsg down
+debug 2024/12/19 10:05:53 down skip true 0 ==0 true ==len false
+debug 2024/12/19 10:05:53 Table focused
+debug 2024/12/19 10:05:58 Update KeyMsg down
+debug 2024/12/19 10:05:58 down skip true 0 ==0 true ==len false
+debug 2024/12/19 10:05:58 Table focused
+debug 2024/12/19 10:05:59 Update KeyMsg down
+debug 2024/12/19 10:05:59 down skip true 0 ==0 true ==len false
+debug 2024/12/19 10:05:59 Table focused
+debug 2024/12/19 10:05:59 Update KeyMsg down
+debug 2024/12/19 10:05:59 down skip true 0 ==0 true ==len false
+debug 2024/12/19 10:05:59 Table focused
+debug 2024/12/19 10:05:59 Update KeyMsg down
+debug 2024/12/19 10:05:59 down skip true 0 ==0 true ==len false
+debug 2024/12/19 10:05:59 Table focused
+debug 2024/12/19 10:06:00 Update KeyMsg down
+debug 2024/12/19 10:06:00 down skip true 0 ==0 true ==len false
+debug 2024/12/19 10:06:00 Table focused
+debug 2024/12/19 10:06:00 Update KeyMsg down
+debug 2024/12/19 10:06:00 down skip true 0 ==0 true ==len false
+debug 2024/12/19 10:06:00 Table focused
+debug 2024/12/19 10:06:00 Update KeyMsg down
+debug 2024/12/19 10:06:00 down skip true 0 ==0 true ==len false
+debug 2024/12/19 10:06:00 Table focused
+debug 2024/12/19 10:06:00 Update KeyMsg down
+debug 2024/12/19 10:06:00 down skip true 0 ==0 true ==len false
+debug 2024/12/19 10:06:00 Table focused
+debug 2024/12/19 10:06:00 Update KeyMsg down
+debug 2024/12/19 10:06:00 down skip true 0 ==0 true ==len false
+debug 2024/12/19 10:06:00 Table focused
+debug 2024/12/19 10:06:01 Update KeyMsg down
+debug 2024/12/19 10:06:01 down skip true 0 ==0 true ==len false
+debug 2024/12/19 10:06:01 Table focused
+debug 2024/12/19 10:06:01 Update KeyMsg down
+debug 2024/12/19 10:06:01 down skip true 0 ==0 true ==len false
+debug 2024/12/19 10:06:01 Table focused
+debug 2024/12/19 10:06:01 Update KeyMsg down
+debug 2024/12/19 10:06:01 down skip true 0 ==0 true ==len false
+debug 2024/12/19 10:06:01 Table focused
+debug 2024/12/19 10:06:01 Update KeyMsg down
+debug 2024/12/19 10:06:01 down skip true 0 ==0 true ==len false
+debug 2024/12/19 10:06:01 Table focused
+debug 2024/12/19 10:06:02 Update KeyMsg down
+debug 2024/12/19 10:06:02 down skip true 0 ==0 true ==len false
+debug 2024/12/19 10:06:02 Table focused
+debug 2024/12/19 10:06:02 Update KeyMsg down
+debug 2024/12/19 10:06:02 down skip true 0 ==0 true ==len false
+debug 2024/12/19 10:06:02 Table focused
+debug 2024/12/19 10:06:02 Update KeyMsg down
+debug 2024/12/19 10:06:02 down skip true 0 ==0 true ==len false
+debug 2024/12/19 10:06:02 Table focused
+debug 2024/12/19 10:06:02 Update KeyMsg down
+debug 2024/12/19 10:06:02 down skip true 0 ==0 true ==len false
+debug 2024/12/19 10:06:02 Table focused
+debug 2024/12/19 10:06:02 Update KeyMsg down
+debug 2024/12/19 10:06:02 down skip true 0 ==0 true ==len false
+debug 2024/12/19 10:06:02 Table focused
+debug 2024/12/19 10:06:02 Update KeyMsg down
+debug 2024/12/19 10:06:02 down skip true 0 ==0 true ==len false
+debug 2024/12/19 10:06:02 Table focused
+debug 2024/12/19 10:06:03 Update KeyMsg down
+debug 2024/12/19 10:06:03 down skip true 0 ==0 true ==len false
+debug 2024/12/19 10:06:03 Table focused
+debug 2024/12/19 10:06:03 Update KeyMsg down
+debug 2024/12/19 10:06:03 down skip true 0 ==0 true ==len false
+debug 2024/12/19 10:06:03 Table focused
+debug 2024/12/19 10:06:03 Update KeyMsg down
+debug 2024/12/19 10:06:03 down skip true 0 ==0 true ==len false
+debug 2024/12/19 10:06:03 Table focused
+debug 2024/12/19 10:06:03 Update KeyMsg down
+debug 2024/12/19 10:06:03 down skip true 0 ==0 true ==len false
+debug 2024/12/19 10:06:03 Table focused
+debug 2024/12/19 10:06:03 Update KeyMsg down
+debug 2024/12/19 10:06:03 down skip true 0 ==0 true ==len false
+debug 2024/12/19 10:06:03 Table focused
+debug 2024/12/19 10:06:04 Update KeyMsg down
+debug 2024/12/19 10:06:04 down skip true 0 ==0 true ==len false
+debug 2024/12/19 10:06:04 Table focused
+debug 2024/12/19 10:06:12 Update KeyMsg down
+debug 2024/12/19 10:06:12 down skip true 0 ==0 true ==len false
+debug 2024/12/19 10:06:12 Table focused
+debug 2024/12/19 10:06:12 Update KeyMsg down
+debug 2024/12/19 10:06:12 down skip true 0 ==0 true ==len false
+debug 2024/12/19 10:06:12 Table focused
+debug 2024/12/19 10:06:13 Update KeyMsg down
+debug 2024/12/19 10:06:13 down skip true 0 ==0 true ==len false
+debug 2024/12/19 10:06:13 Table focused
+debug 2024/12/19 10:06:13 Update KeyMsg down
+debug 2024/12/19 10:06:13 down skip true 0 ==0 true ==len false
+debug 2024/12/19 10:06:13 Table focused
+debug 2024/12/19 10:06:13 Update KeyMsg down
+debug 2024/12/19 10:06:13 down skip true 0 ==0 true ==len false
+debug 2024/12/19 10:06:13 Table focused
+debug 2024/12/19 10:06:13 Update KeyMsg down
+debug 2024/12/19 10:06:13 down skip true 0 ==0 true ==len false
+debug 2024/12/19 10:06:13 Table focused
+debug 2024/12/19 10:06:14 Update KeyMsg down
+debug 2024/12/19 10:06:14 down skip true 0 ==0 true ==len false
+debug 2024/12/19 10:06:14 Table focused
+debug 2024/12/19 10:06:14 Update KeyMsg down
+debug 2024/12/19 10:06:14 down skip true 0 ==0 true ==len false
+debug 2024/12/19 10:06:14 Table focused
+debug 2024/12/19 10:06:14 Update KeyMsg down
+debug 2024/12/19 10:06:14 down skip true 0 ==0 true ==len false
+debug 2024/12/19 10:06:14 Table focused
+debug 2024/12/19 10:06:14 Update KeyMsg down
+debug 2024/12/19 10:06:14 down skip true 0 ==0 true ==len false
+debug 2024/12/19 10:06:14 Table focused
+debug 2024/12/19 10:06:14 Update KeyMsg down
+debug 2024/12/19 10:06:14 down skip true 0 ==0 true ==len false
+debug 2024/12/19 10:06:14 Table focused
+debug 2024/12/19 10:06:15 Update KeyMsg down
+debug 2024/12/19 10:06:15 down skip true 0 ==0 true ==len false
+debug 2024/12/19 10:06:15 Table focused
+debug 2024/12/19 10:06:15 Update KeyMsg down
+debug 2024/12/19 10:06:15 down skip true 0 ==0 true ==len false
+debug 2024/12/19 10:06:15 Table focused
+debug 2024/12/19 10:06:15 Update KeyMsg down
+debug 2024/12/19 10:06:15 down skip true 0 ==0 true ==len false
+debug 2024/12/19 10:06:15 Table focused
+debug 2024/12/19 10:06:20 Update KeyMsg up
+debug 2024/12/19 10:06:20 up skip false 0 ==0 true ==len false
+debug 2024/12/19 10:06:20 Table blured
+debug 2024/12/19 10:06:22 Update KeyMsg down
+debug 2024/12/19 10:06:22 down skip false 0 ==0 true ==len false
+debug 2024/12/19 10:06:22 Table focused
+debug 2024/12/19 10:06:23 Update KeyMsg up
+debug 2024/12/19 10:06:23 up skip false 0 ==0 true ==len false
+debug 2024/12/19 10:06:23 Table blured
+debug 2024/12/19 10:06:23 Update KeyMsg down
+debug 2024/12/19 10:06:23 down skip false 0 ==0 true ==len false
+debug 2024/12/19 10:06:23 Table focused
+debug 2024/12/19 10:06:24 Update KeyMsg esc
+debug 2024/12/19 10:08:08 Init grpc client serverHost 127.0.0.1:8080
+debug 2024/12/19 10:08:15 Call Login method Login peter@test.ru
+debug 2024/12/19 10:08:15 Call SetToken method
+debug 2024/12/19 10:08:15 Main View. Change Screent to secret-list from login
+debug 2024/12/19 10:08:16 Update KeyMsg down
+debug 2024/12/19 10:08:16 down skip false 0 ==0 true ==len false
+debug 2024/12/19 10:08:16 Table focused
+debug 2024/12/19 10:08:17 Update KeyMsg down
+debug 2024/12/19 10:08:17 down skip true 1 ==0 false ==len false
+debug 2024/12/19 10:08:17 Table focused
+debug 2024/12/19 10:08:17 Update KeyMsg down
+debug 2024/12/19 10:08:17 down skip true 2 ==0 false ==len false
+debug 2024/12/19 10:08:17 Table focused
+debug 2024/12/19 10:08:17 Update KeyMsg down
+debug 2024/12/19 10:08:17 down skip false 3 ==0 false ==len true
+debug 2024/12/19 10:08:17 Table blured
+debug 2024/12/19 10:08:18 Update KeyMsg down
+debug 2024/12/19 10:08:18 down skip false 3 ==0 false ==len true
+debug 2024/12/19 10:08:18 Table focused
+debug 2024/12/19 10:08:19 Update KeyMsg down
+debug 2024/12/19 10:08:19 down skip false 3 ==0 false ==len true
+debug 2024/12/19 10:08:19 Table blured
+debug 2024/12/19 10:08:21 Update KeyMsg up
+debug 2024/12/19 10:08:21 up skip false 3 ==0 false ==len true
+debug 2024/12/19 10:08:21 Table focused
+debug 2024/12/19 10:08:21 Update KeyMsg up
+debug 2024/12/19 10:08:21 up skip true 2 ==0 false ==len false
+debug 2024/12/19 10:08:21 Table focused
+debug 2024/12/19 10:08:21 Update KeyMsg up
+debug 2024/12/19 10:08:21 up skip true 1 ==0 false ==len false
+debug 2024/12/19 10:08:21 Table focused
+debug 2024/12/19 10:08:22 Update KeyMsg up
+debug 2024/12/19 10:08:22 up skip false 0 ==0 true ==len false
+debug 2024/12/19 10:08:22 Table blured
+debug 2024/12/19 10:08:23 Update KeyMsg down
+debug 2024/12/19 10:08:23 down skip false 0 ==0 true ==len false
+debug 2024/12/19 10:08:23 Table focused
+debug 2024/12/19 10:08:23 Update KeyMsg down
+debug 2024/12/19 10:08:23 down skip true 1 ==0 false ==len false
+debug 2024/12/19 10:08:23 Table focused
+debug 2024/12/19 10:08:23 Update KeyMsg down
+debug 2024/12/19 10:08:23 down skip true 2 ==0 false ==len false
+debug 2024/12/19 10:08:23 Table focused
+debug 2024/12/19 10:08:23 Update KeyMsg down
+debug 2024/12/19 10:08:23 down skip false 3 ==0 false ==len true
+debug 2024/12/19 10:08:23 Table blured
+debug 2024/12/19 10:08:24 Update KeyMsg down
+debug 2024/12/19 10:08:24 down skip false 3 ==0 false ==len true
+debug 2024/12/19 10:08:24 Table focused
+debug 2024/12/19 10:08:24 Update KeyMsg up
+debug 2024/12/19 10:08:24 up skip true 3 ==0 false ==len true
+debug 2024/12/19 10:08:24 Table focused
+debug 2024/12/19 10:08:24 Update KeyMsg up
+debug 2024/12/19 10:08:24 up skip true 2 ==0 false ==len false
+debug 2024/12/19 10:08:24 Table focused
+debug 2024/12/19 10:08:25 Update KeyMsg up
+debug 2024/12/19 10:08:25 up skip true 1 ==0 false ==len false
+debug 2024/12/19 10:08:25 Table focused
+debug 2024/12/19 10:08:25 Update KeyMsg up
+debug 2024/12/19 10:08:25 up skip false 0 ==0 true ==len false
+debug 2024/12/19 10:08:25 Table blured
+debug 2024/12/19 10:08:27 Update KeyMsg n
+debug 2024/12/19 10:08:27 deault msg msg n
+debug 2024/12/19 10:08:28 Update KeyMsg backspace
+debug 2024/12/19 10:08:28 deault msg msg backspace
+debug 2024/12/19 10:08:32 Update KeyMsg N
+debug 2024/12/19 10:08:32 deault msg msg N
+debug 2024/12/19 10:08:34 Update KeyMsg backspace
+debug 2024/12/19 10:08:34 deault msg msg backspace
+debug 2024/12/19 10:08:36 Update KeyMsg N
+debug 2024/12/19 10:08:36 deault msg msg N
+debug 2024/12/19 10:08:36 Update KeyMsg down
+debug 2024/12/19 10:08:36 down skip false 0 ==0 true ==len false
+debug 2024/12/19 10:08:36 Table focused
+debug 2024/12/19 10:08:37 Update KeyMsg down
+debug 2024/12/19 10:08:37 down skip false 1 ==0 false ==len true
+debug 2024/12/19 10:08:37 Table blured
+debug 2024/12/19 10:08:38 Update KeyMsg up
+debug 2024/12/19 10:08:38 up skip false 1 ==0 false ==len true
+debug 2024/12/19 10:08:38 Table focused
+debug 2024/12/19 10:08:38 Update KeyMsg up
+debug 2024/12/19 10:08:38 up skip false 0 ==0 true ==len false
+debug 2024/12/19 10:08:38 Table blured
+debug 2024/12/19 10:08:39 Update KeyMsg backspace
+debug 2024/12/19 10:08:39 deault msg msg backspace
+debug 2024/12/19 10:14:24 Update KeyMsg j
+debug 2024/12/19 10:14:24 deault msg msg j
+debug 2024/12/19 10:14:25 Update KeyMsg j
+debug 2024/12/19 10:14:25 deault msg msg j
+debug 2024/12/19 10:14:26 Update KeyMsg backspace
+debug 2024/12/19 10:14:26 deault msg msg backspace
+debug 2024/12/19 10:14:26 Update KeyMsg backspace
+debug 2024/12/19 10:14:26 deault msg msg backspace
+debug 2024/12/19 10:14:26 Update KeyMsg backspace
+debug 2024/12/19 10:14:26 deault msg msg backspace
+debug 2024/12/19 10:14:26 Update KeyMsg down
+debug 2024/12/19 10:14:26 down skip false 0 ==0 true ==len false
+debug 2024/12/19 10:14:26 Table focused
+debug 2024/12/19 10:14:27 Update KeyMsg j
+debug 2024/12/19 10:14:27 deault msg msg j
+debug 2024/12/19 10:14:28 Update KeyMsg j
+debug 2024/12/19 10:14:28 deault msg msg j
+debug 2024/12/19 10:14:28 Update KeyMsg j
+debug 2024/12/19 10:14:28 deault msg msg j
+debug 2024/12/19 10:14:28 Update KeyMsg j
+debug 2024/12/19 10:14:28 deault msg msg j
+debug 2024/12/19 10:14:33 Update KeyMsg k
+debug 2024/12/19 10:14:33 deault msg msg k
+debug 2024/12/19 10:14:33 Update KeyMsg k
+debug 2024/12/19 10:14:33 deault msg msg k
+debug 2024/12/19 10:14:33 Update KeyMsg k
+debug 2024/12/19 10:14:33 deault msg msg k
+debug 2024/12/19 10:14:34 Update KeyMsg k
+debug 2024/12/19 10:14:34 deault msg msg k
+debug 2024/12/19 10:14:35 Update KeyMsg j
+debug 2024/12/19 10:14:35 deault msg msg j
+debug 2024/12/19 10:14:35 Update KeyMsg k
+debug 2024/12/19 10:14:35 deault msg msg k
+debug 2024/12/19 10:14:36 Update KeyMsg j
+debug 2024/12/19 10:14:36 deault msg msg j
+debug 2024/12/19 10:14:36 Update KeyMsg k
+debug 2024/12/19 10:14:36 deault msg msg k
+debug 2024/12/19 10:14:36 Update KeyMsg j
+debug 2024/12/19 10:14:36 deault msg msg j
+debug 2024/12/19 10:14:36 Update KeyMsg k
+debug 2024/12/19 10:14:36 deault msg msg k
+debug 2024/12/19 10:14:36 Update KeyMsg j
+debug 2024/12/19 10:14:36 deault msg msg j
+debug 2024/12/19 10:14:36 Update KeyMsg k
+debug 2024/12/19 10:14:36 deault msg msg k
+debug 2024/12/19 10:14:36 Update KeyMsg k
+debug 2024/12/19 10:14:36 deault msg msg k
+debug 2024/12/19 10:14:37 Update KeyMsg k
+debug 2024/12/19 10:14:37 deault msg msg k
+debug 2024/12/19 10:20:09 Update KeyMsg down
+debug 2024/12/19 10:20:09 down skip true 0 ==0 true ==len false
+debug 2024/12/19 10:20:09 Table focused
+debug 2024/12/19 10:20:10 Update KeyMsg esc
+debug 2024/12/19 10:20:11 Init grpc client serverHost 127.0.0.1:8080
+debug 2024/12/19 10:20:17 Call Login method Login peter@test.ru
+debug 2024/12/19 10:20:17 Call SetToken method
+debug 2024/12/19 10:20:17 Main View. Change Screent to secret-list from login
+debug 2024/12/19 10:20:20 Update KeyMsg down
+debug 2024/12/19 10:20:20 Table focused
+debug 2024/12/19 10:20:22 Update KeyMsg enter
+debug 2024/12/19 10:20:22 Selected row 2 [2 Name password]
+debug 2024/12/19 10:57:54 Update KeyMsg esc
+debug 2024/12/19 10:58:10 Init grpc client serverHost 127.0.0.1:8080
+debug 2024/12/19 11:03:20 Call Login method Login peter@test.ru
+debug 2024/12/19 11:03:20 Call SetToken method
+debug 2024/12/19 11:03:20 Main View. Change Screent to secret-list from login
+debug 2024/12/19 11:03:21 Update KeyMsg down
+debug 2024/12/19 11:03:21 Table focused
+debug 2024/12/19 11:03:23 Update KeyMsg down
+debug 2024/12/19 11:03:23 Table focused
+debug 2024/12/19 11:03:23 Update KeyMsg down
+debug 2024/12/19 11:03:23 Table focused
+debug 2024/12/19 11:03:24 Update KeyMsg up
+debug 2024/12/19 11:03:24 Table focused
+debug 2024/12/19 11:03:54 Update KeyMsg enter
+debug 2024/12/19 11:03:54 Selected row 4 [4 new pwd 1 password]
+debug 2024/12/19 11:03:58 Update KeyMsg esc
+debug 2024/12/19 11:24:06 Init grpc client serverHost 127.0.0.1:8080
+debug 2024/12/19 11:24:12 Call Login method Login peter@test.ru
+debug 2024/12/19 11:24:12 Call SetToken method
+debug 2024/12/19 11:24:12 create changeScreenCmd. screen:  {login 0}
+debug 2024/12/19 11:24:54 Init grpc client serverHost 127.0.0.1:8080
+debug 2024/12/19 11:25:01 Call Login method Login peter@test.ru
+debug 2024/12/19 11:25:01 Call SetToken method
+debug 2024/12/19 11:25:01 create changeScreenCmd. screen:  {secret-list 0}
+debug 2024/12/19 11:26:41 Init grpc client serverHost 127.0.0.1:8080
+debug 2024/12/19 11:26:41 Main Update {}
+debug 2024/12/19 11:26:41 Main Update {88 14}
+debug 2024/12/19 11:26:42 Main Update {0 2}
+debug 2024/12/19 11:26:42 Main Update {0 3}
+debug 2024/12/19 11:26:43 Main Update {0 4}
+debug 2024/12/19 11:26:43 Main Update {0 5}
+debug 2024/12/19 11:26:44 Main Update {0 6}
+debug 2024/12/19 11:26:44 Main Update {0 7}
+debug 2024/12/19 11:26:44 Main Update p
+debug 2024/12/19 11:26:44 Main Update {}
+debug 2024/12/19 11:26:45 Main Update {0 9}
+debug 2024/12/19 11:26:46 Main Update {0 10}
+debug 2024/12/19 11:26:46 Main Update {0 11}
+debug 2024/12/19 11:26:47 Main Update {0 12}
+debug 2024/12/19 11:26:47 Main Update {0 13}
+debug 2024/12/19 11:26:48 Main Update {0 14}
+debug 2024/12/19 11:26:48 Main Update e
+debug 2024/12/19 11:26:48 Main Update {}
+debug 2024/12/19 11:26:48 Main Update t
+debug 2024/12/19 11:26:48 Main Update {}
+debug 2024/12/19 11:26:48 Main Update e
+debug 2024/12/19 11:26:48 Main Update {}
+debug 2024/12/19 11:26:48 Main Update r
+debug 2024/12/19 11:26:48 Main Update {}
+debug 2024/12/19 11:26:49 Main Update @
+debug 2024/12/19 11:26:49 Main Update {}
+debug 2024/12/19 11:26:49 Main Update {0 20}
+debug 2024/12/19 11:26:49 Main Update t
+debug 2024/12/19 11:26:49 Main Update {}
+debug 2024/12/19 11:26:49 Main Update e
+debug 2024/12/19 11:26:49 Main Update {}
+debug 2024/12/19 11:26:50 Main Update s
+debug 2024/12/19 11:26:50 Main Update {}
+debug 2024/12/19 11:26:50 Main Update t
+debug 2024/12/19 11:26:50 Main Update {}
+debug 2024/12/19 11:26:50 Main Update {0 25}
+debug 2024/12/19 11:26:50 Main Update .
+debug 2024/12/19 11:26:50 Main Update {}
+debug 2024/12/19 11:26:51 Main Update r
+debug 2024/12/19 11:26:51 Main Update {}
+debug 2024/12/19 11:26:51 Main Update u
+debug 2024/12/19 11:26:51 Main Update {}
+debug 2024/12/19 11:26:51 Main Update tab
+debug 2024/12/19 11:26:51 Main Update {0 29}
+debug 2024/12/19 11:26:51 Main Update 1
+debug 2024/12/19 11:26:51 Main Update {}
+debug 2024/12/19 11:26:51 Main Update 2
+debug 2024/12/19 11:26:51 Main Update {}
+debug 2024/12/19 11:26:52 Main Update 3
+debug 2024/12/19 11:26:52 Main Update {}
+debug 2024/12/19 11:26:52 Main Update enter
+debug 2024/12/19 11:26:52 Main Update {0 4}
+debug 2024/12/19 11:26:53 Main Update enter
+debug 2024/12/19 11:26:53 Call Login method Login peter@test.ru
+debug 2024/12/19 11:26:53 Call SetToken method
+debug 2024/12/19 11:26:53 create changeScreenCmd. screen:  {secret-list 0}
+debug 2024/12/19 11:26:53 Main Update 0x9fa9c0
+debug 2024/12/19 11:26:55 Main Update enter
+debug 2024/12/19 11:26:55 Call Login method Login peter@test.ru
+debug 2024/12/19 11:26:55 Call SetToken method
+debug 2024/12/19 11:26:55 create changeScreenCmd. screen:  {secret-list 0}
+debug 2024/12/19 11:26:55 Main Update 0x9fa9c0
+debug 2024/12/19 11:27:25 Main Update esc
+debug 2024/12/19 11:31:43 Init grpc client serverHost 127.0.0.1:8080
+debug 2024/12/19 11:31:43 Main Update { 0} false
+debug 2024/12/19 11:31:43 Main Update { 0} false
+debug 2024/12/19 11:31:43 Main Update { 0} false
+debug 2024/12/19 11:31:44 Main Update { 0} false
+debug 2024/12/19 11:31:44 Main Update { 0} false
+debug 2024/12/19 11:31:44 Main Update { 0} false
+debug 2024/12/19 11:31:44 Main Update { 0} false
+debug 2024/12/19 11:31:44 Main Update { 0} false
+debug 2024/12/19 11:31:44 Main Update { 0} false
+debug 2024/12/19 11:31:45 Main Update { 0} false
+debug 2024/12/19 11:31:45 Main Update { 0} false
+debug 2024/12/19 11:31:45 Main Update { 0} false
+debug 2024/12/19 11:31:46 Main Update { 0} false
+debug 2024/12/19 11:31:46 Main Update { 0} false
+debug 2024/12/19 11:31:47 Main Update { 0} false
+debug 2024/12/19 11:31:47 Main Update { 0} false
+debug 2024/12/19 11:31:47 Main Update { 0} false
+debug 2024/12/19 11:31:47 Main Update { 0} false
+debug 2024/12/19 11:31:47 Main Update { 0} false
+debug 2024/12/19 11:31:48 Main Update { 0} false
+debug 2024/12/19 11:31:48 Main Update { 0} false
+debug 2024/12/19 11:31:48 Main Update { 0} false
+debug 2024/12/19 11:31:48 Main Update { 0} false
+debug 2024/12/19 11:31:49 Main Update { 0} false
+debug 2024/12/19 11:31:49 Main Update { 0} false
+debug 2024/12/19 11:31:49 Main Update { 0} false
+debug 2024/12/19 11:31:49 Main Update { 0} false
+debug 2024/12/19 11:31:49 Main Update { 0} false
+debug 2024/12/19 11:31:49 Main Update { 0} false
+debug 2024/12/19 11:31:49 Main Update { 0} false
+debug 2024/12/19 11:31:50 Main Update { 0} false
+debug 2024/12/19 11:31:50 Main Update { 0} false
+debug 2024/12/19 11:31:50 Main Update { 0} false
+debug 2024/12/19 11:31:50 Main Update { 0} false
+debug 2024/12/19 11:31:50 Main Update { 0} false
+debug 2024/12/19 11:31:50 Main Update { 0} false
+debug 2024/12/19 11:31:50 Main Update { 0} false
+debug 2024/12/19 11:31:51 Main Update { 0} false
+debug 2024/12/19 11:31:51 Main Update { 0} false
+debug 2024/12/19 11:31:51 Main Update { 0} false
+debug 2024/12/19 11:31:51 Main Update { 0} false
+debug 2024/12/19 11:31:51 Main Update { 0} false
+debug 2024/12/19 11:31:51 Main Update { 0} false
+debug 2024/12/19 11:31:51 Main Update { 0} false
+debug 2024/12/19 11:31:52 Main Update { 0} false
+debug 2024/12/19 11:31:52 Main Update { 0} false
+debug 2024/12/19 11:31:52 Main Update { 0} false
+debug 2024/12/19 11:31:52 Main Update { 0} false
+debug 2024/12/19 11:31:52 Main Update { 0} false
+debug 2024/12/19 11:31:53 Main Update { 0} false
+debug 2024/12/19 11:31:53 Main Update { 0} false
+debug 2024/12/19 11:31:53 Main Update { 0} false
+debug 2024/12/19 11:31:53 Main Update { 0} false
+debug 2024/12/19 11:31:53 Main Update { 0} false
+debug 2024/12/19 11:31:53 Main Update { 0} false
+debug 2024/12/19 11:31:53 Main Update { 0} false
+debug 2024/12/19 11:31:54 Main Update { 0} false
+debug 2024/12/19 11:31:54 Main Update { 0} false
+debug 2024/12/19 11:31:54 Main Update { 0} false
+debug 2024/12/19 11:31:56 Main Update { 0} false
+debug 2024/12/19 11:31:56 Call Login method Login peter@test.ru
+debug 2024/12/19 11:31:56 Call SetToken method
+debug 2024/12/19 11:31:56 create changeScreenCmd. screen:  {secret-list 0}
+debug 2024/12/19 11:31:56 Main Update { 0} false
+debug 2024/12/19 11:32:13 Main Update { 0} false
+debug 2024/12/19 11:32:15 Init grpc client serverHost 127.0.0.1:8080
+debug 2024/12/19 11:32:15 Main Update { 0} false
+debug 2024/12/19 11:32:15 Main Update { 0} false
+debug 2024/12/19 11:32:16 Main Update { 0} false
+debug 2024/12/19 11:32:16 Main Update { 0} false
+debug 2024/12/19 11:32:17 Main Update { 0} false
+debug 2024/12/19 11:32:17 Main Update { 0} false
+debug 2024/12/19 11:32:17 Main Update { 0} false
+debug 2024/12/19 11:32:17 Main Update { 0} false
+debug 2024/12/19 11:32:17 Main Update { 0} false
+debug 2024/12/19 11:32:17 Main Update { 0} false
+debug 2024/12/19 11:32:17 Main Update { 0} false
+debug 2024/12/19 11:32:17 Main Update { 0} false
+debug 2024/12/19 11:32:17 Main Update { 0} false
+debug 2024/12/19 11:32:17 Main Update { 0} false
+debug 2024/12/19 11:32:18 Main Update { 0} false
+debug 2024/12/19 11:32:18 Main Update { 0} false
+debug 2024/12/19 11:32:18 Main Update { 0} false
+debug 2024/12/19 11:32:18 Main Update { 0} false
+debug 2024/12/19 11:32:18 Main Update { 0} false
+debug 2024/12/19 11:32:18 Main Update { 0} false
+debug 2024/12/19 11:32:18 Main Update { 0} false
+debug 2024/12/19 11:32:18 Main Update { 0} false
+debug 2024/12/19 11:32:18 Main Update { 0} false
+debug 2024/12/19 11:32:19 Main Update { 0} false
+debug 2024/12/19 11:32:19 Main Update { 0} false
+debug 2024/12/19 11:32:19 Main Update { 0} false
+debug 2024/12/19 11:32:19 Main Update { 0} false
+debug 2024/12/19 11:32:19 Main Update { 0} false
+debug 2024/12/19 11:32:19 Main Update { 0} false
+debug 2024/12/19 11:32:20 Main Update { 0} false
+debug 2024/12/19 11:32:20 Main Update { 0} false
+debug 2024/12/19 11:32:20 Main Update { 0} false
+debug 2024/12/19 11:32:20 Main Update { 0} false
+debug 2024/12/19 11:32:20 Main Update { 0} false
+debug 2024/12/19 11:32:20 Main Update { 0} false
+debug 2024/12/19 11:32:20 Main Update { 0} false
+debug 2024/12/19 11:32:21 Main Update { 0} false
+debug 2024/12/19 11:32:21 Main Update { 0} false
+debug 2024/12/19 11:32:21 Main Update { 0} false
+debug 2024/12/19 11:32:21 Main Update { 0} false
+debug 2024/12/19 11:32:21 Main Update { 0} false
+debug 2024/12/19 11:32:21 Main Update { 0} false
+debug 2024/12/19 11:32:22 Main Update { 0} false
+debug 2024/12/19 11:32:22 Call Login method Login peter@test.ru
+debug 2024/12/19 11:32:22 Call SetToken method
+debug 2024/12/19 11:32:22 create changeScreenCmd. screen:  {secret-list 0}
+debug 2024/12/19 11:32:22 Main Update { 0} false
+debug 2024/12/19 11:32:28 Main Update { 0} false
+debug 2024/12/19 11:32:30 Init grpc client serverHost 127.0.0.1:8080
+debug 2024/12/19 11:32:30 Main Update { 0} false {88 19}
+debug 2024/12/19 11:32:30 Main Update { 0} false {}
+debug 2024/12/19 11:32:30 Main Update { 0} false {0 2}
+debug 2024/12/19 11:32:31 Main Update { 0} false {0 3}
+debug 2024/12/19 11:32:31 Main Update { 0} false p
+debug 2024/12/19 11:32:31 Main Update { 0} false {}
+debug 2024/12/19 11:32:31 Main Update { 0} false e
+debug 2024/12/19 11:32:31 Main Update { 0} false {}
+debug 2024/12/19 11:32:31 Main Update { 0} false t
+debug 2024/12/19 11:32:31 Main Update { 0} false {}
+debug 2024/12/19 11:32:31 Main Update { 0} false e
+debug 2024/12/19 11:32:31 Main Update { 0} false {}
+debug 2024/12/19 11:32:32 Main Update { 0} false r
+debug 2024/12/19 11:32:32 Main Update { 0} false {}
+debug 2024/12/19 11:32:32 Main Update { 0} false @
+debug 2024/12/19 11:32:32 Main Update { 0} false {}
+debug 2024/12/19 11:32:32 Main Update { 0} false {0 10}
+debug 2024/12/19 11:32:33 Main Update { 0} false t
+debug 2024/12/19 11:32:33 Main Update { 0} false {}
+debug 2024/12/19 11:32:33 Main Update { 0} false e
+debug 2024/12/19 11:32:33 Main Update { 0} false {}
+debug 2024/12/19 11:32:33 Main Update { 0} false s
+debug 2024/12/19 11:32:33 Main Update { 0} false {}
+debug 2024/12/19 11:32:33 Main Update { 0} false t
+debug 2024/12/19 11:32:33 Main Update { 0} false {}
+debug 2024/12/19 11:32:33 Main Update { 0} false .
+debug 2024/12/19 11:32:33 Main Update { 0} false {}
+debug 2024/12/19 11:32:34 Main Update { 0} false r
+debug 2024/12/19 11:32:34 Main Update { 0} false {}
+debug 2024/12/19 11:32:34 Main Update { 0} false u
+debug 2024/12/19 11:32:34 Main Update { 0} false {}
+debug 2024/12/19 11:32:34 Main Update { 0} false tab
+debug 2024/12/19 11:32:34 Main Update { 0} false 1
+debug 2024/12/19 11:32:34 Main Update { 0} false {}
+debug 2024/12/19 11:32:34 Main Update { 0} false {0 18}
+debug 2024/12/19 11:32:35 Main Update { 0} false 2
+debug 2024/12/19 11:32:35 Main Update { 0} false {}
+debug 2024/12/19 11:32:35 Main Update { 0} false 3
+debug 2024/12/19 11:32:35 Main Update { 0} false {}
+debug 2024/12/19 11:32:35 Main Update { 0} false enter
+debug 2024/12/19 11:32:35 Main Update { 0} false {0 4}
+debug 2024/12/19 11:32:36 Main Update { 0} false enter
+debug 2024/12/19 11:32:36 Call Login method Login peter@test.ru
+debug 2024/12/19 11:32:36 Call SetToken method
+debug 2024/12/19 11:32:36 create changeScreenCmd. screen:  {secret-list 0}
+debug 2024/12/19 11:32:36 Main Update { 0} false 0x9fa9c0

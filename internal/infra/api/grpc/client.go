@@ -77,10 +77,10 @@ func (c *Client) ListSecrets(secretName string) (*model.SecretList, error) {
 	return &resp, nil
 }
 
-func (c *Client) GetSecret(metricID int64) (*model.Secret, error) {
-	r, err := c.client.GetSecret(c.ctx, &pb.SecretRequest{Id: metricID})
+func (c *Client) GetSecret(secretID int64) (*model.Secret, error) {
+	r, err := c.client.GetSecret(c.ctx, &pb.SecretRequest{Id: secretID})
 	if err != nil {
-		return nil, fmt.Errorf("grpc - get secret (id: %d) error: %w", metricID, err)
+		return nil, fmt.Errorf("grpc - get secret (id: %d) error: %w", secretID, err)
 	}
 	t := pbTypeToSecretType(r.Type)
 	secret := model.NewSecret(r.Id, r.Name, t, r.Payload, r.Note)

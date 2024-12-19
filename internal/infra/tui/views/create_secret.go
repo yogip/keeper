@@ -89,13 +89,13 @@ func (m *CreateSecretView) Init() tea.Cmd {
 func (m *CreateSecretView) nextStageView() tea.Cmd {
 	switch m.secretType {
 	case model.SecretTypePassword:
-		return changeScreenCmd(ScreenNewPassword)
+		return changeScreenCmd(ScreenTypeMsg{Screen: ScreenNewPassword})
 	case model.SecretTypeNote:
-		return changeScreenCmd(ScreenNewNote)
+		return changeScreenCmd(ScreenTypeMsg{Screen: ScreenNewNote})
 	case model.SecretTypeCard:
-		return changeScreenCmd(ScreenNewCard)
+		return changeScreenCmd(ScreenTypeMsg{Screen: ScreenNewCard})
 	case model.SecretTypeFile:
-		return changeScreenCmd(ScreenNewFile)
+		return changeScreenCmd(ScreenTypeMsg{Screen: ScreenNewFile})
 	}
 	return ErrorCmd(errors.New("Select secret type"), time.Second*5)
 }
@@ -105,13 +105,13 @@ func (m *CreateSecretView) Update(msg tea.Msg) tea.Cmd {
 	case tea.KeyMsg:
 		switch msg.String() {
 		case "ctrl+c", "esc":
-			return tea.Quit
+			return changeScreenCmd(ScreenTypeMsg{Screen: ScreenSecretList})
 		// Set focus to next input
 		case "tab", "shift+tab", "up", "down", "enter":
 			s := msg.String()
 
 			if s == "enter" && m.focusIndex == m.focusCancel {
-				return changeScreenCmd(ScreenSecretList)
+				return changeScreenCmd(ScreenTypeMsg{Screen: ScreenSecretList})
 			}
 			if s == "enter" && m.focusIndex == m.focusSubmit {
 				return m.nextStageView()

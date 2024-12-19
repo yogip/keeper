@@ -11,8 +11,6 @@ import (
 	tea "github.com/charmbracelet/bubbletea"
 )
 
-type LoginMsg struct{}
-
 type ClientIAM interface {
 	Login(req model.UserRequest) error
 	SignUp(req model.UserRequest) error
@@ -67,7 +65,7 @@ func (m *LoginView) loginCmd(user string, password string) tea.Cmd {
 			log.Println("Login failed.", err)
 			return NewErrorMsg(err, time.Second*10)
 		}
-		return LoginMsg{}
+		return changeScreenCmd(ScreenTypeMsg{Screen: ScreenSecretList})
 	}
 }
 
@@ -88,7 +86,7 @@ func (m *LoginView) Update(msg tea.Msg) tea.Cmd {
 			}
 			// Did the user press enter while the sign up button was focused
 			if s == "enter" && m.focusIndex == m.focusSignUp {
-				return changeScreenCmd(ScreenSignUp)
+				return changeScreenCmd(ScreenTypeMsg{Screen: ScreenSignUp})
 			}
 
 			// Cycle indexes

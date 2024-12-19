@@ -59,7 +59,7 @@ func (m *SignUpView) signUpCmd(user string, password string) tea.Cmd {
 			log.Println("Login failed.", err)
 			return NewErrorMsg(err, time.Second*10)
 		}
-		return LoginMsg{}
+		return changeScreenCmd(ScreenTypeMsg{Screen: ScreenSecretList})
 	}
 }
 
