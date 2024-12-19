@@ -96,8 +96,6 @@ func (m *SecretListView) searchSecrets(secretName string) tea.Cmd {
 func (m *SecretListView) Update(msg tea.Msg) tea.Cmd {
 	switch msg := msg.(type) {
 	case tea.KeyMsg:
-		log.Println("Update KeyMsg", msg.String())
-
 		switch msg.String() {
 		case "ctrl+c", "esc":
 			return tea.Quit
@@ -108,7 +106,7 @@ func (m *SecretListView) Update(msg tea.Msg) tea.Cmd {
 				if err != nil {
 					return ErrorCmd(err, time.Second*10)
 				}
-				return changeScreenCmd(ScreenTypeMsg{Screen: ScreenSecretView, SecretID: sid})
+				return changeScreenCmd(&ScreenTypeMsg{Screen: ScreenSecretView, SecretID: sid})
 			}
 		// Set focus to next input
 		case "tab", "shift+tab", "up", "down":
@@ -167,7 +165,6 @@ func (m *SecretListView) Update(msg tea.Msg) tea.Cmd {
 
 			return cmd
 		default:
-			log.Println("deault msg msg", msg.String())
 			if m.focusIndex == m.focusSearchInp {
 				var cmd tea.Cmd
 				m.searchInput, cmd = m.searchInput.Update(msg)
@@ -176,7 +173,7 @@ func (m *SecretListView) Update(msg tea.Msg) tea.Cmd {
 					m.searchSecrets(m.searchInput.Value()),
 				)
 			} else if msg.String() == "n" {
-				return changeScreenCmd(ScreenTypeMsg{Screen: ScreenNewSecret})
+				return changeScreenCmd(&ScreenTypeMsg{Screen: ScreenNewSecret})
 
 			}
 		}

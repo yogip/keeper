@@ -66,9 +66,6 @@ func (m Model) Init() tea.Cmd {
 }
 
 func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
-	ms, ok := msg.(views.ScreenTypeMsg)
-	log.Println("Main Update", ms, ok, msg)
-
 	switch msg := msg.(type) {
 	case views.ScreenTypeMsg:
 		return m, m.changeViewer(msg)
@@ -120,7 +117,7 @@ func (m *Model) tickErrors() tea.Cmd {
 }
 
 func (m *Model) changeViewer(msg views.ScreenTypeMsg) tea.Cmd {
-	log.Printf("Main View. Change Screent to %s from %s\n", string(msg.Screen), string(m.screen))
+	// log.Printf("Main View. Change Screent to %s from %s\n", string(msg.Screen), string(m.screen))
 	m.screen = msg.Screen
 	switch msg.Screen {
 	// Login
@@ -129,13 +126,16 @@ func (m *Model) changeViewer(msg views.ScreenTypeMsg) tea.Cmd {
 	// Sign Up
 	case views.ScreenSignUp:
 		m.activeView = m.viewSignUp
+
 	// List View
 	case views.ScreenSecretList:
 		m.activeView = m.viewSecretList
 		return m.viewSecretList.Init()
+	// Secret View
 	case views.ScreenSecretView:
 		m.activeView = m.viewSecretView
 		return m.viewSecretView.Init(msg.SecretID)
+
 	// New Secret (select secret type)
 	case views.ScreenNewSecret:
 		m.activeView = m.viewNewSecret

@@ -65,7 +65,8 @@ func (m *LoginView) loginCmd(user string, password string) tea.Cmd {
 			log.Println("Login failed.", err)
 			return NewErrorMsg(err, time.Second*10)
 		}
-		return changeScreenCmd(ScreenTypeMsg{Screen: ScreenSecretList})
+		// call changeScreenCmd's return value due to get tea.Msg
+		return changeScreenCmd(&ScreenTypeMsg{Screen: ScreenSecretList})()
 	}
 }
 
@@ -86,7 +87,7 @@ func (m *LoginView) Update(msg tea.Msg) tea.Cmd {
 			}
 			// Did the user press enter while the sign up button was focused
 			if s == "enter" && m.focusIndex == m.focusSignUp {
-				return changeScreenCmd(ScreenTypeMsg{Screen: ScreenSignUp})
+				return changeScreenCmd(&ScreenTypeMsg{Screen: ScreenSignUp})
 			}
 
 			// Cycle indexes

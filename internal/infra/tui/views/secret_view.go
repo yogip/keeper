@@ -38,10 +38,10 @@ func (m *SecretView) Init(secretID int64) tea.Cmd {
 func (m *SecretView) Update(msg tea.Msg) tea.Cmd {
 	key, ok := msg.(tea.KeyMsg)
 	if ok && (key.String() == "ctrl+c" || key.String() == "esc") {
-		return changeScreenCmd(ScreenTypeMsg{Screen: ScreenSecretList})
+		return changeScreenCmd(&ScreenTypeMsg{Screen: ScreenSecretList})
 	}
 	if ok && key.String() == "e" {
-		return changeScreenCmd(ScreenTypeMsg{Screen: ScreenSecretList})
+		return changeScreenCmd(&ScreenTypeMsg{Screen: ScreenSecretList})
 	}
 	return nil
 }
@@ -55,11 +55,9 @@ func (m *SecretView) View() string {
 	b.WriteString(boldStyle.Render("Secret ID:") + fmt.Sprintf(" %d", m.secret.ID))
 	b.WriteRune('\n')
 
-	b.WriteString(boldStyle.Render("Name:") + fmt.Sprintf(" %s", m.secret.Name))
+	b.WriteString(boldStyle.Render("Name: \t") + fmt.Sprintf(" %s", m.secret.Name))
 	b.WriteRune('\n')
-	b.WriteRune('\n')
-	b.WriteString("-----------------------------------------------------")
-	b.WriteRune('\n')
+	b.WriteString("-----------------------------------------------------\n")
 
 	// Secret Body
 	switch m.secret.Type {
@@ -68,13 +66,12 @@ func (m *SecretView) View() string {
 		if err != nil {
 			b.WriteString(fmt.Sprintf("Error: %s\n", err.Error()))
 		}
-		b.WriteString(boldStyle.Render("Login:") + fmt.Sprintf(" %s \n", p.Login))
-		b.WriteString(boldStyle.Render("Password:") + fmt.Sprintf(" %s \n", p.Password))
+		b.WriteString(boldStyle.Render("Login:\t") + fmt.Sprintf(" %s \n", p.Login))
+		b.WriteString(boldStyle.Render("Password: ") + fmt.Sprintf(" %s \n", p.Password))
 	}
 
-	b.WriteRune('\n')
-	b.WriteString("-----------------------------------------------------")
-	b.WriteString(boldStyle.Render("Note:") + fmt.Sprintf(" %s", m.secret.Note))
+	b.WriteString("-----------------------------------------------------\n")
+	b.WriteString(boldStyle.Render("Note: \t") + fmt.Sprintf(" %s", m.secret.Note))
 	b.WriteRune('\n')
 
 	// help info

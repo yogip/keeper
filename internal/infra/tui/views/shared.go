@@ -3,7 +3,6 @@ package views
 import (
 	"fmt"
 	"keeper/internal/core/model"
-	"log"
 	"time"
 
 	tea "github.com/charmbracelet/bubbletea"
@@ -29,6 +28,12 @@ var (
 	listSelectedItemStyle = lipgloss.NewStyle().PaddingLeft(2).Foreground(lipgloss.Color("63")) // 170
 )
 
+type ClientApp interface {
+	CreateSecret(secretType model.SecretType, name string, note string, payload []byte) (*model.Secret, error)
+	ListSecrets(secretName string) (*model.SecretList, error)
+	GetSecret(secretID int64) (*model.Secret, error)
+}
+
 type ScreenType string
 
 type ScreenTypeMsg struct {
@@ -48,16 +53,10 @@ const (
 	ScreenNewFile     ScreenType = "new-secret-file"
 )
 
-type ClientApp interface {
-	CreateSecret(secretType model.SecretType, name string, note string, payload []byte) (*model.Secret, error)
-	ListSecrets(secretName string) (*model.SecretList, error)
-	GetSecret(secretID int64) (*model.Secret, error)
-}
-
-func changeScreenCmd(screen ScreenTypeMsg) tea.Cmd {
-	log.Println("create changeScreenCmd. screen: ", screen)
+func changeScreenCmd(screen *ScreenTypeMsg) tea.Cmd {
 	return func() tea.Msg {
-		return screen
+		s := ScreenTypeMsg{Screen: screen.Screen, SecretID: screen.SecretID}
+		return s
 	}
 }
 
