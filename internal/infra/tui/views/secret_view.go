@@ -68,6 +68,12 @@ func (m *SecretView) View() string {
 		}
 		b.WriteString(boldStyle.Render("Login:\t") + fmt.Sprintf(" %s \n", p.Login))
 		b.WriteString(boldStyle.Render("Password: ") + fmt.Sprintf(" %s \n", p.Password))
+	case model.SecretTypeNote:
+		n, err := m.secret.AsNote()
+		if err != nil {
+			b.WriteString(fmt.Sprintf("Error: %s\n", err.Error()))
+		}
+		b.WriteString(boldStyle.Render("Text:\t") + fmt.Sprintf(" %s \n", n.Text))
 	}
 
 	b.WriteString("-----------------------------------------------------\n")

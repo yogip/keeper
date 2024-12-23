@@ -168,12 +168,12 @@ func (r *SecretRepo) CreateSecret(ctx context.Context, req *model.SecretCreateRe
 }
 
 func (r *SecretRepo) UpdateSecret(ctx context.Context, req *model.SecretUpdateRequest, key *model.DataKey) error {
-	query := "UPDATE secrets SET name=$1, type=$2, note=$3, payload=$4, sc_version=$5, sc=$6 WHERE id=$7 AND user_id=$8;"
+	query := "UPDATE secrets SET name=$1, note=$2, payload=$3, sc_version=$4, sc=$5 WHERE id=$6 AND user_id=$7;"
 
 	fun := func() error {
 		result, err := r.db.ExecContext(
 			ctx, query,
-			req.Name, req.Type, req.Note, req.Payload,
+			req.Name, req.Note, req.Payload,
 			key.Version, key.Key,
 			req.ID, req.UserID,
 		)

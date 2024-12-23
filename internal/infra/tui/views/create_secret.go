@@ -89,13 +89,13 @@ func (m *CreateSecretView) Init() tea.Cmd {
 func (m *CreateSecretView) nextStageView() tea.Cmd {
 	switch m.secretType {
 	case model.SecretTypePassword:
-		return changeScreenCmd(&ScreenTypeMsg{Screen: ScreenNewPassword})
+		return changeScreenCmd(&ScreenTypeMsg{Screen: ScreenUpsertPassword})
 	case model.SecretTypeNote:
-		return changeScreenCmd(&ScreenTypeMsg{Screen: ScreenNewNote})
+		return changeScreenCmd(&ScreenTypeMsg{Screen: ScreenUpsertNote})
 	case model.SecretTypeCard:
-		return changeScreenCmd(&ScreenTypeMsg{Screen: ScreenNewCard})
+		return changeScreenCmd(&ScreenTypeMsg{Screen: ScreenUpsertCard})
 	case model.SecretTypeFile:
-		return changeScreenCmd(&ScreenTypeMsg{Screen: ScreenNewFile})
+		return changeScreenCmd(&ScreenTypeMsg{Screen: ScreenUpsertFile})
 	}
 	return ErrorCmd(errors.New("Select secret type"), time.Second*5)
 }

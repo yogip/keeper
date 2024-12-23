@@ -2,6 +2,7 @@ package views
 
 import (
 	"fmt"
+	"keeper/internal/core/model"
 	"log"
 	"strconv"
 	"strings"
@@ -106,7 +107,7 @@ func (m *SecretListView) Update(msg tea.Msg) tea.Cmd {
 				if err != nil {
 					return ErrorCmd(err, time.Second*10)
 				}
-				return changeScreenCmd(&ScreenTypeMsg{Screen: ScreenSecretView, SecretID: sid})
+				return changeScreenCmd(&ScreenTypeMsg{Screen: ScreenSecretView, SecretID: &sid})
 			}
 		// Set focus to next input
 		case "tab", "shift+tab", "up", "down":
@@ -172,9 +173,30 @@ func (m *SecretListView) Update(msg tea.Msg) tea.Cmd {
 					cmd,
 					m.searchSecrets(m.searchInput.Value()),
 				)
-			} else if msg.String() == "n" {
+			}
+			// Swtich to create secret view
+			if msg.String() == "n" {
 				return changeScreenCmd(&ScreenTypeMsg{Screen: ScreenNewSecret})
-
+			}
+			// Swtich to edit secret view
+			if msg.String() == "e" {
+				row := m.table.SelectedRow()
+				if row != nil {
+					sid, err := strconv.ParseInt(row[0], 10, 64)
+					if err != nil {
+						return ErrorCmd(err, time.Second*10)
+					}
+					switch model.SecretType(row[2]) {
+					case model.SecretTypePassword:
+						return changeScreenCmd(&ScreenTypeMsg{Screen: ScreenUpsertPassword, SecretID: &sid})
+					case model.SecretTypeNote:
+						return changeScreenCmd(&ScreenTypeMsg{Screen: ScreenUpsertNote, SecretID: &sid})
+					case model.SecretTypeCard:
+						return changeScreenCmd(&ScreenTypeMsg{Screen: ScreenUpsertCard, SecretID: &sid})
+					case model.SecretTypeFile:
+						return changeScreenCmd(&ScreenTypeMsg{Screen: ScreenUpsertFile, SecretID: &sid})
+					}
+				}
 			}
 		}
 	}

@@ -24,12 +24,6 @@ const (
 	SecretTypeFile     SecretType = "file"
 )
 
-type Tag struct {
-	ID    int64  `json:"id"`
-	Name  string `json:"name"`
-	Value string `json:"value"`
-}
-
 type DataKey struct {
 	Version int64
 	Key     string
@@ -77,10 +71,6 @@ type UpdateNoteRequest struct {
 	UserID int64
 	Data   *Note
 	Key    *DataKey
-}
-
-type Note struct {
-	SecretMeta
 }
 
 type CardData struct {

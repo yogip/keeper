@@ -34,10 +34,10 @@ type Model struct {
 	viewSecretList *views.SecretListView
 	viewSecretView *views.SecretView
 	viewNewSecret  *views.CreateSecretView
-	viewNewPwd     *views.CreatePwdView
-	viewNewNote    *views.CreatePwdView
-	viewNewFile    *views.CreatePwdView
-	viewNewCard    *views.CreatePwdView
+	viewNewPwd     *views.UpsertPwdView
+	viewNewNote    *views.UpsertNoteView
+	viewNewFile    *views.UpsertPwdView
+	viewNewCard    *views.UpsertPwdView
 	activeView     Viewer
 	errors         []*views.ErrorMsg
 }
@@ -52,10 +52,10 @@ func InitModel(app Client) Model {
 		viewSecretList: views.NewSecretList(app),
 		viewSecretView: views.NewSecretView(app),
 		viewNewSecret:  views.NewCreateSecretView(app),
-		viewNewPwd:     views.NewCreatePwdView(app),
-		viewNewNote:    views.NewCreatePwdView(app), // todo
-		viewNewFile:    views.NewCreatePwdView(app), // todo
-		viewNewCard:    views.NewCreatePwdView(app), // todo
+		viewNewPwd:     views.NewUpsertPwdView(app),
+		viewNewNote:    views.NewUpsertNoteView(app),
+		viewNewFile:    views.NewUpsertPwdView(app), // todo
+		viewNewCard:    views.NewUpsertPwdView(app), // todo
 		activeView:     l,
 		errors:         make([]*views.ErrorMsg, 0),
 	}
@@ -134,23 +134,25 @@ func (m *Model) changeViewer(msg views.ScreenTypeMsg) tea.Cmd {
 	// Secret View
 	case views.ScreenSecretView:
 		m.activeView = m.viewSecretView
-		return m.viewSecretView.Init(msg.SecretID)
+		return m.viewSecretView.Init(*msg.SecretID)
 
 	// New Secret (select secret type)
 	case views.ScreenNewSecret:
 		m.activeView = m.viewNewSecret
 
 	// New Password
-	case views.ScreenNewPassword:
+	case views.ScreenUpsertPassword:
 		m.activeView = m.viewNewPwd
+		return m.viewNewPwd.Init(msg.SecretID)
 	// New Note
-	case views.ScreenNewNote:
+	case views.ScreenUpsertNote:
 		m.activeView = m.viewNewNote
+		return m.viewNewNote.Init(msg.SecretID)
 	// New card
-	case views.ScreenNewCard:
+	case views.ScreenUpsertCard:
 		m.activeView = m.viewNewCard
 	// New File
-	case views.ScreenNewFile:
+	case views.ScreenUpsertFile:
 		m.activeView = m.viewNewFile
 	}
 	return nil
