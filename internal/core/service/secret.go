@@ -3,7 +3,6 @@ package service
 import (
 	"bytes"
 	"context"
-	"encoding/json"
 	"fmt"
 
 	"keeper/internal/core/encryption"
@@ -213,93 +212,93 @@ func (s *SecretService) GetNote(ctx context.Context, req model.SecretRequest) (*
 	return note.Item, nil
 }
 
-func (s *SecretService) GetCard(ctx context.Context, req model.SecretRequest) (*model.Card, error) {
-	if req.Type != model.SecretTypeCard {
-		return nil, fmt.Errorf("type must be %s, got: %s", model.SecretTypeCard, req.Type)
-	}
+// func (s *SecretService) GetCard(ctx context.Context, req model.SecretRequest) (*model.Card, error) {
+// 	if req.Type != model.SecretTypeCard {
+// 		return nil, fmt.Errorf("type must be %s, got: %s", model.SecretTypeCard, req.Type)
+// 	}
 
-	encCard, err := s.repo.GetCard(ctx, req)
-	if err != nil {
-		return nil, errors.Wrapf(err, "failed to get card")
-	}
+// 	encCard, err := s.repo.GetCard(ctx, req)
+// 	if err != nil {
+// 		return nil, errors.Wrapf(err, "failed to get card")
+// 	}
 
-	payload, err := s.encrypter.Decrypt(encCard.Payload, encCard.DataKey)
-	if err != nil {
-		return nil, errors.Wrapf(err, "failed to decrypt card")
-	}
+// 	payload, err := s.encrypter.Decrypt(encCard.Payload, encCard.DataKey)
+// 	if err != nil {
+// 		return nil, errors.Wrapf(err, "failed to decrypt card")
+// 	}
 
-	card := model.CardData{}
-	err = json.Unmarshal(payload, &card)
-	if err != nil {
-		return nil, errors.Wrapf(err, "failed to unmarshal card")
-	}
+// 	card := model.CardData{}
+// 	err = json.Unmarshal(payload, &card)
+// 	if err != nil {
+// 		return nil, errors.Wrapf(err, "failed to unmarshal card")
+// 	}
 
-	encCard.Meta.Type = model.SecretTypeCard
-	return &model.Card{
-		SecretMeta: *encCard.Meta,
-		CardData:   card,
-	}, nil
-}
+// 	encCard.Meta.Type = model.SecretTypeCard
+// 	return &model.Card{
+// 		SecretMeta: *encCard.Meta,
+// 		CardData:   card,
+// 	}, nil
+// }
 
-func (s *SecretService) CreateCard(ctx context.Context, req model.UpdateCardRequest) (*model.Card, error) {
-	payload, err := json.Marshal(req.Card.CardData)
-	if err != nil {
-		return nil, errors.Wrapf(err, "failed to crete card")
-	}
+// func (s *SecretService) CreateCard(ctx context.Context, req model.UpdateCardRequest) (*model.Card, error) {
+// 	payload, err := json.Marshal(req.Card.CardData)
+// 	if err != nil {
+// 		return nil, errors.Wrapf(err, "failed to crete card")
+// 	}
 
-	enc, key, err := s.encrypter.Encrypt([]byte(payload), s.lastEncKeyVersion)
-	if err != nil {
-		return nil, errors.Wrapf(err, "failed to encrypt password")
-	}
+// 	enc, key, err := s.encrypter.Encrypt([]byte(payload), s.lastEncKeyVersion)
+// 	if err != nil {
+// 		return nil, errors.Wrapf(err, "failed to encrypt password")
+// 	}
 
-	encCard := model.EncryptedCard{
-		Meta:    &req.Card.SecretMeta,
-		Payload: enc,
-		DataKey: &model.DataKey{Key: key, Version: s.lastEncKeyVersion},
-	}
+// 	encCard := model.EncryptedCard{
+// 		Meta:    &req.Card.SecretMeta,
+// 		Payload: enc,
+// 		DataKey: &model.DataKey{Key: key, Version: s.lastEncKeyVersion},
+// 	}
 
-	cardResult, err := s.repo.CreateCard(ctx, encCard, req.UserID)
+// 	cardResult, err := s.repo.CreateCard(ctx, encCard, req.UserID)
 
-	if err != nil {
-		return nil, errors.Wrapf(err, "failed to crete password")
-	}
-	result := model.Card{
-		SecretMeta: req.Card.SecretMeta,
-		CardData:   req.Card.CardData,
-	}
-	result.ID = cardResult.Meta.ID
-	return &result, nil
-}
+// 	if err != nil {
+// 		return nil, errors.Wrapf(err, "failed to crete password")
+// 	}
+// 	result := model.Card{
+// 		SecretMeta: req.Card.SecretMeta,
+// 		CardData:   req.Card.CardData,
+// 	}
+// 	result.ID = cardResult.Meta.ID
+// 	return &result, nil
+// }
 
-func (s *SecretService) UpdateCard(ctx context.Context, req model.UpdateCardRequest) (*model.Card, error) {
-	payload, err := json.Marshal(req.Card.CardData)
-	if err != nil {
-		return nil, errors.Wrapf(err, "failed to crete card")
-	}
+// func (s *SecretService) UpdateCard(ctx context.Context, req model.UpdateCardRequest) (*model.Card, error) {
+// 	payload, err := json.Marshal(req.Card.CardData)
+// 	if err != nil {
+// 		return nil, errors.Wrapf(err, "failed to crete card")
+// 	}
 
-	enc, key, err := s.encrypter.Encrypt([]byte(payload), s.lastEncKeyVersion)
-	if err != nil {
-		return nil, errors.Wrapf(err, "failed to encrypt password")
-	}
+// 	enc, key, err := s.encrypter.Encrypt([]byte(payload), s.lastEncKeyVersion)
+// 	if err != nil {
+// 		return nil, errors.Wrapf(err, "failed to encrypt password")
+// 	}
 
-	encCard := model.EncryptedCard{
-		Meta:    &req.Card.SecretMeta,
-		Payload: enc,
-		DataKey: &model.DataKey{Key: key, Version: s.lastEncKeyVersion},
-	}
+// 	encCard := model.EncryptedCard{
+// 		Meta:    &req.Card.SecretMeta,
+// 		Payload: enc,
+// 		DataKey: &model.DataKey{Key: key, Version: s.lastEncKeyVersion},
+// 	}
 
-	cardResult, err := s.repo.UpdateCard(ctx, encCard, req.UserID)
+// 	cardResult, err := s.repo.UpdateCard(ctx, encCard, req.UserID)
 
-	if err != nil {
-		return nil, errors.Wrapf(err, "failed to crete password")
-	}
-	result := model.Card{
-		SecretMeta: req.Card.SecretMeta,
-		CardData:   req.Card.CardData,
-	}
-	result.ID = cardResult.Meta.ID
-	return &result, nil
-}
+// 	if err != nil {
+// 		return nil, errors.Wrapf(err, "failed to crete password")
+// 	}
+// 	result := model.Card{
+// 		SecretMeta: req.Card.SecretMeta,
+// 		CardData:   req.Card.CardData,
+// 	}
+// 	result.ID = cardResult.Meta.ID
+// 	return &result, nil
+// }
 
 func (s *SecretService) GetFile(ctx context.Context, req model.SecretRequest) (*model.File, error) {
 	if req.Type != model.SecretTypeFile {

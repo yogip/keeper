@@ -43,6 +43,21 @@ func (s *Secret) AsNote() (*Note, error) {
 	return &n, nil
 }
 
+// Method to convert generic secret to password object
+func (s *Secret) AsCard() (*Card, error) {
+	if s.Type != SecretTypeCard {
+		return nil, fmt.Errorf("wrong secret type %s, reqired Card", s.Type)
+	}
+	var c Card
+	err := json.Unmarshal(s.Payload, &c)
+	if err != nil {
+		return nil, fmt.Errorf("could not Unmarshal Note payload: %w", err)
+	}
+	c.SecretMeta = s.SecretMeta
+	return &c, nil
+}
+
+// General secret info
 type SecretMeta struct {
 	ID   int64
 	Name string
@@ -90,6 +105,36 @@ func NewNote(id int64, name, text, note string) *Note {
 // JSON secret date representaion
 func (p *Note) GetPayload() ([]byte, error) {
 	payload, err := json.Marshal(p)
+	if err != nil {
+		return nil, fmt.Errorf("could not Marshal Password payload: %w", err)
+	}
+	return payload, nil
+}
+
+// Card secret
+type Card struct {
+	SecretMeta
+	Number     string `json:"number"`
+	Month      int    `json:"month"`
+	Year       int    `json:"year"`
+	HolderName string `json:"holder_name"`
+	CVC        int    `json:"cvc"`
+}
+
+func NewCard(id int64, name, number string, month int, year int, holderName, cvc int, note string) *Card {
+	return &Card{
+		SecretMeta: SecretMeta{id, name, SecretTypeCard, note},
+		Number:     number,
+		Month:      month,
+		Year:       year,
+		HolderName: number,
+		CVC:        cvc,
+	}
+}
+
+// JSON secret date representaion
+func (c *Card) GetPayload() ([]byte, error) {
+	payload, err := json.Marshal(c)
 	if err != nil {
 		return nil, fmt.Errorf("could not Marshal Password payload: %w", err)
 	}

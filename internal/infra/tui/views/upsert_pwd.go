@@ -8,6 +8,7 @@ import (
 	"strings"
 	"time"
 
+	"github.com/charmbracelet/bubbles/textarea"
 	"github.com/charmbracelet/bubbles/textinput"
 
 	tea "github.com/charmbracelet/bubbletea"
@@ -26,7 +27,7 @@ type UpsertPwdView struct {
 	nameInput  textinput.Model
 	loginInput textinput.Model
 	pwdInput   textinput.Model
-	noteInput  textinput.Model
+	noteInput  textarea.Model
 
 	secretID *int64
 	app      ClientApp
@@ -63,13 +64,11 @@ func NewUpsertPwdView(app ClientApp) *UpsertPwdView {
 	pwdInput.EchoCharacter = '•'
 
 	// Note
-	noteInput := textinput.New()
+	noteInput := textarea.New()
 	noteInput.Cursor.Style = cursorStyle
 	noteInput.CharLimit = 50
-	noteInput.Placeholder = "Note"
+	noteInput.Placeholder = "Enter a note"
 	noteInput.Blur()
-	noteInput.PromptStyle = noStyle
-	noteInput.TextStyle = noStyle
 
 	return &UpsertPwdView{
 		focusIndex: 0,
@@ -151,6 +150,10 @@ func (m *UpsertPwdView) Update(msg tea.Msg) tea.Cmd {
 		case "tab", "shift+tab", "up", "down", "enter":
 			s := msg.String()
 
+			if s == "enter" && m.focusIndex == m.focusNote {
+				return m.updateInputs(msg)
+			}
+
 			if s == "enter" && m.focusIndex == m.focusCancel {
 				return changeScreenCmd(&ScreenTypeMsg{Screen: ScreenSecretList})
 			}
@@ -213,12 +216,8 @@ func (m *UpsertPwdView) Update(msg tea.Msg) tea.Cmd {
 			// Note Component
 			if m.focusIndex == m.focusNote {
 				cmd = m.noteInput.Focus()
-				m.noteInput.PromptStyle = focusedStyle
-				m.noteInput.TextStyle = focusedStyle
 			} else {
 				m.noteInput.Blur()
-				m.noteInput.PromptStyle = noStyle
-				m.noteInput.TextStyle = noStyle
 			}
 
 			return cmd
@@ -256,6 +255,7 @@ func (m *UpsertPwdView) View() string {
 	b.WriteRune('\n')
 
 	b.WriteString(m.pwdInput.View())
+	b.WriteRune('\n')
 	b.WriteRune('\n')
 
 	b.WriteString(m.noteInput.View())

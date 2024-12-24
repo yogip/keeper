@@ -73,19 +73,6 @@ type UpdateNoteRequest struct {
 	Key    *DataKey
 }
 
-type CardData struct {
-	Number     string `json:"number"`
-	Month      int    `json:"month"`
-	Year       int    `json:"year"`
-	HolderName string `json:"holder_name"`
-	CVC        int    `json:"cvc"`
-}
-
-type Card struct {
-	SecretMeta
-	CardData
-}
-
 type EncryptedCard struct {
 	Payload string
 	Meta    *SecretMeta

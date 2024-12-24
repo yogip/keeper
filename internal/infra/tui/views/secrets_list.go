@@ -40,7 +40,7 @@ func NewSecretList(app ClientApp) *SecretListView {
 
 	columns := []table.Column{
 		{Title: "ID", Width: 4},
-		{Title: "Name", Width: 10},
+		{Title: "Name", Width: 20},
 		{Title: "Type", Width: 10},
 	}
 
@@ -217,8 +217,6 @@ func (m *SecretListView) View() string {
 
 	// secrets table
 	b.WriteString(baseStyle.Render(m.table.View()))
-	b.WriteRune('\n')
-	b.WriteString(m.table.HelpView())
 	b.WriteRune('\n')
 
 	// help info

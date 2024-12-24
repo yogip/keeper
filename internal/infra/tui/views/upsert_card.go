@@ -14,7 +14,7 @@ import (
 	tea "github.com/charmbracelet/bubbletea"
 )
 
-type UpsertNoteView struct {
+type UpsertCardView struct {
 	focusIndex  int
 	focusMax    int
 	focusName   int
@@ -31,7 +31,7 @@ type UpsertNoteView struct {
 	app      ClientApp
 }
 
-func NewUpsertNoteView(app ClientApp) *UpsertNoteView {
+func NewUpsertCardView(app ClientApp) *UpsertCardView {
 	// Name
 	nameInput := textinput.New()
 	nameInput.Cursor.Style = cursorStyle
@@ -54,7 +54,7 @@ func NewUpsertNoteView(app ClientApp) *UpsertNoteView {
 	noteInput.Placeholder = "Enter a note"
 	noteInput.Blur()
 
-	return &UpsertNoteView{
+	return &UpsertCardView{
 		focusIndex: 0,
 		focusMax:   4, // 0 - nameInput, 1 - text, 2 - note, 3 - Submit, 4 - cancel
 
@@ -72,7 +72,7 @@ func NewUpsertNoteView(app ClientApp) *UpsertNoteView {
 	}
 }
 
-func (m *UpsertNoteView) Init(secretID *int64) tea.Cmd {
+func (m *UpsertCardView) Init(secretID *int64) tea.Cmd {
 	return func() tea.Msg {
 		if secretID == nil {
 			return ""
@@ -83,22 +83,22 @@ func (m *UpsertNoteView) Init(secretID *int64) tea.Cmd {
 			log.Println("Error loading secret", err)
 			return NewErrorMsg(err, time.Second*30)
 		}
-		note, err := secret.AsNote()
+		card, err := secret.AsCard()
 		if err != nil {
 			log.Println("Could not open secret for editing", err)
 			return NewErrorMsg(err, time.Second*30)
 		}
 
-		m.secretID = &note.ID
-		m.nameInput.SetValue(note.Name)
-		m.textInput.SetValue(note.Text)
-		m.noteInput.SetValue(note.Note)
-		log.Println("Secret data loaded:", note.ID, note.Name)
+		m.secretID = &card.ID
+		m.nameInput.SetValue(card.Name)
+		// m.textInput.SetValue(note.Text)
+		m.noteInput.SetValue(card.Note)
+		log.Println("Secret data loaded:", card.ID, card.Name)
 		return ""
 	}
 }
 
-func (m *UpsertNoteView) upsertSecretCmd(name, text, note string) tea.Cmd {
+func (m *UpsertCardView) upsertSecretCmd(name, text, note string) tea.Cmd {
 	return func() tea.Msg {
 		s := model.NewNote(0, name, text, note)
 		payload, err := s.GetPayload()
@@ -121,7 +121,7 @@ func (m *UpsertNoteView) upsertSecretCmd(name, text, note string) tea.Cmd {
 	}
 }
 
-func (m *UpsertNoteView) Update(msg tea.Msg) tea.Cmd {
+func (m *UpsertCardView) Update(msg tea.Msg) tea.Cmd {
 	switch msg := msg.(type) {
 	case tea.KeyMsg:
 		switch msg.String() {
@@ -198,7 +198,7 @@ func (m *UpsertNoteView) Update(msg tea.Msg) tea.Cmd {
 	return nil
 }
 
-func (m *UpsertNoteView) updateInputs(msg tea.Msg) tea.Cmd {
+func (m *UpsertCardView) updateInputs(msg tea.Msg) tea.Cmd {
 	cmds := make([]tea.Cmd, 3)
 
 	m.nameInput, cmds[0] = m.nameInput.Update(msg)
@@ -208,7 +208,7 @@ func (m *UpsertNoteView) updateInputs(msg tea.Msg) tea.Cmd {
 	return tea.Batch(cmds...)
 }
 
-func (m *UpsertNoteView) View() string {
+func (m *UpsertCardView) View() string {
 	var b strings.Builder
 	action := "Create"
 	if m.secretID != nil {
