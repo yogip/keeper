@@ -121,13 +121,13 @@ type Card struct {
 	CVC        int    `json:"cvc"`
 }
 
-func NewCard(id int64, name, number string, month int, year int, holderName, cvc int, note string) *Card {
+func NewCard(id int64, name, number string, month int, year int, holderName string, cvc int, note string) *Card {
 	return &Card{
 		SecretMeta: SecretMeta{id, name, SecretTypeCard, note},
 		Number:     number,
 		Month:      month,
 		Year:       year,
-		HolderName: number,
+		HolderName: holderName,
 		CVC:        cvc,
 	}
 }
@@ -139,4 +139,8 @@ func (c *Card) GetPayload() ([]byte, error) {
 		return nil, fmt.Errorf("could not Marshal Password payload: %w", err)
 	}
 	return payload, nil
+}
+
+func (c *Card) GetDate() string {
+	return fmt.Sprintf("%02d/%02d", c.Month, c.Year)
 }

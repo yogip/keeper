@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"keeper/internal/core/model"
 	"log"
+	"strconv"
 	"strings"
 	"time"
 
@@ -18,14 +19,20 @@ type UpsertCardView struct {
 	focusIndex  int
 	focusMax    int
 	focusName   int
-	focusText   int
+	focusNumber int
+	focusHolder int
+	focusDate   int
+	focusCVC    int
 	focusNote   int
 	focusSubmit int
 	focusCancel int
 
-	nameInput textinput.Model
-	textInput textarea.Model
-	noteInput textarea.Model
+	nameInput   textinput.Model
+	numberInput textinput.Model
+	holderInput textinput.Model
+	dateInput   textinput.Model
+	cvcInput    textinput.Model
+	noteInput   textarea.Model
 
 	secretID *int64
 	app      ClientApp
@@ -34,18 +41,52 @@ type UpsertCardView struct {
 func NewUpsertCardView(app ClientApp) *UpsertCardView {
 	// Name
 	nameInput := textinput.New()
-	nameInput.Cursor.Style = cursorStyle
 	nameInput.CharLimit = 50
 	nameInput.Placeholder = "Secret name"
 	nameInput.Focus()
+	nameInput.Cursor.Style = cursorStyle
 	nameInput.PromptStyle = focusedStyle
 	nameInput.TextStyle = focusedStyle
 
-	// Text
-	textInput := textarea.New()
-	textInput.Cursor.Style = cursorStyle
-	textInput.Placeholder = "Enter a text"
-	textInput.Blur()
+	// Card Data
+	numberInput := textinput.New()
+	numberInput.Placeholder = "1234 **** **** 1234"
+	numberInput.Blur()
+	numberInput.CharLimit = 19
+	numberInput.Width = 30
+	numberInput.Cursor.Style = cursorStyle
+	numberInput.PromptStyle = blurredStyle
+	numberInput.TextStyle = blurredStyle
+	// numberInput.Validate = ccnValidator
+
+	holderInput := textinput.New()
+	holderInput.Placeholder = "Holder Name"
+	holderInput.CharLimit = 20
+	holderInput.Width = 20
+	holderInput.PromptStyle = blurredStyle
+	holderInput.Cursor.Style = cursorStyle
+	holderInput.TextStyle = blurredStyle
+	// holderInput.Validate = expValidator
+
+	dateInput := textinput.New()
+	dateInput.Placeholder = "MM/YY"
+	dateInput.CharLimit = 5
+	dateInput.Width = 5
+	dateInput.Prompt = "date:"
+	dateInput.PromptStyle = blurredStyle
+	dateInput.Cursor.Style = cursorStyle
+	dateInput.TextStyle = blurredStyle
+	// dateInput.Validate = expValidator
+
+	cvcInput := textinput.New()
+	cvcInput.Placeholder = "CVC"
+	cvcInput.CharLimit = 3
+	cvcInput.Width = 3
+	cvcInput.Prompt = "cvc:"
+	cvcInput.PromptStyle = blurredStyle
+	cvcInput.Cursor.Style = cursorStyle
+	cvcInput.TextStyle = blurredStyle
+	// cvcInput.Validate = cvvValidator
 
 	// Note
 	noteInput := textarea.New()
@@ -56,17 +97,23 @@ func NewUpsertCardView(app ClientApp) *UpsertCardView {
 
 	return &UpsertCardView{
 		focusIndex: 0,
-		focusMax:   4, // 0 - nameInput, 1 - text, 2 - note, 3 - Submit, 4 - cancel
+		focusMax:   8,
 
 		focusName:   0,
-		focusText:   1,
-		focusNote:   2,
-		focusSubmit: 3,
-		focusCancel: 4,
+		focusNumber: 1,
+		focusHolder: 2,
+		focusDate:   3,
+		focusCVC:    4,
+		focusNote:   5,
+		focusSubmit: 6,
+		focusCancel: 7,
 
-		nameInput: nameInput,
-		textInput: textInput,
-		noteInput: noteInput,
+		nameInput:   nameInput,
+		numberInput: numberInput,
+		holderInput: holderInput,
+		dateInput:   dateInput,
+		cvcInput:    cvcInput,
+		noteInput:   noteInput,
 
 		app: app,
 	}
@@ -91,16 +138,20 @@ func (m *UpsertCardView) Init(secretID *int64) tea.Cmd {
 
 		m.secretID = &card.ID
 		m.nameInput.SetValue(card.Name)
-		// m.textInput.SetValue(note.Text)
 		m.noteInput.SetValue(card.Note)
+
+		m.numberInput.SetValue(card.Number)
+		m.holderInput.SetValue(card.HolderName)
+		m.dateInput.SetValue(card.GetDate())
+		m.cvcInput.SetValue(fmt.Sprint(card.CVC))
 		log.Println("Secret data loaded:", card.ID, card.Name)
 		return ""
 	}
 }
 
-func (m *UpsertCardView) upsertSecretCmd(name, text, note string) tea.Cmd {
+func (m *UpsertCardView) upsertSecretCmd(name, number, holderName string, month, year int, cvc int, note string) tea.Cmd {
 	return func() tea.Msg {
-		s := model.NewNote(0, name, text, note)
+		s := model.NewCard(0, name, number, month, year, holderName, cvc, note)
 		payload, err := s.GetPayload()
 		if err != nil {
 			log.Println("creating note payload error", err)
@@ -108,9 +159,9 @@ func (m *UpsertCardView) upsertSecretCmd(name, text, note string) tea.Cmd {
 		}
 
 		if m.secretID == nil {
-			_, err = m.app.CreateSecret(model.SecretTypeNote, name, note, payload)
+			_, err = m.app.CreateSecret(model.SecretTypeCard, name, note, payload)
 		} else {
-			_, err = m.app.UpdateSecret(*m.secretID, model.SecretTypeNote, name, note, payload)
+			_, err = m.app.UpdateSecret(*m.secretID, model.SecretTypeCard, name, note, payload)
 		}
 		if err != nil {
 			log.Println("call grpc method error", err)
@@ -131,7 +182,8 @@ func (m *UpsertCardView) Update(msg tea.Msg) tea.Cmd {
 		case "tab", "shift+tab", "up", "down", "enter":
 			s := msg.String()
 
-			if s == "enter" && (m.focusIndex == m.focusNote || m.focusIndex == m.focusText) {
+			// Allow to do a line break for text areas elements
+			if s == "enter" && m.focusIndex == m.focusNote {
 				return m.updateInputs(msg)
 			}
 
@@ -139,12 +191,52 @@ func (m *UpsertCardView) Update(msg tea.Msg) tea.Cmd {
 				return changeScreenCmd(&ScreenTypeMsg{Screen: ScreenSecretList})
 			}
 			if s == "enter" && m.focusIndex == m.focusSubmit {
-				if m.nameInput.Value() == "" || m.textInput.Value() == "" {
-					return ErrorCmd(errors.New("Secret Name and Text cannot be empty"), time.Second*5)
+				cmds := make([]tea.Cmd, 0, 5)
+				if m.nameInput.Value() == "" {
+					cmds = append(cmds, ErrorCmd(errors.New("Secret Name cannot be empty"), time.Second*10))
+				}
+				if m.numberInput.Err != nil {
+					errCmd := ErrorCmd(fmt.Errorf("Card number validation error: %w", m.numberInput.Err), time.Second*10)
+					cmds = append(cmds, errCmd)
+				}
+				if m.holderInput.Err != nil {
+					errCmd := ErrorCmd(fmt.Errorf("Holder Name validation error: %w", m.holderInput.Err), time.Second*10)
+					cmds = append(cmds, errCmd)
+				}
+				if m.dateInput.Err != nil {
+					errCmd := ErrorCmd(fmt.Errorf("Card expiration date validation error: %w", m.dateInput.Err), time.Second*10)
+					cmds = append(cmds, errCmd)
+				}
+				if m.cvcInput.Err != nil {
+					errCmd := ErrorCmd(fmt.Errorf("Card CVC validation error: %w", m.cvcInput.Err), time.Second*10)
+					cmds = append(cmds, errCmd)
+				}
+				if len(cmds) > 0 {
+					return tea.Batch(cmds...)
+				}
+
+				// Following errors never must be returned
+				di := strings.Split(m.dateInput.Value(), "/")
+				// mm, err := strconv.ParseInt(di[0], 10, 64)
+				month, err := strconv.Atoi(di[0])
+				if err != nil {
+					return ErrorCmd(fmt.Errorf("Card expiration date error: %w", err), time.Second*10)
+				}
+				year, err := strconv.Atoi(di[1])
+				if err != nil {
+					return ErrorCmd(fmt.Errorf("Card expiration date error: %w", err), time.Second*10)
+				}
+				cvc, err := strconv.Atoi(m.cvcInput.Value())
+				if err != nil {
+					return ErrorCmd(fmt.Errorf("Card CVC error: %w", err), time.Second*10)
 				}
 				return m.upsertSecretCmd(
 					m.nameInput.Value(),
-					m.textInput.Value(),
+					m.numberInput.Value(),
+					m.holderInput.Value(),
+					month,
+					year,
+					cvc,
 					m.noteInput.Value(),
 				)
 			}
@@ -173,16 +265,51 @@ func (m *UpsertCardView) Update(msg tea.Msg) tea.Cmd {
 				m.nameInput.PromptStyle = noStyle
 				m.nameInput.TextStyle = noStyle
 			}
-			// Login Component
-			if m.focusIndex == m.focusText {
-				cmd = m.textInput.Focus()
-				// m.textInput.FocusedStyle = focusedStyle
-				// m.textInput.TextStyle = focusedStyle
+
+			// Card Number Component
+			if m.focusIndex == m.focusNumber {
+				cmd = m.numberInput.Focus()
+				m.numberInput.PromptStyle = focusedStyle
+				m.numberInput.TextStyle = focusedStyle
 			} else {
-				m.textInput.Blur()
-				// m.textInput.PromptStyle = noStyle
-				// m.textInput.TextStyle = noStyle
+				m.numberInput.Blur()
+				m.numberInput.PromptStyle = noStyle
+				m.numberInput.TextStyle = noStyle
 			}
+
+			// Holder Name Component
+			if m.focusIndex == m.focusHolder {
+				cmd = m.holderInput.Focus()
+				m.holderInput.PromptStyle = focusedStyle
+				m.holderInput.TextStyle = focusedStyle
+			} else {
+				m.holderInput.Blur()
+				m.holderInput.PromptStyle = noStyle
+				m.holderInput.TextStyle = noStyle
+			}
+
+			// Date Component
+			if m.focusIndex == m.focusDate {
+				cmd = m.dateInput.Focus()
+				m.dateInput.PromptStyle = focusedStyle
+				m.dateInput.TextStyle = focusedStyle
+			} else {
+				m.dateInput.Blur()
+				m.dateInput.PromptStyle = noStyle
+				m.dateInput.TextStyle = noStyle
+			}
+
+			// CVC Component
+			if m.focusIndex == m.focusCVC {
+				cmd = m.cvcInput.Focus()
+				m.cvcInput.PromptStyle = focusedStyle
+				m.cvcInput.TextStyle = focusedStyle
+			} else {
+				m.cvcInput.Blur()
+				m.cvcInput.PromptStyle = noStyle
+				m.cvcInput.TextStyle = noStyle
+			}
+
 			// Note Component
 			if m.focusIndex == m.focusNote {
 				cmd = m.noteInput.Focus()
@@ -199,11 +326,15 @@ func (m *UpsertCardView) Update(msg tea.Msg) tea.Cmd {
 }
 
 func (m *UpsertCardView) updateInputs(msg tea.Msg) tea.Cmd {
-	cmds := make([]tea.Cmd, 3)
+	cmds := make([]tea.Cmd, 6)
 
 	m.nameInput, cmds[0] = m.nameInput.Update(msg)
-	m.textInput, cmds[1] = m.textInput.Update(msg)
-	m.noteInput, cmds[2] = m.noteInput.Update(msg)
+	m.noteInput, cmds[1] = m.noteInput.Update(msg)
+
+	m.numberInput, cmds[2] = m.numberInput.Update(msg)
+	m.holderInput, cmds[3] = m.holderInput.Update(msg)
+	m.dateInput, cmds[4] = m.dateInput.Update(msg)
+	m.cvcInput, cmds[5] = m.cvcInput.Update(msg)
 
 	return tea.Batch(cmds...)
 }
@@ -214,23 +345,28 @@ func (m *UpsertCardView) View() string {
 	if m.secretID != nil {
 		action = "Update"
 	}
-	b.WriteString(boldStyle.Render(action + " Note:"))
+	b.WriteString(boldStyle.Render(action + " Card:"))
 	b.WriteRune('\n')
 
 	b.WriteString(m.nameInput.View())
 	b.WriteRune('\n')
 	b.WriteRune('\n')
 
-	b.WriteString(m.textInput.View())
+	b.WriteString(regularStyle.Render("Card data:"))
 	b.WriteRune('\n')
+	b.WriteString(m.numberInput.View())
 	b.WriteRune('\n')
 
-	b.WriteString(m.noteInput.View())
+	b.WriteString(m.holderInput.View())
+	b.WriteRune('\n')
+
+	b.WriteString(m.dateInput.View())
+	b.WriteString("         ")
+	b.WriteString(m.cvcInput.View())
 	b.WriteRune('\n')
 
 	// submit button
 	b.WriteString("\n")
-
 	button := blurredStyle.Render(fmt.Sprintf("[ %s ]", action))
 	if m.focusIndex == m.focusSubmit {
 		button = fmt.Sprintf("[ %s ]", focusedStyle.Render(action))

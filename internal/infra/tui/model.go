@@ -37,7 +37,7 @@ type Model struct {
 	viewNewPwd     *views.UpsertPwdView
 	viewNewNote    *views.UpsertNoteView
 	viewNewFile    *views.UpsertPwdView
-	viewNewCard    *views.UpsertPwdView
+	viewNewCard    *views.UpsertCardView
 	activeView     Viewer
 	errors         []*views.ErrorMsg
 }
@@ -55,7 +55,7 @@ func InitModel(app Client) Model {
 		viewNewPwd:     views.NewUpsertPwdView(app),
 		viewNewNote:    views.NewUpsertNoteView(app),
 		viewNewFile:    views.NewUpsertPwdView(app), // todo
-		viewNewCard:    views.NewUpsertPwdView(app), // todo
+		viewNewCard:    views.NewUpsertCardView(app),
 		activeView:     l,
 		errors:         make([]*views.ErrorMsg, 0),
 	}
@@ -151,6 +151,7 @@ func (m *Model) changeViewer(msg views.ScreenTypeMsg) tea.Cmd {
 	// New card
 	case views.ScreenUpsertCard:
 		m.activeView = m.viewNewCard
+		return m.viewNewCard.Init(msg.SecretID)
 	// New File
 	case views.ScreenUpsertFile:
 		m.activeView = m.viewNewFile

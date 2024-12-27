@@ -131,6 +131,7 @@ func (m *UpsertNoteView) Update(msg tea.Msg) tea.Cmd {
 		case "tab", "shift+tab", "up", "down", "enter":
 			s := msg.String()
 
+			// Allow to do a line break for text areas elements
 			if s == "enter" && (m.focusIndex == m.focusNote || m.focusIndex == m.focusText) {
 				return m.updateInputs(msg)
 			}
