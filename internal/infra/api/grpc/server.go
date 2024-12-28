@@ -214,6 +214,43 @@ func (s *KeeperServer) CreateSecret(ctx context.Context, in *pb.SecretCreateRequ
 	return &response, nil
 }
 
+func (s *KeeperServer) CreateFile(ctx context.Context, in *pb.SecretFileCreateRequest) (*pb.SecretFileCreateResponse, error) {
+	user, ok := ctx.Value(model.UserCtxKey).(*model.User)
+	if !ok {
+		logger.Log.Error("failed to get user from context")
+		return nil, status.Errorf(codes.Unauthenticated, "Access denied")
+	}
+
+	log := logger.Log.With(
+		zap.Any("request", in),
+		zap.Int64("user_id", user.ID),
+		zap.String("login", user.Login),
+	)
+	log.Info("CreateFile request")
+
+	meta, err := s.secretService.CreateFile(
+		ctx,
+		model.CreateFileRequest{
+			UserID:   user.ID,
+			Name:     in.Name,
+			FileName: in.FileName,
+			Note:     in.Note,
+			Payload:  in.Payload,
+		},
+	)
+	if err != nil {
+		return nil, status.Errorf(codes.Unknown, "CreateFile error: %s", err)
+	}
+
+	response := pb.SecretFileCreateResponse{
+		Id:       meta.ID,
+		Name:     meta.Name,
+		FileName: meta.FileName,
+		Note:     meta.Note,
+	}
+	return &response, nil
+}
+
 func (s *KeeperServer) UpdateSecret(ctx context.Context, in *pb.SecretUpdateRequest) (*pb.Secret, error) {
 	user, ok := ctx.Value(model.UserCtxKey).(*model.User)
 	if !ok {

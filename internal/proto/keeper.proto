@@ -73,6 +73,21 @@ message SecretUpdateRequest {
   SecretType type = 4; 
   bytes      payload = 5; 
 }
+
+message SecretFileCreateRequest {
+  string     name = 1; 
+  string     file_name = 2; 
+  bytes      payload = 3; 
+  string     note = 4;
+}
+
+message SecretFileCreateResponse {
+  sint64     id = 1;
+  string     name = 2; 
+  string     file_name = 3; 
+  string     note = 4;
+}
+
 // End of Secret section
 
 
@@ -86,4 +101,5 @@ service Keeper {
   rpc GetSecret(SecretRequest) returns (Secret);
   rpc CreateSecret(SecretCreateRequest) returns (Secret);  
   rpc UpdateSecret(SecretUpdateRequest) returns (Secret);  
+  rpc CreateFile(SecretFileCreateRequest) returns (SecretFileCreateResponse);  
 }

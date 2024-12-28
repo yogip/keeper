@@ -25,6 +25,7 @@ const (
 	Keeper_GetSecret_FullMethodName    = "/proto.Keeper/GetSecret"
 	Keeper_CreateSecret_FullMethodName = "/proto.Keeper/CreateSecret"
 	Keeper_UpdateSecret_FullMethodName = "/proto.Keeper/UpdateSecret"
+	Keeper_CreateFile_FullMethodName   = "/proto.Keeper/CreateFile"
 )
 
 // KeeperClient is the client API for Keeper service.
@@ -39,6 +40,7 @@ type KeeperClient interface {
 	GetSecret(ctx context.Context, in *SecretRequest, opts ...grpc.CallOption) (*Secret, error)
 	CreateSecret(ctx context.Context, in *SecretCreateRequest, opts ...grpc.CallOption) (*Secret, error)
 	UpdateSecret(ctx context.Context, in *SecretUpdateRequest, opts ...grpc.CallOption) (*Secret, error)
+	CreateFile(ctx context.Context, in *SecretFileCreateRequest, opts ...grpc.CallOption) (*SecretFileCreateResponse, error)
 }
 
 type keeperClient struct {
@@ -109,6 +111,16 @@ func (c *keeperClient) UpdateSecret(ctx context.Context, in *SecretUpdateRequest
 	return out, nil
 }
 
+func (c *keeperClient) CreateFile(ctx context.Context, in *SecretFileCreateRequest, opts ...grpc.CallOption) (*SecretFileCreateResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SecretFileCreateResponse)
+	err := c.cc.Invoke(ctx, Keeper_CreateFile_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // KeeperServer is the server API for Keeper service.
 // All implementations must embed UnimplementedKeeperServer
 // for forward compatibility.
@@ -121,6 +133,7 @@ type KeeperServer interface {
 	GetSecret(context.Context, *SecretRequest) (*Secret, error)
 	CreateSecret(context.Context, *SecretCreateRequest) (*Secret, error)
 	UpdateSecret(context.Context, *SecretUpdateRequest) (*Secret, error)
+	CreateFile(context.Context, *SecretFileCreateRequest) (*SecretFileCreateResponse, error)
 	mustEmbedUnimplementedKeeperServer()
 }
 
@@ -148,6 +161,9 @@ func (UnimplementedKeeperServer) CreateSecret(context.Context, *SecretCreateRequ
 }
 func (UnimplementedKeeperServer) UpdateSecret(context.Context, *SecretUpdateRequest) (*Secret, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateSecret not implemented")
+}
+func (UnimplementedKeeperServer) CreateFile(context.Context, *SecretFileCreateRequest) (*SecretFileCreateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateFile not implemented")
 }
 func (UnimplementedKeeperServer) mustEmbedUnimplementedKeeperServer() {}
 func (UnimplementedKeeperServer) testEmbeddedByValue()                {}
@@ -278,6 +294,24 @@ func _Keeper_UpdateSecret_Handler(srv interface{}, ctx context.Context, dec func
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Keeper_CreateFile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SecretFileCreateRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(KeeperServer).CreateFile(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Keeper_CreateFile_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(KeeperServer).CreateFile(ctx, req.(*SecretFileCreateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Keeper_ServiceDesc is the grpc.ServiceDesc for Keeper service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -308,6 +342,10 @@ var Keeper_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateSecret",
 			Handler:    _Keeper_UpdateSecret_Handler,
+		},
+		{
+			MethodName: "CreateFile",
+			Handler:    _Keeper_CreateFile_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

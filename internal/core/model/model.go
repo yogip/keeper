@@ -87,16 +87,13 @@ type UpdateCardRequest struct {
 
 type FileMeta struct {
 	SecretMeta
-	Path string
-}
-
-type File struct {
-	FileMeta
-	Body []byte
+	FileName string
 }
 
 type CreateFileRequest struct {
-	UserID int64
-	Name   string
-	Body   []byte
+	UserID   int64
+	Name     string
+	FileName string
+	Note     string
+	Payload  []byte
 }

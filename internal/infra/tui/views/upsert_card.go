@@ -38,6 +38,57 @@ type UpsertCardView struct {
 	app      ClientApp
 }
 
+func cardNumberValidator(s string) error {
+	// It should include 16 integers and 3 spaces
+	if len(s) > 16+3 {
+		return fmt.Errorf("Card number is too long")
+	}
+
+	if len(s) < 16+3 {
+		return fmt.Errorf("Card number is too sort")
+	}
+
+	c := strings.ReplaceAll(s, " ", "")
+	_, err := strconv.ParseInt(c, 10, 64)
+
+	return err
+}
+
+func expValidator(s string) error {
+	// The 3 character should be a slash (/)
+	// The rest should be numbers
+	if len(s) != 5 || strings.Index(s, "/") != 2 {
+		return fmt.Errorf("Expiration date should has format MM/YY")
+	}
+
+	splited := strings.Split(s, "/")
+	for i, v := range splited {
+		part := "Month"
+		if i == 1 {
+			part = "Year"
+		}
+		_, err := strconv.ParseInt(v, 10, 64)
+		if err != nil {
+			return fmt.Errorf("Expiration date is invalid - %s has to be a number", part)
+		}
+	}
+
+	return nil
+}
+
+func cvcValidator(s string) error {
+	// The CVV should be a number of 3 digits
+	if len(s) != 3 {
+		return fmt.Errorf("cvc is too short")
+	}
+
+	_, err := strconv.ParseInt(s, 10, 64)
+	if err != nil {
+		return fmt.Errorf("cvc has to be a number")
+	}
+	return nil
+}
+
 func NewUpsertCardView(app ClientApp) *UpsertCardView {
 	// Name
 	nameInput := textinput.New()
@@ -57,7 +108,7 @@ func NewUpsertCardView(app ClientApp) *UpsertCardView {
 	numberInput.Cursor.Style = cursorStyle
 	numberInput.PromptStyle = blurredStyle
 	numberInput.TextStyle = blurredStyle
-	// numberInput.Validate = ccnValidator
+	numberInput.Validate = cardNumberValidator
 
 	holderInput := textinput.New()
 	holderInput.Placeholder = "Holder Name"
@@ -66,27 +117,26 @@ func NewUpsertCardView(app ClientApp) *UpsertCardView {
 	holderInput.PromptStyle = blurredStyle
 	holderInput.Cursor.Style = cursorStyle
 	holderInput.TextStyle = blurredStyle
-	// holderInput.Validate = expValidator
 
 	dateInput := textinput.New()
 	dateInput.Placeholder = "MM/YY"
 	dateInput.CharLimit = 5
 	dateInput.Width = 5
-	dateInput.Prompt = "date:"
+	dateInput.Prompt = "date: "
 	dateInput.PromptStyle = blurredStyle
 	dateInput.Cursor.Style = cursorStyle
 	dateInput.TextStyle = blurredStyle
-	// dateInput.Validate = expValidator
+	dateInput.Validate = expValidator
 
 	cvcInput := textinput.New()
 	cvcInput.Placeholder = "CVC"
 	cvcInput.CharLimit = 3
 	cvcInput.Width = 3
-	cvcInput.Prompt = "cvc:"
+	cvcInput.Prompt = "cvc: "
 	cvcInput.PromptStyle = blurredStyle
 	cvcInput.Cursor.Style = cursorStyle
 	cvcInput.TextStyle = blurredStyle
-	// cvcInput.Validate = cvvValidator
+	cvcInput.Validate = cvcValidator
 
 	// Note
 	noteInput := textarea.New()
@@ -193,22 +243,22 @@ func (m *UpsertCardView) Update(msg tea.Msg) tea.Cmd {
 			if s == "enter" && m.focusIndex == m.focusSubmit {
 				cmds := make([]tea.Cmd, 0, 5)
 				if m.nameInput.Value() == "" {
-					cmds = append(cmds, ErrorCmd(errors.New("Secret Name cannot be empty"), time.Second*10))
+					cmds = append(cmds, ErrorCmd(errors.New("Secret Name cannot be empty"), time.Second*15))
 				}
 				if m.numberInput.Err != nil {
-					errCmd := ErrorCmd(fmt.Errorf("Card number validation error: %w", m.numberInput.Err), time.Second*10)
+					errCmd := ErrorCmd(fmt.Errorf("Card number validation error: %w", m.numberInput.Err), time.Second*15)
 					cmds = append(cmds, errCmd)
 				}
 				if m.holderInput.Err != nil {
-					errCmd := ErrorCmd(fmt.Errorf("Holder Name validation error: %w", m.holderInput.Err), time.Second*10)
+					errCmd := ErrorCmd(fmt.Errorf("Holder Name validation error: %w", m.holderInput.Err), time.Second*15)
 					cmds = append(cmds, errCmd)
 				}
 				if m.dateInput.Err != nil {
-					errCmd := ErrorCmd(fmt.Errorf("Card expiration date validation error: %w", m.dateInput.Err), time.Second*10)
+					errCmd := ErrorCmd(fmt.Errorf("Card expiration date validation error: %w", m.dateInput.Err), time.Second*15)
 					cmds = append(cmds, errCmd)
 				}
 				if m.cvcInput.Err != nil {
-					errCmd := ErrorCmd(fmt.Errorf("Card CVC validation error: %w", m.cvcInput.Err), time.Second*10)
+					errCmd := ErrorCmd(fmt.Errorf("Card CVC validation error: %w", m.cvcInput.Err), time.Second*15)
 					cmds = append(cmds, errCmd)
 				}
 				if len(cmds) > 0 {
@@ -363,6 +413,10 @@ func (m *UpsertCardView) View() string {
 	b.WriteString(m.dateInput.View())
 	b.WriteString("         ")
 	b.WriteString(m.cvcInput.View())
+	b.WriteRune('\n')
+
+	b.WriteRune('\n')
+	b.WriteString(m.noteInput.View())
 	b.WriteRune('\n')
 
 	// submit button

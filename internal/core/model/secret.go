@@ -144,3 +144,19 @@ func (c *Card) GetPayload() ([]byte, error) {
 func (c *Card) GetDate() string {
 	return fmt.Sprintf("%02d/%02d", c.Month, c.Year)
 }
+
+// File secret
+type File struct {
+	SecretMeta
+	FileName string `json:"file_name"`
+	Body     []byte `json:"file_name"`
+}
+
+// JSON secret date representaion
+func (c *File) GetPayload() ([]byte, error) {
+	payload, err := json.Marshal(c)
+	if err != nil {
+		return nil, fmt.Errorf("could not Marshal Password payload: %w", err)
+	}
+	return payload, nil
+}

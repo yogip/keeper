@@ -74,6 +74,18 @@ func (m *SecretView) View() string {
 			b.WriteString(fmt.Sprintf("Error: %s\n", err.Error()))
 		}
 		b.WriteString(boldStyle.Render("Text:\t") + fmt.Sprintf(" %s \n", n.Text))
+	case model.SecretTypeCard:
+		c, err := m.secret.AsCard()
+		if err != nil {
+			b.WriteString(fmt.Sprintf("Error: %s\n", err.Error()))
+		}
+		b.WriteString(c.Number)
+		b.WriteRune('\n')
+		b.WriteString(c.HolderName)
+		b.WriteRune('\n')
+		b.WriteString(fmt.Sprintf("Expired after: %s \t cvc: %d", c.GetDate(), c.CVC))
+		b.WriteRune('\n')
+
 	}
 
 	b.WriteString("-----------------------------------------------------\n")

@@ -97,7 +97,7 @@ func (m *CreateSecretView) nextStageView() tea.Cmd {
 	case model.SecretTypeFile:
 		return changeScreenCmd(&ScreenTypeMsg{Screen: ScreenUpsertFile})
 	}
-	return ErrorCmd(errors.New("Select secret type"), time.Second*5)
+	return ErrorCmd(errors.New("Select secret type"), time.Second*15)
 }
 
 func (m *CreateSecretView) Update(msg tea.Msg) tea.Cmd {
