@@ -5,7 +5,7 @@ import (
 	"keeper/internal/core/model"
 )
 
-func (s *TestSuite) TestGetPassword() {
+func (s *TestSuite) TestGetSecret() {
 	ctx := context.Background()
 
 	type args struct {
@@ -14,50 +14,121 @@ func (s *TestSuite) TestGetPassword() {
 	tests := []struct {
 		name     string
 		args     args
-		expected model.Password
+		expected *model.Secret
 	}{
 		{
-			name: "Test success - 1",
+			name: "Test Password - 1",
 			args: args{
 				req: model.SecretRequest{ID: 1, UserID: 1, Type: model.SecretTypePassword},
 			},
-			expected: model.Password{
-				SecretMeta: model.SecretMeta{
-					ID:   1,
-					Name: "pwd-1",
-					Type: model.SecretTypePassword,
-					Note: "",
-				},
-				Login:    "stub-login",
-				Password: "stub-password",
-			},
+			expected: model.NewSecret(
+				1,
+				"pwd-1",
+				model.SecretTypePassword,
+				[]byte(`{"login": "stub-login", "password": "stub-password"}`),
+				"",
+			),
 		},
 		{
-			name: "Test success - 2",
+			name: "Test Password - 2",
 			args: args{
 				req: model.SecretRequest{ID: 2, UserID: 1, Type: model.SecretTypePassword},
 			},
-			expected: model.Password{
-				SecretMeta: model.SecretMeta{
-					ID:   2,
-					Name: "pwd-2",
-					Type: model.SecretTypePassword,
-					Note: "note...",
-				},
-				Login:    "stub-login",
-				Password: "stub-password",
-			},
+			expected: model.NewSecret(
+				2,
+				"pwd-2",
+				model.SecretTypePassword,
+				[]byte(`{"login": "stub-login", "password": "stub-password"}`),
+				"note...",
+			),
 		},
+		{
+			name: "Test Note - 3",
+			args: args{
+				req: model.SecretRequest{ID: 3, UserID: 1, Type: model.SecretTypeNote},
+			},
+			expected: model.NewSecret(
+				3,
+				"note-1",
+				model.SecretTypeNote,
+				[]byte(`{"text": "stub-text"}`),
+				"note...",
+			),
+		},
+		{
+			name: "Test Note - 4",
+			args: args{
+				req: model.SecretRequest{ID: 4, UserID: 1, Type: model.SecretTypeNote},
+			},
+			expected: model.NewSecret(
+				4,
+				"note-2",
+				model.SecretTypeNote,
+				[]byte(`{"text": "stub-text-2"}`),
+				"",
+			),
+		},
+		{
+			name: "Test Card - 5",
+			args: args{
+				req: model.SecretRequest{ID: 5, UserID: 1, Type: model.SecretTypeCard},
+			},
+			expected: model.NewSecret(
+				5,
+				"card-1",
+				model.SecretTypeCard,
+				[]byte(`{"number": "1234 1234 1234 1234", "month": 11, "year": 25, "holder_name": "Holder Name", "cvc": 123}`),
+				"some note ...",
+			),
+		},
+		// {
+		// 	name: "Test File - 6",
+		// 	args: args{
+		// 		req: model.SecretRequest{ID: 6, UserID: 1, Type: model.SecretTypeFile},
+		// 	},
+		// 	expected: model.NewSecret(
+		// 		6,
+		// 		"file-1",
+		// 		model.SecretTypeCard,
+		// 		[]byte(`{"number": "1234 1234 1234 1234", "month": 11, "year": 25, "holder_name": "Holder Name", "cvc": 123}`),
+		// 		"some note ...",
+		// 	),
+		// },
 	}
 
+	// S3Name   string `json:"s3_name"`
+	// FileName string `json:"file_name"`
+	// File     []byte `json:"file"`
+
 	for _, tt := range tests {
-		// payload, _ := tt.expected.GetPayload()
-		// s.encript(string(payload))
+		// s.encript(`{"number": "1234 1234 1234 1234", "month": 11, "year": 25, "holder_name": "Holder Name", "cvc": 123}`)
 		actual, err := s.secretSrv.GetSecret(ctx, tt.args.req)
 		s.Require().NoError(err)
-		actPwd, err := actual.AsPassword()
-		s.Require().NoError(err)
-		s.Assert().Equal(tt.expected, *actPwd)
+
+		switch tt.args.req.Type {
+		case model.SecretTypePassword:
+			actPwd, err := actual.AsPassword()
+			s.Require().NoError(err)
+
+			pwd, err := tt.expected.AsPassword()
+			s.Require().NoError(err)
+			s.Assert().Equal(pwd, actPwd)
+		case model.SecretTypeNote:
+			actNote, err := actual.AsNote()
+			s.Require().NoError(err)
+
+			note, err := tt.expected.AsNote()
+			s.Require().NoError(err)
+			s.Assert().Equal(note, actNote)
+		case model.SecretTypeCard:
+			actCard, err := actual.AsCard()
+			s.Require().NoError(err)
+
+			card, err := tt.expected.AsCard()
+			s.Require().NoError(err)
+			s.Assert().Equal(card, actCard)
+		}
+
 	}
 }
 
