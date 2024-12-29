@@ -57,6 +57,20 @@ func (s *Secret) AsCard() (*Card, error) {
 	return &c, nil
 }
 
+// Method to convert generic secret to password object
+func (s *Secret) AsFile() (*File, error) {
+	if s.Type != SecretTypeFile {
+		return nil, fmt.Errorf("wrong secret type %s, reqired File", s.Type)
+	}
+	var f File
+	err := json.Unmarshal(s.Payload, &f)
+	if err != nil {
+		return nil, fmt.Errorf("could not Unmarshal Note payload: %w", err)
+	}
+	f.SecretMeta = s.SecretMeta
+	return &f, nil
+}
+
 // General secret info
 type SecretMeta struct {
 	ID   int64
@@ -106,7 +120,7 @@ func NewNote(id int64, name, text, note string) *Note {
 func (p *Note) GetPayload() ([]byte, error) {
 	payload, err := json.Marshal(p)
 	if err != nil {
-		return nil, fmt.Errorf("could not Marshal Password payload: %w", err)
+		return nil, fmt.Errorf("could not Marshal Note payload: %w", err)
 	}
 	return payload, nil
 }
@@ -136,7 +150,7 @@ func NewCard(id int64, name, number string, month int, year int, holderName stri
 func (c *Card) GetPayload() ([]byte, error) {
 	payload, err := json.Marshal(c)
 	if err != nil {
-		return nil, fmt.Errorf("could not Marshal Password payload: %w", err)
+		return nil, fmt.Errorf("could not Marshal Card payload: %w", err)
 	}
 	return payload, nil
 }
@@ -148,15 +162,24 @@ func (c *Card) GetDate() string {
 // File secret
 type File struct {
 	SecretMeta
+	S3Name   string `json:"s3_name"`
 	FileName string `json:"file_name"`
-	Body     []byte `json:"file_name"`
+	File     []byte `json:"file"`
+}
+
+func NewFile(id int64, name, fileName string, file []byte, note string) *File {
+	return &File{
+		SecretMeta: SecretMeta{id, name, SecretTypeFile, note},
+		FileName:   fileName,
+		File:       file,
+	}
 }
 
 // JSON secret date representaion
 func (c *File) GetPayload() ([]byte, error) {
 	payload, err := json.Marshal(c)
 	if err != nil {
-		return nil, fmt.Errorf("could not Marshal Password payload: %w", err)
+		return nil, fmt.Errorf("could not Marshal File payload: %w", err)
 	}
 	return payload, nil
 }

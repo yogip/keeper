@@ -85,7 +85,22 @@ func (m *SecretView) View() string {
 		b.WriteRune('\n')
 		b.WriteString(fmt.Sprintf("Expired after: %s \t cvc: %d", c.GetDate(), c.CVC))
 		b.WriteRune('\n')
-
+	case model.SecretTypeFile:
+		f, err := m.secret.AsFile()
+		if err != nil {
+			b.WriteString(fmt.Sprintf("Error: %s\n", err.Error()))
+		}
+		b.WriteString(boldStyle.Render("File name:\t") + f.FileName)
+		b.WriteRune('\n')
+		b.WriteString(boldStyle.Render("File body:"))
+		b.WriteRune('\n')
+		r := []rune(string(f.File))
+		n := 100
+		if n > len(r) {
+			n = len(r)
+		}
+		b.WriteString(string(r[:n]))
+		b.WriteRune('\n')
 	}
 
 	b.WriteString("-----------------------------------------------------\n")

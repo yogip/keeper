@@ -1,20 +1,5 @@
 package model
 
-const UserCtxKey string = "user"
-
-type UserRequest struct {
-	Login    string `json:"login"`
-	Password string `json:"password"`
-}
-
-type User struct {
-	ID           int64   `json:"id"`
-	Login        string  `json:"login"`
-	PasswordHash *[]byte `json:"password,omitempty"`
-}
-
-type Token string
-
 type SecretType string
 
 const (
@@ -59,35 +44,6 @@ type SecretCreateRequest struct {
 	Name    string
 	Note    string
 	Payload []byte
-}
-
-type UpdatePasswordRequest struct {
-	UserID int64
-	Data   *Password
-	Key    *DataKey
-}
-
-type UpdateNoteRequest struct {
-	UserID int64
-	Data   *Note
-	Key    *DataKey
-}
-
-type EncryptedCard struct {
-	Payload string
-	Meta    *SecretMeta
-	DataKey *DataKey
-}
-
-type UpdateCardRequest struct {
-	UserID int64
-	Card   Card
-	Key    *DataKey
-}
-
-type FileMeta struct {
-	SecretMeta
-	FileName string
 }
 
 type CreateFileRequest struct {

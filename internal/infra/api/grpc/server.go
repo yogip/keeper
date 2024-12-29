@@ -228,7 +228,7 @@ func (s *KeeperServer) CreateFile(ctx context.Context, in *pb.SecretFileCreateRe
 	)
 	log.Info("CreateFile request")
 
-	meta, err := s.secretService.CreateFile(
+	sid, err := s.secretService.CreateFile(
 		ctx,
 		model.CreateFileRequest{
 			UserID:   user.ID,
@@ -243,10 +243,10 @@ func (s *KeeperServer) CreateFile(ctx context.Context, in *pb.SecretFileCreateRe
 	}
 
 	response := pb.SecretFileCreateResponse{
-		Id:       meta.ID,
-		Name:     meta.Name,
-		FileName: meta.FileName,
-		Note:     meta.Note,
+		Id:       sid,
+		Name:     in.Name,
+		FileName: in.FileName,
+		Note:     in.Note,
 	}
 	return &response, nil
 }

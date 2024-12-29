@@ -154,6 +154,8 @@ LfHpc4xLw78xk5cdTurPtU6IA4/eGoflewTxj6vl5RAAZDAspSj22nuoh1w=
 func (s *TestSuite) encript(plaitext string) {
 	ch, key, _ := s.encrypter.Encrypt([]byte(plaitext), 1)
 	fmt.Println("-------------")
+	fmt.Println(plaitext)
+	fmt.Println("-")
 	fmt.Println(ch)
 	fmt.Println("-")
 	fmt.Println(key)

@@ -105,6 +105,22 @@ func (c *Client) CreateSecret(secretType model.SecretType, name string, note str
 	return secret, nil
 }
 
+func (c *Client) CreateFileSecret(name, fileName, note string, payload []byte) (int64, error) {
+	r, err := c.client.CreateFile(
+		c.ctx,
+		&pb.SecretFileCreateRequest{
+			Name:     name,
+			FileName: fileName,
+			Payload:  payload,
+			Note:     note,
+		},
+	)
+	if err != nil {
+		return 0, fmt.Errorf("grpc - create secret error: %w", err)
+	}
+	return r.Id, nil
+}
+
 func (c *Client) UpdateSecret(id int64, secretType model.SecretType, name string, note string, payload []byte) (*model.Secret, error) {
 	r, err := c.client.UpdateSecret(
 		c.ctx,

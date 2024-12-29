@@ -31,6 +31,7 @@ var (
 
 type ClientApp interface {
 	CreateSecret(secretType model.SecretType, name string, note string, payload []byte) (*model.Secret, error)
+	CreateFileSecret(name, fileName, note string, payload []byte) (int64, error)
 	UpdateSecret(id int64, secretType model.SecretType, name string, note string, payload []byte) (*model.Secret, error)
 	ListSecrets(secretName string) (*model.SecretList, error)
 	GetSecret(secretID int64) (*model.Secret, error)

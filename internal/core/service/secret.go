@@ -44,12 +44,33 @@ func (s *SecretService) GetSecret(ctx context.Context, req model.SecretRequest) 
 		return nil, errors.Wrapf(err, "failed to get secret")
 	}
 
-	p, err := s.encrypter.Decrypt(string(secret.Item.Payload), secret.DataKey)
-	if err != nil {
-		return nil, errors.Wrapf(err, "failed to decrypt secret")
+	if secret.Item.Type == model.SecretTypeFile {
+		fileMeta, err := secret.Item.AsFile()
+		if err != nil {
+			return nil, errors.Wrapf(err, "failed to get file meta from payload")
+		}
+		fileBodyEnc, err := s.s3client.GetObject(ctx, fileMeta.S3Name)
+		if err != nil {
+			return nil, errors.Wrapf(err, "failed to get file from s3")
+		}
+		fileBody, err := s.encrypter.Decrypt(string(fileBodyEnc), secret.DataKey)
+		if err != nil {
+			return nil, errors.Wrapf(err, "failed to decrypt secret")
+		}
+
+		fileMeta.File = fileBody
+		secret.Item.Payload, err = fileMeta.GetPayload()
+		if err != nil {
+			return nil, errors.Wrapf(err, "failed to get file payload")
+		}
+	} else {
+		p, err := s.encrypter.Decrypt(string(secret.Item.Payload), secret.DataKey)
+		if err != nil {
+			return nil, errors.Wrapf(err, "failed to decrypt secret")
+		}
+		secret.Item.Payload = p
 	}
 
-	secret.Item.Payload = p
 	return secret.Item, nil
 }
 
@@ -92,37 +113,26 @@ func (s *SecretService) UpdateSecret(ctx context.Context, req model.SecretUpdate
 	return &resp, nil
 }
 
-// todo ????
-// func (s *SecretService) GetFile(ctx context.Context, req model.SecretRequest) (*model.File, error) {
-// 	if req.Type != model.SecretTypeFile {
-// 		return nil, fmt.Errorf("type must be %s, got: %s", model.SecretTypeFile, req.Type)
-// 	}
-
-// 	fileMeta, err := s.repo.GetFileMeta(ctx, req)
-// 	if err != nil {
-// 		return nil, errors.Wrapf(err, "failed to get File")
-// 	}
-
-// 	encText, err := s.s3client.GetObject(ctx, fileMeta.Meta.Path)
-// 	plText, err := s.encrypter.Decrypt(string(encText), fileMeta.DataKey)
-// 	if err != nil {
-// 		return nil, errors.Wrapf(err, "failed to decrypt File")
-// 	}
-
-// 	return &model.File{Body: plText, FileMeta: *fileMeta.Meta}, nil
-// }
-
-func (s *SecretService) CreateFile(ctx context.Context, req model.CreateFileRequest) (*model.FileMeta, error) {
+func (s *SecretService) CreateFile(ctx context.Context, req model.CreateFileRequest) (int64, error) {
 	enc, key, err := s.encrypter.Encrypt(req.Payload, s.lastEncKeyVersion)
 	if err != nil {
-		return nil, errors.Wrapf(err, "failed to encrypt file")
+		return 0, errors.Wrapf(err, "failed to encrypt file")
 	}
 
 	buff := bytes.NewBufferString(enc)
 	s3name := fmt.Sprintf("%d_%s", req.UserID, uuid.NewString())
 	err = s.s3client.PutObject(ctx, s3name, buff, int64(buff.Len()))
 	if err != nil {
-		return nil, errors.Wrapf(err, "failed to save file")
+		return 0, errors.Wrapf(err, "failed to save file")
+	}
+
+	fileMeta := model.File{
+		FileName: req.FileName,
+		S3Name:   s3name,
+	}
+	payload, err := fileMeta.GetPayload()
+	if err != nil {
+		return 0, errors.Wrapf(err, "failed to get payload")
 	}
 
 	dKey := &model.DataKey{Key: key, Version: s.lastEncKeyVersion}
@@ -130,19 +140,13 @@ func (s *SecretService) CreateFile(ctx context.Context, req model.CreateFileRequ
 		Name:    req.Name,
 		Type:    model.SecretTypeFile,
 		Note:    req.Note,
-		Payload: []byte(enc), // todo !!!
+		Payload: payload,
 		UserID:  req.UserID,
 	}
 	sid, err := s.repo.CreateSecret(ctx, &r, dKey)
-	// meta, err := s.repo.CreateSecret(ctx, req, s3name, dKey)
 	if err != nil {
-		return nil, errors.Wrapf(err, "failed to crete password")
+		return 0, errors.Wrapf(err, "failed to crete file")
 	}
 
-	resp := model.FileMeta{
-		SecretMeta: model.SecretMeta{
-			ID: sid,
-		},
-	}
-	return &resp, nil
+	return sid, nil
 }

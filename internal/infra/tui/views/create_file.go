@@ -81,7 +81,7 @@ func (m *CreateFileView) Init() tea.Cmd {
 
 func (m *CreateFileView) createSecretCmd(name, filePath, note string) tea.Cmd {
 	return func() tea.Msg {
-		file, err := os.Open("file.txt")
+		file, err := os.Open(filePath)
 		if err != nil {
 			log.Println("Opening file error", err)
 			return NewErrorMsg(err, time.Second*15)
@@ -98,26 +98,16 @@ func (m *CreateFileView) createSecretCmd(name, filePath, note string) tea.Cmd {
 			return NewErrorMsg(err, time.Second*15)
 		}
 
-		log.Println("create", body)
-		return nil
-		// s := model.NewCard(0, name, number, month, year, holderName, cvc, note)
-		// payload, err := s.GetPayload()
-		// if err != nil {
-		// 	log.Println("creating note payload error", err)
-		// 	return NewErrorMsg(err, time.Second*10)
-		// }
+		fileParts := strings.Split(filePath, "/")
+		fileName := fileParts[len(fileParts)-1]
 
-		// if m.secretID == nil {
-		// 	_, err = m.app.CreateSecret(model.SecretTypeCard, name, note, payload)
-		// } else {
-		// 	_, err = m.app.UpdateSecret(*m.secretID, model.SecretTypeCard, name, note, payload)
-		// }
-		// if err != nil {
-		// 	log.Println("call grpc method error", err)
-		// 	return NewErrorMsg(err, time.Second*10)
-		// }
-		// log.Println("Succesfully upsert secret", name)
-		// return changeScreenCmd(&ScreenTypeMsg{Screen: ScreenSecretList})()
+		_, err = m.app.CreateFileSecret(name, fileName, note, body)
+		if err != nil {
+			log.Println("call grpc method error", err)
+			return NewErrorMsg(err, time.Second*10)
+		}
+		log.Println("Succesfully upsert secret", name)
+		return changeScreenCmd(&ScreenTypeMsg{Screen: ScreenSecretList})()
 	}
 }
 

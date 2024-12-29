@@ -1,54 +1,65 @@
 package service
 
-// func (s *TestSuite) TestGetPassword() {
-// 	ctx := context.Background()
+import (
+	"context"
+	"keeper/internal/core/model"
+)
 
-// 	type args struct {
-// 		req model.SecretRequest
-// 	}
-// 	tests := []struct {
-// 		name     string
-// 		args     args
-// 		expected model.Password
-// 	}{
-// 		{
-// 			name: "Test success - 1",
-// 			args: args{
-// 				req: model.SecretRequest{ID: 1, UserID: 1, Type: model.SecretTypePassword},
-// 			},
-// 			expected: model.Password{
-// 				SecretMeta: model.SecretMeta{
-// 					ID:   1,
-// 					Name: "pwd-1",
-// 					Type: model.SecretTypePassword,
-// 				},
-// 				Login:    "stub-login",
-// 				Password: "stub-password",
-// 			},
-// 		},
-// 		{
-// 			name: "Test success - 2",
-// 			args: args{
-// 				req: model.SecretRequest{ID: 2, UserID: 1, Type: model.SecretTypePassword},
-// 			},
-// 			expected: model.Password{
-// 				SecretMeta: model.SecretMeta{
-// 					ID:   2,
-// 					Name: "pwd-2",
-// 					Type: model.SecretTypePassword,
-// 				},
-// 				Login:    "stub-login",
-// 				Password: "stub-password",
-// 			},
-// 		},
-// 	}
+func (s *TestSuite) TestGetPassword() {
+	ctx := context.Background()
 
-// 	for _, tt := range tests {
-// 		actual, err := s.secretSrv.GetPassword(ctx, tt.args.req)
-// 		s.Require().NoError(err)
-// 		s.Assert().Equal(tt.expected, *actual)
-// 	}
-// }
+	type args struct {
+		req model.SecretRequest
+	}
+	tests := []struct {
+		name     string
+		args     args
+		expected model.Password
+	}{
+		{
+			name: "Test success - 1",
+			args: args{
+				req: model.SecretRequest{ID: 1, UserID: 1, Type: model.SecretTypePassword},
+			},
+			expected: model.Password{
+				SecretMeta: model.SecretMeta{
+					ID:   1,
+					Name: "pwd-1",
+					Type: model.SecretTypePassword,
+					Note: "",
+				},
+				Login:    "stub-login",
+				Password: "stub-password",
+			},
+		},
+		{
+			name: "Test success - 2",
+			args: args{
+				req: model.SecretRequest{ID: 2, UserID: 1, Type: model.SecretTypePassword},
+			},
+			expected: model.Password{
+				SecretMeta: model.SecretMeta{
+					ID:   2,
+					Name: "pwd-2",
+					Type: model.SecretTypePassword,
+					Note: "note...",
+				},
+				Login:    "stub-login",
+				Password: "stub-password",
+			},
+		},
+	}
+
+	for _, tt := range tests {
+		// payload, _ := tt.expected.GetPayload()
+		// s.encript(string(payload))
+		actual, err := s.secretSrv.GetSecret(ctx, tt.args.req)
+		s.Require().NoError(err)
+		actPwd, err := actual.AsPassword()
+		s.Require().NoError(err)
+		s.Assert().Equal(tt.expected, *actPwd)
+	}
+}
 
 // func (s *TestSuite) TestGetNote() {
 // 	ctx := context.Background()
