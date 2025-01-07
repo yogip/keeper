@@ -184,12 +184,6 @@ func (m *CreateFileView) Update(msg tea.Msg) tea.Cmd {
 				m.nameInput.TextStyle = noStyle
 			}
 
-			// todo File picker Component
-			if m.focusIndex == m.focusFilePicker {
-				// cmd = m.filePicker.Focus()
-			} else {
-			}
-
 			// Note Component
 			if m.focusIndex == m.focusNote {
 				cmd = m.noteInput.Focus()

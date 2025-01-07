@@ -30,7 +30,7 @@ func NewSecretService(
 	return &SecretService{repo: repo, s3client: s3client, encrypter: encrypter, lastEncKeyVersion: lastEncKeyVersion}
 }
 
-func (s *SecretService) ListSecretsMeta(ctx context.Context, req *model.SecretListRequest) (*model.SecretList, error) {
+func (s *SecretService) ListSecretsMeta(ctx context.Context, req model.SecretListRequest) (*model.SecretList, error) {
 	secrets, err := s.repo.ListSecrets(ctx, req)
 	if err != nil {
 		return nil, errors.Wrapf(err, "failed to list secrets")

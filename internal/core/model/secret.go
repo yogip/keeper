@@ -51,7 +51,7 @@ func (s *Secret) AsCard() (*Card, error) {
 	var c Card
 	err := json.Unmarshal(s.Payload, &c)
 	if err != nil {
-		return nil, fmt.Errorf("could not Unmarshal Note payload: %w", err)
+		return nil, fmt.Errorf("could not Unmarshal Card payload: %w", err)
 	}
 	c.SecretMeta = s.SecretMeta
 	return &c, nil
@@ -65,7 +65,7 @@ func (s *Secret) AsFile() (*File, error) {
 	var f File
 	err := json.Unmarshal(s.Payload, &f)
 	if err != nil {
-		return nil, fmt.Errorf("could not Unmarshal Note payload: %w", err)
+		return nil, fmt.Errorf("could not Unmarshal File payload: %w", err)
 	}
 	f.SecretMeta = s.SecretMeta
 	return &f, nil

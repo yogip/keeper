@@ -42,7 +42,7 @@ func NewSecretRepo(db *sql.DB) *SecretRepo {
 	return repo
 }
 
-func (r *SecretRepo) ListSecrets(ctx context.Context, req *model.SecretListRequest) ([]*model.SecretMeta, error) {
+func (r *SecretRepo) ListSecrets(ctx context.Context, req model.SecretListRequest) ([]*model.SecretMeta, error) {
 	items := make([]*model.SecretMeta, 0, 10)
 	query := `
 		SELECT id, name, secret_type, note 
@@ -111,7 +111,7 @@ func (r *SecretRepo) GetSecret(ctx context.Context, req model.SecretRequest) (*E
 	}
 	err := r.retrier.Do(ctx, fun, recoverableErrors...)
 	if err != nil {
-		return nil, fmt.Errorf("error reading password: %w", err)
+		return nil, fmt.Errorf("error reading secret: %w", err)
 	}
 	return &EncryptedSecret{Item: secret, DataKey: dataSecret}, nil
 }

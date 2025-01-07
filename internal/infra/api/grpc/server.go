@@ -118,7 +118,7 @@ func (s *KeeperServer) ListSecrets(ctx context.Context, in *pb.ListRequest) (*pb
 
 	l, err := s.secretService.ListSecretsMeta(
 		ctx,
-		&model.SecretListRequest{
+		model.SecretListRequest{
 			UserID: user.ID,
 			Name:   in.Name,
 		},

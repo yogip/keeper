@@ -60,7 +60,7 @@ test:
 
 test-cov:
 	go test -v -coverpkg=./... -coverprofile=profile.cov.tmp ./...
-	grep -Ev "mocks|migrations" profile.cov.tmp > profile.cov
+	grep -Ev "mocks|migrations|proto|temp|container" profile.cov.tmp > profile.cov
 	go tool cover -func profile.cov
 
 export MASTER_KEY

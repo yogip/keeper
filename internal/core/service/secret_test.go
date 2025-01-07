@@ -5,6 +5,41 @@ import (
 	"keeper/internal/core/model"
 )
 
+func (s *TestSuite) TestListSecret() {
+	ctx := context.Background()
+
+	type args struct {
+		req model.SecretListRequest
+	}
+	tests := []struct {
+		name     string
+		args     args
+		expected *model.SecretList
+	}{
+		{
+			name: "Test All",
+			args: args{
+				req: model.SecretListRequest{UserID: 1},
+			},
+			expected: &model.SecretList{
+				Secrets: []*model.SecretMeta{
+					{ID: 1, Type: model.SecretTypePassword, Name: "pwd-1"},
+					{ID: 2, Type: model.SecretTypePassword, Name: "pwd-2", Note: "note..."},
+					{ID: 3, Type: model.SecretTypeNote, Name: "note-1", Note: "note..."},
+					{ID: 4, Type: model.SecretTypeNote, Name: "note-2"},
+					{ID: 5, Type: model.SecretTypeCard, Name: "card-1", Note: "some note ..."},
+				},
+			},
+		},
+	}
+
+	for _, tt := range tests {
+		actual, err := s.secretSrv.ListSecretsMeta(ctx, tt.args.req)
+		s.Require().NoError(err)
+		s.EqualValues(tt.expected, actual)
+	}
+}
+
 func (s *TestSuite) TestGetSecret() {
 	ctx := context.Background()
 
@@ -81,27 +116,9 @@ func (s *TestSuite) TestGetSecret() {
 				"some note ...",
 			),
 		},
-		// {
-		// 	name: "Test File - 6",
-		// 	args: args{
-		// 		req: model.SecretRequest{ID: 6, UserID: 1, Type: model.SecretTypeFile},
-		// 	},
-		// 	expected: model.NewSecret(
-		// 		6,
-		// 		"file-1",
-		// 		model.SecretTypeCard,
-		// 		[]byte(`{"number": "1234 1234 1234 1234", "month": 11, "year": 25, "holder_name": "Holder Name", "cvc": 123}`),
-		// 		"some note ...",
-		// 	),
-		// },
 	}
 
-	// S3Name   string `json:"s3_name"`
-	// FileName string `json:"file_name"`
-	// File     []byte `json:"file"`
-
 	for _, tt := range tests {
-		// s.encript(`{"number": "1234 1234 1234 1234", "month": 11, "year": 25, "holder_name": "Holder Name", "cvc": 123}`)
 		actual, err := s.secretSrv.GetSecret(ctx, tt.args.req)
 		s.Require().NoError(err)
 
@@ -132,366 +149,235 @@ func (s *TestSuite) TestGetSecret() {
 	}
 }
 
-// func (s *TestSuite) TestGetNote() {
-// 	ctx := context.Background()
+func (s *TestSuite) TestFile() {
+	ctx := context.Background()
 
-// 	type args struct {
-// 		req model.SecretRequest
-// 	}
-// 	tests := []struct {
-// 		name     string
-// 		args     args
-// 		expected model.Note
-// 	}{
-// 		{
-// 			name: "Test success - 1",
-// 			args: args{
-// 				req: model.SecretRequest{ID: 1, UserID: 1, Type: model.SecretTypeNote},
-// 			},
-// 			expected: model.Note{
-// 				SecretMeta: model.SecretMeta{
-// 					ID:   1,
-// 					Name: "note-1",
-// 					Type: model.SecretTypeNote,
-// 					Note: "stub-note",
-// 				},
-// 			},
-// 		},
-// 		{
-// 			name: "Test success - 2",
-// 			args: args{
-// 				req: model.SecretRequest{ID: 2, UserID: 1, Type: model.SecretTypeNote},
-// 			},
-// 			expected: model.Note{
-// 				SecretMeta: model.SecretMeta{
-// 					ID:   2,
-// 					Name: "note-2",
-// 					Type: model.SecretTypeNote,
-// 					Note: "stub-note",
-// 				},
-// 			},
-// 		},
-// 	}
+	crReq := model.CreateFileRequest{
+		UserID:   2,
+		Name:     "test file",
+		FileName: "test.txt",
+		Note:     "some note ...",
+		Payload:  []byte("file content"),
+	}
 
-// 	for _, tt := range tests {
-// 		actual, err := s.secretSrv.GetNote(ctx, tt.args.req)
-// 		s.Require().NoError(err)
-// 		s.Assert().Equal(tt.expected, *actual)
-// 	}
-// }
+	fileID, err := s.secretSrv.CreateFile(ctx, crReq)
+	s.Require().NoError(err)
+	s.Assert().GreaterOrEqual(fileID, int64(1))
 
-// func (s *TestSuite) TestGetCard() {
-// 	ctx := context.Background()
+	req := model.SecretRequest{ID: fileID, UserID: 2, Type: model.SecretTypeFile}
+	secret, err := s.secretSrv.GetSecret(ctx, req)
+	s.Require().NoError(err)
+	s.Assert().GreaterOrEqual(fileID, secret.ID)
+	s.Assert().Equal(crReq.Name, secret.Name)
 
-// 	req := model.SecretRequest{ID: 1, UserID: 1, Type: model.SecretTypeCard}
-// 	expected := model.Card{
-// 		SecretMeta: model.SecretMeta{
-// 			ID:   1,
-// 			Name: "card-1",
-// 			Type: model.SecretTypeCard,
-// 		},
-// 		Number:     "1234123412341234",
-// 		Month:      12,
-// 		Year:       25,
-// 		HolderName: "No Name",
-// 		CVC:        123,
-// 	}
+	file, err := secret.AsFile()
+	s.Require().NoError(err)
 
-// 	card, err := s.secretSrv.GetCard(ctx, req)
-// 	s.Require().NoError(err)
-// 	s.Assert().Equal(expected, *card)
-// }
+	s.Assert().Equal(crReq.FileName, file.FileName)
+	s.Assert().Equal(string(crReq.Payload), string(file.File))
+}
 
-// func (s *TestSuite) TestList() {
-// 	ctx := context.Background()
+func (s *TestSuite) TestCreateSecret() {
+	ctx := context.Background()
 
-// 	type args struct {
-// 		req model.SecretListRequest
-// 	}
-// 	tests := []struct {
-// 		name     string
-// 		args     args
-// 		expected []model.SecretMeta
-// 	}{
-// 		{
-// 			name: "Test passwords",
-// 			args: args{
-// 				req: model.SecretListRequest{UserID: 1, Name: "pwd"},
-// 			},
-// 			expected: []model.SecretMeta{
-// 				{
-// 					ID:   1,
-// 					Name: "pwd-1",
-// 					Type: model.SecretTypePassword,
-// 				},
-// 				{
-// 					ID:   2,
-// 					Name: "pwd-2",
-// 					Type: model.SecretTypePassword,
-// 				},
-// 			},
-// 		},
-// 		{
-// 			name: "Test notes",
-// 			args: args{
-// 				req: model.SecretListRequest{UserID: 1, Name: "note"},
-// 			},
-// 			expected: []model.SecretMeta{
-// 				{
-// 					ID:   1,
-// 					Name: "note-1",
-// 					Type: model.SecretTypeNote,
-// 				},
-// 				{
-// 					ID:   2,
-// 					Name: "note-2",
-// 					Type: model.SecretTypeNote,
-// 				},
-// 			},
-// 		},
-// 		{
-// 			name: "Test cards",
-// 			args: args{
-// 				req: model.SecretListRequest{UserID: 1, Name: "card-1"},
-// 			},
-// 			expected: []model.SecretMeta{
-// 				{
-// 					ID:   1,
-// 					Name: "card-1",
-// 					Type: model.SecretTypeCard,
-// 				},
-// 			},
-// 		},
-// 		{
-// 			name: "Test cards - empty",
-// 			args: args{
-// 				req: model.SecretListRequest{UserID: 3},
-// 			},
-// 			expected: []model.SecretMeta{},
-// 		},
-// 	}
+	type args struct {
+		req model.SecretCreateRequest
+	}
+	tests := []struct {
+		name     string
+		args     args
+		expected *model.Secret
+	}{
+		{
+			name: "Test Password",
+			args: args{
+				req: model.SecretCreateRequest{
+					UserID:  2,
+					Type:    model.SecretTypePassword,
+					Name:    "pwd-name",
+					Note:    "note...",
+					Payload: []byte(`{"login": "stub-login", "password": "stub-password"}`),
+				},
+			},
+			expected: model.NewSecret(
+				10001,
+				"pwd-name",
+				model.SecretTypePassword,
+				[]byte(`{"login": "stub-login", "password": "stub-password"}`),
+				"note...",
+			),
+		},
+		{
+			name: "Test Note",
+			args: args{
+				req: model.SecretCreateRequest{
+					UserID:  2,
+					Type:    model.SecretTypeNote,
+					Name:    "note-1",
+					Note:    "some note ...",
+					Payload: []byte(`{"text": "stub-text"}`),
+				},
+			},
+			expected: model.NewSecret(
+				10002,
+				"note-1",
+				model.SecretTypeNote,
+				[]byte(`{"text": "stub-text"}`),
+				"some note ...",
+			),
+		},
+		{
+			name: "Test Card",
+			args: args{
+				req: model.SecretCreateRequest{
+					UserID:  2,
+					Type:    model.SecretTypeCard,
+					Name:    "card-1",
+					Note:    "some note ...",
+					Payload: []byte(`{"number": "1234 1234 1234 1234", "month": 11, "year": 25, "holder_name": "Holder Name", "cvc": 123}`),
+				},
+			},
+			expected: model.NewSecret(
+				10003,
+				"card-1",
+				model.SecretTypeCard,
+				[]byte(`{"number": "1234 1234 1234 1234", "month": 11, "year": 25, "holder_name": "Holder Name", "cvc": 123}`),
+				"some note ...",
+			),
+		},
+	}
 
-// 	for _, tt := range tests {
-// 		actual, err := s.secretSrv.ListSecretsMeta(ctx, &tt.args.req)
-// 		s.Require().NoError(err)
-// 		s.Assert().Equal(len(actual.Secrets), len(tt.expected))
-// 		for _, v := range actual.Secrets {
-// 			s.Assert().Contains(tt.expected, *v)
-// 		}
-// 	}
-// }
+	for _, tt := range tests {
+		actual, err := s.secretSrv.CreateSecret(ctx, tt.args.req)
+		s.Require().NoError(err)
 
-// func (s *TestSuite) TestCreatePassword() {
-// 	ctx := context.Background()
+		switch tt.args.req.Type {
+		case model.SecretTypePassword:
+			actPwd, err := actual.AsPassword()
+			s.Require().NoError(err)
 
-// 	req := model.UpdatePasswordRequest{
-// 		UserID: 2,
-// 		Data: &model.Password{
-// 			SecretMeta: model.SecretMeta{Name: "pwd-1"},
-// 			Login:      "login",
-// 			Password:   "pwdd",
-// 		},
-// 	}
-// 	expected := model.Password{
-// 		SecretMeta: model.SecretMeta{
-// 			ID:   3,
-// 			Name: "pwd-1",
-// 			Type: model.SecretTypePassword,
-// 		},
-// 		Login:    "login",
-// 		Password: "pwdd",
-// 	}
+			pwd, err := tt.expected.AsPassword()
+			s.Require().NoError(err)
+			s.Assert().Equal(pwd, actPwd)
+		case model.SecretTypeNote:
+			actNote, err := actual.AsNote()
+			s.Require().NoError(err)
 
-// 	actual, err := s.secretSrv.CreatePassword(ctx, req)
-// 	s.Require().NoError(err)
-// 	s.Assert().Equal(expected.Login, actual.Login)
-// 	s.Assert().Equal(expected.Name, actual.Name)
-// 	s.Assert().Equal(expected.Password, actual.Password)
-// }
+			note, err := tt.expected.AsNote()
+			s.Require().NoError(err)
+			s.Assert().Equal(note, actNote)
+		case model.SecretTypeCard:
+			actCard, err := actual.AsCard()
+			s.Require().NoError(err)
 
-// func (s *TestSuite) TestUpdatePassword() {
-// 	ctx := context.Background()
+			card, err := tt.expected.AsCard()
+			s.Require().NoError(err)
+			s.Assert().Equal(card, actCard)
+		}
 
-// 	req := model.UpdatePasswordRequest{
-// 		UserID: 1,
-// 		Data: &model.Password{
-// 			SecretMeta: model.SecretMeta{
-// 				ID:   1,
-// 				Name: "new-name",
-// 			},
-// 			Login:    "new-login",
-// 			Password: "new-pwdd",
-// 		},
-// 	}
-// 	expected := model.Password{
-// 		SecretMeta: model.SecretMeta{
-// 			ID:   1,
-// 			Name: "new-name",
-// 			Type: model.SecretTypePassword,
-// 		},
-// 		Login:    "new-login",
-// 		Password: "new-pwdd",
-// 	}
+	}
+}
 
-// 	actual, err := s.secretSrv.UpdatePassword(ctx, req)
-// 	s.Require().NoError(err)
-// 	s.Assert().Equal(expected, *actual)
-// }
+func (s *TestSuite) TestUpdateSecret() {
+	ctx := context.Background()
 
-// func (s *TestSuite) TestCreateNote() {
-// 	ctx := context.Background()
+	type args struct {
+		req model.SecretUpdateRequest
+	}
+	tests := []struct {
+		name     string
+		args     args
+		expected *model.Secret
+	}{
+		{
+			name: "Test Password",
+			args: args{
+				req: model.SecretUpdateRequest{
+					ID:      6,
+					UserID:  2,
+					Type:    model.SecretTypePassword,
+					Name:    "pwd-name NEW",
+					Note:    "note... NEW",
+					Payload: []byte(`{"login": "stub-login-NEW", "password": "stub-password-NEW"}`),
+				},
+			},
+			expected: model.NewSecret(
+				6,
+				"pwd-name NEW",
+				model.SecretTypePassword,
+				[]byte(`{"login": "stub-login-NEW", "password": "stub-password-NEW"}`),
+				"note... NEW",
+			),
+		},
+		{
+			name: "Test Note",
+			args: args{
+				req: model.SecretUpdateRequest{
+					ID:      7,
+					UserID:  2,
+					Type:    model.SecretTypeNote,
+					Name:    "note-1 NEW",
+					Note:    "some note ... NEW",
+					Payload: []byte(`{"text": "stub-text NEW NEW NEW"}`),
+				},
+			},
+			expected: model.NewSecret(
+				7,
+				"note-1 NEW",
+				model.SecretTypeNote,
+				[]byte(`{"text": "stub-text NEW NEW NEW"}`),
+				"some note ... NEW",
+			),
+		},
+		{
+			name: "Test Card",
+			args: args{
+				req: model.SecretUpdateRequest{
+					ID:      8,
+					UserID:  2,
+					Type:    model.SecretTypeCard,
+					Name:    "card-1 NEW",
+					Note:    "some note ... NEW",
+					Payload: []byte(`{"number": "1234 0000 1234 1230", "month": 10, "year": 26, "holder_name": "Holder Name NEW", "cvc": 321}`),
+				},
+			},
+			expected: model.NewSecret(
+				8,
+				"card-1 NEW",
+				model.SecretTypeCard,
+				[]byte(`{"number": "1234 0000 1234 1230", "month": 10, "year": 26, "holder_name": "Holder Name NEW", "cvc": 321}`),
+				"some note ... NEW",
+			),
+		},
+	}
 
-// 	req := model.UpdateNoteRequest{
-// 		UserID: 2,
-// 		Data: &model.Note{
-// 			SecretMeta: model.SecretMeta{
-// 				Name: "note-name",
-// 				Note: "note ................................",
-// 			},
-// 		},
-// 	}
-// 	expected := model.Note{
-// 		SecretMeta: model.SecretMeta{
-// 			ID:   3,
-// 			Name: "note-name",
-// 			Type: model.SecretTypeNote,
-// 			Note: "note ................................",
-// 		},
-// 	}
+	for _, tt := range tests {
+		actual, err := s.secretSrv.UpdateSecret(ctx, tt.args.req)
+		s.Require().NoError(err)
 
-// 	actual, err := s.secretSrv.CreateNote(ctx, req)
-// 	s.Require().NoError(err)
-// 	s.Assert().Equal(expected.Note, actual.Note)
-// 	s.Assert().Equal(expected.Name, actual.Name)
-// }
+		switch tt.args.req.Type {
+		case model.SecretTypePassword:
+			actPwd, err := actual.AsPassword()
+			s.Require().NoError(err)
 
-// func (s *TestSuite) TestUpdateNote() {
-// 	ctx := context.Background()
+			pwd, err := tt.expected.AsPassword()
+			s.Require().NoError(err)
+			s.Assert().Equal(pwd, actPwd)
+		case model.SecretTypeNote:
+			actNote, err := actual.AsNote()
+			s.Require().NoError(err)
 
-// 	req := model.UpdateNoteRequest{
-// 		UserID: 1,
-// 		Data: &model.Note{
-// 			SecretMeta: model.SecretMeta{
-// 				ID:   1,
-// 				Name: "new-name",
-// 				Note: "new-note",
-// 			},
-// 		},
-// 	}
-// 	expected := model.Note{
-// 		SecretMeta: model.SecretMeta{
-// 			ID:   1,
-// 			Name: "new-name",
-// 			Type: model.SecretTypeNote,
-// 			Note: "new-note",
-// 		},
-// 	}
+			note, err := tt.expected.AsNote()
+			s.Require().NoError(err)
+			s.Assert().Equal(note, actNote)
+		case model.SecretTypeCard:
+			actCard, err := actual.AsCard()
+			s.Require().NoError(err)
 
-// 	actual, err := s.secretSrv.UpdateNote(ctx, req)
-// 	s.Require().NoError(err)
-// 	s.Assert().Equal(expected, *actual)
-// }
+			card, err := tt.expected.AsCard()
+			s.Require().NoError(err)
+			s.Assert().Equal(card, actCard)
+		}
 
-// func (s *TestSuite) TestCreateCard() {
-// 	ctx := context.Background()
-
-// 	req := model.UpdateCardRequest{
-// 		UserID: 2,
-// 		Card: model.Card{
-// 			SecretMeta: model.SecretMeta{
-// 				Name: "card-1",
-// 				Type: model.SecretTypeCard,
-// 			},
-// 			Number:     "1234123412341234",
-// 			Month:      12,
-// 			Year:       25,
-// 			HolderName: "No Name",
-// 			CVC:        123,
-// 		},
-// 	}
-// 	expected := model.Card{
-// 		SecretMeta: model.SecretMeta{
-// 			ID:   1,
-// 			Name: "card-1",
-// 			Type: model.SecretTypeCard,
-// 		},
-// 		Number:     "1234123412341234",
-// 		Month:      12,
-// 		Year:       25,
-// 		HolderName: "No Name",
-// 		CVC:        123,
-// 	}
-
-// 	actual, err := s.secretSrv.CreateCard(ctx, req)
-
-// 	s.Require().NoError(err)
-// 	s.Assert().Equal(expected.Name, actual.Name)
-// 	s.Assert().Equal(expected.Type, actual.Type)
-// 	s.Assert().Equal(expected.Number, actual.Number)
-// 	s.Assert().Equal(expected.Month, actual.Month)
-// 	s.Assert().Equal(expected.Year, actual.Year)
-// 	s.Assert().Equal(expected.HolderName, actual.HolderName)
-// 	s.Assert().Equal(expected.CVC, actual.CVC)
-// }
-
-// func (s *TestSuite) TestUpdateCard() {
-// 	ctx := context.Background()
-
-// 	req := model.UpdateCardRequest{
-// 		UserID: 2,
-// 		Card: model.Card{
-// 			SecretMeta: model.SecretMeta{
-// 				ID:   2,
-// 				Name: "card-new",
-// 				Type: model.SecretTypeCard,
-// 			},
-// 			Number:     "0234123412341234",
-// 			Month:      10,
-// 			Year:       22,
-// 			HolderName: "No NewName",
-// 			CVC:        321,
-// 		},
-// 	}
-// 	expected := model.Card{
-// 		SecretMeta: model.SecretMeta{
-// 			ID:   2,
-// 			Name: "card-new",
-// 			Type: model.SecretTypeCard,
-// 		},
-// 		Number:     "0234123412341234",
-// 		Month:      10,
-// 		Year:       22,
-// 		HolderName: "No NewName",
-// 		CVC:        321,
-// 	}
-
-// 	actual, err := s.secretSrv.UpdateCard(ctx, req)
-
-// 	s.Require().NoError(err)
-// 	s.Assert().Equal(expected, *actual)
-// }
-
-// func (s *TestSuite) TestFile() {
-// 	ctx := context.Background()
-
-// 	crReq := model.CreateFileRequest{
-// 		UserID: 1,
-// 		Body:   []byte("test"),
-// 		Name:   "test file",
-// 	}
-
-// 	fileMeta, err := s.secretSrv.CreateFile(ctx, crReq)
-// 	s.Require().NoError(err)
-// 	s.Assert().GreaterOrEqual(fileMeta.ID, int64(1))
-// 	s.Assert().Equal(fileMeta.Name, crReq.Name)
-// 	_, err = uuid.Parse(fileMeta.Path)
-// 	s.Require().NoError(err)
-
-// 	req := model.SecretRequest{ID: fileMeta.ID, UserID: 1, Type: model.SecretTypeFile}
-// 	file, err := s.secretSrv.GetFile(ctx, req)
-// 	s.Require().NoError(err)
-// 	s.Assert().GreaterOrEqual(fileMeta.ID, file.ID)
-// 	s.Assert().Equal(fileMeta.Name, file.Name)
-// 	s.Assert().Equal(fileMeta.Path, file.Path)
-// 	s.Assert().Equal(string(crReq.Body), string(file.Body))
-// }
+	}
+}
