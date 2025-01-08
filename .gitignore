@@ -30,4 +30,5 @@ encryption_keys/
 *.log
 
 *.cov
+coverage-index.html
 *.tmp

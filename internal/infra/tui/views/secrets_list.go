@@ -223,8 +223,9 @@ func (m *SecretListView) View() string {
 	b.WriteString("\n")
 	b.WriteString(helpStyle.Render("Use `up` and `down` or `tab` and `shift+tab` to navigate"))
 	b.WriteString("\n")
-	b.WriteString(helpStyle.Render("Use `e` to edit secret, `enter` to see secret info "))
-	b.WriteString(helpStyle.Render("and `n` to create a new one."))
+	b.WriteString(helpStyle.Render("Use `e` to edit secret, `enter` to see secret info."))
+	b.WriteString("\n")
+	b.WriteString(helpStyle.Render("Select table and type `n` to create a new secret."))
 
 	return b.String()
 }

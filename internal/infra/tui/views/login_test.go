@@ -16,7 +16,7 @@ func (c *iamStub) SignUp(req model.UserRequest) error { return nil }
 
 func TestLoginView_loginCmd(t *testing.T) {
 	iam := iamStub{}
-	m := NewLoginView(&iam)
+	m := NewLoginView(&iam, "2020-10-10", "1.0.0")
 
 	cmd := m.loginCmd("user", "password")
 	msg := cmd()
@@ -27,7 +27,7 @@ func TestLoginView_loginCmd(t *testing.T) {
 
 func TestLoginView_MoveToSignUp(t *testing.T) {
 	iam := iamStub{}
-	m := NewLoginView(&iam)
+	m := NewLoginView(&iam, "2020-10-10", "1.0.0")
 	msg := tea.KeyMsg{Type: tea.KeyEnter}
 
 	m.focusIndex = m.focusSignUp
@@ -42,7 +42,7 @@ func TestLoginView_MoveToSignUp(t *testing.T) {
 
 func TestLoginView_UpdateDown(t *testing.T) {
 	iam := iamStub{}
-	m := NewLoginView(&iam)
+	m := NewLoginView(&iam, "2020-10-10", "1.0.0")
 	msg := tea.KeyMsg{Type: tea.KeyDown}
 
 	// go down to password input
@@ -62,9 +62,9 @@ func TestLoginView_UpdateDown(t *testing.T) {
 }
 
 func TestLoginView_View(t *testing.T) {
-	expected := "Enter your credentials:\n\n> Email\n> Password\n\n[ Submit ]\n[ Sign Up ]\nUse `up` and `down` or `tab` and `shift+tab` to navigate."
+	expected := "Enter your credentials:\n\n> Email\n> Password\n\n[ Submit ]\n[ Sign Up ]\n\nUse `up` and `down` or `tab` and `shift+tab` to navigate.\nBuild date: 2020-10-10, buildVersion: 1.0.0"
 	iam := iamStub{}
-	m := NewLoginView(&iam)
+	m := NewLoginView(&iam, "2020-10-10", "1.0.0")
 
 	view := m.View()
 

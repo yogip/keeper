@@ -51,6 +51,10 @@ m5rGoJded7BgACxTYHaRVXsX762tOjos5WWQzUwGOHk8gO3L9CcSktloh6Sfjy3q
 LfHpc4xLw78xk5cdTurPtU6IA4/eGoflewTxj6vl5RAAZDAspSj22nuoh1w=
 -----END RSA PRIVATE KEY-----
 endef
+VERSION?=1.0.0
+DATE=$(shell date "+%Y/%m/%d %H:%M:%S")
+LDFLAGS=-ldflags "-s -w -X 'main.buildVersion=$(VERSION)' -X 'main.buildDate=$(DATE)'"
+
 
 mock:
 	mockgen -destination=internal/mocks/mock_system_service.go -package=mocks metrics/internal/core/service Pinger	
@@ -62,10 +66,15 @@ test-cov:
 	go test -v -coverpkg=./... -coverprofile=profile.cov.tmp ./...
 	grep -Ev "mocks|migrations|proto|temp|container" profile.cov.tmp > profile.cov
 	go tool cover -func profile.cov
+	go tool cover -html profile.cov -o coverage-index.html
+
 
 export MASTER_KEY
 server:
 	go run cmd/server/main.go -l debug -a 127.0.0.1:8080 -d "host=localhost port=35432 user=username password=password dbname=keeper sslmode=disable"
+
+client:
+	go run $(LDFLAGS) cmd/tui/main.go -l debug -s 127.0.0.1:8080
 
 generate-key:
 	go run cmd/key/main.go -v 1

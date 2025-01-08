@@ -42,8 +42,8 @@ type Model struct {
 	errors         []*views.ErrorMsg
 }
 
-func InitModel(app Client) Model {
-	l := views.NewLoginView(app)
+func InitModel(app Client, buildDate, buildVersion string) Model {
+	l := views.NewLoginView(app, buildDate, buildVersion)
 	return Model{
 		app:            app,
 		screen:         views.ScreenLogin,
@@ -66,7 +66,6 @@ func (m Model) Init() tea.Cmd {
 }
 
 func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
-	log.Println("--- Main::Update msg", msg)
 	switch msg := msg.(type) {
 	case views.ScreenTypeMsg:
 		return m, m.changeViewer(msg)
@@ -118,7 +117,7 @@ func (m *Model) tickErrors() tea.Cmd {
 }
 
 func (m *Model) changeViewer(msg views.ScreenTypeMsg) tea.Cmd {
-	// log.Printf("Main View. Change Screent to %s from %s\n", string(msg.Screen), string(m.screen))
+	log.Println("Changing screen to", msg)
 	m.screen = msg.Screen
 	switch msg.Screen {
 	// Login

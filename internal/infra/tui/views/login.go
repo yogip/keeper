@@ -17,15 +17,17 @@ type ClientIAM interface {
 }
 
 type LoginView struct {
-	focusIndex  int
-	focusMax    int
-	focusSubmit int
-	focusSignUp int
-	inputs      []textinput.Model
-	iam         ClientIAM
+	focusIndex   int
+	focusMax     int
+	focusSubmit  int
+	focusSignUp  int
+	inputs       []textinput.Model
+	iam          ClientIAM
+	buildDate    string
+	buildVersion string
 }
 
-func NewLoginView(iam ClientIAM) *LoginView {
+func NewLoginView(iam ClientIAM, buildDate, buildVersion string) *LoginView {
 	inputs := make([]textinput.Model, 2)
 
 	for i := range inputs {
@@ -49,12 +51,14 @@ func NewLoginView(iam ClientIAM) *LoginView {
 		inputs[i] = t
 	}
 	return &LoginView{
-		focusIndex:  0,
-		focusMax:    len(inputs) + 1,
-		focusSubmit: len(inputs),
-		focusSignUp: len(inputs) + 1,
-		inputs:      inputs,
-		iam:         iam,
+		focusIndex:   0,
+		focusMax:     len(inputs) + 1,
+		focusSubmit:  len(inputs),
+		focusSignUp:  len(inputs) + 1,
+		inputs:       inputs,
+		iam:          iam,
+		buildDate:    buildDate,
+		buildVersion: buildVersion,
 	}
 }
 
@@ -172,7 +176,12 @@ func (m *LoginView) View() string {
 
 	// help info
 	b.WriteString("\n")
+	b.WriteString("\n")
 	b.WriteString(helpStyle.Render("Use `up` and `down` or `tab` and `shift+tab` to navigate."))
+	b.WriteString("\n")
+	b.WriteString(helpStyle.Render(
+		fmt.Sprintf("Build date: %s, buildVersion: %s", m.buildDate, m.buildVersion),
+	))
 
 	return b.String()
 }

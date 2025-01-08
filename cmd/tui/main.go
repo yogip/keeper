@@ -12,6 +12,11 @@ import (
 	tea "github.com/charmbracelet/bubbletea"
 )
 
+var (
+	buildDate    = "N/A"
+	buildVersion = "N/A"
+)
+
 func main() {
 	ctx := context.Background()
 	logger.Initialize("debug") // todo cfg
@@ -26,7 +31,7 @@ func main() {
 	// todo cfg
 	client := grpc.NewClient(ctx, "127.0.0.1:8080")
 	defer client.Close()
-	if _, err := tea.NewProgram(tui.InitModel(client), tea.WithAltScreen(), tea.WithContext(ctx)).Run(); err != nil {
+	if _, err := tea.NewProgram(tui.InitModel(client, buildDate, buildVersion), tea.WithAltScreen(), tea.WithContext(ctx)).Run(); err != nil {
 		fmt.Printf("could not start program: %s\n", err)
 		os.Exit(1)
 	}
