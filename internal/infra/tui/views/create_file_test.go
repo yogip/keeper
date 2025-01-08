@@ -14,25 +14,25 @@ import (
 type clientStub struct {
 }
 
-func (c clientStub) CreateSecret(secretType model.SecretType, name string, note string, payload []byte) (*model.Secret, error) {
+func (c *clientStub) CreateSecret(secretType model.SecretType, name string, note string, payload []byte) (*model.Secret, error) {
 	return &model.Secret{}, nil
 }
-func (c clientStub) CreateFileSecret(name, fileName, note string, payload []byte) (int64, error) {
+func (c *clientStub) CreateFileSecret(name, fileName, note string, payload []byte) (int64, error) {
 	return 0, nil
 }
-func (c clientStub) UpdateSecret(id int64, secretType model.SecretType, name string, note string, payload []byte) (*model.Secret, error) {
+func (c *clientStub) UpdateSecret(id int64, secretType model.SecretType, name string, note string, payload []byte) (*model.Secret, error) {
 	return &model.Secret{}, nil
 }
-func (c clientStub) ListSecrets(secretName string) (*model.SecretList, error) {
+func (c *clientStub) ListSecrets(secretName string) (*model.SecretList, error) {
 	return &model.SecretList{}, nil
 }
-func (c clientStub) GetSecret(secretID int64) (*model.Secret, error) {
+func (c *clientStub) GetSecret(secretID int64) (*model.Secret, error) {
 	return &model.Secret{}, nil
 }
 
 func TestCreateFileView_Init(t *testing.T) {
 	app := clientStub{}
-	m := NewCreateFileView(app)
+	m := NewCreateFileView(&app)
 	cmd := m.Init()
 
 	assert.NotNil(t, cmd)
@@ -49,7 +49,7 @@ func TestCreateFileView_createSecretCmd(t *testing.T) {
 	defer f.Close()
 	defer os.Remove(f.Name())
 
-	m := NewCreateFileView(app)
+	m := NewCreateFileView(&app)
 	cmd := m.createSecretCmd("test_name", f.Name(), "note")
 	msg := cmd()
 
@@ -59,7 +59,7 @@ func TestCreateFileView_createSecretCmd(t *testing.T) {
 
 func TestCreateFileView_Update(t *testing.T) {
 	app := clientStub{}
-	m := NewCreateFileView(app)
+	m := NewCreateFileView(&app)
 	msg := tea.KeyMsg{Type: tea.KeyEnter}
 
 	cmd := m.Update(msg)
@@ -70,7 +70,7 @@ func TestCreateFileView_Update(t *testing.T) {
 
 func TestCreateFileView_updateInputs(t *testing.T) {
 	app := clientStub{}
-	m := NewCreateFileView(app)
+	m := NewCreateFileView(&app)
 
 	msg := tea.KeyMsg{Type: tea.KeyRunes, Runes: []rune("s")}
 	cmd := m.updateInputs(msg)
@@ -94,9 +94,9 @@ func TestCreateFileView_updateInputs(t *testing.T) {
 func TestCreateFileView_View(t *testing.T) {
 	expected := "Create Card:\n> Secret name\n\nSelect a file:\n\n  Bummer. No Files Found.\n                         \n                         \n                         \n                         \n\n┃   1 Enter a note                      \n┃                                       \n┃                                       \n┃                                       \n┃                                       \n┃                                       \n\n[ Create ]\n[ Cancel ]\nUse `up` and `down` or `tab` and `shift+tab` to navigate\n"
 	app := clientStub{}
-	m := NewCreateFileView(app)
+	m := NewCreateFileView(&app)
 
 	view := m.View()
 
-	assert.NotEmpty(t, expected, view)
+	assert.Equal(t, expected, view)
 }
