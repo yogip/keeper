@@ -57,7 +57,7 @@ LDFLAGS=-ldflags "-s -w -X 'main.buildVersion=$(VERSION)' -X 'main.buildDate=$(D
 
 
 mock:
-	mockgen -destination=internal/mocks/mock_system_service.go -package=mocks metrics/internal/core/service Pinger	
+	mockgen -destination=internal/mocks/mock_client.go -package=mocks internal/infra/tui/views/shared.go ClientApp
 
 test:
 	go test ./...

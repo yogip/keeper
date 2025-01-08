@@ -171,6 +171,10 @@ func (s *TestSuite) TestFile() {
 	s.Assert().Equal(crReq.Name, secret.Name)
 
 	file, err := secret.AsFile()
+	// fmt.Println("---")
+	// p, _ := file.GetPayload()
+	// fmt.Println(string(p))
+	// fmt.Println("---")
 	s.Require().NoError(err)
 
 	s.Assert().Equal(crReq.FileName, file.FileName)

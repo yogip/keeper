@@ -100,17 +100,8 @@ func run(ctx context.Context, cfg *config.Config) error {
 	<-quit
 	log.Println("Shutting down server...")
 
-	// The context is used to inform the server it has 5 seconds to finish
-	// the request it is currently handling
-	// sdCtx, cancelAPI := context.WithTimeout(ctx, 5*time.Second)
-	// defer cancelAPI()
-	// if err := api.Shutdown(sdCtx); err != nil {
-	// 	log.Fatal("Server forced to shutdown:", err)
-	// }
-
 	logger.Log.Info("Waitng for processing goroutines to finish")
 	cancel()
-	// procWg.Wait()
 
 	logger.Log.Info("Server exiting")
 	return nil

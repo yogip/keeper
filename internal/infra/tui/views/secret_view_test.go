@@ -1,64 +1,96 @@
 package views
 
-// import (
-// 	"testing"
+import (
+	"testing"
 
-// 	"github.com/stretchr/testify/assert"
-// )
+	"keeper/internal/core/model"
+	"keeper/internal/mocks"
 
-// func TestSecretView_loginCmd(t *testing.T) {
-// 	app := clientStub{}
-// 	m := NewSecretView(&app)
+	tea "github.com/charmbracelet/bubbletea"
+	"github.com/stretchr/testify/assert"
+	"go.uber.org/mock/gomock"
+)
 
-// 	cmd := m.loginCmd("user", "password")
-// 	msg := cmd()
+func TestSecretView_Init(t *testing.T) {
+	ctrl := gomock.NewController(t)
+	mock := mocks.NewMockClientApp(ctrl)
+	m := NewSecretView(mock)
 
-// 	expMsg := changeScreenCmd(&ScreenTypeMsg{Screen: ScreenSecretList})()
-// 	assert.Equal(t, expMsg, msg)
-// }
+	secret := model.NewSecret(101, "stub-name", model.SecretTypePassword, []byte("stub-payload"), "stub-note")
 
-// func TestSecretView_MoveToSignUp(t *testing.T) {
-// 	app := clientStub{}
-// 	m := NewSecretView(&app)
-// 	msg := tea.KeyMsg{Type: tea.KeyEnter}
+	mock.EXPECT().
+		GetSecret(gomock.Eq(int64(101))).
+		Return(secret, nil).
+		AnyTimes()
 
-// 	m.focusIndex = m.focusSignUp
-// 	cmd := m.Update(msg)
-// 	assert.NotNil(t, cmd)
+	cmd := m.Init(secret.ID)
+	msg := cmd()
+	assert.Equal(t, "", msg)
 
-// 	got := cmd()
-// 	want := changeScreenCmd(&ScreenTypeMsg{Screen: ScreenSignUp})()
+	assert.Equal(t, secret, m.secret)
+}
 
-// 	assert.Equal(t, want, got)
-// }
+func TestSecretView_MoveToSignUp(t *testing.T) {
+	ctrl := gomock.NewController(t)
+	mock := mocks.NewMockClientApp(ctrl)
+	m := NewSecretView(mock)
 
-// func TestSecretView_UpdateDown(t *testing.T) {
-// 	app := clientStub{}
-// 	m := NewSecretView(&app)
-// 	msg := tea.KeyMsg{Type: tea.KeyDown}
+	for _, msg := range []tea.KeyMsg{
+		{Type: tea.KeyEsc},
+		{Type: tea.KeyRunes, Runes: []rune("e")},
+	} {
+		cmd := m.Update(msg)
+		assert.NotNil(t, cmd)
 
-// 	// go down to password input
-// 	cmd := m.Update(msg)
-// 	assert.NotNil(t, cmd)
-// 	assert.Equal(t, 1, m.focusIndex)
+		got := cmd()
+		want := changeScreenCmd(&ScreenTypeMsg{Screen: ScreenSecretList})()
+		assert.Equal(t, want, got)
+	}
+}
 
-// 	// go down to submit button
-// 	cmd = m.Update(msg)
-// 	assert.Nil(t, cmd)
-// 	assert.Equal(t, 2, m.focusIndex)
+func TestSecretView_View(t *testing.T) {
+	tests := []struct {
+		name     string
+		secret   *model.Secret
+		expected string
+	}{
+		{
+			name:     "Test Password",
+			secret:   model.NewSecret(101, "stub-name", model.SecretTypePassword, []byte(`{"login": "stub-login", "password": "stub-password"}`), "stub-note"),
+			expected: "Secret ID: 101\nName:      stub-name\n-----------------------------------------------------\nLogin:     stub-login \nPassword:  stub-password \n-----------------------------------------------------\nNote:      stub-note\n\nUse `esc` or `ctr+c` to exit.\nUse `e` to edit secret.",
+		},
+		{
+			name:     "Test Note",
+			secret:   model.NewSecret(102, "stub-name", model.SecretTypeNote, []byte(`{"text": "stub-text"}`), "stub-note"),
+			expected: "Secret ID: 102\nName:      stub-name\n-----------------------------------------------------\nText:     stub-text \n-----------------------------------------------------\nNote:      stub-note\n\nUse `esc` or `ctr+c` to exit.\nUse `e` to edit secret.",
+		},
+		{
+			name:     "Test Card",
+			secret:   model.NewSecret(103, "stub-name", model.SecretTypeCard, []byte(`{"number": "1234 1234 1234 1234", "month": 11, "year": 25, "holder_name": "Holder Name", "cvc": 123}`), "stub-note"),
+			expected: "Secret ID: 103\nName:      stub-name\n-----------------------------------------------------\n1234 1234 1234 1234\nHolder Name\nExpired after: 11/25 \t cvc: 123\n-----------------------------------------------------\nNote:      stub-note\n\nUse `esc` or `ctr+c` to exit.\nUse `e` to edit secret.",
+		},
+		{
+			name:     "Test Card",
+			secret:   model.NewSecret(103, "stub-name", model.SecretTypeFile, []byte(`{"s3_name":"2_00e63495-1ec9-4b91-ae77-025a535965e6","file_name":"test.txt","file":"ZmlsZSBjb250ZW50"}`), "stub-note"),
+			expected: "Secret ID: 103\nName:      stub-name\n-----------------------------------------------------\nFile name:    test.txt\nFile body:\nfile content\n-----------------------------------------------------\nNote:      stub-note\n\nUse `esc` or `ctr+c` to exit.\nUse `e` to edit secret.",
+		},
+	}
 
-// 	// go down to sign up button
-// 	cmd = m.Update(msg)
-// 	assert.Nil(t, cmd)
-// 	assert.Equal(t, 3, m.focusIndex)
-// }
+	for _, tt := range tests {
+		ctrl := gomock.NewController(t)
+		mock := mocks.NewMockClientApp(ctrl)
+		m := NewSecretView(mock)
+		mock.EXPECT().
+			GetSecret(gomock.Eq(tt.secret.ID)).
+			Return(tt.secret, nil).
+			AnyTimes()
 
-// func TestSecretView_View(t *testing.T) {
-// 	expected := "Enter your credentials:\n\n> Email\n> Password\n\n[ Submit ]\n[ Sign Up ]\nUse `up` and `down` or `tab` and `shift+tab` to navigate."
-// 	app := clientStub{}
-// 	m := NewSecretView(&app)
+		cmd := m.Init(tt.secret.ID)
+		msg := cmd()
+		assert.Equal(t, "", msg)
 
-// 	view := m.View()
+		view := m.View()
 
-// 	assert.Equal(t, expected, view)
-// }
+		assert.Equal(t, tt.expected, view)
+	}
+}

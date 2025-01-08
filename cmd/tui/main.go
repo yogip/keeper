@@ -19,7 +19,7 @@ var (
 
 func main() {
 	ctx := context.Background()
-	logger.Initialize("debug") // todo cfg
+	logger.Initialize("debug")
 
 	f, err := tea.LogToFile("debug.log", "debug")
 	if err != nil {
@@ -28,7 +28,6 @@ func main() {
 	}
 	defer f.Close()
 
-	// todo cfg
 	client := grpc.NewClient(ctx, "127.0.0.1:8080")
 	defer client.Close()
 	if _, err := tea.NewProgram(tui.InitModel(client, buildDate, buildVersion), tea.WithAltScreen(), tea.WithContext(ctx)).Run(); err != nil {
