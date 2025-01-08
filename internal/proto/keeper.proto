@@ -1,0 +1,105 @@
+syntax = "proto3";
+
+package proto;
+
+option go_package = "./proto/proto";
+
+// IAM section
+message LoginRequest {
+	string login    = 1;
+	string password = 2;
+} 
+
+message SignUpRequest {
+	string login    = 1;
+	string password = 2;
+} 
+
+message Token {
+	string token    = 1;
+} 
+// End of IAM
+
+
+enum SecretType {
+  PASSWORD = 0;
+  CARD = 1;
+  NOTE = 2;
+  FILE = 3;
+}
+
+// List Secrets
+message ListRequest {
+  string name = 1; 
+}
+
+message SecretMeta {
+  sint64 id = 1; 
+  string name = 2; 
+  string note = 3;
+  SecretType type = 4; 
+}
+
+message ListResponse {
+  repeated SecretMeta secrets = 1;
+}
+// End of List Secrets
+
+// Secret section
+message Secret {
+  sint64     id = 1; 
+  string     name = 2; 
+  string     note = 3;
+  SecretType type = 4; 
+  bytes      payload = 5;
+}
+
+message SecretRequest {
+  sint64     id = 1; 
+  SecretType type = 2; 
+}
+
+message SecretCreateRequest {
+  string     name = 1; 
+  SecretType type = 2; 
+  bytes      payload = 3; 
+  string     note = 4;
+}
+
+message SecretUpdateRequest {
+  sint64     id = 1;
+  string     name = 2; 
+  string     note = 3;
+  SecretType type = 4; 
+  bytes      payload = 5; 
+}
+
+message SecretFileCreateRequest {
+  string     name = 1; 
+  string     file_name = 2; 
+  bytes      payload = 3; 
+  string     note = 4;
+}
+
+message SecretFileCreateResponse {
+  sint64     id = 1;
+  string     name = 2; 
+  string     file_name = 3; 
+  string     note = 4;
+}
+
+// End of Secret section
+
+
+service Keeper {
+  // IAM
+  rpc Login(LoginRequest) returns (Token);
+  rpc SignUp(SignUpRequest) returns (Token);
+
+  // Secret
+  rpc ListSecrets(ListRequest) returns (ListResponse);
+  rpc GetSecret(SecretRequest) returns (Secret);
+  rpc CreateSecret(SecretCreateRequest) returns (Secret);  
+  rpc UpdateSecret(SecretUpdateRequest) returns (Secret);  
+  rpc CreateFile(SecretFileCreateRequest) returns (SecretFileCreateResponse);  
+}
